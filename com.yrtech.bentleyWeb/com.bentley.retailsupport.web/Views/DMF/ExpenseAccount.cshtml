@@ -1,0 +1,270 @@
+﻿@{
+    ViewBag.Title = "费用报销";
+}
+
+<style>
+    html {
+        overflow: auto;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+
+    .widget {
+        margin-bottom: 5px !important;
+    }
+
+    .widget-body {
+        padding: 5px 5px 1px 5px !important;
+    }
+
+    .page-content {
+        padding: 5px 5px 1px 5px !important;
+    }
+
+    select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+        margin-bottom: 4px !important;
+    }
+
+    .fixed-table-pagination div.pagination, .fixed-table-pagination .pagination-detail {
+        margin-top: 5px !important;
+        margin-bottom: 0px !important;
+    }
+</style>
+
+<div style="display:none">
+    <input id="NO" type="hidden" value="{{'NO'|translate}}" />
+    <input id="Dealer" type="hidden" value="{{'Dealer'|translate}}" />
+    <input id="Promotion_State" type="hidden" value="{{'Promotion State'|translate}}" />
+    <input id="In_Plan" type="hidden" value="{{'In Plan'|translate}}" />
+    <input id="Promotion_Name" type="hidden" value="{{'Event Name'|translate}}" />
+    <input id="Owner" type="hidden" value="{{'Owner'|translate}}" />
+    <input id="MarketFund_Name" type="hidden" value="{{'Name'|translate}}" />
+    <input id="_ht_emailSnapshot" type="hidden" value="{{'Email Screenshot'|translate}}" />
+    <input id="_ht_eventReportPPT" type="hidden" value="{{'Event Report PPT'|translate}}" />
+    <input id="_ht_eventPlan" type="hidden" value="{{'Event Plan'|translate}}" />
+    <input id="TExpense" type="hidden" value="{{'Expense'|translate}}" />
+    <input id="TAD" type="hidden" value="{{'Application Documents'|translate}}" />
+    <input id="TAppSta" type="hidden" value="{{'Application Status'|translate}}" />
+    <input id="TUnsubmitted" type="hidden" value="{{'Unsubmitted'|translate}}" />
+    <input id="Tnae" type="hidden" value="{{'Non-Application Explanation'|translate}}" />
+    <input id="Trsd" type="hidden" value="{{'Reimbursement Supporting Documents'|translate}}" />
+    <input id="TContract" type="hidden" value="{{'Contract'|translate}}" />
+    <input id="TInvoice" type="hidden" value="{{'Invoice'|translate}}" />
+    <input id="TRAN_Quotation" type="hidden" value="{{'Quotation'|translate}}" />
+    <input id="TRAN_OTHERS" type="hidden" value="{{'Others'|translate}}" />
+    <input id="TRAN_AR" type="hidden" value="{{'Approval Result'|translate}}" />
+    <input id="NAE" type="hidden" value="{{'Non-approval Explanation'|translate}}" />
+    <input id="ExpenseItem" type="hidden" value="{{'Tick-box Item'|translate}}" />
+    <input id="_hd_dealName" type="hidden" value="" />
+    <input id="ShopId" type="hidden" value="" />
+</div>
+<div id="page-wrapper">
+    <!--BEGIN CONTENT-->
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-12">
+                    <div class="col-md-12">
+                        <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div id="main-content">
+
+                        <div class="container-fluid">
+                            <div class="row-fluid">
+                                <div class="span12">
+
+                                    <!-- BEGIN EXAMPLE TABLE widget-->
+                                    <div class="widget">
+                                        <div class="widget-title">
+                                            <h4><i class="icon-reorder"></i><span translate>Dealer Expense Reimbursement List</span></h4>
+                                            <span class="tools">
+                                                <a href="javascript:;" class="icon-chevron-down" onclick="ShowDiv()"></a>
+                                            </span>
+                                        </div>
+                                        <div class="widget-body" style="display: block;">
+                                            <div class="row-fluid">
+                                                <span class="span12">
+                                                    <div id="formsousuo" style="margin-bottom:5px">
+                                                        <a class="btn btn-default" href="javascript:;" onclick="Add()"><i class="glyphicon glyphicon-plus"></i><span translate>Add</span></a>
+                                                        <a id="delBtn" class="btn btn-default" href="javascript:;" onclick="Del()"><i class="glyphicon glyphicon-trash"></i><span translate>Delete</span></a>
+                                                        <select class="input-small m-wrap no-margin" id="pdealer" name="pdealer" style="background-color: white;" onchange="NameQuery()">
+                                                            <option value="" translate>Dealer Name</option>
+                                                        </select>
+                                                        <a class="btn btn-primary" style="margin-left:2px;" onclick="downloadFile()"><i class="icon-download-alt"></i><span translate>Export</span></a>
+
+                                                    </div>
+                                                </span>
+                                            </div>
+
+                                            <div class="dataTables_wrapper form-inline" role="grid" id="myPro">
+                                                <table id="myReimbursement" class="table table-striped table-bordered table-hover" data-height="100%"></table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END EXAMPLE TABLE widget-->
+                                </div>
+                            </div>
+                            <!-- END ADVANCED TABLE widget-->
+                            <!-- END PAGE CONTENT-->
+                        </div>
+                    </div>
+                    <!--END CONTENT-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END CONTENT-->
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/api/common.js"></script>
+    <script src="~/Scripts/curtom/Reimbursement.js?20200306"></script>
+    <script src="~/Scripts/crypto-js.js"></script>
+    <script src="~/Scripts/curtom/DESUtil.js"></script>
+    <script type="text/javascript">
+        $("#nav_reimbursement").addClass("active");
+
+        var $table = $('#myReimbursement');
+        var ary = [{ value: "未提交", text: "未提交" }, { value: "待审批", text: "待审批" }, { value: "通过", text: "通过" }, { value: "修改", text: "修改" }, { value: "拒绝", text: "拒绝" }];
+        if (!isZH()) {
+            ary = [{ value: "Unsubmitted", text: "Unsubmitted" }, { value: "Waiting for Approval", text: "Waiting for Approval" }, { value: "Approved", text: "Approved" }, { value: "Pending", text: "Pending" }, { value: "Reject", text: "Reject" }];
+        }
+        var arySelect = [ary[2], ary[3], ary[4]];
+
+        var hdData = [];
+        var activityData = [];
+
+        var roleType = $("#G_RoleTypeCode").val();
+        var account = $("#G_AccountId").val();
+        $(function () {
+            if (roleType == "SYSADMIN" || roleType == "AREA") {
+                if (roleType == "AREA") {
+                    $("#delBtn").remove();
+                }
+                loadShops().forEach(function (item) {
+                    var shopName = isZH() ? item.ShopName : item.ShopNameEn;
+                    $("#pdealer").append($("<option>").val(item.ShopId).text(shopName));
+                });
+            } else {
+                $("#delBtn").remove();
+                $("#pdealer").remove();
+                var shop = loadShops()[0];
+                if (shop) {
+                    var shopName = isZH() ? shop.ShopName : shop.ShopNameEn;
+                    $('#_hd_dealName').val(shopName);
+                    $('#ShopId').val(shop.ShopId);
+                }
+            }
+
+            $.ajaxSettings.async = false;
+            $.commonGet("DMF/DMFItemSearch", {
+                DMFItemId: '',
+                DMFItemName: '',
+                DMFItemNameEn: '',
+                expenseAccountChk: 'true',
+                publishChk: ''
+            }, function (data) {
+                if (data) {
+                    data.forEach(function (item) {
+                        hdData.push({ text: isZH() ? item.DMFItemName : item.DMFItemNameEn, value: item.DMFItemId });
+                    })
+                }
+            });
+
+            $.commonGet("MarketAction/MarketActionNotCancelSearch", {
+                eventTypeId: ' ',
+                userId: $("#G_UserId").val(),
+                roleTypeCode: $("#G_RoleTypeCode").val()
+            }, function (data) {
+                if (data) {
+                    data.forEach(function (item) {
+                        activityData.push({ text: item.ActionName, value: item.MarketActionId });
+                    })
+                }
+            });
+            $.ajaxSettings.async = true;
+            if (window.localStorage) {
+                $('#pdealer').val(window.localStorage["_reimbursement"] || '');
+            }
+
+            var clientWidth = document.body.clientWidth;
+            $(window).resize(function () {
+                if (!clientWidth && document.body.clientWidth != clientWidth) {
+                    $table.bootstrapTable('destroy');// 销毁表格数据
+                    InitMarketFundLst();
+                    HidenField();
+                    loadExpenseAccount();
+                }
+                clientWidth = document.body.clientWidth;
+            });
+
+            InitMarketFundLst();
+            HidenField();
+            loadExpenseAccount();
+        })
+
+        function downloadFile() {
+            $.commonGet("DMF/ExpenseAccountExport", {
+                shopId: $("#pdealer").val(),
+                userId: $("#G_UserId").val(),
+                roleTypeCode: $("#G_RoleTypeCode").val()
+            }, function (data) {
+                if (data) {
+                    window.location.href = host + "download/DownloadFile?filepath=" + data.FilePath;
+                }
+            })
+        }
+
+        function NameQuery() {
+            if (window.localStorage) {
+                var storage = window.localStorage;
+                storage["_reimbursement"] = $('#pdealer').val();
+            }
+            if ($('#pdealer').length > 0) {
+                if ($('#pdealer').val()) {
+                    var shopName = $('#pdealer').find("option:selected").text();
+                    var shopId = $('#pdealer').find("option:selected").val();
+                    $('#_hd_dealName').val(shopName);
+                    $("#ShopId").val(shopId)
+                } else {
+                    var shopName = $('#pdealer').find("option:eq(1)").text();
+                    var shopId = $('#pdealer').find("option:eq(1)").val();
+                    $('#_hd_dealName').val(shopName);
+                    $("#ShopId").val(shopId)
+                }
+            }
+            loadExpenseAccount();
+        }
+
+        function EmptyValue() {
+            window.localStorage.Empty = "true";
+        }
+
+        function HidenField() {
+            if (roleType == 'SHOP') {
+                $table.bootstrapTable('hideColumn', 'Ischecked');
+            }
+        }
+
+        function loadExpenseAccount() {
+            $.commonGet("DMF/ExpenseAccountSearch", {
+                expenseAccountId: '',
+                shopId: $('#pdealer').val() || '',
+                dmfItemId: '',
+                marketActionId: '',
+                userId: $('#G_UserId').val(),
+                roleTypeCode: $('#G_RoleTypeCode').val()
+            }, function (data) {
+                if (data) {
+                    $('#myReimbursement').bootstrapTable("load", data);
+                    $("#myReimbursement").bootstrapTable("selectPage", parseInt(window.localStorage.pageNumberReimb) || 1);
+                }
+            });
+        }
+
+    </script>
+}

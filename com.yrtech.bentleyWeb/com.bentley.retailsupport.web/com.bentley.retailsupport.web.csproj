@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0008D3B4-5F3E-490B-BB06-7A3912632432}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>com.bentley.retailsupport.web</RootNamespace>
+    <AssemblyName>com.bentley.retailsupport.web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Infragistics3.Documents.Excel.v11.1">
+      <HintPath>..\packages\Infragistics3.Documents.Excel.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\AuthenAdminAttribute.cs" />
+    <Compile Include="Attributes\CustomHandleErrorAttribute.cs" />
+    <Compile Include="Attributes\ErrorFilter.cs" />
+    <Compile Include="Attributes\LogFilter.cs" />
+    <Compile Include="Common\APIResult.cs" />
+    <Compile Include="Common\CommonHelper.cs" />
+    <Compile Include="Common\TokenHelper.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DMFController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarketingController.cs" />
+    <Compile Include="DTO\Account\AccountDto.cs" />
+    <Compile Include="DTO\Account\Area.cs" />
+    <Compile Include="DTO\Account\Shop.cs" />
+    <Compile Include="DTO\Account\UserInfoDto.cs" />
+    <Compile Include="DTO\MarketAction\MarketActionAfter2LeadsReportDto.cs" />
+    <Compile Include="DTO\MarketAction\MarketActionAfter7.cs" />
+    <Compile Include="DTO\MarketAction\MarketActionBefore21.cs" />
+    <Compile Include="DTO\MarketAction\MarketActionDto.cs" />
+    <Compile Include="DTO\MarketAction\MarketActionExportDto.cs" />
+    <Compile Include="DTO\MarketAction\MarketActionLeadsCountDto.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\curtom\DESUtil.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\assets\plugins\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\assets\plugins\bootstrap-datetimepicker\js\bootstrap-datetimepicker.js" />
+    <Content Include="Content\assets\plugins\bootstrap-datetimepicker\js\locales\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Content\bootstrap-fileinput\css\bootstrap-fileinput.css" />
+    <Content Include="Content\bootstrap-fileinput\img\noimage.png" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\avatar\logo.png" />
+    <Content Include="Content\Login2.css" />
+    <Content Include="Content\style\all.css" />
+    <Content Include="Content\style\animate.css" />
+    <Content Include="Content\style\bootstrap-responsive.min.css" />
+    <Content Include="Content\style\bootstrap-switch.css" />
+    <Content Include="Content\style\bootstrap-toggle-buttons.css" />
+    <Content Include="Content\style\bootstrap.min.css" />
+    <Content Include="Content\style\flat\all.css" />
+    <Content Include="Content\style\font-awesome.css" />
+    <Content Include="Content\style\font-awesome.min.css" />
+    <Content Include="Content\style\futurico\futurico.css" />
+    <Content Include="Content\style\line\all.css" />
+    <Content Include="Content\style\main.css" />
+    <Content Include="Content\style\minimal\all.css" />
+    <Content Include="Content\style\pace.css" />
+    <Content Include="Content\style\polaris\polaris.css" />
+    <Content Include="Content\style\square\all.css" />
+    <Content Include="Content\style\style-responsive.css" />
+    <Content Include="Content\style\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\BentleyRegular\Bentley-Regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Home\ActionTypeCreate.html" />
+    <Content Include="Home\ActionTypeEdit.html" />
+    <Content Include="Home\ActualCueReport.html" />
+    <Content Include="Home\AgentCreate.html" />
+    <Content Include="Home\AgentEdit.html" />
+    <Content Include="Home\AreaCreate.html" />
+    <Content Include="Home\AreaEdit.html" />
+    <Content Include="Home\BudgetCost\Index.html" />
+    <Content Include="Home\CueReport.html" />
+    <Content Include="Home\DealersBalance.html" />
+    <Content Include="Home\IncomeCost.html" />
+    <Content Include="Home\Index.html" />
+    <Content Include="Home\ManageActionType.html" />
+    <Content Include="Home\ManageAgent.html" />
+    <Content Include="Home\ManageArea.html" />
+    <Content Include="Home\ManageUsers.html" />
+    <Content Include="Home\MarketFund.html" />
+    <Content Include="Home\Promotion.html" />
+    <Content Include="Home\PromotionCreate.html" />
+    <Content Include="Home\PromotionEdit.html" />
+    <Content Include="Home\PromotionEdit1.html" />
+    <Content Include="Home\PromotionEdit3.html" />
+    <Content Include="Home\PromotionEdit4.html" />
+    <Content Include="Home\PromotionReport.html" />
+    <Content Include="Home\PromotionReport2.html" />
+    <Content Include="Home\PromotionReport3.html" />
+    <Content Include="Home\Reimbursement.html" />
+    <Content Include="Home\UserCreate.html" />
+    <Content Include="Home\UserEdit.html" />
+    <Content Include="Scripts\api\common.js" />
+    <Content Include="Scripts\bootstrap-fileinput\js\bootstrap-fileinput.js" />
+    <Content Include="Scripts\bootstrap-select\css\bootstrap-select.min.css" />
+    <Content Include="Scripts\bootstrap-select\js\bootstrap-select.js" />
+    <Content Include="Scripts\bootstrap-table\bootstrap-table.css" />
+    <Content Include="Scripts\bootstrap-table\extensions\editable\bootstrap-table-editable.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap-table\bootstrap-table.js" />
+    <Content Include="Scripts\bootstrap-table\extensions\bootstrap-table-editable.min.js" />
+    <Content Include="Scripts\bootstrap-table\locale\bootstrap-table-zh-CN.min.js" />
+    <Content Include="Scripts\bootstrap-select\js\bootstrap-select.min.js" />
+    <Content Include="Scripts\bower_components\Font-Awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\style\fonts\BentleyLight.otf" />
+    <Content Include="Content\style\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\style\fonts\BentleySemiBold.otf" />
+    <Content Include="Content\style\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\BentleyRegular\Bentley-Regular.woff" />
+    <Content Include="fonts\BentleyRegular\Bentley-Expanded Regular.woff" />
+    <Content Include="fonts\BentleyRegular\Bentley-Regular.eot" />
+    <Content Include="fonts\BentleySemiBold\Bentley-SemiBold Italic.otf" />
+    <Content Include="fonts\BentleySemiBold\Bentley-SemiBold.otf" />
+    <Content Include="fonts\BentleyRegular\Bentley-Regular Italic.otf" />
+    <Content Include="fonts\BentleyRegular\Bentley-Regular.otf" />
+    <None Include="Properties\PublishProfiles\bentley.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap3-editable\css\bootstrap-editable.css" />
+    <Content Include="Scripts\bootstrap3-editable\js\bootstrap-editable.min.js" />
+    <Content Include="Scripts\bootstrapValidator\css\bootstrapValidator.min.css" />
+    <Content Include="Scripts\bootstrapValidator\js\bootstrapValidator.min.js" />
+    <Content Include="Scripts\bootstrapValidator\js\language\zh_CN.js" />
+    <Content Include="Scripts\bower_components\angular-1.6.4\angular-gettext.min.js" />
+    <Content Include="Scripts\bower_components\angular-1.6.4\angular.js" />
+    <Content Include="Scripts\bower_components\angular-1.6.4\angular.min.js" />
+    <Content Include="Scripts\bower_components\angular-1.6.4\po\en.js" />
+    <Content Include="Scripts\bower_components\angular-1.6.4\po\zh.js" />
+    <Content Include="Scripts\bower_components\Font-Awesome\css\checkbox.css" />
+    <Content Include="Scripts\bower_components\Font-Awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\bower_components\jquery.serializejson.min.js" />
+    <Content Include="Scripts\bower_components\LanguageCheck.js" />
+    <Content Include="Scripts\bower_components\layer\layer.js" />
+    <Content Include="Scripts\bower_components\layer\skin\default\layer.css" />
+    <Content Include="Scripts\bower_components\layer\skin\default\loading-1.gif" />
+    <Content Include="Scripts\crypto-js.js" />
+    <Content Include="Scripts\curtom\ActionTypeCreate.js" />
+    <Content Include="Scripts\curtom\AgentCreate.js" />
+    <Content Include="Scripts\curtom\AreaCreate.js" />
+    <Content Include="Scripts\curtom\BudgetCost.js" />
+    <Content Include="Scripts\curtom\CueReport.js" />
+    <Content Include="Scripts\curtom\DealersBalance.js" />
+    <Content Include="Scripts\curtom\IncomeCost.js" />
+    <Content Include="Scripts\curtom\ManageActionType.js" />
+    <Content Include="Scripts\curtom\ManageAgent.js" />
+    <Content Include="Scripts\curtom\ManageArea.js" />
+    <Content Include="Scripts\curtom\ManageUser.js" />
+    <Content Include="Scripts\curtom\MarketFund.js" />
+    <Content Include="Scripts\curtom\Marketing.js" />
+    <Content Include="Scripts\curtom\PromotionEdit.js" />
+    <Content Include="Scripts\curtom\Reimbursement.js" />
+    <Content Include="Scripts\curtom\UserCreate.js" />
+    <Content Include="Scripts\Dark\bootstrap-hover-dropdown.js" />
+    <Content Include="Scripts\Dark\bootstrap-switch.min.js" />
+    <Content Include="Scripts\Dark\bootstrap-toggleButtons.js" />
+    <Content Include="Scripts\Dark\bootstrap.min.js" />
+    <Content Include="Scripts\Dark\custom.min.js" />
+    <Content Include="Scripts\Dark\holder.js" />
+    <Content Include="Scripts\Dark\html5shiv.js" />
+    <Content Include="Scripts\Dark\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\Dark\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Scripts\Dark\jquery.cookie.js" />
+    <Content Include="Scripts\Dark\jquery.menu.js" />
+    <Content Include="Scripts\Dark\jquery.metisMenu.js" />
+    <Content Include="Scripts\Dark\jquery.slimscroll.js" />
+    <Content Include="Scripts\Dark\main.js" />
+    <Content Include="Scripts\Dark\pace.min.js" />
+    <Content Include="Scripts\Dark\respond.min.js" />
+    <Content Include="Scripts\Dark\responsive-tabs.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Scripts\jquery.jqprint-0.3.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\base64.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\aes\aes-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\aes\aes.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\cbc\cbc-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\cbc\cbc.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto-md5\crypto-md5.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto-sha1-hmac-pbkdf2-marc4\crypto-sha1-hmac-pbkdf2-marc4.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto-sha1-hmac-pbkdf2-ofb-aes\crypto-sha1-hmac-pbkdf2-ofb-aes.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto-sha1-hmac-pbkdf2-rabbit\crypto-sha1-hmac-pbkdf2-rabbit.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto-sha1-hmac-pbkdf2\crypto-sha1-hmac-pbkdf2.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto-sha1\crypto-sha1.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto-sha256\crypto-sha256.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto\crypto-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto\crypto.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\hmac\hmac-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\hmac\hmac.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\marc4\marc4-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\marc4\marc4.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\md5\md5-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\md5\md5.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\ofb\ofb-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\ofb\ofb.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\pbkdf2\pbkdf2-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\pbkdf2\pbkdf2.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\rabbit\rabbit-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\rabbit\rabbit.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\sha1\sha1-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\sha1\sha1.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\sha256\sha256-min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\sha256\sha256.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\examples\custom.html" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\examples\events.html" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\examples\jquery\all_runtimes.html" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\examples\jquery\jquery_ui_widget.html" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\examples\jquery\queue_widget.html" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\ar.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\az.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\bs.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\cs.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\cy.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\da.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\de.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\el.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\en.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\es.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\et.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\fa.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\fi.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\fr.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\he.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\hr.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\hu.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\hy.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\id.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\it.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\ja.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\ka.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\kk.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\km.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\ko.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\lt.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\lv.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\mn.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\ms.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\nl.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\pl.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\pt_BR.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\ro.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\ru.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\sk.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\sq.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\sr.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\sr_RS.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\sv.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\th_TH.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\tr.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\uk_UA.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\zh_CN.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\i18n\zh_TW.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\css\jquery.plupload.queue.css" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\img\backgrounds.gif" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\img\buttons-disabled.png" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\img\buttons.png" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\img\delete.gif" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\img\done.gif" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\img\error.gif" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\img\throbber.gif" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\img\transp50.png" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\jquery.plupload.queue.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.plupload.queue\jquery.plupload.queue.min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.ui.plupload\css\jquery.ui.plupload.css" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.ui.plupload\img\loading.gif" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.ui.plupload\img\plupload.png" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.ui.plupload\jquery.ui.plupload.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\jquery.ui.plupload\jquery.ui.plupload.min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\moxie.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\moxie.min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\Moxie.swf" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\Moxie.xap" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\plupload.dev.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\plupload.full.min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\js\plupload.min.js" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\license.txt" />
+    <Content Include="Scripts\curtom\PromotionCreate.js" />
+    <Content Include="Scripts\oss-upload-direct\upload.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\xlsx.core.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="TestTokenLogin.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Marketing\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Document\DocList.cshtml" />
+    <Content Include="Scripts\oss-upload-direct\lib\crypto1\crypto-1.0.zip" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\examples\dump.php" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\examples\jquery\s3.php" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\examples\upload.php" />
+    <Content Include="Scripts\oss-upload-direct\lib\plupload-2.1.2\readme.md" />
+    <Content Include="Views\Marketing\Create.cshtml" />
+    <Content Include="Views\Marketing\Before3Weeks.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Marketing\TheDays.cshtml" />
+    <Content Include="Views\Marketing\Before3Days.cshtml" />
+    <Content Include="Views\Marketing\After2Days.cshtml" />
+    <Content Include="Views\Marketing\After1Months.cshtml" />
+    <Content Include="Views\Marketing\After7Days.cshtml" />
+    <Content Include="Views\Marketing\After3Months.cshtml" />
+    <Content Include="Views\DMF\DMFItem.cshtml" />
+    <Content Include="Views\DMF\ExpenseAccount.cshtml" />
+    <Content Include="Views\DMF\ExpenseAccountFile.cshtml" />
+    <Content Include="Views\DMF\MonthSale.cshtml" />
+    <Content Include="Views\DMF\DMFDetail.cshtml" />
+    <Content Include="Views\DMF\DMF.cshtml" />
+    <Content Include="Views\Home\ManageAgent.cshtml" />
+    <Content Include="Views\Home\ManageArea.cshtml" />
+    <Content Include="Views\Home\AgentEdit.cshtml" />
+    <Content Include="Views\Home\ManageUsers.cshtml" />
+    <Content Include="Views\Account\UserEdit.cshtml" />
+    <Content Include="Views\Account\UserCreate.cshtml" />
+    <Content Include="Views\Home\AgentCreate.cshtml" />
+    <Content Include="Views\Home\AreaCreate.cshtml" />
+    <Content Include="Views\Home\AreaEdit.cshtml" />
+    <Content Include="Views\Home\ManageActionType.cshtml" />
+    <Content Include="Views\Home\ActionTypeCreate.cshtml" />
+    <Content Include="Views\Home\ActionTypeEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>19600</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:19600/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

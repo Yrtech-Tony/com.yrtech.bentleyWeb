@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "After1Month";
+}
+
+<div style="display:none">
+    <input id="NO" type="hidden" value="{{'NO'|translate}}" />
+    <input id="Dealer" type="hidden" value="{{'Dealer'|translate}}" />
+    <input id="Promotion_State" type="hidden" value="{{'Promotion State'|translate}}" />
+    <input id="In_Plan" type="hidden" value="{{'In Plan'|translate}}" />
+
+    <input id="Promotion_Name" type="hidden" value="{{'Event Name'|translate}}" />
+    <input id="Owner" type="hidden" value="{{'Owner'|translate}}" />
+    <input id="TEdit" type="hidden" value="{{'Edit'|translate}}" />
+    <input id="CustomerName" type="hidden" value="{{'Customer Name'|translate}}" />
+
+    <input id="BPNumber" type="hidden" value="{{'BP Number'|translate}}" />
+    <input id="HasCars" type="hidden" value="{{'Whether is Car Owner'|translate}}" />
+    <input id="HasCars" type="hidden" value="{{'Whether is Car Owner'|translate}}" />
+
+    <input id="WillJoin" type="hidden" value="{{'Whether Test Drive'|translate}}" />
+    <input id="LikeCar" type="hidden" value="{{'LikeCar'|translate}}" />
+
+    <input id="IsLeads" type="hidden" value="{{'Whether is Leads'|translate}}" />
+    <input id="ActualOrdered" type="hidden" value="{{'Actual Order Info'|translate}}" />
+    <input id="QuantitySold" type="hidden" value="{{'Quantity Sold'|translate}}" />
+    <input id="ModelSold" type="hidden" value="{{'Model Sold'|translate}}" />
+    <input id="CustomerIL" type="hidden" value="{{'Customer Inviting List'|translate}}" />
+    <input id="WhetherDeal" type="hidden" value="{{'Whether Deal Made'|translate}}" />
+</div>
+
+<input id="ActionName" name="ActionName" type="hidden" value="@ViewBag.ActionName" />
+<input id="ShopName" name="ShopName" type="hidden" value="@ViewBag.ShopName" />
+<input id="MarketActionId" name="MarketActionId" type="hidden" value="@ViewBag.Id" />
+
+<div id="page-wrapper">
+    <!--BEGIN CONTENT-->
+    <div class="page-content">
+        <div id="main-content">
+            <p>
+                <a class="btn btn-primary" href="/Marketing/Index" onclick="" translate>Back</a>
+            </p>
+
+            <div class="widget">
+                <div class="widget-title">
+                    <h4><i class="icon-reorder"></i><span translate>Clue Report Excel</span></h4>
+                    <span class="tools">
+                        <a href="javascript:;" class="icon-chevron-down" onclick="ShowDiv()"></a>
+                    </span>
+                </div>
+                <div class="widget-body form form-horizontal" style="display: block;">
+                    <div class="dataTables_wrapper form-inline" role="grid">
+                        <div id="toolbar">
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="javascript:;" onclick="Update()"><i class="glyphicon glyphicon-refresh"></i><span translate>Update leads Report Excel</span></a>
+                            </div>
+                        </div>
+                        <table id="myCueReport" class="table table-striped table-bordered table-hover"></table>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END CONTENT-->
+    <!--BEGIN FOOTER-->
+
+    <div id="footer" style="display:none">
+        <div class="copyright">
+            <table></table>
+        </div>
+    </div>
+    <!--END FOOTER-->
+</div>
+
+@section scripts{
+    <script src="~/Scripts/api/common.js"></script>
+    <script src="~/Scripts/curtom/CueReport.js"></script>
+    <script>
+        $("#nav_promotion").addClass("active");
+
+        var id = $("#MarketActionId").val();
+        function loadCueReport() {
+            if (id) {
+                $.commonGet("MarketAction/MarketActionAfter2LeadsReportSearch", { marketActionId: id }, function (data) {
+                    if (data) {
+                        $('#myCueReport').bootstrapTable("load", data);
+                    }
+                });
+            }
+        }
+       
+        loadCueReport();
+        
+
+        function SProcessing() {
+            //loading层
+            var index = layer.load(1, {
+                shade: [0.1, '#fff'] //0.1透明度的白色背景
+            });
+        }
+        function EProcessing() {
+            layer.closeAll('loading');
+        }
+
+        function FileUpload() {
+            $('#UserId').val($('#G_UserId').val());
+            $('#File').click();
+        }
+        function DataUpload() {
+            var uploadForm = new FormData($('#FileUpload')[0]);
+            SProcessing();
+            $.ajax({
+                url: '/Master/CueFileUpload',
+                type: 'POST',
+                cache: false,
+                data: uploadForm,
+                processData: false,
+                contentType: false
+            }).done(function (res) {
+                EProcessing();
+                console.log(res.returnValue);
+                window.location.reload();
+            }).fail(function (res) { EProcessing(); window.location.reload(); });
+        }
+
+        function FormSubmit() {
+            var oMyForm = new FormData($('#PromotionReport')[0]);
+            oMyForm.append("UserId", $('#G_UserId').val());
+
+            $.ajax({
+                url: '/Home/CueReport',
+                type: 'POST',
+                cache: false,
+                data: oMyForm,
+                processData: false,
+                contentType: false
+            }).done(function (res) {
+                console.log(res.returnValue);
+                window.location.reload();
+
+            }).fail(function (res) { });
+        }
+
+    </script>
+}

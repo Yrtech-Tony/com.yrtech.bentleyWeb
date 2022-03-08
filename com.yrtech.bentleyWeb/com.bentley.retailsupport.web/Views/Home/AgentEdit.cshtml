@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "AgentEdit";
+
+}
+<style type="text/css" media="print">
+    .control-label {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .noprint, .widget-title .tools, #sidebar, #ListVisuals_0__ImgRemark, #VisualDescription, #totop, .icon-plus, table tr td:last-child, table tr th:last-child,
+    .btn-dark, .btn-success, .btn-file {
+        display: none !important;
+    }
+
+    .row .control-label {
+        width: 100%;
+    }
+
+    form .row.print .col-md-6 {
+        width: calc(50% - 15px);
+        display: inline-block;
+    }
+
+        form .row.print .col-md-6 .col-md-4 {
+            zoom: 0.5;
+            display: inline-block;
+        }
+</style>
+
+<div id="page-wrapper">
+    <!--BEGIN CONTENT-->
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-12">
+                    <div class="col-md-12">
+                        <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div id="main-content">
+                        <div class="container-fluid">
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <!-- BEGIN THEME CUSTOMIZER-->
+                                    <div id="theme-change" class="hidden-phone" style="display: none;">
+                                        <i class="icon-cogs"></i>
+                                        <span class="settings">
+                                            <span class="text">Theme:</span>
+                                            <span class="colors">
+                                                <span class="color-default" data-style="default"></span>
+                                                <span class="color-gray" data-style="gray"></span>
+                                                <span class="color-purple" data-style="purple"></span>
+                                                <span class="color-navy-blue" data-style="navy-blue"></span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <!-- END THEME CUSTOMIZER-->
+                                    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                                    <h3 class="page-title">
+                                        <span translate>Update</span>
+                                        <small translate>Dealer</small>
+                                    </h3>
+
+                                    <!-- END PAGE TITLE & BREADCRUMB-->
+                                </div>
+                            </div>
+                            <!--end head-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <!-- BEGIN SAMPLE FORM widget-->
+                                    <div class="widget">
+                                        <div class="widget-title">
+                                            <h4><i class="icon-reorder"></i><span translate>Update</span></h4>
+                                            <span class="tools">
+                                                <a href="javascript:;" class="icon-chevron-down" onclick="ShowDiv()"></a>
+                                            </span>
+                                        </div>
+                                        <div class="widget-body form" style="display:block;">
+                                            <form class="form-horizontal" id="agentCreate">
+                                                <input id="ShopId" name="ShopId" type="hidden" />
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3"><span translate>Name</span><span class="required" style="color:red">*</span>:</label>
+                                                            <div class="col-md-6">
+                                                                <input class="form-control" id="ShopName" maxlength="255" name="ShopName" style="width:100%;" type="text" value="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3"><span translate>English Name</span>:</label>
+                                                            <div class="col-md-6">
+                                                                <input class="form-control" id="ShopNameEn" maxlength="255" name="ShopNameEn" style="width:100%;" type="text" value="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3"><span translate>City</span><span class="required" style="color:red">*</span>:</label>
+                                                            <div class="col-md-6">
+                                                                <input class="form-control" id="City" maxlength="255" name="City" style="width:100%;" type="text" value="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3"><span translate>Area</span><span class="required" style="color:red">*</span>:</label>
+                                                            <div class="col-md-3">
+                                                                <select id="AreaId" name="AreaId" class="selectpicker"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3"><span translate>Budget</span>:</label>
+                                                            <div class="col-md-6">
+                                                                <input class="form-control" data-val="true" data-val-number="The field 预算 must be a number." data-val-required="The 预算 field is required." id="Budget" maxlength="255" name="Budget" style="width:100%;" type="text" value="" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <button class="btn btn-success" onclick="Create();" translate>Save</button>
+                                                    <a class="btn btn-dark" href="/Home/ManageAgent" translate>Back</a>
+                                                </div>
+                                            </form>
+                                            <!-- END FORM-->
+                                        </div>
+                                    </div>
+                                    <!-- END SAMPLE FORM widget-->
+                                </div>
+                            </div>
+                            <!-- END ADVANCED TABLE widget-->
+                            <!-- END PAGE CONTENT-->
+                        </div>
+                    </div>
+                    <!--END CONTENT-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END CONTENT-->
+</div>
+@section scripts{
+    <script src="~/Scripts/api/common.js"></script>
+    <script src="~/Scripts/curtom/AgentCreate.js"></script>
+    <script>
+        $("#nav_dealer").addClass("active");
+
+        var userId = $('#G_UserId').val();
+        var id = '@ViewBag.ShopId';
+        $(function () {
+            //设置同步调用 必须先绑定下拉列表数据再查询市场活动信息
+            $.ajaxSetup({
+                async: false
+            });
+            $.commonGet("Master/AreaSearch", {
+                areaId: '',
+                areaName: '',
+                areaNameEn: ''
+            }, function (data) {
+                if (data && data.length > 0) {
+                    data.forEach(function (item) {
+                        var areaName = localStorage.language == 'en' ? item.AreaNameEn : item.AreaName;
+                        $('#AreaId').append($("<option>").val(item.AreaId).text(areaName));
+                    });
+                }
+            });
+            $.ajaxSetup({
+                async: true
+            });
+
+            $("select").selectpicker("refresh");
+
+            if (id) {
+                $.commonGet("Master/ShopSearch", {
+                    shopId: id,
+                    shopCode: '',
+                    shopName: '',
+                    shopNameEn: ''
+                }, function (data) {
+                    if (data && data.length > 0) {
+                        $('#agentCreate').setForm(data[0]);
+                        $("select").selectpicker("refresh");
+                    }
+                });
+            }
+        });
+        function ShowDiv() {
+            if ($('.widget-body.form')[0].style.display == 'none') {
+                $('.widget-body.form')[0].style.display = 'block';
+            }
+            else {
+                $('.widget-body.form')[0].style.display = 'none';
+            }
+        }
+
+        function Create() {
+            var data = $('#agentCreate').data('bootstrapValidator');
+            if (data) {
+                // 修复记忆的组件不验证
+                data.validate();
+
+                if (!data.isValid()) {
+                    return false;
+                }
+                else {
+                    try {
+                        var oMyForm = $('#agentCreate').serializeObject();
+                        if (!oMyForm.InUserId) {
+                            oMyForm.InUserId = $("#G_UserId").val();
+                            oMyForm.ModifyUserId = $("#G_UserId").val();
+                        }
+                        console.log(oMyForm)
+                        $.commonPost('Master/ShopSave', oMyForm, function (res) {
+                            window.location.href = "/Home/ManageAgent";
+                        })
+                    }
+                    catch (e) {
+                        $('#message').text('请更新您的浏览器至IE10或者更高版本');
+                    }
+                }
+            }
+
+        }
+    </script>
+}

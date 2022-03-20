@@ -51,6 +51,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Dealer Name": "Dealer Name"
             , "Dealer": "Dealer"
             , "Event Type": "Category"
+            , "Event Mode Name": "Event Mode Name"
             , "Export": "Export"
             , "Import": "Import"
             , "NO": "NO"
@@ -58,13 +59,14 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Start Date": "Start Date"
             , "End Date": "End Date"
             , "Three Weeks Before": "Three Weeks Before"
+            , "Four Weeks Before": "Four Weeks Before"
             , "Three Days Before": "Three Days Before"
             , "The Day of the Event": "The Day of the Activity"
             , "Two Days After": "Two Days After"
             , "Seven Days After": "Seven Days After"
             , "One Month After": "One Month After"
 
-
+            , "Plan Status": "Plan Status"
             , "Plan PPT": "Action Plan Draft"
             , "Final Programme PPT": "Finalized Action Plan"
             , "On-site Sign in Sheet": "Attendance"

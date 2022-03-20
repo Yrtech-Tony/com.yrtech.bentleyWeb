@@ -21,6 +21,11 @@ function EmptyValue() {
     window.localStorage.Empty = "true";
 }
 
+function EmptyValueHref(_value) {
+    window.localStorage.Empty = "true";
+    window.location.href = _value;
+}
+
 function HideFiledDealer() {
     var roleTypeCode = $('#G_RoleTypeCode').val();
     if (roleTypeCode == "SHOP") {
@@ -56,11 +61,11 @@ function statusFormatter(value, row, index, field) {
             }
         }
     }
-
     var href = '/Marketing/' + field + "?id=" + row.MarketActionId;
-    if (field == "After2Days") {
-        href += "&ShopName=" + (isZH() ? row.ShopName : row.ShopNameEn);
-        href += "&ActionName=" + row.ActionName;
+    if ((field == "Before4Weeks" || field == "After7Days" && parseInt(value) >= 0) {
+        var _value = parseInt(value);
+        var _div = '<div class="progress progress-info" style="background:#ddd;margin-bottom:0px;cursor:pointer;" onclick="EmptyValueHref(' + '\'' + href + '\'' + ');"><div class="progress-bar" role="progressbar" style = "width: ' + _value + '%;height:100%;background:#4bb1cf;" ></div ><span class="label">' + _value + '%</span></div >';
+        return _div;
     }
     if (value == "Commited") {
         var txt = $("#Pending").val();
@@ -105,7 +110,7 @@ function loadMarketings(refresh) {
     }, function (data) {
         if (data) {
             $('#myMarketing').bootstrapTable("load", data);
-            $("#myMarketing").bootstrapTable("selectPage", parseInt(window.localStorage.pageNumberMarket)||1);
+            $("#myMarketing").bootstrapTable("selectPage", parseInt(window.localStorage.pageNumberMarket) || 1);
         }
     });
 }
@@ -175,6 +180,13 @@ function initTable() {
         sortable: true,
         rowspan: 2
     }, {
+        title: $("#G_EventModeName").val(),
+        field: isZH() ? 'EventModeName' : 'EventModeNameEn',
+        align: 'center',
+        valign: 'middle',
+        sortable: true,
+        rowspan: 2
+    }, {
         title: $("#G_StartDate").val(),
         field: 'StartDate',
         align: 'center',
@@ -191,22 +203,7 @@ function initTable() {
         rowspan: 2,
         formatter: dateFormatter
     }, {
-        title: $("#G_ThreeWeeksBefore").val(),
-        field: '',
-        align: 'center',
-        valign: 'middle'
-    }, {
-        title: $("#G_ThreeDaysBefore").val(),
-        field: '',
-        align: 'center',
-        valign: 'middle'
-    }, {
-        title: $("#G_Today").val(),
-        field: '',
-        align: 'center',
-        valign: 'middle'
-    }, {
-        title: $("#G_AfterDays2").val(),
+        title: $("#G_FourWeeksBefore").val(),
         field: '',
         align: 'center',
         valign: 'middle'
@@ -214,35 +211,15 @@ function initTable() {
         title: $("#G_AfterDays7").val(),
         field: '',
         align: 'center',
-        valign: 'middle'
-    }, {
-        title: $("#G_AfterMonth1").val(),
-        field: '',
-        align: 'center',
-        valign: 'middle'
-    }], [{
-        title: $("#PlanPPT").val(),
-        field: 'Before3Weeks',
+        valign: 'middle',
+        colspan:2
+        }], [{
+        title: $("#G_PlanStatus").val(),
+        field: 'Before4Weeks',
         align: 'center',
         valign: 'middle',
         formatter: function (value, row, index) {
-            return statusFormatter(value, row, index, 'Before3Weeks');
-        }
-    }, {
-        title: $("#FinalPPT").val(),
-        field: 'Before3Days',
-        align: 'center',
-        valign: 'middle',
-        formatter: function (value, row, index) {
-            return statusFormatter(value, row, index, 'Before3Days');
-        }
-    }, {
-        title: $("#G_OnSiteSign").val(),
-        field: 'TheDays',
-        align: 'center',
-        valign: 'middle',
-        formatter: function (value, row, index) {
-            return statusFormatter(value, row, index, 'TheDays');
+            return statusFormatter(value, row, index, 'Before4Weeks');
         }
     }, {
         title: $("#G_ClueReport").val(),
@@ -260,16 +237,8 @@ function initTable() {
         formatter: function (value, row, index) {
             return statusFormatter(value, row, index, 'After7Days');
         }
-    }, {
-        title: $("#G_UpdateReport").val(),
-        field: 'After1Months',
-        align: 'center',
-        valign: 'middle',
-        formatter: function (value, row, index) {
-            return statusFormatter(value, row, index, 'After1Months');
-        }
     }]];
-   
+
     $("#myMarketing").bootstrapTable({
         columns: columns,
         pagination: true,
@@ -284,7 +253,7 @@ function initTable() {
         onPageChange: function (number, size) {
             window.localStorage.pageNumberMarket = number;
         }
-    }); 
+    });
 }
 
 function refreshTable(data) {
@@ -301,8 +270,8 @@ function EnterPress(e) { //传入 event
 }
 
 function downloadByClueReportFile() {
-    $.commonGet("MarketAction/MarketActionAllLeadsReportExport", { 
-        year: '',  
+    $.commonGet("MarketAction/MarketActionAllLeadsReportExport", {
+        year: '',
         userId: $("#G_UserId").val(),
         roleTypeCode: $("#G_RoleTypeCode").val()
     }, function (data) {

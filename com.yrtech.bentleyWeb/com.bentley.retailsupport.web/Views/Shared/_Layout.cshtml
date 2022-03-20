@@ -157,9 +157,11 @@
     <input id="G_Status" type="hidden" value="{{'Promotion State'|translate}}" />
     <input id="G_ActivityName" type="hidden" value="{{'Event Name'|translate}}" />
     <input id="G_EventType" type="hidden" value="{{'Event Type'|translate}}" />
+    <input id="G_EventModeName" type="hidden" value="{{'Event Mode Name'|translate}}" />
     <input id="G_StartDate" type="hidden" value="{{'Start Date'|translate}}" />
     <input id="G_EndDate" type="hidden" value="{{'End Date'|translate}}" />
     <input id="G_ThreeWeeksBefore" type="hidden" value="{{'Three Weeks Before'|translate}}" />
+    <input id="G_FourWeeksBefore" type="hidden" value="{{'Four Weeks Before'|translate}}" />
     <input id="G_ThreeDaysBefore" type="hidden" value="{{'Three Days Before'|translate}}" />
     <input id="G_Today" type="hidden" value="{{'The Day of the Event'|translate}}" />
     <input id="G_AfterDays2" type="hidden" value="{{'Two Days After'|translate}}" />
@@ -171,6 +173,7 @@
     <input id="G_OnSiteSign" type="hidden" value="{{'On-site Sign in Sheet'|translate}}" />
     <input id="G_ClueReport" type="hidden" value="{{'Clue Report Excel'|translate}}" />
     <input id="G_EventReport" type="hidden" value="{{'Event Report PPT' |translate}}" />
+    <input id="G_PlanStatus" type="hidden" value="{{'Plan PPT' |translate}}" />
     <input id="G_UpdateReport" type="hidden" value="{{'Update leads Report Excel'|translate}}" />
     <input id="G_ProofDocument" type="hidden" value="{{'Proof Document' |translate}}" />
 
@@ -531,7 +534,7 @@
                 }
             }).error(function (jqXHR, textStatus, errorThrown) {
                 console.log(url + " execute error ");
-            })         
+            })
         }
 
         //切换数据库

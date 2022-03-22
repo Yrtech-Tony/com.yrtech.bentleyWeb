@@ -313,7 +313,10 @@
                                                     <span class="btn btn-primary btn-file">
                                                         <span class="fileinput-new" translate>Choose Documents</span>
                                                         <span class="fileinput-exists" translate>Change</span>
-                                                        <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png">
+                                                        <a id="selectfiles" class='btn btn-primary'><i class="icon-plus"></i><span translate>Upload </span></a>
+                                                        <div id="upload-container" class="container-fluid" style="display:block">
+                                                            <div id="ossfile"></div>
+                                                        </div>
                                                     </span>
                                                     <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</a>
                                                 </div>
@@ -392,7 +395,7 @@
                                                     <span class="btn btn-primary btn-file">
                                                         <span class="fileinput-new" translate>Choose Documents</span>
                                                         <span class="fileinput-exists" translate>Change</span>
-                                                        <input type="file" name="pic1" id="picID_venue1"  accept="image/gif,image/jpeg,image/x-png">
+                                                        <input type="file" name="pic1" id="picID_venue1" accept="image/gif,image/jpeg,image/x-png">
                                                     </span>
                                                     <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</a>
                                                 </div>
@@ -641,20 +644,28 @@
         </div>
     </div>
     <!--END FOOTER-->
+    <input id="FileId" type="hidden" value="@ViewBag.FileId" />
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
     <script src="~/Scripts/curtom/PromotionEdit.js"></script>
-
+    <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/base64.js"></script>
+    <script src="~/Scripts/oss-upload-direct/upload.js?20170928"></script>
     <script>
+        var UserId = $("#G_UserId").val();
         $("#nav_promotion").addClass("active");
 
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
-       
+
         $('#UserId').val($('#G_UserId').val());
         var roleName = $('#G_RoleTypeCode').val();
         $(function () {
+            initOssClient();
             $('img').error(function () {
                 console.log("image error")
                 $(this).attr('src', 'https://yrsurvey.oss-cn-beijing.aliyuncs.com/Bentley/fail2.png');
@@ -676,11 +687,11 @@
             });
 
             InitActivityFlowTable();
-                       
+
             if (roleName == "SYSADMIN" || roleName == "BMC") {
                 $('#ActiveShow').show();
                 $('#VisualStatus').prop("disabled", false);
-                $('#VisualDescription').prop("disabled", false);                
+                $('#VisualDescription').prop("disabled", false);
             }
             else {
                 $('#VisualStatus').prop("disabled", true);
@@ -741,7 +752,7 @@
 
                 });
             }
-           
+
         });
 
         function SProcessing() {
@@ -842,7 +853,7 @@
                         console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
                         $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
                     }
-                   
+
                     //2.如果主视觉审核意见有修改时给经销商发邮件
                     if (((VisualDescriptionOld != VisualDescription) || (VisualStatus != VisualStatusOld))) //有邮件地址并且内容被修改了
                     {
@@ -854,13 +865,82 @@
                 });
             },EProcessing)
         }
-              
+
         function OpenForm(obj) {
             var url = obj.src;
             url = url.replace('_min.', '.').replace("?x-oss-process=image/resize,h_100","");
             if (!new RegExp('Content/bootstrap-fileinput/img/noimage').test(url)) {
                 window.open(url);
             }
+        }
+
+        function imageUpload(_id) {
+            if (window.FormData) {
+                var _files = document.getElementById(_id).files;
+                console.error(_files);
+                return false;
+                var formData = new FormData();
+
+                // 建立一个upload表单项，值为上传的文件
+                formData.append('upload', document.getElementById(_id).files[0]);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', $(this).attr('action'));
+                // 定义上传完成后的回调函数
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        console.log('上传成功');
+                    } else {
+                        console.log('出错了');
+                    }
+                };
+                xhr.send(formData);
+            }
+        }
+
+        function initOssClient() {
+            var shopId = $("#ShopId").val();
+            var fileId = $("#FileId").val();
+            var osspath = "Bentley/MarketAction/" + year + "/" + shopId + "/";
+            ossClient = new OSSClient({
+                fileAddCheck: function () {
+                    return true;
+                },
+                fileAddCheckMsg: "",
+                osspath: osspath,
+                uploaded: function (args) {
+                    console.error(args);
+                    $.commonPost("CommitFile/ShopCommitFileRecordSave", {
+                        ShopId: shopId,
+                        FileId: fileId,
+                        ShopCommitFileName: args.fileName,
+                        ShopCommitFileNameUrl: args.osspath,
+                        InUserId: UserId,
+                        ModifyUserId: UserId
+                    }, function (data) {
+                        loadCommitFiles(true);
+                    });
+                }
+            });
+        }
+
+
+        //查询文件
+        function loadCommitFiles(refresh) {
+            var shopId = $("#ShopId").val();
+            var fileId = $("#FileId").val();
+            $.commonGet("CommitFile/ShopCommitFileRecordSearch", { shopId: shopId, fileId: fileId }, function (data) {
+                if (data) {
+                    if (refresh) {
+                        $("#myPromotionFile").bootstrapTable('refreshOptions', {
+                            data: data
+                        });
+                    } else {
+                        $("#myPromotionFile").bootstrapTable({
+                            data: data
+                        });
+                    }
+                }
+            })
         }
     </script>
 }

@@ -900,7 +900,7 @@
         function initOssClient() {
             var shopId = $("#ShopId").val();
             var fileId = $("#FileId").val();
-            var osspath = "Bentley/MarketAction/" + year + "/" + shopId + "/";
+            var osspath = "Bentley/" + year+"/MarketAction/";
             ossClient = new OSSClient({
                 fileAddCheck: function () {
                     return true;
@@ -910,8 +910,7 @@
                 uploaded: function (args) {
                     console.error(args);
                     $.commonPost("CommitFile/ShopCommitFileRecordSave", {
-                        ShopId: shopId,
-                        FileId: fileId,
+                        PicType: "MPF01",
                         ShopCommitFileName: args.fileName,
                         ShopCommitFileNameUrl: args.osspath,
                         InUserId: UserId,

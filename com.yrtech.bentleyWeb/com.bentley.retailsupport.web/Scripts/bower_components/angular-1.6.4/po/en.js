@@ -234,6 +234,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , 'Accessories': 'POS Design'
             , 'Design Extension': 'Others'
             , 'Choose Documents': 'Choose Document'
+            , "Choose Mul Documents": "Choose Mul Documents"
             , 'Full Model': 'Full Model'
             , 'SUV': 'Bentayga'
             , 'GT': 'Continental GT'

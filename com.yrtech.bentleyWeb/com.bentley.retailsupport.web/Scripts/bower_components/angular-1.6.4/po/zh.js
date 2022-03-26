@@ -234,6 +234,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Design Extension": "其他"
             , "Accessories": "物料设计"
             , "Choose Documents": "选择文件"
+            , "Choose Mul Documents": "批量上传"
             , "Description2": "描述"
             , "Final Plan": "终版方案"
             , "Remove": "移除"

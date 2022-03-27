@@ -187,12 +187,17 @@ function InitActivityFlowTableNew() {
                 editable: {
                     type: 'select',
                     title: '',
-                    source: [{ "text": "是", "value": true }, { "text": "否", "value": false }],
+                    source: hdDataCoop,
                     validate: function (v) {
                         if (!v) return isZH() ? '是否报销不能为空' : 'The Item cannot be empty';
                     },
                     noeditFormatter: function (value, row, index) {
                         value = isZH() ? row.CoopFund_DMFChk : row.CoopFund_DMFChk;
+                        for (let i = 0; i < hdDataCoop.length; i++) {
+                            if (row.CoopFund_DMFChk + "" == hdDataCoop[i].value) {
+                                value = hdDataCoop[i].text;
+                            }
+                        }
                         var html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
                         if (!value) {
                             html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';

@@ -122,12 +122,12 @@ function InitActivityFlowTableNew() {
         pagination: true,
         striped: true, //是否显示行间隔色
         sortable: true,
-        sortName: 'ActivityDateTime',
+        sortName: 'CoopFundCode',
         sortOrder: 'asc',
         columns: [
             {
                 title: "费用类型",
-                field: 'DMFItemId',
+                field: 'CoopFundCode',
                 width: "300px",
                 valign: "middle",
                 align: "center",
@@ -142,9 +142,9 @@ function InitActivityFlowTableNew() {
                     },
                     noeditFormatter: function (value, row, index) {
                         value = isZH() ? row.DMFItemName : row.DMFItemNameEn;
-                        var html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
                         if (!value) {
-                            html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                            html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
                         }
                         return html;
                     }
@@ -152,7 +152,7 @@ function InitActivityFlowTableNew() {
             },
             {
                 title: "金额",
-                field: 'Contents',
+                field: 'CoopFundAmt',
                 valign: "left",
                 align: "left",
                 editable: {
@@ -161,7 +161,7 @@ function InitActivityFlowTableNew() {
                     validate: function (v) {
                     },
                     noeditFormatter: function (value, row, index) {
-                        var result = { filed: "Contents", value: value };
+                        var result = { filed: "CoopFundAmt", value: value };
                         var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
                         if (!result.value) {
                             html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
@@ -173,7 +173,7 @@ function InitActivityFlowTableNew() {
             },
             {
                 title: "是否报销",
-                field: 'DMFItemId',
+                field: 'CoopFund_DMFChk',
                 width: "300px",
                 valign: "middle",
                 align: "center",
@@ -184,13 +184,13 @@ function InitActivityFlowTableNew() {
                     title: '',
                     source: [{ "text": "是", "value": true }, { "text": "否", "value": false }],
                     validate: function (v) {
-                        if (!v) return isZH() ? '该项不能为空' : 'The Item cannot be empty';
+                        if (!v) return isZH() ? '是否报销不能为空' : 'The Item cannot be empty';
                     },
                     noeditFormatter: function (value, row, index) {
-                        value = isZH() ? row.DMFItemName : row.DMFItemNameEn;
-                        var html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                        value = isZH() ? row.text : row.text;
+                        var html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
                         if (!value) {
-                            html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                            html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
                         }
                         return html;
                     }
@@ -198,7 +198,7 @@ function InitActivityFlowTableNew() {
             },
             {
                 title: "费用说明",
-                field: 'Contents',
+                field: 'CoopFundDesc',
                 valign: "left",
                 align: "left",
                 editable: {
@@ -207,7 +207,7 @@ function InitActivityFlowTableNew() {
                     validate: function (v) {
                     },
                     noeditFormatter: function (value, row, index) {
-                        var result = { filed: "Contents", value: value };
+                        var result = { filed: "CoopFundDesc", value: value };
                         var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
                         if (!result.value) {
                             html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
@@ -223,7 +223,7 @@ function InitActivityFlowTableNew() {
                 valign: "middle",
                 align: "center",
                 formatter: function (value, row, index) {
-                    var e = "<label onclick='DeleteActivityFlowRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    var e = "<label onclick='DeleteActivityFlowRowNew(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
                     return e;
                 }
             }
@@ -257,22 +257,32 @@ function AddActivityFlowTable() {
     });
 }
 
+var maxActivityFlowSeqNONew = 0;
 function AddActivityFlowTableNew() {
     var $table = $('#ActivityFlowTableNew');
     var index = $table.bootstrapTable('getData').length;//尾添加行
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxActivityFlowSeqNO++,
-            ActivityDateTime: '',
-            Item: '',
-            Contents: '',
+            SeqNO: maxActivityFlowSeqNONew++,
+            CoopFundCode: '',
+            CoopFundAmt: '',
+            CoopFund_DMFChk: '',
+            CoopFundDesc:'',
             Remark: ''
         }
     });
 }
 function DeleteActivityFlowRow(id) {
     var $table = $('#ActivityFlowTable');
+    $table.bootstrapTable('remove', {
+        field: 'SeqNO',
+        values: [id]
+    });
+}
+
+function DeleteActivityFlowRowNew(id) {
+    var $table = $('#ActivityFlowTableNew');
     $table.bootstrapTable('remove', {
         field: 'SeqNO',
         values: [id]

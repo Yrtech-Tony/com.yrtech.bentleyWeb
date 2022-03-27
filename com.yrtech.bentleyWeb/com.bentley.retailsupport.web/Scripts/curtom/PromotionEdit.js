@@ -141,7 +141,12 @@ function InitActivityFlowTableNew() {
                         if (!v) return isZH() ? '费用类型不能为空' : 'The Item cannot be empty';
                     },
                     noeditFormatter: function (value, row, index) {
-                        value = isZH() ? row.DMFItemName : row.DMFItemNameEn;
+                        value = isZH() ? row.CoopFundCode : row.CoopFundCode;
+                        for (let i = 0; i < hdData.length; i++) {
+                            if (row.CoopFundCode == hdData[i].value) {
+                                value = hdData[i].text;
+                            }
+                        }
                         var html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
                         if (!value) {
                             html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
@@ -162,9 +167,9 @@ function InitActivityFlowTableNew() {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
                         if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                            html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
                         return html;
                     }
@@ -187,7 +192,7 @@ function InitActivityFlowTableNew() {
                         if (!v) return isZH() ? '是否报销不能为空' : 'The Item cannot be empty';
                     },
                     noeditFormatter: function (value, row, index) {
-                        value = isZH() ? row.text : row.text;
+                        value = isZH() ? row.CoopFund_DMFChk : row.CoopFund_DMFChk;
                         var html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
                         if (!value) {
                             html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
@@ -208,9 +213,9 @@ function InitActivityFlowTableNew() {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundDesc", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
                         if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                            html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
                         return html;
                     }

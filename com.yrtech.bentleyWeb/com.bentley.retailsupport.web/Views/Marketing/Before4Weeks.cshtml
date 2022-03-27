@@ -1319,7 +1319,12 @@
                     item.ModifyUserId = $("#G_UserId").val();
                 })
             }
-
+            var StrActivityFlowNew = $('#ActivityFlowTableNew').bootstrapTable('getData');
+            if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                StrActivityFlowNew.forEach(function (item) {
+                    item.MarketActionId = id;
+                })
+            }
             var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
             MarketActionBefore21.MarketActionId = id;
             MarketActionBefore21.InUserId = $("#G_UserId").val();
@@ -1376,7 +1381,7 @@
                 MarketActionId: MarketActionBefore21.MarketActionId,
                 TarketModelCode: $("#MarketActionTargetModelCode").val(),
                 MarketActionBefore4Weeks: MarketActionBefore21,
-                MarketActionBefore4WeeksCoopFund: [{ "MarketActionId": MarketActionBefore21.MarketActionId, "CoopFundCode ": "VenueRetal", "CoopFundDesc": "测试", "CoopFund_DMFChk ": true,"CoopFundAmt":10}],
+                MarketActionBefore4WeeksCoopFund: StrActivityFlowNew,
                 MarketActionBefore4WeeksPicList_OffLine: MarketActionBefore4WeeksPicList_OffLine,
                 MarketActionBefore4WeeksPicList_OnLine:[],
                 ActivityProcess: StrActivityFlow
@@ -1415,6 +1420,13 @@
                     item.MarketActionId = id;
                     item.InUserId = $("#G_UserId").val();
                     item.ModifyUserId = $("#G_UserId").val();
+                })
+            }
+
+            var StrActivityFlowNew = $('#ActivityFlowTableNew').bootstrapTable('getData');
+            if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                StrActivityFlowNew.forEach(function (item) {
+                    item.MarketActionId = id;
                 })
             }
 
@@ -1473,7 +1485,7 @@
                 MarketActionId: MarketActionBefore21.MarketActionId,
                 TarketModelCode: $("#MarketActionTargetModelCode").val(),
                 MarketActionBefore4Weeks: MarketActionBefore21,
-                MarketActionBefore4WeeksCoopFund: [{ "MarketActionId": MarketActionBefore21.MarketActionId, "CoopFundCode ": "VenueRetal", "CoopFundDesc": "测试", "CoopFund_DMFChk ": true, "CoopFundAmt": 10 }],
+                MarketActionBefore4WeeksCoopFund: StrActivityFlowNew,
                 MarketActionBefore4WeeksPicList_OffLine: MarketActionBefore4WeeksPicList_OffLine,
                 MarketActionBefore4WeeksPicList_OnLine: [],
                 ActivityProcess: StrActivityFlow

@@ -114,7 +114,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Actual Cost(RMB)": "实际费用（元）"
 
             , "Save": "保存"
-
+            , "Submit": "提交"
             , "Show More": "显示更多"
             , "Hide More": "隐藏更多"
             , "Name": "名称"

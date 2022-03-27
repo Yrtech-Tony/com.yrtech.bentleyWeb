@@ -107,6 +107,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Budget(RMB)": "Budget (RMB)"
             , "Actual Cost(RMB)": "Actual Cost (RMB)"
             , "Save": "Save"
+            , "Submit": "Submit"
             , "Show More": "Show More"
             , "Hide More": "Hide More"
             , "Name": "Name"

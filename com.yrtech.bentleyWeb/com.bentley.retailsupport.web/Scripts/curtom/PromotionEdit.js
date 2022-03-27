@@ -115,9 +115,150 @@ function InitActivityFlowTable() {
     });
 }
 
+function InitActivityFlowTableNew() {
+
+    //活动流程
+    $('#ActivityFlowTableNew').bootstrapTable({
+        pagination: true,
+        striped: true, //是否显示行间隔色
+        sortable: true,
+        sortName: 'ActivityDateTime',
+        sortOrder: 'asc',
+        columns: [
+            {
+                title: "费用类型",
+                field: 'DMFItemId',
+                width: "300px",
+                valign: "middle",
+                align: "center",
+                sortable: false,
+                align: 'left',
+                editable: {
+                    type: 'select',
+                    title: '',
+                    source: hdData,
+                    validate: function (v) {
+                        if (!v) return isZH() ? '费用类型不能为空' : 'The Item cannot be empty';
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        value = isZH() ? row.DMFItemName : row.DMFItemNameEn;
+                        var html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                        if (!value) {
+                            html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: "金额",
+                field: 'Contents',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Contents", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+
+            },
+            {
+                title: "是否报销",
+                field: 'DMFItemId',
+                width: "300px",
+                valign: "middle",
+                align: "center",
+                sortable: false,
+                align: 'left',
+                editable: {
+                    type: 'select',
+                    title: '',
+                    source: [{ "text": "是", "value": true }, { "text": "否", "value": false }],
+                    validate: function (v) {
+                        if (!v) return isZH() ? '该项不能为空' : 'The Item cannot be empty';
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        value = isZH() ? row.DMFItemName : row.DMFItemNameEn;
+                        var html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                        if (!value) {
+                            html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: "费用说明",
+                field: 'Contents',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Contents", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityFlowRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
+                }
+            }
+        ],
+        onClickCell: function (field, value, row, $element) {
+            return false;
+
+        },
+        onClickRow: function (row, $element) {
+            curRow = row;
+        },
+        onEditableSave: function (field, row, oldValue, $el) {
+
+        }
+    });
+}
+
 var maxActivityFlowSeqNO = 0;
 function AddActivityFlowTable() {
     var $table = $('#ActivityFlowTable');
+    var index = $table.bootstrapTable('getData').length;//尾添加行
+    $table.bootstrapTable('insertRow', {
+        index: index,
+        row: {
+            SeqNO: maxActivityFlowSeqNO++,
+            ActivityDateTime: '',
+            Item: '',
+            Contents: '',
+            Remark: ''
+        }
+    });
+}
+
+function AddActivityFlowTableNew() {
+    var $table = $('#ActivityFlowTableNew');
     var index = $table.bootstrapTable('getData').length;//尾添加行
     $table.bootstrapTable('insertRow', {
         index: index,

@@ -156,6 +156,7 @@
         $(function () {
             $.commonGet("MarketAction/MarketActionStatusCountSearch", {
                 year: '',
+                eventTypeId:99,
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
@@ -166,11 +167,9 @@
                 $("#UnsubmitAfter30").html(data[0].After30Count);
             })
 
-            $.commonGet("DMF/ExpenseAccountSearch", {
-                expenseAccountId: '',
-                shopId: '',
-                dmfItemId: '',
-                marketActionId: '',
+            $.commonGet("MarketAction/ExpenseAccountStatusCountSearch", {
+                year: '',
+                eventTypeId: 99,
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {

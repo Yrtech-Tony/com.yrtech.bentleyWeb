@@ -39,6 +39,12 @@ namespace com.bentley.retailsupport.web.Controllers
             return View();
         }
 
+        public ActionResult Before4WeeksOnline(string Id)
+        {
+            ViewBag.Id = Id;
+            return View();
+        }
+
         public ActionResult Before3Days(string Id)
         {
             ViewBag.Id = Id;

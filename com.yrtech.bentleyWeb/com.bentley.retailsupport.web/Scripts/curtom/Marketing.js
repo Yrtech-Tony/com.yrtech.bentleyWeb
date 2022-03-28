@@ -61,7 +61,7 @@ function statusFormatter(value, row, index, field) {
         }
     }
     var href = '/Marketing/' + field + "?id=" + row.MarketActionId;
-    if ((field == "Before4Weeks" || field == "After7Days") && parseInt(value) >= 0) {
+    if ((field == "Before4Weeks" || field == "After7Days" || field == "Before4WeeksOnline") && parseInt(value) >= 0) {
         var _value = parseInt(value);
         var _div = '<div class="progress progress-info" style="background:#ddd;margin-bottom:0px;cursor:pointer;" onclick="EmptyValueHref(' + '\'' + href + '\'' + ');"><div class="progress-bar" role="progressbar" style = "width: ' + _value + '%;height:100%;background:#4bb1cf;" ></div ><span class="label">' + _value + '%</span></div >';
         return _div;
@@ -217,8 +217,12 @@ function initTable() {
         field: 'Before4Weeks',
         align: 'center',
         valign: 'middle',
-        formatter: function (value, row, index) {
-            return statusFormatter(value, row, index, 'Before4Weeks');
+            formatter: function (value, row, index) {
+                if (row.EventModeId == 2) {
+                    return statusFormatter(value, row, index, 'Before4Weeks');
+                } else {
+                    return statusFormatter(value, row, index, 'Before4WeeksOnline');
+                }
         }
     }, {
         title: $("#G_ClueReport").val(),

@@ -1,0 +1,1066 @@
+﻿@{
+    ViewBag.Title = "Before4Weeks";
+}
+
+<input id="TDisplayModel" type="hidden" value="{{'Display Model（Color）'|translate}}" />
+<input id="TProvider" type="hidden" value="{{'Provider'|translate}}" />
+<input id="TEdit" type="hidden" value="{{'Edit'|translate}}" />
+<input id="WhetherDeal" type="hidden" value="{{'Whether Deal Made'|translate}}" />
+<input id="TTime" type="hidden" value="{{'Date'|translate}}" />
+<input id="TProcess" type="hidden" value="{{'Process'|translate}}" />
+<input id="TContent" type="hidden" value="{{'Content'|translate}}" />
+<input id="TComments" type="hidden" value="{{'Comments'|translate}}" />
+<input id="UnitPrice" type="hidden" value="{{'Unit Price'|translate}}" />
+<input id="TDESC" type="hidden" value="{{'Description'|translate}}" />
+<input id="ExpenseItem" type="hidden" value="{{'Tick Item'|translate}}" />
+<input id="TQuantity" type="hidden" value="{{'Quantity'|translate}}" />
+<input id="TotalAmount" type="hidden" value="{{'Total Amount'|translate}}" />
+<div id="page-wrapper">
+    <!--BEGIN CONTENT-->
+    <div class="page-content">
+        <div id="main-content">
+            <h2 translate>Event Application</h2>
+            <p><a class="btn btn-success" href="/Marketing/Index"><i class="icon-plus icon-white"></i><span translate>Back</span></a></p>
+
+            <div class="widget">
+                <div class="widget-title">
+                    <h4><i class="icon-reorder"></i><span translate>Event Information</span></h4>
+                    <span class="tools">
+                        <a href="javascript:;" class="icon-chevron-down" onclick="ShowDiv()"></a>
+                    </span>
+                </div>
+                <div class="widget-body" style="display: block;">
+                    <form class="form-horizontal bv-form ng-pristine ng-valid" id="PromotionCreate" novalidate="novalidate">
+                        <input id="MarketActionId" name="MarketActionId" type="hidden" value="" />
+                        <input id="InUserId" name="InUserId" type="hidden" value="" />
+                        <input id="InDateTime" name="InDateTime" type="hidden" value="" />
+                        <input id="ModifyUserId" name="ModifyUserId" type="hidden" value="" />
+                        <input id="ModifyDateTime" name="ModifyDateTime" type="hidden" value="" />
+                        <div class="row" id="ActiveShow" style="display:none">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>Promotion State</span><span class="required" style="color:red">*</span>:</label>
+                                    <div class="col-md-4">
+                                        <select id="MarketActionStatusCode" name="MarketActionStatusCode" class="selectpicker" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>Event Name</span><span class="required" style="color:red">*</span>:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="ActionName" name="ActionName" maxlength="255" style="width:100%;" type="text" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>Event ID</span><span class="required" style="color:red">*</span>:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="ActionCode" name="ActionCode" maxlength="255" style="width:100%;" type="text" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>Dealer Name</span>:</label>
+                                    <div class="col-md-8">
+                                        <select id="ShopId" name="ShopId" class="selectpicker" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>Event Type</span>:</label>
+                                    <div class="col-md-8">
+                                        <select id="EventTypeId" name="EventTypeId" class="selectpicker" disabled></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label for="StartDate" class="col-md-2 control-label"><span translate>By Date</span><span class="required" style="color:red">*</span>:</label>
+
+                                    <div class="col-md-2" style="margin-right:-5px;">
+                                        <input class="form-control form_date" id="StartDate" name="StartDate" maxlength="255" style="width:100%;" type="text" disabled />
+                                    </div>
+                                    <span style="float:left;padding-top:5px;padding-left:2px;margin-right:-1px;"> - </span>
+                                    <div class="col-md-2" style="margin-left:0px;">
+                                        <input class="form-control form_date" id="EndDate" name="EndDate" maxlength="255" style="width:100%;" type="text" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>Event Venue</span>:</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" cols="20" id="ActionPlace" name="ActionPlace" maxlength="255" rows="2" style="width:100%;height:60px;" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="widget">
+                <div class="widget-title">
+                    <h4><i class="icon-reorder"></i><span translate>Plan PPT</span></h4>
+                    <span class="tools">
+                        <a href="javascript:;" class="icon-chevron-down" onclick="ShowPlan()"></a>
+                    </span>
+                </div>
+
+                <div class="widget-body form form-horizontal" id="activityplan" style="display: block;">
+                    <div>
+                        <form class="form-horizontal" id="PromotionCreate2">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>Event Background</span></label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" cols="20" id="ActivityBackground" name="ActivityBackground" rows="5" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>Event Objective</span>:</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" cols="20" id="ActivityObjective" name="ActivityObjective" rows="5" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>Event Description</span>:</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" cols="20" id="ActivityDesc" name="ActivityDesc" data-val="true" rows="5" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>Main Models</span><span class="required" style="color:red">*</span>: </label>
+                                        <div class="col-md-4">
+                                            <select id="MarketActionTargetModelCode" class="selectpicker"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>预期线索</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="People_NewLeadsThisYearCount" name="People_NewLeadsThisYearCount" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>Budget(RMB)</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="Budget" name="Budget" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>是否申请基金</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="check" id="BudgetType" name="BudgetType" type="checkbox" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>市场基金申报金额</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" style="width:100%;" type="text" min="0" maxlength="255">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>Primary Vision</span>:</label>
+                                        <div class="col-md-4">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+
+                                                    <img id="picImg" onclick="OpenForm(this)" style="width: 190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png">
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail" id="img_visual1" style="width: 200px; height: 150px;"></div>
+                                                <div>
+                                                    <span class="btn btn-primary btn-file">
+                                                        <span class="fileinput-new" translate>Choose Documents</span>
+                                                        <span class="fileinput-exists" translate>Change</span>
+                                                        <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png">
+                                                    </span>
+                                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <textarea class="form-control" cols="20" id="KeyVisionDesc" name="KeyVisionDesc" placeholder="{{'Description2'|translate}}" rows="11"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="hidden" id="VisualDescriptionOld" />
+                                            <textarea class="form-control" cols="20" id="VisualDescription" name="KeyVisionApprovalDesc" placeholder="{{'Modification Instructions'|translate}}" rows="9"></textarea>
+                                            <div style="margin-top:5px;">
+                                                <input type="hidden" id="VisualStatusOld" />
+                                                <select id="VisualStatus" name="KeyVisionApprovalCode" class="selectpicker">
+                                                    <option value="1" selected="" translate>Waiting for Approval</option>
+                                                    <option value="2" translate>Approved</option>
+                                                    <option value="3" translate>Waiting for Change</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv">
+                                        <label class="control-label col-md-2"><span translate>报价单</span>:</label>
+                                        <div class="col-md-2 img-div">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="POSDesignDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container" class="container-fluid" style="display:block">
+                                                    <div id="ossfile"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 img-div">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="POSDesignDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2 img-div">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="POSDesignDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2 img-div">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="POSDesignDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2 img-div">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="POSDesignDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv-1">
+                                        <label class="control-label col-md-2"><span translate>邮件截图</span>:</label>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles-1" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-1" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv-2">
+                                        <label class="control-label col-md-2"><span translate>平台简介</span>:</label>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles-2" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-2" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-2"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv-3">
+                                        <label class="control-label col-md-2"><span translate>媒体投放照片</span>:</label>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles-3" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-3" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-3"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv-4">
+                                        <label class="control-label col-md-2"><span translate>11活动计划PPT</span>:</label>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles-4" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-4" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-4"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv-5">
+                                        <label class="control-label col-md-2"><span translate>广告视频</span>:</label>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
+                                                    <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles-5" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-5" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-5"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
+                                                    <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="position:fixed;bottom:0px;width:100%;padding:10px;background:#fff;">
+                                <div class="col-md-6">
+                                    <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
+                                    <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END CONTENT-->
+    <!--BEGIN FOOTER-->
+
+    <div id="footer" style="display:none">
+        <div class="copyright">
+            <table></table>
+        </div>
+    </div>
+    <!--END FOOTER-->
+    <input id="FileId" type="hidden" value="@ViewBag.FileId" />
+</div>
+@section scripts{
+    <script src="~/Scripts/api/common.js"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=20170930"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+    <script src="~/Scripts/oss-upload-direct/lib/base64.js"></script>
+    <script src="~/Scripts/oss-upload-direct/ali-upload.js?20170930"></script>
+    <script src="~/Scripts/oss-upload-direct/ali-upload-video.js?20170930"></script>
+    <script>
+        var UserId = $("#G_UserId").val();
+        let imgCodeObj = { "MPN01": "imgListDiv", "MPN02": "imgListDiv-1", "MPN03": "imgListDiv-2", "MPN04": "imgListDiv-3", "MPN": "imgListDiv-4", "MPN10": "imgListDiv-5"};
+        $("#nav_promotion").addClass("active");
+
+        var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
+        var id = '@ViewBag.Id';
+        var hdData = [];
+        var hdDataCoop = [{ "text": "是", "value": "true" }, { "text": "否", "value": "false" }];
+
+        $('#UserId').val($('#G_UserId').val());
+        var roleName = $('#G_RoleTypeCode').val();
+        $(function () {
+            initOssClient("");
+            initOssClient("-1");
+            initOssClient("-2");
+            initOssClient("-3");
+            initOssClient("-4");
+            initVideoOssClient("-5");
+            $('img').error(function () {
+                console.log("image error")
+                $(this).attr('src', 'https://yrsurvey.oss-cn-beijing.aliyuncs.com/Bentley/fail2.png');
+            });
+
+            loadShops().forEach(function (item) {
+                var shopName = localStorage.language == 'en' ? item.ShopNameEn : item.ShopName;
+                $("#ShopId").append($("<option>").val(item.ShopId).text(shopName));
+            });
+            //设置同步调用 必须先绑定下拉列表数据再查询市场活动信息
+            $.ajaxSetup({
+                async: false
+            });
+            loadActiveStatuss();
+            loadTargetModels();
+            loadEventTypes();
+            initAjax();
+            $.ajaxSetup({
+                async: true
+            });
+
+            InitActivityFlowTable();
+            InitActivityFlowTableNew();
+
+            if (roleName == "SYSADMIN" || roleName == "BMC") {
+                $('#ActiveShow').show();
+                $('#VisualStatus').prop("disabled", false);
+                $('#VisualDescription').prop("disabled", false);
+            }
+            else {
+                $('#VisualStatus').prop("disabled", true);
+                $('#VisualDescription').prop("disabled", true);
+            }
+
+            if (id) {
+                $.commonGet("MarketAction/MarketActionSearchById", { marketActionId: id }, function (data) {
+                    if (data && data.length > 0) {
+                        data[0].StartDate = data[0].StartDate.substr(0, data[0].StartDate.indexOf(' ')).replace(/-/g, '\/');
+                        data[0].EndDate = data[0].EndDate.substr(0, data[0].EndDate.indexOf(' ')).replace(/-/g, '\/');
+                        $('#PromotionCreate').setForm(data[0]);
+                        $("#MarketActionTargetModelCode").val(data[0].MarketActionTargetModelCode);
+                        $("select").selectpicker("refresh");
+                    }
+                });
+
+                $.commonGet("MarketAction/MarketActionBefore4WeeksSearch", { marketActionId: id }, function (data) {
+                    if (data) {
+                        $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
+                        $('#ActivityFlowTable').bootstrapTable("load", data.ActivityProcess);
+                        $('#ActivityFlowTableNew').bootstrapTable("load", data.MarketActionBefore4WeeksCoopFund);
+                        if (data.ActivityProcess) {
+                            data.ActivityProcess.forEach(function (item) {
+                                if (item.SeqNO > maxActivityFlowSeqNO) {
+                                    maxActivityFlowSeqNO = item.SeqNO;
+                                }
+                            });
+                        }
+                        if (data.MarketActionBefore4WeeksCoopFund) {
+                            data.MarketActionBefore4WeeksCoopFund.forEach(function (item) {
+                                if (item.SeqNO > maxActivityFlowSeqNONew) {
+                                    maxActivityFlowSeqNONew = item.SeqNO;
+                                }
+                            });
+                        }
+                        initImageList(data.MarketActionBefore4WeeksPicList_OffLine);
+                        $("#VisualStatus").selectpicker("refresh");
+                        $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
+                        $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
+                        $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
+                    }
+
+                });
+            }
+
+        });
+
+        function SProcessing() {
+            //loading
+            var index = layer.load(1, {
+                shade: [0.1, '#fff'] //0.1透明度的白色背景
+            });
+        }
+        function EProcessing() {
+            layer.closeAll('loading');
+        }
+
+        function PromotionEdit2() {
+            //原系统没有验证
+            var data = $('#PromotionCreate2').data('bootstrapValidator');
+            if (data) {
+                // 修复记忆的组件不验证
+                data.validate();
+
+                if (!data.isValid()) {
+                    return false;
+                }
+            }
+
+            var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
+            MarketActionBefore21.MarketActionId = id;
+            MarketActionBefore21.InUserId = $("#G_UserId").val();
+            MarketActionBefore21.ModifyUserId = $("#G_UserId").val();
+
+            //主视觉
+            MarketActionBefore21.KeyVisionPic = $('#img_visual1').getImgSrc();
+
+            var VisualDescriptionOld = $("#VisualDescriptionOld").val();
+            var VisualStatusOld = $("#VisualStatusOld").val() || "1"; //如果是新创建时，值为""
+            if (!(roleName == "SYSADMIN" || roleName == "BMC")) {
+                MarketActionBefore21.KeyVisionApprovalCode = VisualStatusOld;
+                MarketActionBefore21.KeyVisionApprovalDesc = VisualDescriptionOld;
+            }
+
+            for (var pro in MarketActionBefore21) {
+                if (pro.indexOf("Pic") > 0 && MarketActionBefore21[pro] && MarketActionBefore21[pro].substr(0, 4) != 'data') {
+                    MarketActionBefore21[pro] = MarketActionBefore21[pro].replace(baseOss, '');
+                }
+            }
+
+            let MarketActionBefore4WeeksPicList_OffLine = [];
+            for (let _key in imgCodeObj) {
+                let _offLineList = submitImage(_key);
+                if (_offLineList && _offLineList.length > 0) {
+                    MarketActionBefore4WeeksPicList_OffLine = MarketActionBefore4WeeksPicList_OffLine.concat(_offLineList);
+                }
+            }
+            var data = {
+                MarketActionId: MarketActionBefore21.MarketActionId,
+                TarketModelCode: $("#MarketActionTargetModelCode").val(),
+                MarketActionBefore4Weeks: MarketActionBefore21,
+                MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
+            };
+
+            SProcessing();
+            $.commonPost("MarketAction/MarketActionBefore4WeeksSave", {
+                UserId: $("#G_UserId").val(),
+                ListJson: JSON.stringify(data)
+            }, function () {
+                EProcessing();
+                var msg = isZH() ? '保存成功！' : "Save successfully !";
+                layer.alert(msg, {
+                    skin: 'layui-layer-molv', closeBtn: 0
+                }, function (datas) {
+                    window.location.href = "/Marketing/Index";
+                });
+            },EProcessing)
+        }
+
+        function PromotionSubmit() {
+            //原系统没有验证
+            var data = $('#PromotionCreate2').data('bootstrapValidator');
+            if (data) {
+                // 修复记忆的组件不验证
+                data.validate();
+
+                if (!data.isValid()) {
+                    return false;
+                }
+            }
+            var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
+            MarketActionBefore21.MarketActionId = id;
+            MarketActionBefore21.InUserId = $("#G_UserId").val();
+            MarketActionBefore21.ModifyUserId = $("#G_UserId").val();
+
+            //主视觉
+            MarketActionBefore21.KeyVisionPic = $('#img_visual1').getImgSrc();
+
+            var VisualDescriptionOld = $("#VisualDescriptionOld").val();
+            var VisualDescription = $("#VisualDescription").val();
+            var VisualStatus = $("#VisualStatus").val();
+            var VisualStatusOld = $("#VisualStatusOld").val() || "1"; //如果是新创建时，值为""
+            if (!(roleName == "SYSADMIN" || roleName == "BMC")) {
+                MarketActionBefore21.KeyVisionApprovalCode = VisualStatusOld;
+                MarketActionBefore21.KeyVisionApprovalDesc = VisualDescriptionOld;
+            }
+
+            for (var pro in MarketActionBefore21) {
+                if (pro.indexOf("Pic") > 0 && MarketActionBefore21[pro] && MarketActionBefore21[pro].substr(0, 4) != 'data') {
+                    MarketActionBefore21[pro] = MarketActionBefore21[pro].replace(baseOss, '');
+                }
+            }
+
+            var data = {
+                MarketActionId: MarketActionBefore21.MarketActionId,
+                TarketModelCode: $("#MarketActionTargetModelCode").val(),
+                MarketActionBefore4Weeks: MarketActionBefore21,
+                MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
+            };
+
+            SProcessing();
+            $.commonPost("MarketAction/MarketActionBefore4WeeksSave", {
+                UserId: $("#G_UserId").val(),
+                ListJson: JSON.stringify(data)
+            }, function () {
+                EProcessing();
+                //1.给主视觉设计公司发送邮件
+                if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0) {
+                    console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
+                    $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                }
+
+                //2.如果主视觉审核意见有修改时给经销商发邮件
+                if (((VisualDescriptionOld != VisualDescription) || (VisualStatus != VisualStatusOld))) //有邮件地址并且内容被修改了
+                {
+                    console.log("send KeyVisionSendEmailToShop 经销商 marketActionId=" + id)
+                    $.commonGet("MarketAction/KeyVisionSendEmailToShop", { marketActionId: id }, function (data) { });
+                }
+                submitAjax();
+            }, EProcessing)
+        }
+
+        function OpenForm(obj) {
+            var url = obj.src;
+            url = url.replace('_min.', '.').replace("?x-oss-process=image/resize,h_100","");
+            if (!new RegExp('Content/bootstrap-fileinput/img/noimage').test(url)) {
+                window.open(url);
+            }
+        }
+
+        function initOssClient(_id) {
+            var osspath = "Bentley/" + year+"/MarketAction/";
+            ossClient = new OSSClient({
+                uploadId:_id,
+                fileAddCheck: function () {
+                    return true;
+                },
+                fileAddCheckMsg: "",
+                osspath: osspath,
+                uploaded: function (args) {
+                    addImage(_id, args);
+                }
+            });
+        }
+
+        function initVideoOssClient(_id) {
+            var osspath = "Bentley/" + year + "/MarketAction/";
+            ossClient = new OSSClient({
+                uploadId: _id,
+                fileAddCheck: function () {
+                    return true;
+                },
+                fileAddCheckMsg: "",
+                osspath: osspath,
+                uploaded: function (args) {
+                    console.error(args);
+                    addVideo(_id, args);
+                }
+            });
+        }
+
+        function addImage(_id, args) {
+            let imgPath = args.osspath;
+            let fileName = args.fileName;
+            let _imgList = $("#imgListDiv" + _id).find(".ossImage");
+            for (let i = 0; i < _imgList.length; i++) {
+                if ($(_imgList[i]).attr("data-flag") == 1) {
+                    $(_imgList[i]).attr("src", baseOss + imgPath);
+                    $(_imgList[i]).attr("data-ossPath", imgPath);
+                    $(_imgList[i]).attr("data-flag", 2);
+                    $(_imgList[i]).attr("data-fileName", fileName);
+                    $(_imgList[i]).parent().parent().find(".fileinput-exists").show();
+                    return;
+                }
+            }
+        }
+
+        function addVideo(_id, args) {
+            let imgPath = args.osspath;
+            let fileName = args.fileName;
+            let _imgList = $("#imgListDiv" + _id).find(".ossImage");
+            for (let i = 0; i < _imgList.length; i++) {
+                if ($(_imgList[i]).attr("data-flag") == 1) {
+                    $(_imgList[i]).attr("src", baseOss + imgPath);
+                    $(_imgList[i]).attr("data-ossPath", imgPath);
+                    $(_imgList[i]).attr("data-flag", 2);
+                    $(_imgList[i]).attr("data-fileName", fileName);
+                    $(_imgList[i]).parent().parent().find(".fileinput-exists").show();
+                    return;
+                }
+            }
+        }
+
+        function delImage(_delMode) {
+            $(_delMode).parent().parent().find(".ossImage").attr("src", "/Content/bootstrap-fileinput/img/noimage.png");
+            $(_delMode).parent().parent().find(".ossImage").attr("data-flag", 1);
+            $(_delMode).hide();
+
+        }
+
+        function submitImage(_key) {
+            let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
+            let _MarketActionPicList = [];
+            for (let i = 0; i < _imgList.length; i++) {
+                if ($(_imgList[i]).attr("data-flag") == 2) {
+                    let _MarketActionPic = {};
+                    _MarketActionPic["PicType"] = _key;
+                    _MarketActionPic["PicName"] = $(_imgList[i]).attr("data-fileName");
+                    _MarketActionPic["PicPath"] = $(_imgList[i]).attr("data-ossPath");
+                    _MarketActionPic["PicDesc"] = $(_imgList[i]).parent().parent().parent().find(".form-control").val();
+                    _MarketActionPic["MarketActionId"] = $("#MarketActionId").val();
+                    _MarketActionPicList.push(_MarketActionPic);
+                }
+            }
+            return _MarketActionPicList;
+        }
+
+        function initAjax() {
+            $.commonGet("Master/CoopFundTypeSearch", {
+                coopFundId: '',
+                coopFundName: '',
+                coopFundNameEn: '',
+                CoopFundType:'',
+                showChk: 'true'
+            }, function (data) {
+                if (data) {
+                    data.forEach(function (item) {
+                        hdData.push({ text: isZH() ? item.CoopFundTypeName : item.CoopFundTypeNameEn, value: item.CoopFundTypeCode });
+                    })
+                }
+            });
+        }
+
+        function submitAjax() {
+            $.commonPost("MarketAction/DTTApproveSave", {
+                MarketActionId: $("#MarketActionId").val(),
+                DTTType: 1,
+                DTTApproveCode: 1,
+                DTTApproveDesc:''
+            }, function () {
+                EProcessing();
+                var msg = isZH() ? '提交成功！' : "Save successfully !";
+                layer.alert(msg, {
+                    skin: 'layui-layer-molv', closeBtn: 0
+                }, function (datas) {
+                    window.location.href = "/Marketing/Index";
+                });
+            }, EProcessing)
+        }
+
+        function initImageList(_MarketActionBefore4WeeksPicList_OffLine) {
+            for (let key in imgCodeObj) {
+                initImageInfo(key, _MarketActionBefore4WeeksPicList_OffLine);
+            }
+        }
+
+        function initImageInfo(imageCode, imageList) {
+            let _imageList = [];
+            for (let i = 0; i < imageList.length; i++) {
+                if (imageList[i].PicType == imageCode) {
+                    _imageList.push(imageList[i]);
+                }
+            }
+            let _imgList = $("#"+imgCodeObj[imageCode]).find(".ossImage");
+            for (let i = 0; i < _imageList.length; i++) {
+                if ($(_imgList[i]).attr("data-flag") == 1) {
+                    $(_imgList[i]).attr("src", baseOss + _imageList[i].PicPath);
+                    $(_imgList[i]).attr("data-ossPath", _imageList[i].PicPath);
+                    $(_imgList[i]).attr("data-flag", 2);
+                    $(_imgList[i]).attr("data-fileName", _imageList[i].PicName);
+                    $(_imgList[i]).parent().parent().find(".fileinput-exists").show();
+                    $(_imgList[i]).parent().parent().parent().find(".form-control").val(_imageList[i].PicDesc);
+                }
+            }
+        }
+    </script>
+}

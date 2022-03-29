@@ -457,6 +457,7 @@
     <Content Include="Views\Home\ActionTypeEdit.cshtml" />
     <Content Include="Views\Marketing\Before4Weeks.cshtml" />
     <Content Include="Views\Marketing\Before4WeeksOnline.cshtml" />
+    <Content Include="Views\Marketing\After7DaysOnline.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

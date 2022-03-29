@@ -68,6 +68,16 @@ namespace com.bentley.retailsupport.web.Controllers
             ViewBag.Id = Id;
             return View();
         }
+        public ActionResult After7DaysOnline(string Id)
+        {
+            ViewBag.Id = Id;
+            return View();
+        }
+        public ActionResult After7DaysOffline(string Id)
+        {
+            ViewBag.Id = Id;
+            return View();
+        }
         public ActionResult After1Months(string Id)
         {
             ViewBag.Id = Id;

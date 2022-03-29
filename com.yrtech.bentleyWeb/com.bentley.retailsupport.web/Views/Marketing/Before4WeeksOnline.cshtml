@@ -880,6 +880,13 @@
                 }
             }
 
+             let MarketActionBefore4WeeksPicList_OffLine = [];
+            for (let _key in imgCodeObj) {
+                let _offLineList = submitImage(_key);
+                if (_offLineList && _offLineList.length > 0) {
+                    MarketActionBefore4WeeksPicList_OffLine = MarketActionBefore4WeeksPicList_OffLine.concat(_offLineList);
+                }
+            }
             var data = {
                 MarketActionId: MarketActionBefore21.MarketActionId,
                 TarketModelCode: $("#MarketActionTargetModelCode").val(),

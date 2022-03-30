@@ -172,6 +172,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>线索数量</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="People_NewLeadsThisYearCount" name="People_NewLeadsThisYearCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>Budget(RMB)</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="Budget" name="Budget" style="width:100%;" type="text" min="0" maxlength="255">
@@ -605,6 +615,27 @@
 
                             <div class="row">
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>DTT审批意见</span><span class="required" style="color:red">*</span>:</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="col-md-8">
+                                                    <textarea class="form-control" cols="20" id="DTTApproveDesc" name="DTTApproveDesc" placeholder="审批意见" rows="9"></textarea>
+                                                    <div style="margin-top:5px;">
+                                                        <select id="DTTType" name="DTTType" class="selectpicker">
+                                                            <option value="1" selected="" translate>Waiting for Approval</option>
+                                                            <option value="2" translate>Approved</option>
+                                                            <option value="3" translate>Waiting for Change</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
                                     <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
                                     <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
@@ -744,6 +775,9 @@
         }
 
         function PromotionEdit2() {
+            if (!veriData(1)) {
+                return;
+            }
             var StrActivityFlow2 = $('#ActivityFlow2Table').bootstrapTable('getData');
             var StrActualCost = $('#ActualCostTable').bootstrapTable('getData');
 
@@ -810,6 +844,7 @@
                     MarketActionBefore4WeeksPicList_OffLine = MarketActionBefore4WeeksPicList_OffLine.concat(_offLineList);
                 }
             }
+            marketActionAfter7.ProcessPercent = planProgessSub();
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
@@ -830,6 +865,95 @@
                 }, function (datas) {
                     window.location.href = "/Marketing/Index";
                 });
+            }, EProcessing)
+        }
+
+        function PromotionSubmit() {
+            if (!veriData(2)) {
+                return;
+            }
+            var StrActivityFlow2 = $('#ActivityFlow2Table').bootstrapTable('getData');
+            var StrActualCost = $('#ActualCostTable').bootstrapTable('getData');
+
+            if (StrActivityFlow2 && StrActivityFlow2.length > 0) {
+                StrActivityFlow2.forEach(function (item) {
+                    item.MarketActionId = id;
+                    item.InUserId = $("#G_UserId").val();
+                    item.ModifyUserId = $("#G_UserId").val();
+                })
+            }
+            if (StrActualCost && StrActualCost.length > 0) {
+                StrActualCost.forEach(function (item) {
+                    item.MarketActionId = id;
+                    item.InUserId = $("#G_UserId").val();
+                    item.ModifyUserId = $("#G_UserId").val();
+                })
+            }
+
+            var marketActionAfter7 = $('#PromotionCreate2').serializeObject();
+            marketActionAfter7.MarketActionId = id;
+            marketActionAfter7.InUserId = $("#G_UserId").val();
+            marketActionAfter7.ModifyUserId = $("#G_UserId").val();
+
+            //线上广告
+            marketActionAfter7.OnLineAdPic01 = $('#OnLineAdPic01').getImgSrc();
+            marketActionAfter7.OnLineAdPic02 = $('#OnLineAdPic02').getImgSrc();
+            marketActionAfter7.OnLineAdPic03 = $('#OnLineAdPic03').getImgSrc();
+            marketActionAfter7.OnLineAdPic04 = $('#OnLineAdPic04').getImgSrc();
+
+            //展车/展示
+            marketActionAfter7.CarDisplayPic01 = $('#CarDisplayPic01').getImgSrc();
+            marketActionAfter7.CarDisplayPic02 = $('#CarDisplayPic02').getImgSrc();
+            marketActionAfter7.CarDisplayPic03 = $('#CarDisplayPic03').getImgSrc();
+            marketActionAfter7.CarDisplayPic04 = $('#CarDisplayPic04').getImgSrc();
+
+            //展具/场地
+            marketActionAfter7.PlacePic01 = $('#PlacePic01').getImgSrc();
+            marketActionAfter7.PlacePic02 = $('#PlacePic02').getImgSrc();
+            marketActionAfter7.PlacePic03 = $('#PlacePic03').getImgSrc();
+            marketActionAfter7.PlacePic04 = $('#PlacePic04').getImgSrc();
+
+            //互动（签到，表演）
+            marketActionAfter7.RegisterLiveShowPic01 = $('#RegisterLiveShowPic01').getImgSrc();
+            marketActionAfter7.RegisterLiveShowPic02 = $('#RegisterLiveShowPic02').getImgSrc();
+            marketActionAfter7.RegisterLiveShowPic03 = $('#RegisterLiveShowPic03').getImgSrc();
+            marketActionAfter7.RegisterLiveShowPic04 = $('#RegisterLiveShowPic04').getImgSrc();
+
+            //人员（客户，员工，礼仪）
+            marketActionAfter7.CustomerStaffModelPic01 = $('#CustomerStaffModelPic01').getImgSrc();
+            marketActionAfter7.CustomerStaffModelPic02 = $('#CustomerStaffModelPic02').getImgSrc();
+            marketActionAfter7.CustomerStaffModelPic03 = $('#CustomerStaffModelPic03').getImgSrc();
+            marketActionAfter7.CustomerStaffModelPic04 = $('#CustomerStaffModelPic04').getImgSrc();
+
+            //其他
+            marketActionAfter7.OthersPic01 = $('#OthersPic01').getImgSrc();
+            marketActionAfter7.OthersPic02 = $('#OthersPic02').getImgSrc();
+            marketActionAfter7.OthersPic03 = $('#OthersPic03').getImgSrc();
+            marketActionAfter7.OthersPic04 = $('#OthersPic04').getImgSrc();
+
+            let MarketActionBefore4WeeksPicList_OffLine = [];
+            for (let _key in imgCodeObj) {
+                let _offLineList = submitImage(_key);
+                if (_offLineList && _offLineList.length > 0) {
+                    MarketActionBefore4WeeksPicList_OffLine = MarketActionBefore4WeeksPicList_OffLine.concat(_offLineList);
+                }
+            }
+            marketActionAfter7.ProcessPercent = planProgessSub();
+            var data = {
+                MarketActionId: id,
+                MarketActionAfter7: marketActionAfter7,
+                ActualExpense: StrActualCost,
+                ActualProcess: StrActivityFlow2,
+                MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
+            };
+
+            SProcessing();
+            $.commonPost("MarketAction/MarketActionAfter7Save", {
+                UserId: $("#G_UserId").val(),
+                ListJson: JSON.stringify(data)
+            }, function () {
+                EProcessing();
+                submitAjax();
             }, EProcessing)
         }
 
@@ -947,9 +1071,9 @@
         function submitAjax() {
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
-                DTTType: 1,
-                DTTApproveCode: 1,
-                DTTApproveDesc: ''
+                DTTType: $("#DTTType").val(),
+                DTTApproveCode: $("#DTTType").val(),
+                DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {
                 EProcessing();
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
@@ -985,6 +1109,189 @@
                     $(_imgList[i]).parent().parent().parent().find(".form-control").val(_imageList[i].PicDesc);
                 }
             }
+        }
+
+        var scheduleObj = { "schedule1": 0, "schedule2": 0, "schedule3": 0, "schedule4": 0, "schedule5": 0, "schedule6": 0, "schedule7": 0 };
+        //验证逻辑
+        function veriData(_type) {
+            var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
+            //活动报告信息验证
+            let _schedule1 = true;
+            if (!MarketActionBefore21.HightLights) {
+                _schedule1 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写活动亮点！'
+                    });
+                    return false;
+                }
+            }
+            if (!MarketActionBefore21.ImproveArea) {
+                _schedule1 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写尚需改进处！'
+                    });
+                    return false;
+                }
+            }
+            if (!MarketActionBefore21.CustomerFeedback) {
+                _schedule1 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写客户反馈！'
+                    });
+                    return false;
+                }
+            }
+            if (!MarketActionBefore21.MarketSaleTeamAdvice) {
+                _schedule1 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写市场/销售团队建议！'
+                    });
+                    return false;
+                }
+            }
+            if (_schedule1) {
+                scheduleObj.schedule1 = 20;
+            }
+            //人员信息
+            let _schedule2 = true;
+            if (!veriNumber(MarketActionBefore21.People_NewLeadsThisYearCount)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写线索数量！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.People_NewLeadsThisYearCount) {
+                console.error(MarketActionBefore21);
+                _schedule2 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写线索数量！'
+                    });
+                    return false;
+                }
+            }
+            if (!veriNumber(MarketActionBefore21.TotalBudgetAmt)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写活动预算！'
+                });
+                return false;
+            }
+            if (_schedule2) {
+                _schedule2 = 20;
+            }
+            //活动实际费用清单
+            var StrActivityFlow = $('#ActualCostTable').bootstrapTable('getData');
+            if (StrActivityFlow && StrActivityFlow.length > 0) {
+                scheduleObj.schedule5 = 20;
+            } else {
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写活动实际费用清单相关信息！'
+                    });
+                    return false;
+                }
+            }
+            //图片验证
+            let _schedule7 = veriImage(_type);
+            if (_schedule7) {
+                scheduleObj.schedule4 = 40;
+            } else {
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写图片相关信息！'
+                    });
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //验证正整数正则
+        function veriNumber(_data) {
+            if (_data && _data > 0) {
+                var reg = /^[1-9]\d*$/;
+                return reg.test(_data);
+            }
+            return true;
+        }
+
+        //验证主视觉
+        function veriKeyVisual(_data, _type) {
+            let _schedule4 = true;
+            if (_data.KeyVisionDesc) {
+                _schedule4 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写主视觉描述！'
+                    });
+                }
+            }
+            if (_data.KeyVisionApprovalDesc) {
+                _schedule4 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写主视觉修改说明！'
+                    });
+                }
+            }
+            return _schedule4;
+        }
+
+        //图片验证
+        function veriImage(_type) {
+            let _schedule7 = true;
+            let _MarketActionPicList = [];
+            for (let _key in imgCodeObj) {
+                let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
+                let _veriImg = false;
+                for (let i = 0; i < _imgList.length; i++) {
+                    if ($(_imgList[i]).attr("data-flag") == 2) {
+                        _veriImg = true;
+                    }
+                }
+                _MarketActionPicList.push(_veriImg);
+            }
+            for (let i = 0; i < _MarketActionPicList.length; i++) {
+                if (!_MarketActionPicList[i]) {
+                    _schedule7 = false;
+                }
+            }
+            return _schedule7;
+        }
+
+        //进度逻辑
+        function planProgessSub() {
+            let _sum = 0;
+            for (let _key in scheduleObj) {
+                _sum += parseInt(scheduleObj[_key]);
+            }
+            return _sum;
         }
     </script>
 }

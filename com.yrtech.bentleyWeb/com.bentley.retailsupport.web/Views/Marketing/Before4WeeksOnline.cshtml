@@ -1143,6 +1143,7 @@
             }
             //人员信息
             let _schedule2 = true;
+            console.error(MarketActionBefore21.People_NewLeadsThisYearCount);
             if (!veriNumber(MarketActionBefore21.People_NewLeadsThisYearCount)) {
                 layer.open({
                     title: '错误提示',
@@ -1224,7 +1225,7 @@
 
         //验证正整数正则
         function veriNumber(_data) {
-            if (_data && _data > 0) {
+            if (_data && _data != 0) {
                 var reg = /^[1-9]\d*$/;
                 return reg.test(_data);
             }

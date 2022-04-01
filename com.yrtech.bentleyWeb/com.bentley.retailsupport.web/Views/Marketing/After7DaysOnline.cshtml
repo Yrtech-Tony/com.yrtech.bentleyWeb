@@ -172,9 +172,44 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>线索数量</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>媒体平台</span></label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" cols="20" id="Platform_Media" name="Platform_Media" rows="5" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>曝光形式</span></label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" cols="20" id="Platform_ExposureForm" name="Platform_ExposureForm" rows="5" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>DCPID客户数量</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="People_DCPIDCount" name="People_DCPIDCount" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>今年新增线索数量</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="People_NewLeadsThisYearCount" name="People_NewLeadsThisYearCount" style="width:100%;" type="text" min="0" maxlength="255">
+
                                         </div>
                                     </div>
                                 </div>
@@ -193,12 +228,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label col-md-2"><span translate>Actual Expense List</span>:</label>
-                                        <div class="col-md-9">
-                                            <a id="addData" href="javascript:;" onclick="AddActualCost()" style="color:blue"><i class="icon-plus icon-white" translate>Add</i></a>
-                                            <br />
-                                            <table id="ActualCostTable" class="table table-striped table-bordered table-hover"></table>
+                                        <label class="control-label col-md-2"><span translate>市场基金申报信息</span><span class="required" style="color:red">*</span>:</label>
+                                        <div class="col-md-8">
+                                            <a href="javascript:AddActivityFlowTableOnline();"><i class="icon-plus icon-white" translate>Add</i></a>
+                                            <table id="ActivityFlowTableOnline" class="table table-striped table-bordered table-hover"></table>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </div>
@@ -213,16 +248,6 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>市场基金申报金额</span><span class="required" style="color:red">*</span>:  </label>
-                                        <div class="col-md-4">
-                                            <input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" style="width:100%;" type="text" min="0" maxlength="255">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <style>
                                 .h-30 {
                                     line-height: 30px;
@@ -510,7 +535,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-3">
-                                        <label class="control-label col-md-2"><span translate>实际投放照片</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>实际投放照片-开始日期</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -576,6 +601,74 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv-6">
+                                        <label class="control-label col-md-2"><span translate>实际投放照片-结束日期</span>:</label>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles-6" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-6" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-6"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -662,7 +755,7 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=202204011144"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -673,10 +766,11 @@
 
     <script>
         $("#nav_promotion").addClass("active");
-        let imgCodeObj = { "MPN01": "imgListDiv", "MPN02": "imgListDiv-1", "MPN03": "imgListDiv-2", "MPN04": "imgListDiv-3", "MPN": "imgListDiv-4", "MPN10": "imgListDiv-5" };
+        let imgCodeObj = { "MPN01": "imgListDiv", "MPN02": "imgListDiv-1", "MPN03": "imgListDiv-2", "MPN05": "imgListDiv-3", "MPN": "imgListDiv-4", "MPN10": "imgListDiv-5", "MPN06": "imgListDiv-6" };
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
-
+        var hdData = [];
+        var hdDataCoop = [{ "text": "是", "value": "true" }, { "text": "否", "value": "false" }];
 
         $(function () {
             $('img').error(function () {
@@ -700,12 +794,12 @@
             loadActiveStatuss();
             loadTargetModels();
             loadEventTypes();
+            initAjax();
             $.ajaxSetup({
                 async: true
             });
 
-            InitActualCost();
-            InitActualActivityProcess();
+            InitActivityFlowTableOnline();
 
             $('#UserId').val($('#G_UserId').val());
             var roleName = $('#G_RoleTypeCode').val();
@@ -732,22 +826,14 @@
                     if (data) {
                         var marketActionAfter7 = data.MarketActionAfter7;
 
-                        $('#ActualCostTable').bootstrapTable("load", data.ActualExpenseDto);
-                        $('#ActivityFlow2Table').bootstrapTable("load", data.ActualProcess);
+                        $('#ActivityFlowTableOnline').bootstrapTable("load", data.ActualExpenseDto);
 
-                        if (data.ActualExpenseDto) {
-                            data.ActualExpenseDto.forEach(function (item) {
-                                if (item.SeqNO > maxActualCostSeqNo) {
-                                    maxActualCostSeqNo = item.SeqNO;
+                        if (data.MarketActionBefore4WeeksCoopFund) {
+                            data.MarketActionBefore4WeeksCoopFund.forEach(function (item) {
+                                if (item.SeqNO > maxActivityFlowSeqNOOnline) {
+                                    maxActivityFlowSeqNOOnline = item.SeqNO;
                                 }
                             });
-                        }
-                        if (data.ActualProcess) {
-                            data.ActualProcess.forEach(function (item) {
-                                if (item.SeqNO > maxActualActivitySeqNo) {
-                                    maxActualActivitySeqNo = item.SeqNO;
-                                }
-                            })
                         }
                         // 从线索查询出来不需要填写的字段
                         for (var pro in data.LeadsCount) {
@@ -779,64 +865,11 @@
             if (!veriData(1)) {
                 return;
             }
-            var StrActivityFlow2 = $('#ActivityFlow2Table').bootstrapTable('getData');
-            var StrActualCost = $('#ActualCostTable').bootstrapTable('getData');
-
-            if (StrActivityFlow2 && StrActivityFlow2.length > 0) {
-                StrActivityFlow2.forEach(function (item) {
-                    item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
-                })
-            }
-            if (StrActualCost && StrActualCost.length > 0) {
-                StrActualCost.forEach(function (item) {
-                    item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
-                })
-            }
 
             var marketActionAfter7 = $('#PromotionCreate2').serializeObject();
             marketActionAfter7.MarketActionId = id;
             marketActionAfter7.InUserId = $("#G_UserId").val();
             marketActionAfter7.ModifyUserId = $("#G_UserId").val();
-
-            //线上广告
-            marketActionAfter7.OnLineAdPic01 = $('#OnLineAdPic01').getImgSrc();
-            marketActionAfter7.OnLineAdPic02 = $('#OnLineAdPic02').getImgSrc();
-            marketActionAfter7.OnLineAdPic03 = $('#OnLineAdPic03').getImgSrc();
-            marketActionAfter7.OnLineAdPic04 = $('#OnLineAdPic04').getImgSrc();
-
-            //展车/展示
-            marketActionAfter7.CarDisplayPic01 = $('#CarDisplayPic01').getImgSrc();
-            marketActionAfter7.CarDisplayPic02 = $('#CarDisplayPic02').getImgSrc();
-            marketActionAfter7.CarDisplayPic03 = $('#CarDisplayPic03').getImgSrc();
-            marketActionAfter7.CarDisplayPic04 = $('#CarDisplayPic04').getImgSrc();
-
-            //展具/场地
-            marketActionAfter7.PlacePic01 = $('#PlacePic01').getImgSrc();
-            marketActionAfter7.PlacePic02 = $('#PlacePic02').getImgSrc();
-            marketActionAfter7.PlacePic03 = $('#PlacePic03').getImgSrc();
-            marketActionAfter7.PlacePic04 = $('#PlacePic04').getImgSrc();
-
-            //互动（签到，表演）
-            marketActionAfter7.RegisterLiveShowPic01 = $('#RegisterLiveShowPic01').getImgSrc();
-            marketActionAfter7.RegisterLiveShowPic02 = $('#RegisterLiveShowPic02').getImgSrc();
-            marketActionAfter7.RegisterLiveShowPic03 = $('#RegisterLiveShowPic03').getImgSrc();
-            marketActionAfter7.RegisterLiveShowPic04 = $('#RegisterLiveShowPic04').getImgSrc();
-
-            //人员（客户，员工，礼仪）
-            marketActionAfter7.CustomerStaffModelPic01 = $('#CustomerStaffModelPic01').getImgSrc();
-            marketActionAfter7.CustomerStaffModelPic02 = $('#CustomerStaffModelPic02').getImgSrc();
-            marketActionAfter7.CustomerStaffModelPic03 = $('#CustomerStaffModelPic03').getImgSrc();
-            marketActionAfter7.CustomerStaffModelPic04 = $('#CustomerStaffModelPic04').getImgSrc();
-
-            //其他
-            marketActionAfter7.OthersPic01 = $('#OthersPic01').getImgSrc();
-            marketActionAfter7.OthersPic02 = $('#OthersPic02').getImgSrc();
-            marketActionAfter7.OthersPic03 = $('#OthersPic03').getImgSrc();
-            marketActionAfter7.OthersPic04 = $('#OthersPic04').getImgSrc();
 
             let MarketActionBefore4WeeksPicList_OffLine = [];
             for (let _key in imgCodeObj) {
@@ -846,11 +879,18 @@
                 }
             }
             marketActionAfter7.ProcessPercent = planProgessSub();
+            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+            if (StrActivityFlow && StrActivityFlow.length > 0) {
+                StrActivityFlow.forEach(function (item) {
+                    item.MarketActionId = id;
+                    item.InUserId = $("#G_UserId").val();
+                    item.ModifyUserId = $("#G_UserId").val();
+                })
+            }
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
-                ActualExpense: StrActualCost,
-                ActualProcess: StrActivityFlow2,
+                MarketActionBefore4WeeksCoopFund: StrActivityFlowNew,
                 MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
             };
 
@@ -873,64 +913,11 @@
             if (!veriData(2)) {
                 return;
             }
-            var StrActivityFlow2 = $('#ActivityFlow2Table').bootstrapTable('getData');
-            var StrActualCost = $('#ActualCostTable').bootstrapTable('getData');
-
-            if (StrActivityFlow2 && StrActivityFlow2.length > 0) {
-                StrActivityFlow2.forEach(function (item) {
-                    item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
-                })
-            }
-            if (StrActualCost && StrActualCost.length > 0) {
-                StrActualCost.forEach(function (item) {
-                    item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
-                })
-            }
 
             var marketActionAfter7 = $('#PromotionCreate2').serializeObject();
             marketActionAfter7.MarketActionId = id;
             marketActionAfter7.InUserId = $("#G_UserId").val();
             marketActionAfter7.ModifyUserId = $("#G_UserId").val();
-
-            //线上广告
-            marketActionAfter7.OnLineAdPic01 = $('#OnLineAdPic01').getImgSrc();
-            marketActionAfter7.OnLineAdPic02 = $('#OnLineAdPic02').getImgSrc();
-            marketActionAfter7.OnLineAdPic03 = $('#OnLineAdPic03').getImgSrc();
-            marketActionAfter7.OnLineAdPic04 = $('#OnLineAdPic04').getImgSrc();
-
-            //展车/展示
-            marketActionAfter7.CarDisplayPic01 = $('#CarDisplayPic01').getImgSrc();
-            marketActionAfter7.CarDisplayPic02 = $('#CarDisplayPic02').getImgSrc();
-            marketActionAfter7.CarDisplayPic03 = $('#CarDisplayPic03').getImgSrc();
-            marketActionAfter7.CarDisplayPic04 = $('#CarDisplayPic04').getImgSrc();
-
-            //展具/场地
-            marketActionAfter7.PlacePic01 = $('#PlacePic01').getImgSrc();
-            marketActionAfter7.PlacePic02 = $('#PlacePic02').getImgSrc();
-            marketActionAfter7.PlacePic03 = $('#PlacePic03').getImgSrc();
-            marketActionAfter7.PlacePic04 = $('#PlacePic04').getImgSrc();
-
-            //互动（签到，表演）
-            marketActionAfter7.RegisterLiveShowPic01 = $('#RegisterLiveShowPic01').getImgSrc();
-            marketActionAfter7.RegisterLiveShowPic02 = $('#RegisterLiveShowPic02').getImgSrc();
-            marketActionAfter7.RegisterLiveShowPic03 = $('#RegisterLiveShowPic03').getImgSrc();
-            marketActionAfter7.RegisterLiveShowPic04 = $('#RegisterLiveShowPic04').getImgSrc();
-
-            //人员（客户，员工，礼仪）
-            marketActionAfter7.CustomerStaffModelPic01 = $('#CustomerStaffModelPic01').getImgSrc();
-            marketActionAfter7.CustomerStaffModelPic02 = $('#CustomerStaffModelPic02').getImgSrc();
-            marketActionAfter7.CustomerStaffModelPic03 = $('#CustomerStaffModelPic03').getImgSrc();
-            marketActionAfter7.CustomerStaffModelPic04 = $('#CustomerStaffModelPic04').getImgSrc();
-
-            //其他
-            marketActionAfter7.OthersPic01 = $('#OthersPic01').getImgSrc();
-            marketActionAfter7.OthersPic02 = $('#OthersPic02').getImgSrc();
-            marketActionAfter7.OthersPic03 = $('#OthersPic03').getImgSrc();
-            marketActionAfter7.OthersPic04 = $('#OthersPic04').getImgSrc();
 
             let MarketActionBefore4WeeksPicList_OffLine = [];
             for (let _key in imgCodeObj) {
@@ -940,11 +927,18 @@
                 }
             }
             marketActionAfter7.ProcessPercent = planProgessSub();
+            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+            if (StrActivityFlow && StrActivityFlow.length > 0) {
+                StrActivityFlow.forEach(function (item) {
+                    item.MarketActionId = id;
+                    item.InUserId = $("#G_UserId").val();
+                    item.ModifyUserId = $("#G_UserId").val();
+                })
+            }
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
-                ActualExpense: StrActualCost,
-                ActualProcess: StrActivityFlow2,
+                MarketActionBefore4WeeksCoopFund: StrActivityFlowNew,
                 MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
             };
 

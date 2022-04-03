@@ -208,7 +208,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>今年新增线索数量</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="People_NewLeadsThisYearCount" name="People_NewLeadsThisYearCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="People_NewLeadsThsYearCount" name="People_NewLeadsThsYearCount" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -219,7 +219,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>实际参加人数</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="People_InvitationTotalCount" name="People_InvitationTotalCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="People_ActualArrivalCount" name="People_ActualArrivalCount" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -230,7 +230,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>车主</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="People_InvitationCarOwnerCount" name="People_InvitationCarOwnerCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="People_ActualCarOwnerCount" name="People_ActualCarOwnerCount" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -241,7 +241,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>订单客户</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="People_InvitationDepositorCount" name="People_InvitationDepositorCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="People_ActualDepositorCount" name="People_ActualDepositorCount" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -252,7 +252,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>潜在客户</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="People_InvitationPotentialCount" name="People_InvitationPotentialCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="People_ActualPotentialCount" name="People_ActualPotentialCount" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -263,7 +263,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>其他</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="People_InvitationOtherCount" name="People_InvitationOtherCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="People_OthersCount" name="People_OthersCount" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -1291,7 +1291,6 @@
     <script src="~/Scripts/oss-upload-direct/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/base64.js"></script>
     <script src="~/Scripts/oss-upload-direct/ali-upload.js?20170930"></script>
-    <script src="~/Scripts/oss-upload-direct/ali-upload-video.js?20170930"></script>
 
     <script>
         var hdData = [];
@@ -1399,7 +1398,9 @@
 
                         if (marketActionAfter7) {
                             $('#PromotionCreate2').setForm(marketActionAfter7);
-                            $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
+                            if (data.MarketActionBefore4Weeks) {
+                                $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
+                            }
                             initImageList(data.MarketActionAfter7PicList_OffLine);
                         }
 

@@ -1364,9 +1364,6 @@
                 $.commonGet("MarketAction/MarketActionAfter7Search", { marketActionId: id }, function (data) {
                     if (data) {
                         var marketActionAfter7 = data.MarketActionAfter7;
-                        console.error(data);
-                        $('#ActualCostTable').bootstrapTable("load", data.ActualProcess);
-                        $('#ActivityFlow2Table').bootstrapTable("load", data.MarketActionAfter7CoopFund);
 
                         if (data.ActualExpenseDto) {
                             data.ActualExpenseDto.forEach(function (item) {
@@ -1382,6 +1379,8 @@
                                 }
                             })
                         }
+                        $('#ActivityFlowTable').bootstrapTable("load", data.ActualProcess);
+
                         if (data.ActivityProcess) {
                             data.ActivityProcess.forEach(function (item) {
                                 if (item.SeqNO > maxActivityFlowSeqNO) {
@@ -1389,18 +1388,19 @@
                                 }
                             });
                         }
-                        if (data.MarketActionBefore4WeeksCoopFund) {
-                            data.MarketActionBefore4WeeksCoopFund.forEach(function (item) {
+                        if (data.MarketActionAfter7CoopFund) {
+                            data.MarketActionAfter7CoopFund.forEach(function (item) {
                                 if (item.SeqNO > maxActivityFlowSeqNONew) {
                                     maxActivityFlowSeqNONew = item.SeqNO;
                                 }
                             });
                         }
-            
+                        $('#ActivityFlowTableNew').bootstrapTable("load", data.MarketActionAfter7CoopFund);
+
                         if (marketActionAfter7) {
                             $('#PromotionCreate2').setForm(marketActionAfter7);
                             $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
-                            initImageList(data.MarketActionBefore4WeeksPicList_OnLine);
+                            initImageList(data.MarketActionAfter7PicList_OffLine);
                         }
 
                     }
@@ -1474,9 +1474,9 @@
                 MarketActionAfter7: marketActionAfter7,
                 ActualExpense: StrActualCost,
                 ActualProcess: StrActivityFlow2,
-                MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine,
+                MarketActionAfter7PicList_OffLine: MarketActionBefore4WeeksPicList_OffLine,
                 ActivityProcess: StrActivityFlow,
-                MarketActionBefore4WeeksCoopFund: StrActivityFlowNew
+                MarketActionAfter7CoopFund: StrActivityFlowNew
             };
 
             SProcessing();
@@ -1550,9 +1550,9 @@
                 MarketActionAfter7: marketActionAfter7,
                 ActualExpense: StrActualCost,
                 ActualProcess: StrActivityFlow2,
-                MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine,
+                MarketActionAfter7PicList_OffLine: MarketActionBefore4WeeksPicList_OffLine,
                 ActivityProcess: StrActivityFlow,
-                MarketActionBefore4WeeksCoopFund: StrActivityFlowNew
+                MarketActionAfter7CoopFund: StrActivityFlowNew
             };
 
             SProcessing();
@@ -1599,7 +1599,6 @@
                 fileAddCheckMsg: "",
                 osspath: osspath,
                 uploaded: function (args) {
-                    console.error(args);
                     addVideo(_id, args);
                 }
             });
@@ -1784,7 +1783,6 @@
                 return false;
             }
             if (!MarketActionBefore21.People_ParticipantsCount) {
-                console.error(MarketActionBefore21);
                 _schedule2 = false;
                 if (_type == 2) {
                     layer.open({

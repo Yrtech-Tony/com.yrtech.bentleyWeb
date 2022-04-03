@@ -1680,7 +1680,7 @@
         function submitAjax() {
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
-                DTTType: $("#DTTType").val(),
+                DTTType: 2,
                 DTTApproveCode: $("#DTTType").val(),
                 DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {

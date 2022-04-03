@@ -238,6 +238,18 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>预算金额总计</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>市场基金申报信息</span><span class="required" style="color:red">*</span>:</label>
@@ -246,18 +258,6 @@
                                             <table id="ActivityFlowTableOnline" class="table table-striped table-bordered table-hover"></table>
                                         </div>
                                         <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>预算金额总计</span>:  </label>
-                                        <div class="col-md-4">
-                                            <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1078,6 +1078,7 @@
                     $.commonGet("MarketAction/KeyVisionSendEmailToShop", { marketActionId: id }, function (data) { });
                 }
                 submitAjax();
+                createPPT();
             }, EProcessing)
         }
 
@@ -1411,6 +1412,17 @@
                 _sum += parseInt(scheduleObj[_key]);
             }
             return _sum;
+        }
+
+        //生成PPT
+        function createPPT() {
+            $.commonGet("MarketAction/CreatePPT", {
+                marketActionId: $("#MarketActionId").val(),
+                type: "MPN11",
+                userId: $("#G_UserId").val()
+            }, function (data) {
+
+            });
         }
     </script>
 }

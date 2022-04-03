@@ -732,6 +732,7 @@
                                     <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
                                     <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
                                     <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
+                                    <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
                                 </div>
                             </div>
@@ -944,6 +945,7 @@
                 ListJson: JSON.stringify(data)
             }, function () {
                 EProcessing();
+                createPPT();
                 submitAjax();
             }, EProcessing)
         }
@@ -1283,6 +1285,27 @@
                 _sum += parseInt(scheduleObj[_key]);
             }
             return _sum;
+        }
+
+        //生成PPT
+        function createPPT() {
+            $.commonGet("MarketAction/CreatePPT", {
+                marketActionId: $("#MarketActionId").val(),
+                type: "MRN11",
+                userId: $("#G_UserId").val()
+            }, function (data) {
+
+            });
+        }
+
+        //下载PPT
+        function downloadPPT() {
+            $.commonGet("MarketAction/MarketActionPicSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                picType: "MRN11"
+            }, function (data) {
+                console.error(data);
+            });
         }
     </script>
 }

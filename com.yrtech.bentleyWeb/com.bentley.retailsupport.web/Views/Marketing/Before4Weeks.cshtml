@@ -174,7 +174,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>Budget(RMB)</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="Budget" name="Budget" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="ActivityBudget" name="ActivityBudget" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -330,17 +330,18 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>金额总计</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" style="width:100%;" type="text" min="0" maxlength="255">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>预算金额</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>预算金额总计</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -1183,6 +1184,7 @@
                                     <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
                                     <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
                                     <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
+                                    <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
                                 </div>
                             </div>
@@ -1215,7 +1217,7 @@
     <script src="~/Scripts/oss-upload-direct/ali-upload.js?20170930"></script>
     <script>
         var UserId = $("#G_UserId").val();
-        let imgCodeObj = { "MPF01": "imgListDiv", "MRF04": "imgListDiv-1", "MPF02": "imgListDiv-2", "MPF03": "imgListDiv-3", "MPF04": "imgListDiv-4", "MPF05": "imgListDiv-5", "MPF06": "imgListDiv-6", "MPF07": "imgListDiv-7", "MPF08": "imgListDiv-8", "MPF09": "imgListDiv-9", "MPF12": "imgListDiv-10"};
+        let imgCodeObj = { "MPF01": "imgListDiv", "MPF01-1": "imgListDiv-1", "MPF02": "imgListDiv-2", "MPF03": "imgListDiv-3", "MPF04": "imgListDiv-4", "MPF05": "imgListDiv-5", "MPF06": "imgListDiv-6", "MPF07": "imgListDiv-7", "MPF08": "imgListDiv-8", "MPF09": "imgListDiv-9", "MPF12": "imgListDiv-10"};
         $("#nav_promotion").addClass("active");
 
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
@@ -1519,6 +1521,7 @@
                     console.log("send KeyVisionSendEmailToShop 经销商 marketActionId=" + id)
                     $.commonGet("MarketAction/KeyVisionSendEmailToShop", { marketActionId: id }, function (data) { });
                 }
+                createPPT();
                 submitAjax();
             }, EProcessing)
         }
@@ -2028,6 +2031,27 @@
                 _sum += parseInt(scheduleObj[_key]);
             }
             return _sum;
+        }
+
+        //生成PPT
+        function createPPT() {
+            $.commonGet("MarketAction/CreatePPT", {
+                marketActionId: $("#MarketActionId").val(),
+                type: "MPF13",
+                userId: $("#G_UserId").val()
+            }, function (data) {
+
+            });
+        }
+
+        //下载PPT
+        function downloadPPT() {
+            $.commonGet("MarketAction/MarketActionPicSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                picType: "MPF13"
+            }, function (data) {
+                console.error(data);
+            });
         }
     </script>
 }

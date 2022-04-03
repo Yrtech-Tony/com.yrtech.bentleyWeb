@@ -63,7 +63,7 @@ function statusFormatter(value, row, index, field) {
     var href = '/Marketing/' + field + "?id=" + row.MarketActionId;
     if ((field == "Before4Weeks" || field == "Before4WeeksCar" || field == "After7Days" || field == "After7DaysCar" || field == "Before4WeeksOnline" || field == "After7DaysOnline" || field == "After7DaysOffline") && parseInt(value) >= 0) {
         var _value = parseInt(value);
-        var _div = '<div class="progress progress-info" style="background:#ddd;margin-bottom:0px;cursor:pointer;" onclick="EmptyValueHref(' + '\'' + href + '\'' + ');"><div class="progress-bar" role="progressbar" style = "width: ' + _value + '%;height:100%;background:#4bb1cf;" ></div ><span class="label">' + _value + '%</span></div >';
+        var _div = '<div class="progress progress-info" style="background:#ddd;margin-bottom:0px;cursor:pointer;position:relative;" onclick="EmptyValueHref(' + '\'' + href + '\'' + ');"><div class="progress-bar" role="progressbar" style = "width: ' + _value + '%;height:100%;background:#4bb1cf;" ></div ><span class="label" style="position:absolute;z-index:2;top:3px;right:0px;">' + _value + '%</span></div >';
         return _div;
     }
     if (value == "Commited") {

@@ -1341,6 +1341,7 @@
             loadActiveStatuss();
             loadTargetModels();
             loadEventTypes();
+            initAjax();
             $.ajaxSetup({
                 async: true
             });
@@ -1574,6 +1575,7 @@
                 ListJson: JSON.stringify(data)
             }, function () {
                 EProcessing();
+                createPPT();
                 submitAjax();
             }, EProcessing)
         }
@@ -2067,6 +2069,17 @@
                 _sum += parseInt(scheduleObj[_key]);
             }
             return _sum;
+        }
+
+        //生成PPT
+        function createPPT() {
+            $.commonGet("MarketAction/CreatePPT", {
+                marketActionId: $("#MarketActionId").val(),
+                type: "MRF15",
+                userId: $("#G_UserId").val()
+            }, function (data) {
+
+            });
         }
     </script>
 }

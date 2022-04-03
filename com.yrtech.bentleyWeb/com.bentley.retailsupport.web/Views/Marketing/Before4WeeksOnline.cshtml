@@ -1201,7 +1201,7 @@
                 DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { marketActionId: id, type: "MP" }, function (data) { });
+                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MP", DTTType: 1, DTTApproveCode: $("#DTTType").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0

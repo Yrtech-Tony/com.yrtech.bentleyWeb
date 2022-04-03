@@ -432,7 +432,7 @@ function InitActivityFlowTableOnline() {
                 valign: "middle",
                 align: "center",
                 formatter: function (value, row, index) {
-                    var e = "<label onclick='DeleteActivityFlowRowNew(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    var e = "<label onclick='DeleteActivityFlowRowOnline(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
                     return e;
                 }
             }
@@ -513,6 +513,14 @@ function DeleteActivityFlowRow(id) {
 
 function DeleteActivityFlowRowNew(id) {
     var $table = $('#ActivityFlowTableNew');
+    $table.bootstrapTable('remove', {
+        field: 'SeqNO',
+        values: [id]
+    });
+}
+
+function DeleteActivityFlowRowOnline(id) {
+    var $table = $('#ActivityFlowTableOnline');
     $table.bootstrapTable('remove', {
         field: 'SeqNO',
         values: [id]

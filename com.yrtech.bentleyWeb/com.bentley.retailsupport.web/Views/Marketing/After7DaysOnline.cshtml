@@ -87,6 +87,17 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>Budget(RMB)</span><span class="required" style="color:red">*</span>:  </label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" id="ActivityBudget" readonly="readonly" name="ActivityBudget" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
 
                                 <div class="form-group">
@@ -217,9 +228,20 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Budget(RMB)</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="Budget" name="Budget" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" style="width:100%;" type="text" min="0" maxlength="255">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>预算金额总计</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -826,24 +848,17 @@
                 $.commonGet("MarketAction/MarketActionAfter7Search", { marketActionId: id }, function (data) {
                     if (data) {
                         var marketActionAfter7 = data.MarketActionAfter7;
-
-                        $('#ActivityFlowTableOnline').bootstrapTable("load", data.ActualExpenseDto);
-
-                        if (data.MarketActionBefore4WeeksCoopFund) {
-                            data.MarketActionBefore4WeeksCoopFund.forEach(function (item) {
+                        if (data.MarketActionAfter7CoopFund) {
+                            data.MarketActionAfter7CoopFund.forEach(function (item) {
                                 if (item.SeqNO > maxActivityFlowSeqNOOnline) {
                                     maxActivityFlowSeqNOOnline = item.SeqNO;
                                 }
                             });
+                            $('#ActivityFlowTableOnline').bootstrapTable("load", data.MarketActionAfter7CoopFund);
                         }
-                        // 从线索查询出来不需要填写的字段
-                        for (var pro in data.LeadsCount) {
-                            $("#" + pro).html(data.LeadsCount[pro]);
-                        }
-                        $("#ExpenseTotalAmt").html(dealNumber(parseFloat(data.LeadsCount.ExpenseTotalAmt)));
-
                         if (marketActionAfter7) {
                             $('#PromotionCreate2').setForm(marketActionAfter7);
+                            $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
                             initImageList(data.MarketActionBefore4WeeksPicList_OnLine);
                         }
 

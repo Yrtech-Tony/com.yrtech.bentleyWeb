@@ -1196,11 +1196,12 @@
         function submitAjax() {
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
-                DTTType: $("#DTTType").val(),
+                DTTType: 1,
                 DTTApproveCode: $("#DTTType").val(),
                 DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {
                 EProcessing();
+                $.commonGet("MarketAction/DMFApplyEmail", { marketActionId: id, type: "MP" }, function (data) { });
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0

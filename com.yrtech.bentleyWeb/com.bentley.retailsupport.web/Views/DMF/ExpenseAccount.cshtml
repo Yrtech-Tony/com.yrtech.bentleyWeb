@@ -122,7 +122,7 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/Reimbursement.js?20200306"></script>
+    <script src="~/Scripts/curtom/Reimbursement.js?202003063"></script>
     <script src="~/Scripts/crypto-js.js"></script>
     <script src="~/Scripts/curtom/DESUtil.js"></script>
     <script type="text/javascript">
@@ -259,6 +259,7 @@
                 userId: $('#G_UserId').val(),
                 roleTypeCode: $('#G_RoleTypeCode').val()
             }, function (data) {
+                console.error(data);
                 if (data) {
                     $('#myReimbursement').bootstrapTable("load", data);
                     $("#myReimbursement").bootstrapTable("selectPage", parseInt(window.localStorage.pageNumberReimb) || 1);

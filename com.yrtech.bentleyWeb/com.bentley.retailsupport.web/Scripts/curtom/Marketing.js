@@ -69,11 +69,17 @@ function statusFormatter(value, row, index, field) {
     if (value == "Commited") {
         var txt = $("#Pending").val();
         return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style="background-color:gray !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;">' + txt + '</span></a>';
-    } else if (value == "UnCommitTime") {
-        var txt = $("#Draft").val();
-        return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style=""><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;">' + txt + '</span></a>';
     } else if (value == "UnCommit") {
         var txt = $("#Draft").val();
+        return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style="background-color:#E0E0E0 !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;" >' + txt + '</span></a>';
+    } else if (value == "UnCommitTime") {
+        var txt = $("#Draft").val();
+        return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style="background-color:#E0E0E0 !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;" >' + txt + '</span></a>';
+    } else if (value == "Approved") {
+        var txt = "审核通过";
+        return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style="background-color:#E0E0E0 !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;" >' + txt + '</span></a>';
+    } else if (value == "WaitForChange") {
+        var txt = "修改中";
         return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style="background-color:#E0E0E0 !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;" >' + txt + '</span></a>';
     }
 }

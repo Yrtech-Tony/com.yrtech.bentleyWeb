@@ -13,6 +13,11 @@ namespace com.bentley.retailsupport.web.Controllers
             return View();
         }
 
+        public ActionResult IndexStatis()
+        {
+            return View();
+        }
+
         public ActionResult ManageUsers()
         {
             return View();

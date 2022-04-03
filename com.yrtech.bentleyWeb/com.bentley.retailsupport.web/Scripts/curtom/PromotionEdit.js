@@ -291,7 +291,27 @@ function InitActivityFlowTableOnline() {
                     }
                 }
             },
-   
+            {
+                title: "金额",
+                field: 'CoopFundAmt',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundAmt", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+
+            },
             {
                 title: "是否报销",
                 field: 'CoopFund_DMFChk',
@@ -407,27 +427,6 @@ function InitActivityFlowTableOnline() {
 
             },
             {
-                title: "金额总计",
-                field: 'CoopFundDesc',
-                valign: "left",
-                align: "left",
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "CoopFundDesc", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                        if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                        }
-                        return html;
-                    }
-                }
-
-            },
-            {
                 title: $('#TEdit').val(),
                 field: 'Edit',
                 valign: "middle",
@@ -478,10 +477,7 @@ function AddActivityFlowTableNew() {
             CoopFundCode: '',
             CoopFundAmt: '',
             CoopFund_DMFChk: '',
-            StartDate: '',
-            EndDate: '',
-            TotalDays: '',
-            AmtPerDay:'',
+            CoopFundDesc: '',
             Remark: ''
         }
     });
@@ -498,7 +494,10 @@ function AddActivityFlowTableOnline() {
             CoopFundCode: '',
             CoopFundAmt: '',
             CoopFund_DMFChk: '',
-            CoopFundDesc: '',
+            StartDate: '',
+            EndDate: '',
+            TotalDays: '',
+            AmtPerDay: '',
             Remark: ''
         }
     });

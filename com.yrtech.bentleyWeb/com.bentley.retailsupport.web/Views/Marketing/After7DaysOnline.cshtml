@@ -727,7 +727,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" style="position:fixed;bottom:0px;width:100%;padding:10px;background:#fff;">
                                 <div class="col-md-6">
                                     <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
                                     <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
@@ -879,12 +879,10 @@
                 }
             }
             marketActionAfter7.ProcessPercent = planProgessSub();
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
-            if (StrActivityFlow && StrActivityFlow.length > 0) {
-                StrActivityFlow.forEach(function (item) {
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                StrActivityFlowNew.forEach(function (item) {
                     item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
                 })
             }
             var data = {
@@ -927,12 +925,10 @@
                 }
             }
             marketActionAfter7.ProcessPercent = planProgessSub();
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
-            if (StrActivityFlow && StrActivityFlow.length > 0) {
-                StrActivityFlow.forEach(function (item) {
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                StrActivityFlowNew.forEach(function (item) {
                     item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
                 })
             }
             var data = {

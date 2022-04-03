@@ -226,6 +226,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" style="width:100%;" type="text" min="0" maxlength="255">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -243,9 +253,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>是否申请基金</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>预算金额总计</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="check" id="BudgetType" name="BudgetType" type="checkbox" />
+                                            <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -801,7 +811,7 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=201709304"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093041"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -958,12 +968,10 @@
             }
             MarketActionBefore21.ProcessPercent = planProgessSub();
 
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
-            if (StrActivityFlow && StrActivityFlow.length > 0) {
-                StrActivityFlow.forEach(function (item) {
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                StrActivityFlowNew.forEach(function (item) {
                     item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
                 })
             }
 
@@ -1036,12 +1044,10 @@
             }
             MarketActionBefore21.ProcessPercent = planProgessSub();
 
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
-            if (StrActivityFlow && StrActivityFlow.length > 0) {
-                StrActivityFlow.forEach(function (item) {
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                StrActivityFlowNew.forEach(function (item) {
                     item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
                 })
             }
 
@@ -1308,17 +1314,6 @@
                         title: '错误提示',
                         type: 0,
                         content: '请填写活动预算！'
-                    });
-                    return false;
-                }
-            }
-            if (!MarketActionBefore21.BudgetType) {
-                _schedule2 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请选择是否申请基金！'
                     });
                     return false;
                 }

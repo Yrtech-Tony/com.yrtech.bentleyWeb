@@ -789,7 +789,7 @@
 
     <script>
         $("#nav_promotion").addClass("active");
-        let imgCodeObj = { "MPN01": "imgListDiv", "MPN02": "imgListDiv-1", "MPN03": "imgListDiv-2", "MPN05": "imgListDiv-3", "MPN": "imgListDiv-4", "MPN10": "imgListDiv-5", "MPN06": "imgListDiv-6" };
+        let imgCodeObj = { "MRN01": "imgListDiv", "MRN04": "imgListDiv-1", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MPN10": "imgListDiv-5", "MRN06": "imgListDiv-6" };
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
         var hdData = [];
@@ -809,6 +809,7 @@
             initOssClient("-2");
             initOssClient("-3");
             initOssClient("-4");
+            initOssClient("-6");
             initVideoOssClient("-5");
             //设置同步调用 必须先绑定下拉列表数据再查询市场活动信息
             $.ajaxSetup({
@@ -858,8 +859,10 @@
                         }
                         if (marketActionAfter7) {
                             $('#PromotionCreate2').setForm(marketActionAfter7);
-                            $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
-                            initImageList(data.MarketActionBefore4WeeksPicList_OnLine);
+                            if (data.MarketActionBefore4Weeks) {
+                                $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
+                            }
+                            initImageList(data.MarketActionAfter7PicList_OnLine);
                         }
 
                     }
@@ -904,8 +907,8 @@
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
-                MarketActionBefore4WeeksCoopFund: StrActivityFlowNew,
-                MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
+                MarketActionAfter7CoopFund: StrActivityFlowNew,
+                MarketActionAfter7PicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
             };
 
             SProcessing();
@@ -950,8 +953,8 @@
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
-                MarketActionBefore4WeeksCoopFund: StrActivityFlowNew,
-                MarketActionBefore4WeeksPicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
+                MarketActionAfter7CoopFund: StrActivityFlowNew,
+                MarketActionAfter7PicList_OnLine: MarketActionBefore4WeeksPicList_OffLine
             };
 
             SProcessing();

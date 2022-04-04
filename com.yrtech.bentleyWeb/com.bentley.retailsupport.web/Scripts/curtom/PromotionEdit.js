@@ -16,7 +16,7 @@ function InitActivityFlowTable() {
             align: "left",
             sortable: true,
             editable: {
-                type: 'text',
+                type: 'datetime',
                 title: '',
                 validate: function (v) {
                 },
@@ -30,26 +30,7 @@ function InitActivityFlowTable() {
                 }
             }
         },
-        {
-            title: $('#TProcess').val(),
-            field: 'Item',
-            valign: "left",
-            align: "left",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Item", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
+        
         {
             title: $('#TContent').val(),
             field: 'Contents',
@@ -70,27 +51,27 @@ function InitActivityFlowTable() {
                 }
             }
 
-        },
-        {
-            title: $('#TComments').val(),
-            valign: "left",
-            align: "left",
-            field: 'Remark',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Remark", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            },
+            {
+                title: '负责人',
+                field: 'Responsible',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Item", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Responsible" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Responsible" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
-            }
-        },
+            },
         {
             title: $('#TEdit').val(),
             field: 'Edit',
@@ -179,7 +160,6 @@ function InitActivityFlowTableNew() {
             {
                 title: "是否报销",
                 field: 'CoopFund_DMFChk',
-                width: "300px",
                 valign: "middle",
                 align: "center",
                 sortable: false,
@@ -315,7 +295,6 @@ function InitActivityFlowTableOnline() {
             {
                 title: "是否报销",
                 field: 'CoopFund_DMFChk',
-                width: "300px",
                 valign: "middle",
                 align: "center",
                 sortable: false,
@@ -459,9 +438,8 @@ function AddActivityFlowTable() {
         row: {
             SeqNO: maxActivityFlowSeqNO++,
             ActivityDateTime: '',
-            Item: '',
-            Contents: '',
-            Remark: ''
+            Responsible: '',
+            Contents: ''
         }
     });
 }

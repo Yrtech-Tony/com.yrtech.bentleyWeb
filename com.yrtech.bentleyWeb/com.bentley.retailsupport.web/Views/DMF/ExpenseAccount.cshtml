@@ -259,7 +259,6 @@
                 userId: $('#G_UserId').val(),
                 roleTypeCode: $('#G_RoleTypeCode').val()
             }, function (data) {
-                console.error(data);
                 if (data) {
                     $('#myReimbursement').bootstrapTable("load", data);
                     $("#myReimbursement").bootstrapTable("selectPage", parseInt(window.localStorage.pageNumberReimb) || 1);

@@ -786,8 +786,8 @@
 
                             <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;">
                                 <div class="col-md-6">
-                                    <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
-                                    <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <button id="btnSave" type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
+                                    <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
                                     <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
@@ -1202,6 +1202,7 @@
         }
 
         function submitAjax() {
+            SProcessing();
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 1,
@@ -1455,12 +1456,13 @@
 
         //生成PPT
         function createPPT() {
+            SProcessing();
             $.commonGet("MarketAction/CreatePPT", {
                 marketActionId: $("#MarketActionId").val(),
                 type: "MPN",
                 userId: $("#G_UserId").val()
             }, function (data) {
-
+                EProcessing();
             });
         }
         //下载PPT
@@ -1475,6 +1477,14 @@
 
         //权限
         function initRole() {
+            let _dttCode = $('#DTTApproveCode').val();
+            console.error(_dttCode);
+            let _visualStatus = $("#VisualStatus").val();
+            console.error(_visualStatus);
+            if (_dttCode == 2 && _visualStatus == 2) {
+                $("#btnSave").addClass("btn-set-the-ash");
+                $("#btnSubmit").addClass("btn-set-the-ash");
+            }
             //DTT权限
             if (roleName == "SYSADMIN") {
                 $('#DTTApproveDesc').prop("disabled", false);
@@ -1492,10 +1502,6 @@
             }
             //经销商权限
             if (roleName == "SHOP") {
-                let _dttCode = $('#DTTApproveCode').val();
-                console.error(_dttCode);
-                let _visualStatus = $("#VisualStatus").val();
-                console.error(_visualStatus);
                 //DTT权限
                 $('#VisualStatus').prop("disabled", true);
                 $('#VisualDescription').prop("disabled", true);

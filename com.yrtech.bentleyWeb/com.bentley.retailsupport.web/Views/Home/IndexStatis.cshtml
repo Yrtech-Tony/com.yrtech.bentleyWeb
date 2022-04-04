@@ -60,36 +60,62 @@
     $("#nav_dash").addClass("active");
 
     $(function () {
+        //市场活动
+        $.commonGet("MarketAction/MarketActionStatusCountSearch", {
+            year: '',
+            eventTypeId: '',
+            userId: $("#G_UserId").val(),
+            roleTypeCode: $("#G_RoleTypeCode").val()
+        }, function (data) {
+            console.error(data);
+        })
+
+        //交车仪式
         $.commonGet("MarketAction/MarketActionStatusCountSearch", {
             year: '',
             eventTypeId: 99,
             userId: $("#G_UserId").val(),
             roleTypeCode: $("#G_RoleTypeCode").val()
         }, function (data) {
-            $("#UnsubmitBefore21").html(data[0].Before21Count);
-            $("#UnsubmitBefore3").html(data[0].Before3Count);
-            $("#UnsubmitAfter2").html(data[0].After2Count);
-            $("#UnsubmitAfter7").html(data[0].After7Count);
-            $("#UnsubmitAfter30").html(data[0].After30Count);
+            console.error(data);
         })
 
+        //费用报销市场活动
+        $.commonGet("MarketAction/ExpenseAccountStatusCountSearch", {
+            year: '',
+            eventTypeId: '',
+            userId: $("#G_UserId").val(),
+            roleTypeCode: $("#G_RoleTypeCode").val()
+        }, function (data) {
+            console.error(data);
+        })
+
+        //费用报销交车仪式
         $.commonGet("MarketAction/ExpenseAccountStatusCountSearch", {
             year: '',
             eventTypeId: 99,
             userId: $("#G_UserId").val(),
             roleTypeCode: $("#G_RoleTypeCode").val()
         }, function (data) {
-            var apply = 0, relay = 0;
-            if (data && data.length > 0) {
-                data.forEach(function (item) {
-                    if (item.ApplyStatus == "未提交")
-                        apply += 1;
-                    if (item.ReplyStatus == "未提交")
-                        relay += 1;
-                })
-            }
-            $("#ApplyStatus").html(apply);
-            $("#ReplyStatus").html(relay);
+            console.error(data);
+        })
+        //报告市场活动
+        $.commonGet("MarketAction/MarketActionStatusCountSearch", {
+            year: '',
+            eventTypeId: '',
+            userId: $("#G_UserId").val(),
+            roleTypeCode: $("#G_RoleTypeCode").val()
+        }, function (data) {
+            console.error(data);
+        })
+        //报告交车仪式
+        $.commonGet("MarketAction/MarketActionStatusCountSearch", {
+            year: '',
+            eventTypeId: 99,
+            userId: $("#G_UserId").val(),
+            roleTypeCode: $("#G_RoleTypeCode").val()
+        }, function (data) {
+            console.error(data);
         })
         initChartsOne();
         initChartsTwo();

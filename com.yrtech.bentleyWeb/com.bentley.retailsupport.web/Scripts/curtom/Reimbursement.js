@@ -118,27 +118,16 @@ function InitMarketFundLst() {
                 }
             }
             }, {
-                title: '报销类型',
+                title: '活动类型',
             field: "EventTypeName",
                 valign: "middle",
                 align: "center",
                 editable: {
                     type: 'text',
                     title: '',
-                    validate: function (v) {
-                        v = $.trim(v);
-                        var vil = isZH() ? '实际花费不能为空，且必须是数字' : 'The actual cost cannot be null, and only numbers accepted';
-                        if (!v) {
-                            return vil;
-                        }
-                    },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "EventTypeName", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="EventTypeName" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
-                        if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="EventTypeName" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
-                        } 
-                        return html;
+                        return '<div style="min-width:100px">' + result.value + '</div>';
                     }
                 }
             },{

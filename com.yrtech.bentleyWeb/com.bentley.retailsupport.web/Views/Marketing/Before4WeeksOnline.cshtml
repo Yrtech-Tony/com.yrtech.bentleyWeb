@@ -142,7 +142,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Background</span></label>
+                                        <label class="control-label col-md-4"><span translate>Event Background</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityBackground" name="ActivityBackground" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -152,7 +152,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Objective</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Event Objective</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityObjective" name="ActivityObjective" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -162,7 +162,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Description</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Event Description</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityDesc" name="ActivityDesc" data-val="true" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -184,7 +184,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>媒体平台</span></label>
+                                        <label class="control-label col-md-4"><span translate>媒体平台</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_Media" name="Platform_Media" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -195,7 +195,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>曝光形式</span></label>
+                                        <label class="control-label col-md-4"><span translate>曝光形式<span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_ExposureForm" name="Platform_ExposureForm" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -230,7 +230,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" style="width:100%;" type="text" min="0" maxlength="255">
                                         </div>
@@ -789,6 +789,7 @@
                                     <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
                                     <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
                                     <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
+                                    <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
                                 </div>
                             </div>
@@ -1003,7 +1004,7 @@
         function PromotionSubmit() {
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
-            if (!veriData(1)) {
+            if (!veriData(2)) {
                 return;
             }
             if (data) {
@@ -1280,50 +1281,75 @@
             if (_schedule1) {
                 scheduleObj.schedule1 = 20;
             }
-            //人员信息
+            //平台信息
             let _schedule2 = true;
-            console.error(MarketActionBefore21.People_NewLeadsThisYearCount);
+            if (!MarketActionBefore21.Platform_Media) {
+                _schedule2 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写媒体平台信息！'
+                    });
+                    return false;
+                }
+            }
+            if (!MarketActionBefore21.Platform_ExposureForm) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写曝光形式信息！'
+                    });
+                    return false;
+                }
+            }
+            if (_schedule3) {
+                _schedule3 = 10;
+            }
+            //人员信息
+            let _schedule3 = true;
+            if (!veriNumber(MarketActionBefore21.People_DCPIDCount)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写DCPID客户数量！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.People_DCPIDCount) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写DCPID客户数量！'
+                    });
+                    return false;
+                }
+            }
             if (!veriNumber(MarketActionBefore21.People_NewLeadsThisYearCount)) {
                 layer.open({
                     title: '错误提示',
                     type: 0,
-                    content: '请正确填写预期线索！'
+                    content: '请正确填写今年新增线索数量！'
                 });
                 return false;
             }
             if (!MarketActionBefore21.People_NewLeadsThisYearCount) {
-                console.error(MarketActionBefore21);
-                _schedule2 = false;
+                _schedule3 = false;
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写预期线索！'
+                        content: '请填写今年新增线索数量！'
                     });
                     return false;
                 }
             }
-            if (!veriNumber(MarketActionBefore21.TotalBudgetAmt)) {
-                layer.open({
-                    title: '错误提示',
-                    type: 0,
-                    content: '请正确填写活动预算！'
-                });
-                return false;
-            }
-            if (!MarketActionBefore21.TotalBudgetAmt) {
-                _schedule2 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请填写活动预算！'
-                    });
-                    return false;
-                }
-            }
-            if (_schedule2) {
-                _schedule2 = 20;
+            if (_schedule3) {
+                _schedule3 = 10;
             }
             //主视觉
             let _schedule4 = veriKeyVisual(MarketActionBefore21, _type);
@@ -1343,7 +1369,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写图片相关信息！'
+                        content: '请填写图片和视频相关信息！'
                     });
                     return false;
                 }
@@ -1425,6 +1451,15 @@
                 userId: $("#G_UserId").val()
             }, function (data) {
 
+            });
+        }
+        //下载PPT
+        function downloadPPT() {
+            $.commonGet("MarketAction/MarketActionPicSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                picType: "MPF13"
+            }, function (data) {
+                console.error(data);
             });
         }
     </script>

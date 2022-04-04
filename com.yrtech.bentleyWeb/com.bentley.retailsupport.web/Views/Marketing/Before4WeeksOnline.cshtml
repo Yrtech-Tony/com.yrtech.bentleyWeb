@@ -822,7 +822,7 @@
     <script src="~/Scripts/oss-upload-direct/ali-upload.js?20170930"></script>
     <script>
         var UserId = $("#G_UserId").val();
-        let imgCodeObj = { "MPN01": "imgListDiv", "MPN02": "imgListDiv-1", "MPN03": "imgListDiv-2", "MPN04": "imgListDiv-3", "MPN05": "imgListDiv-4", "MPN06": "imgListDiv-6", "MPN07": "imgListDiv-7", "MPN10": "imgListDiv-5"};
+        let imgCodeObj = { "MPN01": "imgListDiv", "MPN02": "imgListDiv-1", "MPN03": "imgListDiv-2", "MPN04": "imgListDiv-3", "MPN05": "imgListDiv-4", "MPN06": "imgListDiv-6", "MPN10": "imgListDiv-5"};
         $("#nav_promotion").addClass("active");
 
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
@@ -1359,11 +1359,25 @@
                 if (_type == 2) {
                     return false;
                 }
-            }      
+            }
+            //市场基金申报信息
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                scheduleObj.schedule5 = 20;
+            } else {
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写市场基金申报信息！'
+                    });
+                    return false;
+                }
+            }
             //图片验证
             let _schedule7 = veriImage(_type);
             if (_schedule7) {
-                scheduleObj.schedule4 = 40;
+                scheduleObj.schedule4 = 20;
             } else {
                 if (_type == 2) {
                     layer.open({
@@ -1389,7 +1403,7 @@
         //验证主视觉
         function veriKeyVisual(_data, _type) {
             let _schedule4 = true;
-            if (_data.KeyVisionDesc) {
+            if (!_data.KeyVisionDesc) {
                 _schedule4 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1399,7 +1413,7 @@
                     });
                 }
             }
-            if (_data.VisualDescription) {
+            if (!_data.KeyVisionApprovalDesc) {
                 _schedule4 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1424,6 +1438,9 @@
                         _veriImg = true;
                     }
                 }
+                if (!_veriImg) {
+                    console.error(_imgList);
+                }
                 _MarketActionPicList.push(_veriImg);
             }
             for (let i = 0; i < _MarketActionPicList.length; i++) {
@@ -1431,6 +1448,7 @@
                     _schedule7 = false;
                 }
             }
+            console.error(_MarketActionPicList);
             return _schedule7;
         }
 

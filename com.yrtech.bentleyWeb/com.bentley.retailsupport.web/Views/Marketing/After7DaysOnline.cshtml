@@ -140,7 +140,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Highlights</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Highlights</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="HightLights" name="HightLights" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -150,7 +150,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Place to Improve</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Place to Improve</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ImproveArea" name="ImproveArea" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -160,7 +160,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Customer Feedback</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Customer Feedback</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="CustomerFeedback" name="CustomerFeedback" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -172,7 +172,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Marketing/Sales Team Suggestions (Summary)</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Marketing/Sales Team Suggestions (Summary)</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="MarketSaleTeamAdvice" name="MarketSaleTeamAdvice" rows="1" style="width:100%;"></textarea>
                                         </div>
@@ -183,7 +183,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>媒体平台</span></label>
+                                        <label class="control-label col-md-4"><span translate>媒体平台</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_Media" name="Platform_Media" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -194,7 +194,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>曝光形式</span></label>
+                                        <label class="control-label col-md-4"><span translate>曝光形式</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_ExposureForm" name="Platform_ExposureForm" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -219,7 +219,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>今年新增线索数量</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <input class="form-control" id="People_NewLeadsThisYearCount" name="People_NewLeadsThisYearCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" id="People_NewLeadsThsYearCount" name="People_NewLeadsThsYearCount" style="width:100%;" type="text" min="0" maxlength="255">
 
                                         </div>
                                     </div>
@@ -228,7 +228,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" style="width:100%;" type="text" min="0" maxlength="255">
                                         </div>
@@ -239,7 +239,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>预算金额总计</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>预算金额总计</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -259,17 +259,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Actual Expense</span><span class="required" style="color:red">*</span>: </label>
-                                        <div class="col-md-4">
-                                            <div><span id="ExpenseTotalAmt"></span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                          
                             <style>
                                 .h-30 {
                                     line-height: 30px;
@@ -278,7 +268,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-2">
-                                        <label class="control-label col-md-2"><span translate>合同</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>合同</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -346,7 +336,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv">
-                                        <label class="control-label col-md-2"><span translate>报价单</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>报价单</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2 img-div">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -414,7 +404,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-4">
-                                        <label class="control-label col-md-2"><span translate>发票</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>发票</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -482,7 +472,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-1">
-                                        <label class="control-label col-md-2"><span translate>邮件截图</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>邮件截图</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -557,7 +547,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-3">
-                                        <label class="control-label col-md-2"><span translate>实际投放照片-开始日期</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>实际投放照片-开始日期</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -626,7 +616,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-6">
-                                        <label class="control-label col-md-2"><span translate>实际投放照片-结束日期</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>实际投放照片-结束日期</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -695,7 +685,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-5">
-                                        <label class="control-label col-md-2"><span translate>广告视频</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>广告视频</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
@@ -789,7 +779,7 @@
 
     <script>
         $("#nav_promotion").addClass("active");
-        let imgCodeObj = { "MRN01": "imgListDiv", "MRN04": "imgListDiv-1", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MPN10": "imgListDiv-5", "MRN06": "imgListDiv-6" };
+        let imgCodeObj = { "MRN01": "imgListDiv", "MRN04": "imgListDiv-1", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MRN06": "imgListDiv-6" };
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
         var hdData = [];
@@ -927,7 +917,7 @@
         }
 
         function PromotionSubmit() {
-            if (!veriData(1)) {
+            if (!veriData(2)) {
                 return;
             }
 
@@ -1001,7 +991,6 @@
                 fileAddCheckMsg: "",
                 osspath: osspath,
                 uploaded: function (args) {
-                    console.error(args);
                     addVideo(_id, args);
                 }
             });
@@ -1176,9 +1165,38 @@
             if (_schedule1) {
                 scheduleObj.schedule1 = 20;
             }
-            //人员信息
+
+            //平台信息
             let _schedule2 = true;
-            if (!veriNumber(MarketActionBefore21.People_NewLeadsThisYearCount)) {
+            if (!MarketActionBefore21.Platform_Media) {
+                _schedule2 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写媒体平台信息！'
+                    });
+                    return false;
+                }
+            }
+            if (!MarketActionBefore21.Platform_ExposureForm) {
+                _schedule2 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写曝光形式信息！'
+                    });
+                    return false;
+                }
+            }
+            if (_schedule2) {
+                _schedule2 = 10;
+            }
+
+            //人员信息
+            let _schedule3 = true;
+            if (!veriNumber(MarketActionBefore21.People_NewLeadsThsYearCount)) {
                 layer.open({
                     title: '错误提示',
                     type: 0,
@@ -1186,9 +1204,8 @@
                 });
                 return false;
             }
-            if (!MarketActionBefore21.People_NewLeadsThisYearCount) {
-                console.error(MarketActionBefore21);
-                _schedule2 = false;
+            if (!MarketActionBefore21.People_NewLeadsThsYearCount) {
+                _schedule3 = false;
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
@@ -1198,19 +1215,50 @@
                     return false;
                 }
             }
-            if (!veriNumber(MarketActionBefore21.TotalBudgetAmt)) {
+            if (!veriNumber(MarketActionBefore21.People_DCPIDCount)) {
                 layer.open({
                     title: '错误提示',
                     type: 0,
-                    content: '请正确填写活动预算！'
+                    content: '请正确填写DCPID客户数量！'
                 });
                 return false;
             }
-            if (_schedule2) {
-                _schedule2 = 20;
+            if (!MarketActionBefore21.People_NewLeadsThsYearCount) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写DCPID客户数量！'
+                    });
+                    return false;
+                }
+            }
+            if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写市场基金金额总计！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.CoopFundSumAmt) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写市场基金金额总计！'
+                    });
+                    return false;
+                }
+            }
+            
+            if (_schedule3) {
+                _schedule3 = 10;
             }
             //活动实际费用清单
-            var StrActivityFlow = $('#ActualCostTable').bootstrapTable('getData');
+            var StrActivityFlow = $('#ActivityFlowTableOnline').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
                 scheduleObj.schedule5 = 20;
             } else {
@@ -1218,7 +1266,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写活动实际费用清单相关信息！'
+                        content: '请填写市场基金申报信息相关信息！'
                     });
                     return false;
                 }

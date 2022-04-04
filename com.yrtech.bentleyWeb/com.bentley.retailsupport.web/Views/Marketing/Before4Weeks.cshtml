@@ -2113,6 +2113,8 @@
         //验证正整数正则
         function veriNumber(_data) {
             if (_data && _data != 0) {
+                _data = _data + "";
+                _data = _data.trim();
                 var reg = /^[1-9]\d*$/;
                 return reg.test(_data);
             }
@@ -2132,7 +2134,7 @@
                     });
                 }
             }
-            if (_data.KeyVisionApprovalDesc) {
+            if (_data.VisualDescription) {
                 _schedule4 = false;
                 if (_type == 2) {
                     layer.open({

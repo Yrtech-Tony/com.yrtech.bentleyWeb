@@ -250,7 +250,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>市场基金申报信息</span><span class="required" style="color:red">*</span>:</label>
@@ -740,7 +740,7 @@
                                                 </div>
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                            <div style="margin-top:10px;">
+                                            <div style="margin-top:10px;" id="videoUpload">
                                                 <a id="selectfiles-5" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-5" class="container-fluid" style="display:block">
                                                     <div id="ossfile-5"></div>
@@ -771,7 +771,7 @@
                                                 <div class="col-md-8">
                                                     <textarea class="form-control" cols="20" id="DTTApproveDesc" name="DTTApproveDesc" placeholder="审批意见" rows="9"></textarea>
                                                     <div style="margin-top:5px;">
-                                                        <select id="DTTType" name="DTTType" class="selectpicker">
+                                                        <select id="DTTApproveCode" name="DTTApproveCode" class="selectpicker">
                                                             <option value="1" selected="" translate>Waiting for Approval</option>
                                                             <option value="2" translate>Approved</option>
                                                             <option value="3" translate>Waiting for Change</option>
@@ -812,7 +812,7 @@
     <input id="FileId" type="hidden" value="@ViewBag.FileId" />
 </div>
 @section scripts{
-    <script src="~/Scripts/api/common.js"></script>
+    <script src="~/Scripts/api/common.js?v=2017093041"></script>
     <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093041"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
@@ -863,16 +863,7 @@
 
             InitActivityFlowTable();
             InitActivityFlowTableOnline();
-
-            if (roleName == "SYSADMIN" || roleName == "BMC") {
-                $('#ActiveShow').show();
-                $('#VisualStatus').prop("disabled", false);
-                $('#VisualDescription').prop("disabled", false);
-            }
-            else {
-                $('#VisualStatus').prop("disabled", true);
-                $('#VisualDescription').prop("disabled", true);
-            }
+            initRole();
 
             if (id) {
                 $.commonGet("MarketAction/MarketActionSearchById", { marketActionId: id }, function (data) {
@@ -1203,7 +1194,7 @@
                 DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MP", DTTType: 1, DTTApproveCode: $("#DTTType").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
+                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MP", DTTType: 1, DTTApproveCode: $("#DTTApproveCode").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
@@ -1479,6 +1470,90 @@
             }, function (data) {
                 console.error(data);
             });
+        }
+
+        //权限
+        function initRole() {
+            //DTT权限
+            if (roleName == "SYSADMIN") {
+                $('#DTTApproveDesc').prop("disabled", false);
+                $('#DTTApproveCode').prop("disabled", false);
+                $('#VisualStatus').prop("disabled", true);
+                $('#VisualDescription').prop("disabled", true);
+            }
+            //主视觉权限
+            if (roleName == "BMC") {
+                $('#ActiveShow').show();
+                $('#VisualStatus').prop("disabled", false);
+                $('#VisualDescription').prop("disabled", false);
+                $('#DTTApproveDesc').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
+            }
+            //经销商权限
+            if (roleName == "SHOP") {
+                let _dttCode = $('#DTTApproveCode').val();
+                let _visualStatus = $("#VisualStatus").val();
+                //DTT权限
+                $('#VisualStatus').prop("disabled", true);
+                $('#VisualDescription').prop("disabled", true);
+                //主视觉权限
+                $('#DTTApproveDesc').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
+                //DTT审批通过-主视觉没有通过
+                if (_dttCode == 2 && _visualStatus != 2) {
+                    //除主视觉和广告视屏外都不可修改
+                    //全部input框
+                    $('.form-control').prop("disabled", true);
+                    //车型
+                    $('#MarketActionTargetModelCode').prop("disabled", true);
+                    //表格点击事件
+                    $(".table-unedit").css({ "pointer-events": "none" });
+                    //图片上传
+                    for (let key in imgCodeObj) {
+                        let _imgList = $("#" + imgCodeObj[key]).find(".ossImage");
+                        for (let i = 0; i < _imgList.length; i++) {
+                            $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                            $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                        }
+                    }
+                    $("#imgListDiv-5").find(".form-control").prop("disabled", false);
+                    $("#videoUpload").show();
+                    $("#KeyVisionDesc").prop("disabled", false);
+                }
+                //DTT审批通过-主视觉审批通过
+                if (_dttCode == 2 && _visualStatus == 2) {
+                    //都不可修改
+                    //全部input框
+                    $('.form-control').prop("disabled", true);
+                    //车型
+                    $('#MarketActionTargetModelCode').prop("disabled", true);
+                    //表格点击事件
+                    $(".table-unedit").css({ "pointer-events": "none" });
+                    //主视觉图片
+                    $("#picID").css({ "pointer-events": "none" });
+                    //图片上传
+                    for (let key in imgCodeObj) {
+                        let _imgList = $("#" + imgCodeObj[key]).find(".ossImage");
+                        for (let i = 0; i < _imgList.length; i++) {
+                            $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                            $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                        }
+                    }
+                }
+                //DTT审批未通过-主视觉审批未通过
+                if (_dttCode != 2 && _visualStatus != 2) {
+                    //都可修改
+                }
+                //DTT审批未通过-主视觉审批通过
+                if (_dttCode != 2 && _visualStatus == 2) {
+                    //除主视觉和广告外都可以修改
+                    $("#picID").css({ "pointer-events": "none" });
+                    $("#imgListDiv-5").find(".form-control").prop("disabled", true);
+                    $("#videoUpload").hide();
+                    $("#KeyVisionDesc").prop("disabled", true);
+                }
+                
+            }
         }
     </script>
 }

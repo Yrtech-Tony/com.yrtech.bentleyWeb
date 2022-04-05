@@ -273,19 +273,6 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label col-md-2"><span translate>Actual Expense List</span><span class="required" style="color:red">*</span>:</label>
-                                        <div class="col-md-9">
-                                            <a id="addData" href="javascript:;" onclick="AddActualCost()" style="color:blue"><i class="icon-plus icon-white" translate>Add</i></a>
-                                            <br />
-                                            <table id="ActualCostTable" class="table table-striped table-bordered table-hover"></table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>本月交车仪式清单</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <a href="javascript:AddActivityFlowTableCar();"><i class="icon-plus icon-white" translate>Add</i></a>
@@ -1083,22 +1070,6 @@
                 $.commonGet("MarketAction/MarketActionAfter7Search", { marketActionId: id }, function (data) {
                     if (data) {
                         var marketActionAfter7 = data.MarketActionAfter7;
-
-                        if (data.ActualExpenseDto) {
-                            data.ActualExpenseDto.forEach(function (item) {
-                                if (item.SeqNO > maxActualCostSeqNo) {
-                                    maxActualCostSeqNo = item.SeqNO;
-                                }
-                            });
-                        }
-                        if (data.ActualProcess) {
-                            data.ActualProcess.forEach(function (item) {
-                                if (item.SeqNO > maxActualActivitySeqNo) {
-                                    maxActualActivitySeqNo = item.SeqNO;
-                                }
-                            })
-                        }
-
                         if (data.MarketActionAfter7HandOverArrangement) {
                             data.MarketActionAfter7HandOverArrangement.forEach(function (item) {
                                 if (item.SeqNO > maxActivityFlowSeqNOCar) {
@@ -1113,6 +1084,7 @@
                                 }
                             });
                         }
+                        
                         $('#ActivityFlowTableCar').bootstrapTable("load", data.MarketActionAfter7HandOverArrangement);
                         $('#ActivityFlowTableNew').bootstrapTable("load", data.MarketActionAfter7CoopFund);
                         if (marketActionAfter7) {
@@ -1142,14 +1114,6 @@
             if (!veriData(1)) {
                 return;
             }
-            var StrActualCost = $('#ActualCostTable').bootstrapTable('getData');
-            if (StrActualCost && StrActualCost.length > 0) {
-                StrActualCost.forEach(function (item) {
-                    item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
-                })
-            }
 
             var marketActionAfter7 = $('#PromotionCreate2').serializeObject();
             marketActionAfter7.MarketActionId = id;
@@ -1183,7 +1147,6 @@
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
-                ActualExpense: StrActualCost,
                 MarketActionAfter7PicList_HandOver: MarketActionBefore4WeeksPicList_OffLine,
                 MarketActionAfter7HandOverArrangement: StrActivityFlow,
                 MarketActionAfter7CoopFund: StrActivityFlowNew
@@ -1208,14 +1171,6 @@
             if (!veriData(2)) {
                 return;
             }
-            var StrActualCost = $('#ActualCostTable').bootstrapTable('getData');
-            if (StrActualCost && StrActualCost.length > 0) {
-                StrActualCost.forEach(function (item) {
-                    item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
-                })
-            }
 
             var marketActionAfter7 = $('#PromotionCreate2').serializeObject();
             marketActionAfter7.MarketActionId = id;
@@ -1249,7 +1204,6 @@
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
-                ActualExpense: StrActualCost,
                 MarketActionAfter7PicList_HandOver: MarketActionBefore4WeeksPicList_OffLine,
                 MarketActionAfter7HandOverArrangement: StrActivityFlow,
                 MarketActionAfter7CoopFund: StrActivityFlowNew
@@ -1651,20 +1605,6 @@
                 scheduleObj.schedule2 = 20;
             }
 
-            //实际费用清单
-            var ActualCostTable = $('#ActualCostTable').bootstrapTable('getData');
-            if (ActualCostTable && ActualCostTable.length > 0) {
-                scheduleObj.schedule4 = 10;
-            } else {
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请填写实际费用清单相关信息！'
-                    });
-                    return false;
-                }
-            }
             //交车仪式
             var StrActivityFlow = $('#ActivityFlowTableCar').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
@@ -1696,7 +1636,7 @@
             //图片验证
             let _schedule7 = veriImage(_type);
             if (_schedule7) {
-                scheduleObj.schedule4 = 20;
+                scheduleObj.schedule4 = 30;
             } else {
                 if (_type == 2) {
                     layer.open({

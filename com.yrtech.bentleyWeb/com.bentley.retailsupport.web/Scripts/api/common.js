@@ -95,6 +95,11 @@ function loadTargetModels() {
             });
             $("#MarketActionTargetModelCode").selectpicker("refresh");
         }
+        if (carType) {
+            data.forEach(function (item) {
+                carType.push({ "text": item.HiddenCodeName, "value": item.HiddenCodeId });
+            });
+        }
     })
 }
 

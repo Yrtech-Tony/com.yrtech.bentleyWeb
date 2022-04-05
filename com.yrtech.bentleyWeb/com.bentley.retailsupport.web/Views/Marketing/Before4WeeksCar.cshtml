@@ -873,7 +873,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group" id="imgListDiv-9">
+                                    <div class="form-group" id="imgListDiv-7">
                                         <label class="control-label col-md-2"><span translate>摄影摄像-摄影师介绍</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
@@ -886,9 +886,9 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles-9" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
-                                                <div id="upload-container-9" class="container-fluid" style="display:block">
-                                                    <div id="ossfile-9"></div>
+                                                <a id="selectfiles-7" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-7" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-7"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -942,7 +942,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group" id="imgListDiv-11">
+                                    <div class="form-group" id="imgListDiv-8">
                                         <label class="control-label col-md-2"><span translate>摄影摄像-摄影师作品</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
@@ -955,9 +955,9 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles-11" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
-                                                <div id="upload-container-11" class="container-fluid" style="display:block">
-                                                    <div id="ossfile-11"></div>
+                                                <a id="selectfiles-8" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-8" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-8"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1059,8 +1059,8 @@
     <input id="FileId" type="hidden" value="@ViewBag.FileId" />
 </div>
 @section scripts{
-    <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=201709301"></script>
+    <script src="~/Scripts/api/common.js?v=202204051545"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093012"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1070,12 +1070,13 @@
     <script>
         var UserId = $("#G_UserId").val();
         let imgCodeObj = {
-            "MPF01": "imgListDiv", "MPF20": "imgListDiv-1", "MPF02": "imgListDiv-2", "MPF03": "imgListDiv-3", "MPF04": "imgListDiv-4", "MPF05": "imgListDiv-5", "MPF06": "imgListDiv-6", "MPF07": "imgListDiv-7", "MPF08": "imgListDiv-8", "MPF09": "imgListDiv-11", "MPF10": "imgListDiv-9", "MPF11": "imgListDiv-12", "MPF12": "imgListDiv-10"};
+            "MPH01": "imgListDiv", "MPH02": "imgListDiv-1", "MPH03": "imgListDiv-2", "MPH04": "imgListDiv-3", "MPH05": "imgListDiv-4", "MPH06": "imgListDiv-5", "MPH07": "imgListDiv-6", "MPH08": "imgListDiv-7", "MPH09": "imgListDiv-8"};
         $("#nav_promotion").addClass("active");
 
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
         var hdData = [];
+        var carType = [];
         var hdDataCoop = [{ "text": "是", "value": "true" }, { "text": "否", "value": "false" }];
 
         $('#UserId').val($('#G_UserId').val());
@@ -1090,10 +1091,6 @@
             initOssClient("-6");
             initOssClient("-7");
             initOssClient("-8");
-            initOssClient("-9");
-            initOssClient("-10");
-            initOssClient("-11");
-            initOssClient("-12");
             $('img').error(function () {
                 console.log("image error")
                 $(this).attr('src', 'https://yrsurvey.oss-cn-beijing.aliyuncs.com/Bentley/fail2.png');
@@ -1141,7 +1138,7 @@
 
                 $.commonGet("MarketAction/MarketActionBefore4WeeksSearch", { marketActionId: id }, function (data) {
                     if (data) {
-                        $('#PromotionCreate2').setForm(data.MarketActionBefore4WeeksHandOverArrangement);
+                        $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
                         if (data.ActivityProcess) {
                             data.ActivityProcess.forEach(function (item) {
                                 if (item.SeqNO > maxActivityFlowSeqNO) {
@@ -1158,7 +1155,7 @@
                         }
                         $('#ActivityFlowTableCar').bootstrapTable("load", data.MarketActionBefore4WeeksHandOverArrangement);
                         $('#ActivityFlowTableNew').bootstrapTable("load", data.MarketActionBefore4WeeksCoopFund);
-                        initImageList(data.MarketActionBefore4WeeksPicList_OffLine);
+                        initImageList(data.MarketActionBefore4WeeksPicList_Handover);
                         $("#VisualStatus").selectpicker("refresh");
                         $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
                         $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
@@ -1245,9 +1242,8 @@
                 TarketModelCode: $("#MarketActionTargetModelCode").val(),
                 MarketActionBefore4Weeks: MarketActionBefore21,
                 MarketActionBefore4WeeksCoopFund: StrActivityFlowNew,
-                MarketActionBefore4WeeksPicList_OffLine: MarketActionBefore4WeeksPicList_OffLine,
-                MarketActionBefore4WeeksPicList_OnLine:[],
-                ActivityProcess: StrActivityFlow
+                MarketActionBefore4WeeksPicList_Handover: MarketActionBefore4WeeksPicList_OffLine,
+                MarketActionBefore4WeeksHandOverArrangement: StrActivityFlow
             };
 
             SProcessing();
@@ -1280,7 +1276,7 @@
                 }
             }
 
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+            var StrActivityFlow = $('#ActivityFlowTableCar').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
                 StrActivityFlow.forEach(function (item) {
                     item.MarketActionId = id;
@@ -1353,9 +1349,8 @@
                 TarketModelCode: $("#MarketActionTargetModelCode").val(),
                 MarketActionBefore4Weeks: MarketActionBefore21,
                 MarketActionBefore4WeeksCoopFund: StrActivityFlowNew,
-                MarketActionBefore4WeeksPicList_OffLine: MarketActionBefore4WeeksPicList_OffLine,
-                MarketActionBefore4WeeksPicList_OnLine: [],
-                ActivityProcess: StrActivityFlow
+                MarketActionBefore4WeeksPicList_Handover: MarketActionBefore4WeeksPicList_OffLine,
+                MarketActionBefore4WeeksHandOverArrangement: StrActivityFlow
             };
 
             SProcessing();
@@ -1742,8 +1737,8 @@
                     return false;
                 }
             }
-            //活动流程
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+            //交车仪式安排
+            var StrActivityFlow = $('#ActivityFlowTableCar').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
                 scheduleObj.schedule5 = 10;
             } else {
@@ -1751,7 +1746,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写活动流程相关信息！'
+                        content: '请填写交车仪式安排相关信息！'
                     });
                     return false;
                 }

@@ -429,6 +429,110 @@ function InitActivityFlowTableOnline() {
     });
 }
 
+//交车仪式
+function InitActivityFlowTableCar() {
+    $('#ActivityFlowTableCar').bootstrapTable({
+        pagination: true,
+        striped: true, //是否显示行间隔色
+        sortable: true,
+        sortName: 'CoopFundCode',
+        sortOrder: 'asc',
+        columns: [
+            {
+                title: '日期',
+                field: 'HandOverDate',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'date',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "HandOverDate", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="HandOverDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="HandOverDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: "车型",
+                field: 'Model',
+                valign: "middle",
+                align: "center",
+                sortable: false,
+                align: 'left',
+                editable: {
+                    type: 'select',
+                    title: '',
+                    source: carType,
+                    validate: function (v) {
+                        if (!v) return isZH() ? '车型不能为空' : 'The Item cannot be empty';
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        value = isZH() ? row.Model : row.Model;
+                        for (let i = 0; i < carType.length; i++) {
+                            if (row.Model == carType[i].value) {
+                                value = carType[i].text;
+                            }
+                        }
+                        var html = '<a href="javascript:void(0)" data-name="Model" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                        if (!value) {
+                            html = '<a href="javascript:void(0)" data-name="Model" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: "主要流程",
+                field: 'MainProcess',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "MainProcess", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="MainProcess" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="MainProcess" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityFlowRowCar(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
+                }
+            }
+        ],
+        onClickCell: function (field, value, row, $element) {
+            return false;
+
+        },
+        onClickRow: function (row, $element) {
+            curRow = row;
+        },
+        onEditableSave: function (field, row, oldValue, $el) {
+
+        }
+    });
+}
+
 var maxActivityFlowSeqNO = 0;
 function AddActivityFlowTable() {
     var $table = $('#ActivityFlowTable');
@@ -440,6 +544,21 @@ function AddActivityFlowTable() {
             ActivityDateTime: '',
             Responsible: '',
             Contents: ''
+        }
+    });
+}
+
+var maxActivityFlowSeqNOCar = 0;
+function AddActivityFlowTableCar() {
+    var $table = $('#ActivityFlowTableCar');
+    var index = $table.bootstrapTable('getData').length;//尾添加行
+    $table.bootstrapTable('insertRow', {
+        index: index,
+        row: {
+            SeqNO: maxActivityFlowSeqNOCar++,
+            HandOverDate: '',
+            Model: '',
+            MainProcess: ''
         }
     });
 }
@@ -483,6 +602,14 @@ function AddActivityFlowTableOnline() {
 
 function DeleteActivityFlowRow(id) {
     var $table = $('#ActivityFlowTable');
+    $table.bootstrapTable('remove', {
+        field: 'SeqNO',
+        values: [id]
+    });
+}
+
+function DeleteActivityFlowRowCar(id) {
+    var $table = $('#ActivityFlowTableCar');
     $table.bootstrapTable('remove', {
         field: 'SeqNO',
         values: [id]

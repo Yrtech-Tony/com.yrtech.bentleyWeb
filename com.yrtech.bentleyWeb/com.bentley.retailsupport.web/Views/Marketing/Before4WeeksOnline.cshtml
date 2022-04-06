@@ -863,8 +863,6 @@
 
             InitActivityFlowTable();
             InitActivityFlowTableOnline();
-            initRole();
-
             if (id) {
                 $.commonGet("MarketAction/MarketActionSearchById", { marketActionId: id }, function (data) {
                     if (data && data.length > 0) {
@@ -900,6 +898,7 @@
                         $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
                         $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
                         $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
+                        initRole();
                     }
 
                 });
@@ -1482,7 +1481,9 @@
             //经销商权限
             if (roleName == "SHOP") {
                 let _dttCode = $('#DTTApproveCode').val();
+                console.error(_dttCode);
                 let _visualStatus = $("#VisualStatus").val();
+                console.error(_visualStatus);
                 //DTT权限
                 $('#VisualStatus').prop("disabled", true);
                 $('#VisualDescription').prop("disabled", true);
@@ -1540,6 +1541,11 @@
                     $("#picID").css({ "pointer-events": "none" });
                     $("#imgListDiv-5").find(".form-control").prop("disabled", true);
                     $("#videoUpload").hide();
+                    let _imgList = $("#imgListDiv-5").find(".ossImage");
+                    for (let i = 0; i < _imgList.length; i++) {
+                        $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                        $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                    }
                     $("#KeyVisionDesc").prop("disabled", true);
                 }
                 

@@ -898,7 +898,7 @@
                         $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
                         $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
                         $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
-                        initRole();
+                        searchDtt();
                     }
 
                 });
@@ -1185,11 +1185,27 @@
             });
         }
 
+        function searchDtt() {
+            $.commonGet("MarketAction/DTTApproveSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                dttType: 1,
+                dttApproveId:'',
+                dttApproveCode:''
+            }, function (data) {
+                if (data && data.length > 0) {
+                    $("#DTTApproveCode").val(data[0].DTTApproveCode);
+                    $("#DTTApproveDesc").val(data[0].DTTApproveDesc);
+                }
+                $("#DTTApproveCode").selectpicker("refresh");
+                initRole();
+            });
+        }
+
         function submitAjax() {
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 1,
-                DTTApproveCode: $("#DTTType").val(),
+                DTTApproveCode: $("#DTTApproveCode").val(),
                 DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {
                 EProcessing();
@@ -1418,9 +1434,6 @@
                         _veriImg = true;
                     }
                 }
-                if (!_veriImg) {
-                    console.error(_imgList);
-                }
                 _MarketActionPicList.push(_veriImg);
             }
             for (let i = 0; i < _MarketActionPicList.length; i++) {
@@ -1428,7 +1441,6 @@
                     _schedule7 = false;
                 }
             }
-            console.error(_MarketActionPicList);
             return _schedule7;
         }
 
@@ -1457,7 +1469,7 @@
                 marketActionId: $("#MarketActionId").val(),
                 picType: "MPF13"
             }, function (data) {
-                console.error(data);
+                //console.error(data);
             });
         }
 

@@ -329,8 +329,6 @@ function InitActivityFlowTableOnline() {
                 editable: {
                     type: 'date',
                     title: '',
-                    validate: function (v) {
-                    },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "StartDate", value: value };
                         var html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';

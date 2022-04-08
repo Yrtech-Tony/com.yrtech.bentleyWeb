@@ -7,8 +7,9 @@
     "\\com.yrtech.bentleyWeb\\com.bentley.retailsupport.web\\Scripts\\curtom",
     "\\com.yrtech.bentleyWeb\\com.bentley.retailsupport.web\\Scripts\\oss-upload-direct",
     "\\com.yrtech.bentleyWeb\\com.bentley.retailsupport.web\\Views",
+    "\\com.yrtech.bentleyWeb\\com.bentley.retailsupport.web\\Views\\DMF",
     "\\com.yrtech.bentleyWeb\\com.bentley.retailsupport.web\\Views\\Marketing"
   ],
-  "SelectedNode": "\\com.yrtech.bentleyWeb\\com.bentley.retailsupport.sln",
+  "SelectedNode": "\\com.yrtech.bentleyWeb\\com.bentley.retailsupport.web\\Views\\DMF\\ExpenseAccount.cshtml",
   "PreviewInSolutionExplorer": false
 }

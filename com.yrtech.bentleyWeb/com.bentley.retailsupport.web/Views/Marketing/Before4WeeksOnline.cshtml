@@ -736,11 +736,11 @@
                                                     <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
                                                 </div>
                                                 <div>
-                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                    <div class="btn btn-warning fileinput-exists videoUpload" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
                                                 </div>
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                            <div style="margin-top:10px;" id="videoUpload">
+                                            <div style="margin-top:10px;" class="videoUpload">
                                                 <a id="selectfiles-5" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-5" class="container-fluid" style="display:block">
                                                     <div id="ossfile-5"></div>
@@ -1577,7 +1577,7 @@
                         }
                     }
                     $("#imgListDiv-5").find(".form-control").prop("disabled", false);
-                    $("#videoUpload").show();
+                    $(".videoUpload").show();
                     $("#KeyVisionDesc").prop("disabled", false);
                 }
                 //DTT审批通过-主视觉审批通过
@@ -1609,7 +1609,7 @@
                     //除主视觉和广告外都可以修改
                     $("#picID").css({ "pointer-events": "none" });
                     $("#imgListDiv-5").find(".form-control").prop("disabled", true);
-                    $("#videoUpload").hide();
+                    $(".videoUpload").hide();
                     let _imgList = $("#imgListDiv-5").find(".ossImage");
                     for (let i = 0; i < _imgList.length; i++) {
                         $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();

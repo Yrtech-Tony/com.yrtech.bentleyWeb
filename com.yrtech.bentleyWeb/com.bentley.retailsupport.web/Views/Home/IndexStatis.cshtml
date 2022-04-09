@@ -1,13 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<style>
-    .charts-list{
-        width:100%;
-        display:flex;
-        justify-content:space-around;
-    }
-</style>
 <div id="page-wrapper">
     <!--BEGIN CONTENT-->
     <div class="page-content">
@@ -32,14 +25,116 @@
                                 </div>
                             </div>
                             <div id="page" class="dashboard">
-                                <div class="charts-list">
-                                    <div class="span6" id="chartsOne" style="height: 400px;"></div>
-                                    <div class="span6" id="chartsTwo" style="height: 400px;"></div>
+                                <h4 class="page-title" translate style="font-family: BentleySemiBold;">Marketing Events</h4>
+                                <div class="row-fluid circle-state-overview">
+
+                                    <div id="activity-all" class="span2 responsive clearfix" data-tablet="span3" data-desktop="span2" onclick="goto(this)">
+                                        <div class="circle-wrap">
+                                            <div class="stats-circle turquoise-color" style="background-color:#9AC1E6">
+                                                <i class="icon-book"></i>
+                                            </div>
+                                            <p>
+                                                <strong style="color:#9AC1E6">
+                                                    <a id="UnsubmitBefore21" href="#">
+                                                    </a>
+                                                </strong>
+                                                <span translate>Pending Plans</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="todo-list" class="span2 responsive" data-tablet="span3" data-desktop="span2" onclick="goto(this)">
+                                        <div class="circle-wrap">
+                                            <div class="stats-circle red-color" style="background-color:#284e1e">
+                                                <i class="icon-book"></i>
+                                            </div>
+                                            <p>
+                                                <strong style="color: #284e1e">
+                                                    <a id="UnsubmitBefore3" style="color: #284e1e" href="#">
+                                                    </a>
+                                                </strong>
+                                                <span translate>Pending Final Plans</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="non-passed" class="span2 responsive" data-tablet="span3" data-desktop="span2" onclick="goto(this)">
+                                        <div class="circle-wrap">
+                                            <div class="stats-circle purple-color" style="background-color:#edb700">
+                                                <i class="icon-book"></i>
+                                            </div>
+                                            <p>
+                                                <strong style="color: #edb700">
+                                                    <a id="UnsubmitAfter2" style="color: #edb700" href="#">
+                                                    </a>
+                                                </strong>
+                                                <span translate>Pending Leads Reports</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="non-passed" class="span2 responsive" data-tablet="span3" data-desktop="span2" onclick="goto(this)">
+                                        <div class="circle-wrap">
+                                            <div class="stats-circle brown-color" style="background-color:#d63f20">
+                                                <i class="icon-book"></i>
+                                            </div>
+                                            <p>
+                                                <strong style="color: #d63f20">
+                                                    <a id="UnsubmitAfter7" style="color: #d63f20" href="#">
+                                                    </a>
+                                                </strong>
+                                                <span translate>Pending Event Reports</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="non-passed" class="span2 responsive" data-tablet="span3" data-desktop="span2" onclick="goto(this)">
+                                        <div class="circle-wrap">
+                                            <div class="stats-circle red-color" style="background-color:#00aad2">
+                                                <i class="icon-book"></i>
+                                            </div>
+                                            <p>
+                                                <strong style="color: #00aad2">
+                                                    <a id="UnsubmitAfter30" style="color: #00aad2" href="#">
+                                                    </a>
+                                                </strong>
+                                                <span translate>Pending Updated Leads Reports</span>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="charts-list">
-                                    <div class="span6" id="chartsThree" style="height: 400px;"></div>
-                                    <div class="span6" id="chartsFour" style="height: 400px;"></div>
+
+                                <h4 class="page-title" translate style="font-family: BentleySemiBold;">Reimbursement</h4>
+                                <div class="row-fluid circle-state-overview">
+                                    <div id="non-passed" class="span2 responsive" data-tablet="span3" data-desktop="span2" onclick="goto(this)">
+                                        <div class="circle-wrap">
+                                            <div class="stats-circle blue-color" style="background-color:#44474e">
+                                                <i class="icon-book"></i>
+                                            </div>
+                                            <p>
+                                                <strong style="color: #44474e">
+                                                    <a id="ApplyStatus" style="color: #44474e" href="#">
+                                                        0
+                                                    </a>
+                                                </strong>
+                                                <span translate>Modification Requests for Application Documents</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="non-passed" class="span2 responsive" data-tablet="span3" data-desktop="span2" onclick="goto(this)">
+                                        <div class="circle-wrap">
+                                            <div class="stats-circle green-color" style="background-color:#232323">
+                                                <i class="icon-book"></i>
+                                            </div>
+                                            <p>
+                                                <strong style="color: #232323">
+                                                    <a id="ReplyStatus" style="color: #232323" href="#">
+                                                        0
+                                                    </a>
+                                                </strong>
+                                                <span translate>Modification Requests for Supporting Documents</span>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
+
+
                                 <!-- END OVERVIEW STATISTIC BARS-->
                             </div>
                             <!-- END PAGE CONTENT-->
@@ -54,257 +149,42 @@
     <!--END CONTENT-->
 </div>
 @section scripts{
-<script src="~/Scripts/api/common.js"></script>
-<script src="~/Scripts/api/echarts.js"></script>
-<script>
-    $("#nav_dash").addClass("active");
+    <script src="~/Scripts/api/common.js"></script>
+    <script>
+        $("#nav_dash").addClass("active");
 
-    $(function () {
-        //市场活动
-        $.commonGet("MarketAction/MarketActionStatusCountSearch", {
-            year: '',
-            eventTypeId: '',
-            userId: $("#G_UserId").val(),
-            roleTypeCode: $("#G_RoleTypeCode").val()
-        }, function (data) {
-            initChartsOne(data);
+        $(function () {
+            $.commonGet("MarketAction/MarketActionStatusCountSearch", {
+                year: '',
+                eventTypeId: 99,
+                userId: $("#G_UserId").val(),
+                roleTypeCode: $("#G_RoleTypeCode").val()
+            }, function (data) {
+                $("#UnsubmitBefore21").html(data[0].Before21Count);
+                $("#UnsubmitBefore3").html(data[0].Before3Count);
+                $("#UnsubmitAfter2").html(data[0].After2Count);
+                $("#UnsubmitAfter7").html(data[0].After7Count);
+                $("#UnsubmitAfter30").html(data[0].After30Count);
+            })
+
+            $.commonGet("MarketAction/ExpenseAccountStatusCountSearch", {
+                year: '',
+                eventTypeId: 99,
+                userId: $("#G_UserId").val(),
+                roleTypeCode: $("#G_RoleTypeCode").val()
+            }, function (data) {
+                var apply = 0, relay = 0;
+                if (data && data.length > 0) {
+                    data.forEach(function (item) {
+                        if (item.ApplyStatus == "未提交")
+                            apply += 1;
+                        if (item.ReplyStatus == "未提交")
+                            relay += 1;
+                    })
+                }
+                $("#ApplyStatus").html(apply);
+                $("#ReplyStatus").html(relay);
+            })
         })
-
-        //交车仪式
-        $.commonGet("MarketAction/MarketActionStatusCountSearch", {
-            year: '',
-            eventTypeId: 99,
-            userId: $("#G_UserId").val(),
-            roleTypeCode: $("#G_RoleTypeCode").val()
-        }, function (data) {
-            initChartsTwo(data);
-        })
-
-        //费用报销市场活动
-        $.commonGet("MarketAction/ExpenseAccountStatusCountSearch", {
-            year: '',
-            eventTypeId: '',
-            userId: $("#G_UserId").val(),
-            roleTypeCode: $("#G_RoleTypeCode").val()
-        }, function (data) {
-            initChartsThree(data);
-        })
-        //报告市场活动
-        $.commonGet("MarketAction/MarketActionReportCountSearch", {
-            year: '',
-            eventTypeId: '',
-            userId: $("#G_UserId").val(),
-            roleTypeCode: $("#G_RoleTypeCode").val()
-        }, function (data) {
-            initChartsFour(data);
-        })
-    })
-
-    function initChartsOne(data) {
-        var chartDom = document.getElementById('chartsOne');
-        var myChart = echarts.init(chartDom);
-        var option;
-
-        option = {
-            title: {
-                text: '市场活动',
-                left: 'center'
-            },
-            tooltip: {
-                trigger: 'item'
-            },
-            legend: {
-                top: '10%',
-                left: 'center'
-            },
-            series: [
-                {
-                    name: '市场活动',
-                    type: 'pie',
-                    avoidLabelOverlap: false,
-                    radius: '50%',
-                    data: [
-                        { value: data[0].Before4WeeksNotCommit, name: '未提交活动计划' },
-                        { value: data[0].Before4WeeksWaitForChange, name: '未通过审批活动计划' },
-                        { value: data[0].After7NotCommit, name: '未提交活动报告' },
-                        { value: data[0].After7WaitForChange, name: '未通过审批活动报告' }
-                    ],
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        };
-
-        option && myChart.setOption(option);
-    }
-
-    function initChartsTwo(data) {
-        var chartDom = document.getElementById('chartsTwo');
-        var myChart = echarts.init(chartDom);
-        var option;
-
-        option = {
-            title: {
-                text: '交车仪式',
-                left: 'center'
-            },
-            tooltip: {
-                trigger: 'item'
-            },
-            legend: {
-                top: '10%',
-                left: 'center'
-            },
-            series: [
-                {
-                    name: '交车仪式',
-                    type: 'pie',
-                    avoidLabelOverlap: false,
-                    radius: '50%',
-                    data: [
-                        { value: data[0].Before4WeeksNotCommit, name: '未提交活动计划' },
-                        { value: data[0].Before4WeeksWaitForChange, name: '未通过审批活动计划' },
-                        { value: data[0].After7NotCommit, name: '未提交活动报告' },
-                        { value: data[0].After7WaitForChange, name: '未通过审批活动报告' }
-                    ],
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        };
-
-        option && myChart.setOption(option);
-    }
-
-    function initChartsThree(data) {
-        var chartDom = document.getElementById('chartsThree');
-        var myChart = echarts.init(chartDom);
-        var option;
-
-        option = {
-            title: {
-                text: '费用报销',
-                left: 'center'
-            },
-            tooltip: {
-                trigger: 'item'
-            },
-            legend: {
-                top: '10%',
-                left: 'center',
-                data: ['市场活动', '交车仪式']
-            },
-            calculable: true,
-            xAxis: [
-                {
-                    type: 'category',
-                    // prettier-ignore
-                    data: ['未提交合同', '未提交报价单', '未提交发票', '未提交邮件截图']
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value'
-                }
-            ],
-            series: [
-                {
-                    name: '市场活动',
-                    type: 'bar',
-                    label: {
-                        show: true,
-                        position: 'top'
-                    },
-                    data: [
-                        data[0].ExpenseAccount3, data[0].ExpenseAccount5, data[0].ExpenseAccount4, data[0].ExpenseAccount9
-                    ],
-                },
-                {
-                    name: '交车仪式',
-                    type: 'bar',
-                    label: {
-                        show: true,
-                        position: 'top'
-                    },
-                    data: [
-                        data[1].ExpenseAccount3, data[1].ExpenseAccount5, data[1].ExpenseAccount4, data[1].ExpenseAccount9
-                    ]
-                }
-            ]
-        };
-
-        option && myChart.setOption(option);
-    }
-
-    function initChartsFour(data) {
-        var chartDom = document.getElementById('chartsFour');
-        var myChart = echarts.init(chartDom);
-        var option;
-        console.error(data);
-        option = {
-            title: {
-                text: '报告（本月）',
-                left: 'center'
-            },
-            tooltip: {
-                trigger: 'item'
-            },
-            legend: {
-                top: '10%',
-                left: 'center',
-                data: ['市场活动', '交车仪式']
-            },
-            calculable: true,
-            xAxis: [
-                {
-                    type: 'category',
-                    // prettier-ignore
-                    data: ['未提交活动计划市场花费', '未提交活动计划市场基金', '未提交线索报告', '未提交活动报告市场花费','未提交活动报告市场基金']
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value'
-                }
-            ],
-            series: [
-                {
-                    name: '市场活动',
-                    type: 'bar',
-                    label: {
-                        show: true,
-                        position: 'top'
-                    },
-                    data: [
-                        data[0].PlanBugetUnCommit, data[0].PlanCoopFundUnCommit, data[0].LeadsUnCommit, data[0].ReportBugetUnCommit, data[0].ReportCoopFundUnCommit
-                    ],
-                },
-                {
-                    name: '交车仪式',
-                    type: 'bar',
-                    label: {
-                        show: true,
-                        position: 'top'
-                    },
-                    data: [
-                        data[1].PlanBugetUnCommit, data[1].PlanCoopFundUnCommit, data[1].LeadsUnCommit, data[1].ReportBugetUnCommit, data[1].ReportCoopFundUnCommit
-                    ]
-                }
-            ]
-        };
-        option && myChart.setOption(option);
-    }
-</script>
+    </script>
 }
-
-

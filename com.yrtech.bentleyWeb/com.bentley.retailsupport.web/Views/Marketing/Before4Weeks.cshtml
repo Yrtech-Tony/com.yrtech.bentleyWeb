@@ -1758,6 +1758,7 @@
         }
 
         function submitAjax() {
+            SProcessing();
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 1,
@@ -2213,21 +2214,25 @@
 
         //生成PPT
         function createPPT() {
+            SProcessing();
             $.commonGet("MarketAction/CreatePPT", {
                 marketActionId: $("#MarketActionId").val(),
                 type: "MPF",
                 userId: $("#G_UserId").val()
             }, function (data) {
-
+                EProcessing();
             });
         }
 
         //下载PPT
         function downloadPPT() {
+            SProcessing();
             $.commonGet("MarketAction/MarketActionPicSearch", {
                 marketActionId: $("#MarketActionId").val(),
                 picType: "MPF13"
             }, function (data) {
+                EProcessing();
+                window.open(baseOss + data[0].PicPath);
                 console.error(data);
             });
         }

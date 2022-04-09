@@ -1515,11 +1515,14 @@
         }
         //下载PPT
         function downloadPPT() {
+            SProcessing();
             $.commonGet("MarketAction/MarketActionPicSearch", {
                 marketActionId: $("#MarketActionId").val(),
                 picType: "MPF13"
             }, function (data) {
-                //console.error(data);
+                EProcessing();
+                window.open(baseOss + data[0].PicPath);
+                console.error(data);
             });
         }
 

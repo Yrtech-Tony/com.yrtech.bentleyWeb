@@ -7058,3 +7058,9 @@ font-weight: 700 !important;
 form .row {
 margin-left:-15px !important;
 }
+
+.btn-set-the-ash {
+    pointer-events: none !important;
+    background:#ccc !important;
+    border:0px !important;
+}

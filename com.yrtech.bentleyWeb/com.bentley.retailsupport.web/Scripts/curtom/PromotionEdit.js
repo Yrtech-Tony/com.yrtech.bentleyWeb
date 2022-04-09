@@ -329,8 +329,6 @@ function InitActivityFlowTableOnline() {
                 editable: {
                     type: 'date',
                     title: '',
-                    validate: function (v) {
-                    },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "StartDate", value: value };
                         var html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
@@ -350,8 +348,6 @@ function InitActivityFlowTableOnline() {
                 editable: {
                     type: 'date',
                     title: '',
-                    validate: function (v) {
-                    },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "EndDate", value: value };
                         var html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
@@ -374,12 +370,18 @@ function InitActivityFlowTableOnline() {
                     validate: function (v) {
                     },
                     noeditFormatter: function (value, row, index) {
-                        var result = { filed: "TotalDays", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="TotalDays" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                        if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="TotalDays" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        var StartDate = row.StartDate;
+                        var EndDate = row.EndDate;
+                        let _value = "";
+                        if (StartDate && EndDate) {
+                            StartDate = new Date(StartDate);
+                            EndDate = new Date(EndDate);
+                            StartDate = farmatDate(StartDate);
+                            EndDate = farmatDate(EndDate);
+                            let _result = EndDate - StartDate;
+                            _value = _result / 1000 / 3600 / 24;
                         }
-                        return html;
+                        return '<div style="min-width:100px">' + _value + '</div>';
                     }
                 }
 
@@ -395,12 +397,19 @@ function InitActivityFlowTableOnline() {
                     validate: function (v) {
                     },
                     noeditFormatter: function (value, row, index) {
-                        var result = { filed: "AmtPerDay", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="AmtPerDay" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                        if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="AmtPerDay" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        var StartDate = row.StartDate;
+                        var EndDate = row.EndDate;
+                        let _value = "";
+                        if (row.CoopFundAmt && StartDate && EndDate) {
+                            StartDate = new Date(StartDate);
+                            EndDate = new Date(EndDate);
+                            StartDate = farmatDate(StartDate);
+                            EndDate = farmatDate(EndDate);
+                            let _result = EndDate - StartDate;
+                            _value = _result / 1000 / 3600 / 24;
+                            _value = row.CoopFundAmt / _value;
                         }
-                        return html;
+                        return '<div style="min-width:100px">' + _value + '</div>';
                     }
                 }
 
@@ -1304,3 +1313,12 @@ var dealNumber = function (money) {
         return "";
     }
 };
+
+function farmatDate(date) {
+    let _year = date.getFullYear();  // 获取完整的年份(4位,1970)
+    let _month = date.getMonth() + 1;  // 获取月份(0-11,0代表1月,用的时候记得加上1)
+    let _day = date.getDate();  // 获取日(1-31)
+    let _date = _year + "-" + _month + "-" + _day + " 00:00:00";
+    _date = new Date(_date);
+    return _date.getTime();
+}

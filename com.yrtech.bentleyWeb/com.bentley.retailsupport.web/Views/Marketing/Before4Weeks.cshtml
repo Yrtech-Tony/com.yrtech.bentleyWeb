@@ -303,7 +303,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>Event Procedure</span><span class="required" style="color:red">*</span>:</label>
@@ -337,7 +337,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>市场基金申报信息</span><span class="required" style="color:red">*</span>:</label>
@@ -1305,7 +1305,7 @@
                                                 <div class="col-md-8">
                                                     <textarea class="form-control" cols="20" id="DTTApproveDesc" name="DTTApproveDesc" placeholder="审批意见" rows="9"></textarea>
                                                     <div style="margin-top:5px;">
-                                                        <select id="DTTType" name="DTTType" class="selectpicker">
+                                                        <select id="DTTApproveCode" name="DTTApproveCode" class="selectpicker">
                                                             <option value="1" selected="" translate>Waiting for Approval</option>
                                                             <option value="2" translate>Approved</option>
                                                             <option value="3" translate>Waiting for Change</option>
@@ -1320,8 +1320,8 @@
 
                             <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;">
                                 <div class="col-md-6">
-                                    <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
-                                    <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <button id="btnSave" type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
+                                    <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
                                     <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
@@ -1450,8 +1450,8 @@
                         $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
                         $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
                         $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
+                        searchDtt();
                     }
-
                 });
             }
 
@@ -2051,6 +2051,26 @@
             //活动流程
             var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
+                let _flowListVeri = [];
+                StrActivityFlow.forEach(function (_item) {
+                    let _flowVeri = false;
+                    for (let _key in _item) {
+                        if (_key != "SeqNO" && _item[_key]) {
+                            _flowVeri = true;
+                        }
+                    }
+                    _flowListVeri.push(_flowVeri);
+                });
+                for (let i = 0; i < _flowListVeri.length; i++) {
+                    if (!_flowListVeri[i]) {
+                        layer.open({
+                            title: '错误提示',
+                            type: 0,
+                            content: '活动流程相关信息填写不完整！'
+                        });
+                        return false;
+                    }
+                }
                 scheduleObj.schedule5 = 10;
             } else {
                 if (_type == 2) {
@@ -2065,6 +2085,26 @@
             //市场基金申报信息
             var StrActivityFlowNew = $('#ActivityFlowTableNew').bootstrapTable('getData');
             if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                let _flowListVeri = [];
+                StrActivityFlowNew.forEach(function (_item) {
+                    let _flowVeri = false;
+                    for (let _key in _item) {
+                        if (_key != "SeqNO" && _item[_key]) {
+                            _flowVeri = true;
+                        }
+                    }
+                    _flowListVeri.push(_flowVeri);
+                });
+                for (let i = 0; i < _flowListVeri.length; i++) {
+                    if (!_flowListVeri[i]) {
+                        layer.open({
+                            title: '错误提示',
+                            type: 0,
+                            content: '市场基金申报信息填写不完整！'
+                        });
+                        return false;
+                    }
+                }
                 scheduleObj.schedule6 = 20;
             } else {
                 if (_type == 2) {
@@ -2179,6 +2219,115 @@
                 picType: "MPF13"
             }, function (data) {
                 console.error(data);
+            });
+        }
+
+        function initRole() {
+            let _dttCode = $('#DTTApproveCode').val();
+            console.error(_dttCode);
+            let _visualStatus = $("#VisualStatus").val();
+            console.error(_visualStatus);
+            if (_dttCode == 2 && _visualStatus == 2) {
+                $("#btnSave").addClass("btn-set-the-ash");
+                $("#btnSubmit").addClass("btn-set-the-ash");
+            }
+            //DTT权限
+            if (roleName == "SYSADMIN") {
+                $('#DTTApproveDesc').prop("disabled", false);
+                $('#DTTApproveCode').prop("disabled", false);
+                $('#VisualStatus').prop("disabled", true);
+                $('#VisualDescription').prop("disabled", true);
+            }
+            //主视觉权限
+            if (roleName == "BMC") {
+                $('#ActiveShow').show();
+                $('#VisualStatus').prop("disabled", false);
+                $('#VisualDescription').prop("disabled", false);
+                $('#DTTApproveDesc').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
+            }
+            //经销商权限
+            if (roleName == "SHOP") {
+                //DTT权限
+                $('#VisualStatus').prop("disabled", true);
+                $('#VisualDescription').prop("disabled", true);
+                //主视觉权限
+                $('#DTTApproveDesc').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
+                //DTT审批通过-主视觉没有通过
+                if (_dttCode == 2 && _visualStatus != 2) {
+                    //除主视觉和广告视屏外都不可修改
+                    //全部input框
+                    $('.form-control').prop("disabled", true);
+                    //车型
+                    $('#MarketActionTargetModelCode').prop("disabled", true);
+                    //表格点击事件
+                    $(".table-unedit").css({ "pointer-events": "none" });
+                    //图片上传
+                    for (let key in imgCodeObj) {
+                        let _imgList = $("#" + imgCodeObj[key]).find(".ossImage");
+                        for (let i = 0; i < _imgList.length; i++) {
+                            $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                            $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                        }
+                    }
+                    $("#imgListDiv-5").find(".form-control").prop("disabled", false);
+                    $("#videoUpload").show();
+                    $("#KeyVisionDesc").prop("disabled", false);
+                }
+                //DTT审批通过-主视觉审批通过
+                if (_dttCode == 2 && _visualStatus == 2) {
+                    //都不可修改
+                    //全部input框
+                    $('.form-control').prop("disabled", true);
+                    //车型
+                    $('#MarketActionTargetModelCode').prop("disabled", true);
+                    //表格点击事件
+                    $(".table-unedit").css({ "pointer-events": "none" });
+                    //主视觉图片
+                    $("#picID").css({ "pointer-events": "none" });
+                    //图片上传
+                    for (let key in imgCodeObj) {
+                        let _imgList = $("#" + imgCodeObj[key]).find(".ossImage");
+                        for (let i = 0; i < _imgList.length; i++) {
+                            $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                            $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                        }
+                    }
+                }
+                //DTT审批未通过-主视觉审批未通过
+                if (_dttCode != 2 && _visualStatus != 2) {
+                    //都可修改
+                }
+                //DTT审批未通过-主视觉审批通过
+                if (_dttCode != 2 && _visualStatus == 2) {
+                    //除主视觉和广告外都可以修改
+                    $("#picID").css({ "pointer-events": "none" });
+                    $("#imgListDiv-5").find(".form-control").prop("disabled", true);
+                    $("#videoUpload").hide();
+                    let _imgList = $("#imgListDiv-5").find(".ossImage");
+                    for (let i = 0; i < _imgList.length; i++) {
+                        $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                        $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                    }
+                    $("#KeyVisionDesc").prop("disabled", true);
+                }
+
+            }
+        }
+        function searchDtt() {
+            $.commonGet("MarketAction/DTTApproveSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                dttType: 1,
+                dttApproveId: '',
+                dttApproveCode: ''
+            }, function (data) {
+                if (data && data.length > 0) {
+                    $("#DTTApproveCode").val(data[0].DTTApproveCode);
+                    $("#DTTApproveDesc").val(data[0].DTTApproveDesc);
+                }
+                $("#DTTApproveCode").selectpicker("refresh");
+                initRole();
             });
         }
     </script>

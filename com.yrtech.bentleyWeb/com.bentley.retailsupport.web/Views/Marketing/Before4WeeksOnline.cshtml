@@ -786,8 +786,8 @@
 
                             <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;">
                                 <div class="col-md-6">
-                                    <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
-                                    <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <button id="btnSave" type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
+                                    <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
                                     <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
@@ -813,7 +813,7 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js?v=2017093041"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093041"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093041117"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1202,6 +1202,7 @@
         }
 
         function submitAjax() {
+            SProcessing();
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 1,
@@ -1369,6 +1370,44 @@
             //市场基金申报信息
             var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
             if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                let _flowListVeri = [];
+                let _flowDateVeri = true;
+                StrActivityFlowNew.forEach(function (_item) {
+                    let _flowVeri = false;
+                    for (let _key in _item) {
+                        if (_key != "SeqNO" && _item[_key]) {
+                            _flowVeri = true;
+                        }
+                    }
+                    _flowListVeri.push(_flowVeri);
+                    //验证结束时间大于开始时间
+                    if (_item["StartDate"] && _item["EndDate"]) {
+                        let _startDate = new Date(_item["StartDate"]);
+                        let _endDate = new Date(_item["EndDate"]);
+                        if (_startDate.getTime() >= _endDate.getTime()) {
+                            layer.open({
+                                title: '错误提示',
+                                type: 0,
+                                content: '投放开始时间不能大于等于投放结束时间！'
+                            });
+                            _flowDateVeri = false;
+                        }
+                    }
+                });
+
+                if (!_flowDateVeri) {
+                    return false;
+                }
+                for (let i = 0; i < _flowListVeri.length; i++) {
+                    if (!_flowListVeri[i]) {
+                        layer.open({
+                            title: '错误提示',
+                            type: 0,
+                            content: '市场基金申报信息填写不完整！'
+                        });
+                        return false;
+                    }
+                }
                 scheduleObj.schedule5 = 20;
             } else {
                 if (_type == 2) {
@@ -1455,12 +1494,13 @@
 
         //生成PPT
         function createPPT() {
+            SProcessing();
             $.commonGet("MarketAction/CreatePPT", {
                 marketActionId: $("#MarketActionId").val(),
                 type: "MPN",
                 userId: $("#G_UserId").val()
             }, function (data) {
-
+                EProcessing();
             });
         }
         //下载PPT
@@ -1475,6 +1515,14 @@
 
         //权限
         function initRole() {
+            let _dttCode = $('#DTTApproveCode').val();
+            console.error(_dttCode);
+            let _visualStatus = $("#VisualStatus").val();
+            console.error(_visualStatus);
+            if (_dttCode == 2 && _visualStatus == 2) {
+                $("#btnSave").addClass("btn-set-the-ash");
+                $("#btnSubmit").addClass("btn-set-the-ash");
+            }
             //DTT权限
             if (roleName == "SYSADMIN") {
                 $('#DTTApproveDesc').prop("disabled", false);
@@ -1492,10 +1540,6 @@
             }
             //经销商权限
             if (roleName == "SHOP") {
-                let _dttCode = $('#DTTApproveCode').val();
-                console.error(_dttCode);
-                let _visualStatus = $("#VisualStatus").val();
-                console.error(_visualStatus);
                 //DTT权限
                 $('#VisualStatus').prop("disabled", true);
                 $('#VisualDescription').prop("disabled", true);

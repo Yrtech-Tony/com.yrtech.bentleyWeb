@@ -536,7 +536,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>场地选择理由</span><span class="required" style="color:red">*</span>:</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" cols="20" id="PlatformReason" name="PlatformReason" data-val="true" rows="5" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-2">
@@ -2045,7 +2055,17 @@
                     return false;
                 }
             }
-
+            if (!MarketActionBefore21.PlatformReason) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写场地选择理由！'
+                    });
+                    return false;
+                }
+            }
             if (_schedule3) {
                 scheduleObj.schedule3 = 10;
             }

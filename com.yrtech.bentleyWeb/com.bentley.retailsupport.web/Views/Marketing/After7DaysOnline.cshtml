@@ -247,7 +247,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>市场基金申报信息</span><span class="required" style="color:red">*</span>:</label>
@@ -696,7 +696,7 @@
                                                 </div>
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                            <div style="margin-top:10px;">
+                                            <div style="margin-top:10px;" id="videoUpload">
                                                 <a id="selectfiles-5" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-5" class="container-fluid" style="display:block">
                                                     <div id="ossfile-5"></div>
@@ -853,6 +853,7 @@
                                 $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
                             }
                             initImageList(data.MarketActionAfter7PicList_OnLine);
+                            searchDtt();
                         }
 
                     }
@@ -871,6 +872,8 @@
         }
 
         function PromotionEdit2() {
+            $('.form-control').prop("disabled", false);
+            $('#DTTApproveCode').prop("disabled", false);
             if (!veriData(1)) {
                 return;
             }
@@ -917,6 +920,8 @@
         }
 
         function PromotionSubmit() {
+            $('.form-control').prop("disabled", false);
+            $('#DTTApproveCode').prop("disabled", false);
             if (!veriData(2)) {
                 return;
             }
@@ -1410,6 +1415,66 @@
                 picType: "MRN11"
             }, function (data) {
                 console.error(data);
+            });
+        }
+
+        //权限
+        function initRole() {
+            let _dttCode = $('#DTTApproveCode').val();
+            console.error(_dttCode);
+            if (_dttCode == 2) {
+                $("#btnSave").addClass("btn-set-the-ash");
+                $("#btnSubmit").addClass("btn-set-the-ash");
+            }
+            //DTT权限
+            if (roleName == "SYSADMIN") {
+                $('#DTTApproveDesc').prop("disabled", false);
+                $('#DTTApproveCode').prop("disabled", false);
+            }
+            //主视觉权限
+            if (roleName == "BMC") {
+                $('#DTTApproveDesc').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
+            }
+            //经销商权限
+            if (roleName == "SHOP") {
+                //主视觉权限
+                $('#DTTApproveDesc').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
+                //DTT审批通过-主视觉审批通过
+                if (_dttCode == 2) {
+                    //都不可修改
+                    //全部input框
+                    $('.form-control').prop("disabled", true);
+                    //表格点击事件
+                    $(".table-unedit").css({ "pointer-events": "none" });
+                    //主视觉图片
+                    $("#picID").css({ "pointer-events": "none" });
+                    //图片上传
+                    for (let key in imgCodeObj) {
+                        let _imgList = $("#" + imgCodeObj[key]).find(".ossImage");
+                        for (let i = 0; i < _imgList.length; i++) {
+                            $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                            $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                        }
+                    }
+                }
+            }
+        }
+
+        function searchDtt() {
+            $.commonGet("MarketAction/DTTApproveSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                dttType: 2,
+                dttApproveId: '',
+                dttApproveCode: ''
+            }, function (data) {
+                if (data && data.length > 0) {
+                    $("#DTTApproveCode").val(data[0].DTTApproveCode);
+                    $("#DTTApproveDesc").val(data[0].DTTApproveDesc);
+                }
+                $("#DTTApproveCode").selectpicker("refresh");
+                initRole();
             });
         }
     </script>

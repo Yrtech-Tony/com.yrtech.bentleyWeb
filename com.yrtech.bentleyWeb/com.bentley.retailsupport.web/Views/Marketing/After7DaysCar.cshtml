@@ -969,9 +969,10 @@
 
                             <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;">
                                 <div class="col-md-6">
-                                    <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
-                                    <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <button id="btnSave" type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
+                                    <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
                                     <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
+                                    <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
                                 </div>
                             </div>
@@ -1336,6 +1337,7 @@
         }
 
         function submitAjax() {
+            SProcessing();
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 2,
@@ -1763,12 +1765,25 @@
 
         //生成PPT
         function createPPT() {
+            SProcessing();
             $.commonGet("MarketAction/CreatePPT", {
                 marketActionId: $("#MarketActionId").val(),
                 type: "MRH",
                 userId: $("#G_UserId").val()
             }, function (data) {
+                EProcessing();
+            });
+        }
 
+        //下载PPT
+        function downloadPPT() {
+            SProcessing();
+            $.commonGet("MarketAction/MarketActionPicSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                picType: "MRH11"
+            }, function (data) {
+                EProcessing();
+                window.open(baseOss + data[0].PicPath);
             });
         }
 

@@ -6,6 +6,12 @@
         width: 100%;
         display: flex;
         justify-content: space-around;
+        border-bottom: 1px dashed #999;
+        padding:10px 0px;
+    }
+    .line-div {
+        width: 1px;
+        border-left: 1px dashed #999;
     }
 </style>
 <div id="page-wrapper">
@@ -34,10 +40,12 @@
                             <div id="page" class="dashboard">
                                 <div class="charts-list">
                                     <div class="span6" id="chartsOne" style="height: 500px;"></div>
+                                    <div class="line-div"></div>
                                     <div class="span6" id="chartsTwo" style="height: 500px;"></div>
                                 </div>
-                                <div class="charts-list">
+                                <div class="charts-list" style="border:0px;">
                                     <div class="span6" id="chartsThree" style="height: 500px;"></div>
+                                    <div class="line-div"></div>
                                     <div class="span6" id="chartsFour" style="height: 500px;"></div>
                                 </div>
                                 <!-- END OVERVIEW STATISTIC BARS-->

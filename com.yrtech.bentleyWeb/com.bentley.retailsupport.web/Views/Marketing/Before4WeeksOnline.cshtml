@@ -917,6 +917,11 @@
         }
 
         function PromotionEdit2() {
+            $('.form-control').prop("disabled", false);
+            //车型
+            $('#MarketActionTargetModelCode').prop("disabled", false);
+            $('#VisualStatus').prop("disabled", false);
+            $('#DTTApproveCode').prop("disabled", false);
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
             if (!veriData(1)) {
@@ -992,6 +997,11 @@
         }
 
         function PromotionSubmit() {
+            $('.form-control').prop("disabled", false);
+            //车型
+            $('#MarketActionTargetModelCode').prop("disabled", false);
+            $('#VisualStatus').prop("disabled", false);
+            $('#DTTApproveCode').prop("disabled", false);
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
             if (!veriData(2)) {

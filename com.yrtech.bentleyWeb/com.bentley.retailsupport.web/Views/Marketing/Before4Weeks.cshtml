@@ -1468,6 +1468,11 @@
         }
 
         function PromotionEdit2() {
+            $('.form-control').prop("disabled", false);
+            //车型
+            $('#MarketActionTargetModelCode').prop("disabled", false);
+            $('#VisualStatus').prop("disabled", false);
+            $('#DTTApproveCode').prop("disabled", false);
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
             if (!veriData(1)) {
@@ -1553,6 +1558,11 @@
         }
 
         function PromotionSubmit() {
+            $('.form-control').prop("disabled", false);
+            //车型
+            $('#MarketActionTargetModelCode').prop("disabled", false);
+            $('#VisualStatus').prop("disabled", false);
+            $('#DTTApproveCode').prop("disabled", false);
             if (!veriData(2)) {
                 return;
             }
@@ -2271,8 +2281,6 @@
                             $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
                         }
                     }
-                    $("#imgListDiv-5").find(".form-control").prop("disabled", false);
-                    $("#videoUpload").show();
                     $("#KeyVisionDesc").prop("disabled", false);
                 }
                 //DTT审批通过-主视觉审批通过
@@ -2303,13 +2311,6 @@
                 if (_dttCode != 2 && _visualStatus == 2) {
                     //除主视觉和广告外都可以修改
                     $("#picID").css({ "pointer-events": "none" });
-                    $("#imgListDiv-5").find(".form-control").prop("disabled", true);
-                    $("#videoUpload").hide();
-                    let _imgList = $("#imgListDiv-5").find(".ossImage");
-                    for (let i = 0; i < _imgList.length; i++) {
-                        $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
-                        $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
-                    }
                     $("#KeyVisionDesc").prop("disabled", true);
                 }
 

@@ -1481,5 +1481,79 @@
                 initRole();
             });
         }
+
+        function saveCoopFund(_item) {
+            //市场基金申报信息
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            let _flowDateVeri = true;
+            let _flowVeri = true;
+            for (let _key in _item) {
+                if (_key == "CoopFundAmt" && !_item[_key]) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请输入金额！'
+                    });
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "StartDate" && !_item[_key]) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请选择投放开始时间！'
+                    });
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "EndDate" && !_item[_key]) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请选择投放结束时间！'
+                    });
+                    _flowVeri = false;
+                    return;
+                }
+            }
+            //验证结束时间大于开始时间
+            if (_item["StartDate"] && _item["EndDate"]) {
+                let _startDate = new Date(_item["StartDate"]);
+                let _endDate = new Date(_item["EndDate"]);
+                if (_startDate.getTime() >= _endDate.getTime()) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '投放开始时间不能大于等于投放结束时间！'
+                    });
+                    _flowDateVeri = false;
+                }
+            }
+            if (!_flowDateVeri || !_flowVeri) {
+                return false;
+            }
+            var _data = {
+                MarketActionAfter7CoopFund: _item
+            };
+            SProcessing();
+            $.commonPost("MarketAction/MarketActionAfter7CoopFundSave", _data, function (data) {
+                console.error(data);
+                if (data) {
+                    let _sumAmt = 0;
+                    StrActivityFlowNew.forEach(function (item) {
+                        if (item.SeqNO > data.SeqNO) {
+                            item = data;
+                        }
+                        //计算金额
+                        if (item.CoopFund_DMFChk) {
+
+                        }
+                    });
+                }
+                $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
+                EProcessing();
+            }, EProcessing)
+
+        }
     </script>
 }

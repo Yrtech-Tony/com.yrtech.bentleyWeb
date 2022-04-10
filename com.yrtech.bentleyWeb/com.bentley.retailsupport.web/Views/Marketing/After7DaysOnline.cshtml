@@ -785,16 +785,15 @@
     <script src="~/Scripts/oss-upload-direct/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/base64.js"></script>
     <script src="~/Scripts/oss-upload-direct/ali-upload.js?20170930"></script>
-    <script src="~/Scripts/oss-upload-direct/ali-upload-video.js?20170930"></script>
 
     <script>
         $("#nav_promotion").addClass("active");
-        let imgCodeObj = { "MRN01": "imgListDiv", "MRN04": "imgListDiv-1", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MRN06": "imgListDiv-6" };
+        let imgCodeObj = { "MRN01": "imgListDiv", "MRN04": "imgListDiv-1", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MRN06": "imgListDiv-6", "MPN10":"imgListDiv-5" };
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
         var hdData = [];
         var hdDataCoop = [{ "text": "是", "value": "true" }, { "text": "否", "value": "false" }];
-
+        var roleName = $('#G_RoleTypeCode').val();
         $(function () {
             $('img').error(function () {
                 $(this).attr('src', 'https://yrsurvey.oss-cn-beijing.aliyuncs.com/Bentley/fail2.png');
@@ -826,7 +825,6 @@
             InitActivityFlowTableOnline();
 
             $('#UserId').val($('#G_UserId').val());
-            var roleName = $('#G_RoleTypeCode').val();
             if (roleName == "SYSADMIN" || roleName == "MARKET") {
                 $('#ActiveShow').show();
                 $('#VisualStatus').prop("disabled", false);
@@ -1239,7 +1237,7 @@
                 });
                 return false;
             }
-            if (!MarketActionBefore21.People_NewLeadsThsYearCount) {
+            if (!MarketActionBefore21.People_DCPIDCount) {
                 _schedule3 = false;
                 if (_type == 2) {
                     layer.open({

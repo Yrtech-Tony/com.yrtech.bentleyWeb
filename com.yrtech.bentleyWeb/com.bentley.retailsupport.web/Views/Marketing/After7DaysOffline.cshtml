@@ -1310,7 +1310,7 @@
         let imgCodeObj = { "MRF03": "imgListDiv-20", "MRF02": "imgListDiv-2", "MRF01": "imgListDiv", "MRF04": "imgListDiv-1", "MRF05": "imgListDiv-3", "MRF06": "imgListDiv-4", "MRF08": "imgListDiv-5", "MRF09": "imgListDiv-6", "MRF10": "imgListDiv-7", "MRF11": "imgListDiv-8", "MRF12": "imgListDiv-9", "MRF14": "imgListDiv-11" };
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
-
+        var roleName = $('#G_RoleTypeCode').val();
 
         $(function () {
             $('img').error(function () {
@@ -1351,7 +1351,7 @@
             InitActualActivityProcess();
 
             $('#UserId').val($('#G_UserId').val());
-            var roleName = $('#G_RoleTypeCode').val();
+           
             if (roleName == "SYSADMIN" || roleName == "MARKET") {
                 $('#ActiveShow').show();
                 $('#VisualStatus').prop("disabled", false);

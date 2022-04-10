@@ -283,19 +283,6 @@
                             <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label col-md-2"><span translate>Actual Expense List</span><span class="required" style="color:red">*</span>:</label>
-                                        <div class="col-md-9">
-                                            <a id="addData" href="javascript:;" onclick="AddActualCost()" style="color:blue"><i class="icon-plus icon-white" translate>Add</i></a>
-                                            <br />
-                                            <table id="ActualCostTable" class="table table-striped table-bordered table-hover"></table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row table-unedit">
-                                <div class="col-md-12">
-                                    <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>Event Procedure</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <a href="javascript:AddActivityFlowTable();"><i class="icon-plus icon-white" translate>Add</i></a>
@@ -1307,7 +1294,7 @@
         var hdData = [];
         var hdDataCoop = [{ "text": "是", "value": "true" }, { "text": "否", "value": "false" }];
         $("#nav_promotion").addClass("active");
-        let imgCodeObj = { "MRF03": "imgListDiv-20", "MRF02": "imgListDiv-2", "MRF01": "imgListDiv", "MRF04": "imgListDiv-1", "MRF05": "imgListDiv-3", "MRF06": "imgListDiv-4", "MRF08": "imgListDiv-5", "MRF09": "imgListDiv-6", "MRF10": "imgListDiv-7", "MRF11": "imgListDiv-8", "MRF12": "imgListDiv-9", "MRF14": "imgListDiv-11" };
+        let imgCodeObj = { "MRF03": "imgListDiv-20", "MRF02": "imgListDiv-2", "MRF01": "imgListDiv", "MRF04": "imgListDiv-1", "MRF05": "imgListDiv-3", "MRF06": "imgListDiv-4", "MRF08": "imgListDiv-5", "MRF09": "imgListDiv-6", "MRF10": "imgListDiv-7", "MRF11": "imgListDiv-8", "MRF12": "imgListDiv-9", "MRF13":"imgListDiv-10", "MRF14": "imgListDiv-11" };
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
         var roleName = $('#G_RoleTypeCode').val();
@@ -1438,17 +1425,9 @@
                 return;
             }
             var StrActivityFlow2 = $('#ActivityFlowTable').bootstrapTable('getData');
-            var StrActualCost = $('#ActualCostTable').bootstrapTable('getData');
 
             if (StrActivityFlow2 && StrActivityFlow2.length > 0) {
                 StrActivityFlow2.forEach(function (item) {
-                    item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
-                })
-            }
-            if (StrActualCost && StrActualCost.length > 0) {
-                StrActualCost.forEach(function (item) {
                     item.MarketActionId = id;
                     item.InUserId = $("#G_UserId").val();
                     item.ModifyUserId = $("#G_UserId").val();
@@ -1487,7 +1466,6 @@
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
-                ActualExpense: StrActualCost,
                 ActualProcess: StrActivityFlow2,
                 MarketActionAfter7PicList_OffLine: MarketActionBefore4WeeksPicList_OffLine,
                 ActivityProcess: StrActivityFlow,
@@ -1516,17 +1494,9 @@
                 return;
             }
             var StrActivityFlow2 = $('#ActivityFlowTable').bootstrapTable('getData');
-            var StrActualCost = $('#ActualCostTable').bootstrapTable('getData');
 
             if (StrActivityFlow2 && StrActivityFlow2.length > 0) {
                 StrActivityFlow2.forEach(function (item) {
-                    item.MarketActionId = id;
-                    item.InUserId = $("#G_UserId").val();
-                    item.ModifyUserId = $("#G_UserId").val();
-                })
-            }
-            if (StrActualCost && StrActualCost.length > 0) {
-                StrActualCost.forEach(function (item) {
                     item.MarketActionId = id;
                     item.InUserId = $("#G_UserId").val();
                     item.ModifyUserId = $("#G_UserId").val();
@@ -1565,7 +1535,6 @@
             var data = {
                 MarketActionId: id,
                 MarketActionAfter7: marketActionAfter7,
-                ActualExpense: StrActualCost,
                 ActualProcess: StrActivityFlow2,
                 MarketActionAfter7PicList_OffLine: MarketActionBefore4WeeksPicList_OffLine,
                 ActivityProcess: StrActivityFlow,
@@ -1968,21 +1937,7 @@
             if (_schedule2) {
                 scheduleObj.schedule2 = 20;
             }
-
-            //实际费用清单
-            var ActualCostTable = $('#ActualCostTable').bootstrapTable('getData');
-            if (ActualCostTable && ActualCostTable.length > 0) {
-                scheduleObj.schedule4 = 10;
-            } else {
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请填写实际费用清单相关信息！'
-                    });
-                    return false;
-                }
-            }
+           
             //活动流程
             var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
@@ -2006,7 +1961,7 @@
                         return false;
                     }
                 }
-                scheduleObj.schedule5 = 10;
+                scheduleObj.schedule5 = 20;
             } else {
                 if (_type == 2) {
                     layer.open({

@@ -785,7 +785,6 @@
     <script src="~/Scripts/oss-upload-direct/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/base64.js"></script>
     <script src="~/Scripts/oss-upload-direct/ali-upload.js?20170930"></script>
-    <script src="~/Scripts/oss-upload-direct/ali-upload-video.js?20170930"></script>
 
     <script>
         $("#nav_promotion").addClass("active");
@@ -794,7 +793,7 @@
         var id = '@ViewBag.Id';
         var hdData = [];
         var hdDataCoop = [{ "text": "是", "value": "true" }, { "text": "否", "value": "false" }];
-
+        var roleName = $('#G_RoleTypeCode').val();
         $(function () {
             $('img').error(function () {
                 $(this).attr('src', 'https://yrsurvey.oss-cn-beijing.aliyuncs.com/Bentley/fail2.png');
@@ -826,7 +825,6 @@
             InitActivityFlowTableOnline();
 
             $('#UserId').val($('#G_UserId').val());
-            var roleName = $('#G_RoleTypeCode').val();
             if (roleName == "SYSADMIN" || roleName == "MARKET") {
                 $('#ActiveShow').show();
                 $('#VisualStatus').prop("disabled", false);

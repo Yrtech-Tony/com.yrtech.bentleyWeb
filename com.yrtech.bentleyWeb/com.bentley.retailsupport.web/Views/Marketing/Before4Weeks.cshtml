@@ -2076,6 +2076,26 @@
                     return false;
                 }
             }
+            if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写市场基金金额总计！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.CoopFundSumAmt) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写市场基金金额总计！'
+                    });
+                    return false;
+                }
+            }
+            
             if (_schedule3) {
                 scheduleObj.schedule3 = 10;
             }

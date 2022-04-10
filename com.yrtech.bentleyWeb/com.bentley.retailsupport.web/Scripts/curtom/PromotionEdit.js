@@ -280,6 +280,14 @@ function InitActivityFlowTableOnline() {
                     type: 'text',
                     title: '',
                     validate: function (v) {
+                        v = $.trim(v);
+                        var vil = isZH() ? '金额不能为空，且必须是数字' : 'The actual cost cannot be null, and only numbers accepted';
+                        if (!v) {
+                            return vil;
+                        }
+                        if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                            return vil;
+                        }
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt", value: value };
@@ -433,7 +441,7 @@ function InitActivityFlowTableOnline() {
             curRow = row;
         },
         onEditableSave: function (field, row, oldValue, $el) {
-
+            saveCoopFund(row);
         }
     });
 }

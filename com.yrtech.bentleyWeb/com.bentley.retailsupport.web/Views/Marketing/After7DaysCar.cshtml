@@ -1351,7 +1351,9 @@
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 2,
                 DTTApproveCode: $("#DTTApproveCode").val(),
-                DTTApproveDesc: $("#DTTApproveDesc").val()
+                DTTApproveDesc: $("#DTTApproveDesc").val(),
+                modifyUserId: $("#G_UserId").val(),
+                InUserId: $("#G_UserId").val()
             }, function () {
                 EProcessing();
                 $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "HR", DTTType: 2, DTTApproveCode: $("#DTTApproveCode").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });

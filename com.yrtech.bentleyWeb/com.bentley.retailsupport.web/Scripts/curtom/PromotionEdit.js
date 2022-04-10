@@ -96,6 +96,81 @@ function InitActivityFlowTable() {
     });
 }
 
+function InitActivityFlowTableProcess() {
+
+    //活动流程
+    $('#ActivityFlowTableProcess').bootstrapTable({
+        pagination: true,
+        striped: true, //是否显示行间隔色
+        sortable: true,
+        sortName: 'ActivityDateTime',
+        sortOrder: 'asc',
+        columns: [
+            {
+                title: $('#TTime').val(),
+                field: 'ActivityDateTime',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'datetime',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTime", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: '流程',
+                field: 'Process',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Item", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Process" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Process" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityFlowRowProcess(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
+                }
+            }
+        ],
+        onClickCell: function (field, value, row, $element) {
+            return false;
+
+        },
+        onClickRow: function (row, $element) {
+            curRow = row;
+        },
+        onEditableSave: function (field, row, oldValue, $el) {
+
+        }
+    });
+}
+
 function InitActivityFlowTableNew() {
 
     //活动流程
@@ -226,7 +301,7 @@ function InitActivityFlowTableNew() {
             curRow = row;
         },
         onEditableSave: function (field, row, oldValue, $el) {
-
+            saveCoopFund(row);
         }
     });
 }
@@ -565,6 +640,21 @@ function AddActivityFlowTable() {
     });
 }
 
+var maxActivityFlowSeqNOProcess = 0;
+function AddActivityFlowTableProcess() {
+    var $table = $('#ActivityFlowTableProcess');
+    var index = $table.bootstrapTable('getData').length;//尾添加行
+    $table.bootstrapTable('insertRow', {
+        index: index,
+        row: {
+            SeqNO: maxActivityFlowSeqNOProcess++,
+            ActivityDateTime: '',
+            Responsible: '',
+            Contents: ''
+        }
+    });
+}
+
 var maxActivityFlowSeqNOCar = 0;
 function AddActivityFlowTableCar() {
     var $table = $('#ActivityFlowTableCar');
@@ -619,6 +709,14 @@ function AddActivityFlowTableOnline() {
 
 function DeleteActivityFlowRow(id) {
     var $table = $('#ActivityFlowTable');
+    $table.bootstrapTable('remove', {
+        field: 'SeqNO',
+        values: [id]
+    });
+}
+
+function DeleteActivityFlowRowProcess(id) {
+    var $table = $('#ActivityFlowTableProcess');
     $table.bootstrapTable('remove', {
         field: 'SeqNO',
         values: [id]

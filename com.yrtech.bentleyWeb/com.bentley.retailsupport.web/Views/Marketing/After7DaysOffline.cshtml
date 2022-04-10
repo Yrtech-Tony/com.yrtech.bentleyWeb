@@ -285,8 +285,8 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>Event Procedure</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
-                                            <a href="javascript:AddActivityFlowTable();"><i class="icon-plus icon-white" translate>Add</i></a>
-                                            <table id="ActivityFlowTable" class="table table-striped table-bordered table-hover"></table>
+                                            <a href="javascript:AddActivityFlowTableProcess();"><i class="icon-plus icon-white" translate>Add</i></a>
+                                            <table id="ActivityFlowTableProcess" class="table table-striped table-bordered table-hover"></table>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -1240,7 +1240,7 @@
                                                 <div class="col-md-8">
                                                     <textarea class="form-control" cols="20" id="DTTApproveDesc" name="DTTApproveDesc" placeholder="审批意见" rows="9"></textarea>
                                                     <div style="margin-top:5px;">
-                                                        <select id="DTTType" name="DTTType" class="selectpicker">
+                                                        <select id="DTTApproveCode" name="DTTApproveCode" class="selectpicker">
                                                             <option value="1" selected="" translate>Waiting for Approval</option>
                                                             <option value="2" translate>Approved</option>
                                                             <option value="3" translate>Waiting for Change</option>
@@ -1332,10 +1332,8 @@
             $.ajaxSetup({
                 async: true
             });
-            InitActivityFlowTable();
+            InitActivityFlowTableProcess();
             InitActivityFlowTableNew();
-            InitActualCost();
-            InitActualActivityProcess();
 
             $('#UserId').val($('#G_UserId').val());
            
@@ -1376,7 +1374,7 @@
                                 }
                             })
                         }
-                        $('#ActivityFlowTable').bootstrapTable("load", data.ActualProcess);
+                        $('#ActivityFlowTableProcess').bootstrapTable("load", data.ActualProcess);
 
                         if (data.ActivityProcess) {
                             data.ActivityProcess.forEach(function (item) {
@@ -1424,7 +1422,7 @@
             if (!veriData(1)) {
                 return;
             }
-            var StrActivityFlow2 = $('#ActivityFlowTable').bootstrapTable('getData');
+            var StrActivityFlow2 = $('#ActivityFlowTableProcess').bootstrapTable('getData');
 
             if (StrActivityFlow2 && StrActivityFlow2.length > 0) {
                 StrActivityFlow2.forEach(function (item) {
@@ -1447,7 +1445,7 @@
                 }
             }
 
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+            var StrActivityFlow = $('#ActivityFlowTableProcess').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
                 StrActivityFlow.forEach(function (item) {
                     item.MarketActionId = id;
@@ -1493,7 +1491,7 @@
             if (!veriData(2)) {
                 return;
             }
-            var StrActivityFlow2 = $('#ActivityFlowTable').bootstrapTable('getData');
+            var StrActivityFlow2 = $('#ActivityFlowTableProcess').bootstrapTable('getData');
 
             if (StrActivityFlow2 && StrActivityFlow2.length > 0) {
                 StrActivityFlow2.forEach(function (item) {
@@ -1516,7 +1514,7 @@
                 }
             }
 
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+            var StrActivityFlow = $('#ActivityFlowTableProcess').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
                 StrActivityFlow.forEach(function (item) {
                     item.MarketActionId = id;
@@ -1667,11 +1665,11 @@
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 2,
-                DTTApproveCode: $("#DTTType").val(),
+                DTTApproveCode: $("#DTTApproveCode").val(),
                 DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MR", DTTType: 2, DTTApproveCode: $("#DTTType").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
+                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MR", DTTType: 2, DTTApproveCode: $("#DTTApproveCode").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
@@ -1939,7 +1937,7 @@
             }
            
             //活动流程
-            var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+            var StrActivityFlow = $('#ActivityFlowTableProcess').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
                 let _flowListVeri = [];
                 StrActivityFlow.forEach(function (_item) {
@@ -2171,6 +2169,54 @@
                 $("#DTTApproveCode").selectpicker("refresh");
                 initRole();
             });
+        }
+
+        function saveCoopFund(_item) {
+            //市场基金申报信息
+            var StrActivityFlowNew = $('#ActivityFlowTableNew').bootstrapTable('getData');
+            let _flowVeri = true;
+            let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+            for (let _key in _item) {
+                if (_key == "CoopFundCode" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "CoopFundAmt" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "CoopFund_DMFChk" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+            }
+            let _sumAmt = 0;
+            StrActivityFlowNew.forEach(function (item) {
+                //计算金额
+                if (item.CoopFund_DMFChk == "true") {
+                    _sumAmt += parseInt(item.CoopFundAmt);
+                }
+            });
+            if (!_flowVeri) {
+                return false;
+            }
+            if (_CoopFundSumAmt < _sumAmt) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '报销总金额不能大于市场基金金额总计！'
+                });
+                return false;
+            }
+            _sumAmt = 0;
+            StrActivityFlowNew.forEach(function (item) {
+                //计算金额
+                if (item.CoopFund_DMFChk) {
+                    _sumAmt += parseInt(item.CoopFundAmt);
+                }
+            });
+            $("#TotalBudgetAmt").val(_sumAmt);
+            $('#ActivityFlowTableNew').bootstrapTable("load", StrActivityFlowNew);
         }
     </script>
 }

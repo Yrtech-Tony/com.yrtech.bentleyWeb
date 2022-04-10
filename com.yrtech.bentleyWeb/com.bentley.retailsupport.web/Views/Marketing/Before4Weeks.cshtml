@@ -1367,7 +1367,7 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=201709301"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093011"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1782,7 +1782,7 @@
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 1,
-                DTTApproveCode: $("#DTTType").val(),
+                DTTApproveCode: $("#DTTApproveCode").val(),
                 DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {
                 EProcessing();
@@ -2375,6 +2375,54 @@
                 $("#DTTApproveCode").selectpicker("refresh");
                 initRole();
             });
+        }
+
+        function saveCoopFund(_item) {
+            //市场基金申报信息
+            var StrActivityFlowNew = $('#ActivityFlowTableNew').bootstrapTable('getData');
+            let _flowVeri = true;
+            let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+            for (let _key in _item) {
+                if (_key == "CoopFundCode" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "CoopFundAmt" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "CoopFund_DMFChk" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+            }
+            let _sumAmt = 0;
+            StrActivityFlowNew.forEach(function (item) {
+                //计算金额
+                if (item.CoopFund_DMFChk == "true") {
+                    _sumAmt += parseInt(item.CoopFundAmt);
+                }
+            });
+            if (!_flowVeri) {
+                return false;
+            }
+            if (_CoopFundSumAmt < _sumAmt) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '报销总金额不能大于市场基金金额总计！'
+                });
+                return false;
+            }
+            _sumAmt = 0;
+            StrActivityFlowNew.forEach(function (item) {
+                //计算金额
+                if (item.CoopFund_DMFChk) {
+                    _sumAmt += parseInt(item.CoopFundAmt);
+                }
+            });
+            $("#TotalBudgetAmt").val(_sumAmt);
+            $('#ActivityFlowTableNew').bootstrapTable("load", StrActivityFlowNew);
         }
     </script>
 }

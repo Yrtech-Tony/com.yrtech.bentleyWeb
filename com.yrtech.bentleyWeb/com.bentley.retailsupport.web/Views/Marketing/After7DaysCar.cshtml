@@ -964,7 +964,7 @@
                                                 <div class="col-md-8">
                                                     <textarea class="form-control" cols="20" id="DTTApproveDesc" name="DTTApproveDesc" placeholder="审批意见" rows="9"></textarea>
                                                     <div style="margin-top:5px;">
-                                                        <select id="DTTType" name="DTTType" class="selectpicker">
+                                                        <select id="DTTApproveCode" name="DTTApproveCode" class="selectpicker">
                                                             <option value="1" selected="" translate>Waiting for Approval</option>
                                                             <option value="2" translate>Approved</option>
                                                             <option value="3" translate>Waiting for Change</option>
@@ -1350,11 +1350,11 @@
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 2,
-                DTTApproveCode: $("#DTTType").val(),
+                DTTApproveCode: $("#DTTApproveCode").val(),
                 DTTApproveDesc: $("#DTTApproveDesc").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MR", DTTType: 2, DTTApproveCode: $("#DTTType").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
+                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "HR", DTTType: 2, DTTApproveCode: $("#DTTApproveCode").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0

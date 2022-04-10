@@ -788,7 +788,7 @@
 
     <script>
         $("#nav_promotion").addClass("active");
-        let imgCodeObj = { "MRN01": "imgListDiv", "MRN04": "imgListDiv-1", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MRN06": "imgListDiv-6" };
+        let imgCodeObj = { "MRN01": "imgListDiv", "MRN04": "imgListDiv-1", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MRN06": "imgListDiv-6", "MPN10":"imgListDiv-5" };
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
         var hdData = [];
@@ -1237,7 +1237,7 @@
                 });
                 return false;
             }
-            if (!MarketActionBefore21.People_NewLeadsThsYearCount) {
+            if (!MarketActionBefore21.People_DCPIDCount) {
                 _schedule3 = false;
                 if (_type == 2) {
                     layer.open({

@@ -95,7 +95,7 @@ function loadTargetModels() {
             });
             $("#MarketActionTargetModelCode").selectpicker("refresh");
         }
-        if (!"undefined" == typeof carType && carType) {
+        if ("undefined" != typeof carType) {
             data.forEach(function (item) {
                 carType.push({ "text": item.HiddenCodeName, "value": item.HiddenCodeId });
             });

@@ -59,9 +59,19 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4"><span translate>Event ID</span><span class="required" style="color:red">*</span>:</label>
+                                    <label class="control-label col-md-4"><span translate>DCP系统活动ID</span><span class="required" style="color:red">*</span>:</label>
                                     <div class="col-md-8">
                                         <input class="form-control" id="ActionCode" name="ActionCode" maxlength="255" style="width:100%;" type="text" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>活动编码</span><span class="required" style="color:red">*</span>:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="MarketActionId" name="MarketActionId" maxlength="255" style="width:100%;" type="text" disabled />
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +206,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>曝光形式</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
-                                            <textarea class="form-control" cols="20" id="Platform_ExposureForm" name="Platform_ExposureForm" rows="5" style="width:100%;"></textarea>
+                                            <textarea class="form-control" cols="20" id="Platform_ExposuerForm" name="Platform_ExposuerForm" rows="5" style="width:100%;"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1185,7 +1195,7 @@
                     return false;
                 }
             }
-            if (!MarketActionBefore21.Platform_ExposureForm) {
+            if (!MarketActionBefore21.Platform_ExposuerForm) {
                 _schedule2 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1487,31 +1497,25 @@
             var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
             let _flowDateVeri = true;
             let _flowVeri = true;
+            let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
             for (let _key in _item) {
+                if (_key == "CoopFundCode" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
                 if (_key == "CoopFundAmt" && !_item[_key]) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请输入金额！'
-                    });
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "CoopFund_DMFChk" && !_item[_key]) {
                     _flowVeri = false;
                     return;
                 }
                 if (_key == "StartDate" && !_item[_key]) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请选择投放开始时间！'
-                    });
                     _flowVeri = false;
                     return;
                 }
                 if (_key == "EndDate" && !_item[_key]) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请选择投放结束时间！'
-                    });
                     _flowVeri = false;
                     return;
                 }
@@ -1529,26 +1533,43 @@
                     _flowDateVeri = false;
                 }
             }
+            let _sumAmt = 0;
+            StrActivityFlowNew.forEach(function (item) {
+                //计算金额
+                if (item.CoopFund_DMFChk == "true") {
+                    _sumAmt += parseInt(item.CoopFundAmt);
+                }
+            });
             if (!_flowDateVeri || !_flowVeri) {
                 return false;
             }
+            if (_CoopFundSumAmt < _sumAmt) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '报销总金额不能大于市场基金金额总计！'
+                });
+                return false;
+            }
             var _data = {
-                MarketActionAfter7CoopFund: _item
+                MarketActionBefore4WeeksCoopFund: _item
             };
             SProcessing();
-            $.commonPost("MarketAction/MarketActionAfter7CoopFundSave", _data, function (data) {
+            $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _data, function (data) {
                 console.error(data);
                 if (data) {
-                    let _sumAmt = 0;
+                    _sumAmt = 0;
                     StrActivityFlowNew.forEach(function (item) {
+                        console.error(item);
                         if (item.SeqNO > data.SeqNO) {
                             item = data;
                         }
                         //计算金额
                         if (item.CoopFund_DMFChk) {
-
+                            _sumAmt += parseInt(item.CoopFundAmt);
                         }
                     });
+                    $("#TotalBudgetAmt").val(_sumAmt);
                 }
                 $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
                 EProcessing();

@@ -672,6 +672,15 @@ function AddActivityFlowTableCar() {
 
 var maxActivityFlowSeqNONew = 0;
 function AddActivityFlowTableNew() {
+    let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+    if (!_CoopFundSumAmt) {
+        layer.open({
+            title: '错误提示',
+            type: 0,
+            content: '请填写市场基金金额总计！'
+        });
+        return false;
+    }
     var $table = $('#ActivityFlowTableNew');
     var index = $table.bootstrapTable('getData').length;//尾添加行
     $table.bootstrapTable('insertRow', {
@@ -689,6 +698,15 @@ function AddActivityFlowTableNew() {
 
 var maxActivityFlowSeqNOOnline = 0;
 function AddActivityFlowTableOnline() {
+    let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+    if (!_CoopFundSumAmt) {
+        layer.open({
+            title: '错误提示',
+            type: 0,
+            content: '请填写市场基金金额总计！'
+        });
+        return false;
+    }
     var $table = $('#ActivityFlowTableOnline');
     var index = $table.bootstrapTable('getData').length;//尾添加行
     $table.bootstrapTable('insertRow', {

@@ -1681,7 +1681,7 @@
                 ListJson: JSON.stringify(data)
             }, function () {
                 EProcessing();
-                //1.给主视觉设计公司发送邮件
+                //1.给主视觉设计公司发送邮件 验证广告视频
                 if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0) {
                     console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
                     $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
@@ -1789,7 +1789,17 @@
                 InUserId: $("#G_UserId").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MP", DTTType: 1, DTTApproveCode: $("#DTTType").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
+                if (roleName == "SHOP") {
+                    //给DTT发邮件
+                    if ($("#DTTApproveCode").val() != 2) {
+                        $.commonGet("MarketAction/DMFApplyEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
+                    }
+                } else if (roleName == "BMC") {
+                    //主视觉审批给谁发
+                } else {
+                    //给经销商发邮件
+                    $.commonGet("MarketAction/DTTApproveEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
+                }
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
@@ -2183,7 +2193,7 @@
             //图片验证
             let _schedule7 = veriImage(_type);
             if (_schedule7) {
-                scheduleObj.schedule4 = 20;
+                scheduleObj.schedule7 = 20;
             } else {
                 if (_type == 2) {
                     layer.open({

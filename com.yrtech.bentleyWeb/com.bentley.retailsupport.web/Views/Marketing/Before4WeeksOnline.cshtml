@@ -326,7 +326,7 @@
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
-                                                    <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
+                                                    <video id="videoOssImg1" class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
                                                 </div>
                                                 <div>
                                                     <div class="btn btn-warning fileinput-exists videoUpload" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
@@ -343,7 +343,7 @@
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
-                                                    <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
+                                                    <video id="videoOssImg2" class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
                                                 </div>
                                                 <div>
                                                     <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
@@ -1090,7 +1090,7 @@
             }, function () {
                 EProcessing();
                 //1.给主视觉设计公司发送邮件
-                if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0) {
+                if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0 && ($("#videoOssImg1").attr("data-flag") == 2 || $("#videoOssImg2").attr("data-flag") == 2)) {
                     console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
                     $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
                 }
@@ -1244,7 +1244,17 @@
                 InUserId: $("#G_UserId").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MP", DTTType: 1, DTTApproveCode: $("#DTTApproveCode").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
+                if (roleName == "SHOP") {
+                    //给DTT发邮件
+                    if ($("#DTTApproveCode").val() != 2) {
+                        $.commonGet("MarketAction/DMFApplyEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
+                    }
+                } else if (roleName == "BMC") {
+                    //主视觉审批给谁发
+                } else {
+                    //给经销商发邮件
+                    $.commonGet("MarketAction/DTTApproveEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
+                }
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
@@ -1400,6 +1410,25 @@
                     return false;
                 }
             }
+            if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写市场基金金额总计！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.CoopFundSumAmt) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写市场基金金额总计！'
+                    });
+                    return false;
+                }
+            }
             if (_schedule3) {
                 scheduleObj.schedule3 = 10;
             }
@@ -1467,7 +1496,7 @@
             //图片验证
             let _schedule7 = veriImage(_type);
             if (_schedule7) {
-                scheduleObj.schedule4 = 20;
+                scheduleObj.schedule7 = 20;
             } else {
                 if (_type == 2) {
                     layer.open({
@@ -1716,18 +1745,19 @@
                 });
                 return false;
             }
-        var _data = {
-            MarketActionBefore4WeeksCoopFund: _item
-        };
+            _item.MarketActionId = id;
         SProcessing();
-        $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _data, function (data) {
-            console.error(data);
+            $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _item, function (data) {
             if (data) {
                 _sumAmt = 0;
                 StrActivityFlowNew.forEach(function (item) {
-                    console.error(item);
-                    if (item.SeqNO > data.SeqNO) {
-                        item = data;
+                    if (item.SeqNO == _item.SeqNO) {
+                        item.TotalDays = data.TotalDays;
+                        item.AmtPerDay = data.AmtPerDay;
+                        item.StartDate = data.StartDate;
+                        item.EndDate = data.EndDate
+                        item.CoopFundAmt = data.CoopFundAmt;
+                        item.CoopFund_DMFChk = data.CoopFund_DMFChk;
                     }
                     //计算金额
                     if (item.CoopFund_DMFChk) {

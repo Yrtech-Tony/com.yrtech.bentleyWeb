@@ -1357,7 +1357,17 @@
                 InUserId: $("#G_UserId").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "HR", DTTType: 2, DTTApproveCode: $("#DTTApproveCode").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
+                if (roleName == "SHOP") {
+                    //给DTT发邮件
+                    if ($("#DTTApproveCode").val() != 2) {
+                        $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "HR" }, function (data) { });
+                    }
+                } else if (roleName == "BMC") {
+                    //主视觉审批给谁发
+                } else {
+                    //给经销商发邮件
+                    $.commonGet("MarketAction/DTTApproveEmail", { MarketActionId: $("#MarketActionId").val(), type: "HR" }, function (data) { });
+                }
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0

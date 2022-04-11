@@ -1093,7 +1093,17 @@
                 InUserId: $("#G_UserId").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MR", DTTType: 2, DTTApproveCode: $("#DTTApproveCode").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
+                if (roleName == "SHOP") {
+                    //给DTT发邮件
+                    if ($("#DTTApproveCode").val() != 2) {
+                        $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MR" }, function (data) { });
+                    }
+                } else if (roleName == "BMC") {
+                    //主视觉审批给谁发
+                } else {
+                    //给经销商发邮件
+                    $.commonGet("MarketAction/DTTApproveEmail", { MarketActionId: $("#MarketActionId").val(), type: "MR" }, function (data) { });
+                }
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
@@ -1552,18 +1562,21 @@
                 });
                 return false;
             }
-            var _data = {
-                MarketActionBefore4WeeksCoopFund: _item
-            };
+            _item.MarketActionId = id;
             SProcessing();
-            $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _data, function (data) {
-                console.error(data);
+            $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _item, function (data) {
                 if (data) {
                     _sumAmt = 0;
                     StrActivityFlowNew.forEach(function (item) {
-                        console.error(item);
-                        if (item.SeqNO > data.SeqNO) {
-                            item = data;
+                        console.error(item.SeqNO + "==>>" + _item.SeqNO);
+
+                        if (item.SeqNO == _item.SeqNO) {
+                            item.TotalDays = data.TotalDays;
+                            item.AmtPerDay = data.AmtPerDay;
+                            item.StartDate = data.StartDate;
+                            item.EndDate = data.EndDate
+                            item.CoopFundAmt = data.CoopFundAmt;
+                            item.CoopFund_DMFChk = data.CoopFund_DMFChk;
                         }
                         //计算金额
                         if (item.CoopFund_DMFChk) {

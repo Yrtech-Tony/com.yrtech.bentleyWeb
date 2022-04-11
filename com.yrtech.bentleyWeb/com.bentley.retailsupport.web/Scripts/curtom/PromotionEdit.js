@@ -414,7 +414,7 @@ function InitActivityFlowTableOnline() {
                     title: '',
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "StartDate", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + farmatDate(new Date(result.value)) + '</a>';
                         if (!result.value) {
                             html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
@@ -433,7 +433,7 @@ function InitActivityFlowTableOnline() {
                     title: '',
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "EndDate", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + farmatDate(new Date(result.value)) + '</a>';
                         if (!result.value) {
                             html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
@@ -453,18 +453,8 @@ function InitActivityFlowTableOnline() {
                     validate: function (v) {
                     },
                     noeditFormatter: function (value, row, index) {
-                        var StartDate = row.StartDate;
-                        var EndDate = row.EndDate;
-                        let _value = "";
-                        if (StartDate && EndDate) {
-                            StartDate = new Date(StartDate);
-                            EndDate = new Date(EndDate);
-                            StartDate = farmatDate(StartDate);
-                            EndDate = farmatDate(EndDate);
-                            let _result = EndDate - StartDate;
-                            _value = _result / 1000 / 3600 / 24;
-                        }
-                        return '<div style="min-width:100px">' + _value + '</div>';
+                        var result = { filed: "TotalDays", value: value };
+                        return '<div style="min-width:100px">' + result.value + '</div>';
                     }
                 }
 
@@ -480,18 +470,9 @@ function InitActivityFlowTableOnline() {
                     validate: function (v) {
                     },
                     noeditFormatter: function (value, row, index) {
-                        var StartDate = row.StartDate;
-                        var EndDate = row.EndDate;
-                        let _value = "";
-                        if (row.CoopFundAmt && StartDate && EndDate) {
-                            StartDate = new Date(StartDate);
-                            EndDate = new Date(EndDate);
-                            StartDate = farmatDate(StartDate);
-                            EndDate = farmatDate(EndDate);
-                            let _result = EndDate - StartDate;
-                            _value = _result / 1000 / 3600 / 24;
-                            _value = row.CoopFundAmt / _value;
-                        }
+                        var result = { filed: "AmtPerDay", value: value };
+                        let _value = result.value;
+                        _value = isNaN(parseFloat(_value)) ? _value : parseFloat(_value).toFixed(2);
                         return '<div style="min-width:100px">' + _value + '</div>';
                     }
                 }
@@ -712,7 +693,7 @@ function AddActivityFlowTableOnline() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxActivityFlowSeqNOOnline++,
+            SeqNO: ++maxActivityFlowSeqNOOnline,
             CoopFundCode: '',
             CoopFundAmt: '',
             CoopFund_DMFChk: '',
@@ -1442,7 +1423,6 @@ function farmatDate(date) {
     let _year = date.getFullYear();  // 获取完整的年份(4位,1970)
     let _month = date.getMonth() + 1;  // 获取月份(0-11,0代表1月,用的时候记得加上1)
     let _day = date.getDate();  // 获取日(1-31)
-    let _date = _year + "-" + _month + "-" + _day + " 00:00:00";
-    _date = new Date(_date);
-    return _date.getTime();
+    let _date = _year + "-" + _month + "-" + _day;
+    return _date;
 }

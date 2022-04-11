@@ -1347,7 +1347,7 @@
                 }
             }
             if (_schedule2) {
-                _schedule2 = 10;
+                scheduleObj.schedule2 = 10;
             }
             //人员信息
             let _schedule3 = true;
@@ -1401,7 +1401,7 @@
                 }
             }
             if (_schedule3) {
-                _schedule3 = 10;
+                scheduleObj.schedule3 = 10;
             }
             //主视觉
             let _schedule4 = veriKeyVisual(MarketActionBefore21, _type);
@@ -1530,6 +1530,7 @@
 
         //进度逻辑
         function planProgessSub() {
+            console.error(scheduleObj);
             let _sum = 0;
             for (let _key in scheduleObj) {
                 _sum += parseInt(scheduleObj[_key]);

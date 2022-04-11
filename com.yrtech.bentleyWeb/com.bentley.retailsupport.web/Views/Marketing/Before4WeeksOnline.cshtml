@@ -1247,13 +1247,13 @@
                 if (roleName == "SHOP") {
                     //给DTT发邮件
                     if ($("#DTTApproveCode").val() != 2) {
-                        $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
+                        $.commonGet("MarketAction/DMFApplyEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
                     }
                 } else if (roleName == "BMC") {
                     //主视觉审批给谁发
                 } else {
                     //给经销商发邮件
-                    $.commonGet("MarketAction/DTTApproveEmail", { MarketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
+                    $.commonGet("MarketAction/DTTApproveEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
                 }
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
@@ -1496,7 +1496,7 @@
             //图片验证
             let _schedule7 = veriImage(_type);
             if (_schedule7) {
-                scheduleObj.schedule4 = 20;
+                scheduleObj.schedule7 = 20;
             } else {
                 if (_type == 2) {
                     layer.open({

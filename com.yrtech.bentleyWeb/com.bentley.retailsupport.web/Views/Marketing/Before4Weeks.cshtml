@@ -2221,6 +2221,16 @@
         //验证主视觉
         function veriKeyVisual(_data, _type) {
             let _schedule4 = true;
+            if (!_data.KeyVisionPic || _data.KeyVisionPic.indexOf("data:image") != 0) {
+                _schedule4 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写上传主视觉图片！'
+                    });
+                }
+            }
             if (!_data.KeyVisionDesc) {
                 _schedule4 = false;
                 if (_type == 2) {

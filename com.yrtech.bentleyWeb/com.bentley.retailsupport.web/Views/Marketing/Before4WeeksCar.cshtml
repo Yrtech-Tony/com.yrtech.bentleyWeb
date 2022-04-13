@@ -1279,6 +1279,11 @@
             }, function () {
                 EProcessing();
                 var msg = isZH() ? '保存成功！' : "Save successfully !";
+                $('.form-control').prop("disabled", true);
+                //车型
+                $('#MarketActionTargetModelCode').prop("disabled", true);
+                $('#VisualStatus').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
                 }, function (datas) {
@@ -1510,6 +1515,11 @@
                     $.commonGet("MarketAction/DTTApproveEmail", { marketActionId: $("#MarketActionId").val(), type: "HP" }, function (data) { });
                 }
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
+                $('.form-control').prop("disabled", true);
+                //车型
+                $('#MarketActionTargetModelCode').prop("disabled", true);
+                $('#VisualStatus').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
                 }, function (datas) {
@@ -2121,11 +2131,11 @@
             if (!_flowVeri) {
                 return false;
             }
-            if (_CoopFundSumAmt < _sumAmt) {
+            if (_CoopFundSumAmt > _sumAmt) {
                 layer.open({
                     title: '错误提示',
                     type: 0,
-                    content: '报销总金额不能大于市场基金金额总计！'
+                    content: '报销总金额不能小于市场基金金额总计！'
                 });
                 return false;
             }

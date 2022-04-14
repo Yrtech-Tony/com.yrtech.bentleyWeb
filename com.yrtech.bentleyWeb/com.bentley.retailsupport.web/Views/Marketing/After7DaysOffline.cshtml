@@ -2141,6 +2141,19 @@
                 type: "MRF",
                 userId: $("#G_UserId").val()
             }, function (data) {
+                if (data.Status) {
+                    layer.open({
+                        title: '提示',
+                        type: 0,
+                        content: '生成PPT成功！'
+                    });
+                } else {
+                    layer.open({
+                        title: '提示',
+                        type: 0,
+                        content: '生成PPT失败！'
+                    });
+                }
                 EProcessing();
             });
         }
@@ -2153,7 +2166,7 @@
                 picType: "MRF15"
             }, function (data) {
                 EProcessing();
-                window.open(baseOss + data[0].PicPath);
+                window.location.href = baseOss + data[0].PicPath;
             });
         }
 

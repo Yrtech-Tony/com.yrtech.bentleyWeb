@@ -2293,6 +2293,19 @@
                 type: "MPF",
                 userId: $("#G_UserId").val()
             }, function (data) {
+                if (data.Status) {
+                    layer.open({
+                        title: '提示',
+                        type: 0,
+                        content: '生成PPT成功！'
+                    });
+                } else {
+                    layer.open({
+                        title: '提示',
+                        type: 0,
+                        content: '生成PPT失败！'
+                    });
+                }
                 EProcessing();
             });
         }
@@ -2305,8 +2318,8 @@
                 picType: "MPF13"
             }, function (data) {
                 EProcessing();
-                window.open(baseOss + data[0].PicPath);
-                console.error(data);
+                window.location.href = baseOss + data[0].PicPath;
+                //window.open(baseOss + data[0].PicPath);
             });
         }
 

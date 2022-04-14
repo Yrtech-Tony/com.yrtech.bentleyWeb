@@ -19,7 +19,7 @@ $.commonGet = function (url, params, callback, err) {
                 }
             } else {
                 if (callback) {
-                    callback();
+                    callback(data);
                 }
             }
         } else {

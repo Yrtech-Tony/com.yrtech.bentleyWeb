@@ -1010,6 +1010,7 @@
         function initVideoOssClient(_id) {
             var osspath = "Bentley/" + year + "/MarketAction/";
             ossClient = new OSSClient({
+                isVideo:true,
                 uploadId: _id,
                 fileAddCheck: function () {
                     return true;

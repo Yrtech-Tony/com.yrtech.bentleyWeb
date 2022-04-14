@@ -2087,18 +2087,7 @@
                     });
                     return false;
                 }
-            }
-            if (!MarketActionBefore21.PlatformReason) {
-                _schedule3 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请填写场地选择理由！'
-                    });
-                    return false;
-                }
-            }
+            }  
             if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
                 layer.open({
                     title: '错误提示',
@@ -2202,6 +2191,17 @@
             }
             //图片验证
             let _schedule7 = veriImage(_type);
+            if (!MarketActionBefore21.PlatformReason) {
+                _schedule7 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写场地选择理由！'
+                    });
+                    return false;
+                }
+            }
             if (_schedule7) {
                 scheduleObj.schedule7 = 20;
             } else {

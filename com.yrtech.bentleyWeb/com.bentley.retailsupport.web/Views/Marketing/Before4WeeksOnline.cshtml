@@ -251,7 +251,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>预算金额总计</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>预算金额总计</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -276,7 +276,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Primary Vision</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Primary Vision</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-4">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -322,7 +322,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-5">
-                                        <label class="control-label col-md-2"><span translate>广告视频</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>广告视频</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
@@ -358,7 +358,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv">
-                                        <label class="control-label col-md-2"><span translate>报价单</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>报价单</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2 img-div">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -427,7 +427,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-1">
-                                        <label class="control-label col-md-2"><span translate>邮件截图</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>邮件截图</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -510,7 +510,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-2">
-                                        <label class="control-label col-md-2"><span translate>平台简介-媒体平台截图</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>平台简介-媒体平台截图</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -579,7 +579,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-3">
-                                        <label class="control-label col-md-2"><span translate>品牌曝光形式</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>品牌曝光形式</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -648,7 +648,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-4">
-                                        <label class="control-label col-md-2"><span translate>物料设计</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>物料设计</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -717,7 +717,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-6">
-                                        <label class="control-label col-md-2"><span translate>媒体投放示例</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>媒体投放示例</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -1409,17 +1409,6 @@
                     return false;
                 }
             }
-            if (!MarketActionBefore21.PlatformReason) {
-                _schedule3 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '媒体平台选择理由！'
-                    });
-                    return false;
-                }
-            }
             if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
                 layer.open({
                     title: '错误提示',
@@ -1505,6 +1494,17 @@
             }
             //图片验证
             let _schedule7 = veriImage(_type);
+            if (!MarketActionBefore21.PlatformReason) {
+                _schedule7 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '媒体平台选择理由！'
+                    });
+                    return false;
+                }
+            }
             if (_schedule7) {
                 scheduleObj.schedule7 = 20;
             } else {

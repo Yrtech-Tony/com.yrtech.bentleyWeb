@@ -145,7 +145,7 @@
                     </span>
                 </div>
 
-                <div class="widget-body form form-horizontal" id="activityplan" style="display: block;">
+                <div class="widget-body form form-horizontal" id="activityplan" style="display: block;overflow:hidden;">
                     <div>
                         <form class="form-horizontal" id="PromotionCreate2">
 
@@ -1338,7 +1338,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;">
+                            <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;left:265px;">
                                 <div class="col-md-6">
                                     <button id="btnSave" type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
                                     <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
@@ -1568,6 +1568,11 @@
                 ListJson: JSON.stringify(data)
             }, function () {
                 EProcessing();
+                $('.form-control').prop("disabled", true);
+                //车型
+                $('#MarketActionTargetModelCode').prop("disabled", true);
+                $('#VisualStatus').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
                 var msg = isZH() ? '保存成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
@@ -1801,6 +1806,11 @@
                     $.commonGet("MarketAction/DTTApproveEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
                 }
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
+                $('.form-control').prop("disabled", true);
+                //车型
+                $('#MarketActionTargetModelCode').prop("disabled", true);
+                $('#VisualStatus').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
                 }, function (datas) {
@@ -2077,18 +2087,7 @@
                     });
                     return false;
                 }
-            }
-            if (!MarketActionBefore21.PlatformReason) {
-                _schedule3 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请填写场地选择理由！'
-                    });
-                    return false;
-                }
-            }
+            }  
             if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
                 layer.open({
                     title: '错误提示',
@@ -2192,6 +2191,17 @@
             }
             //图片验证
             let _schedule7 = veriImage(_type);
+            if (!MarketActionBefore21.PlatformReason) {
+                _schedule7 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写场地选择理由！'
+                    });
+                    return false;
+                }
+            }
             if (_schedule7) {
                 scheduleObj.schedule7 = 20;
             } else {
@@ -2221,6 +2231,16 @@
         //验证主视觉
         function veriKeyVisual(_data, _type) {
             let _schedule4 = true;
+            if (!_data.KeyVisionPic || _data.KeyVisionPic.indexOf("data:image") != 0) {
+                _schedule4 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写上传主视觉图片！'
+                    });
+                }
+            }
             if (!_data.KeyVisionDesc) {
                 _schedule4 = false;
                 if (_type == 2) {
@@ -2419,11 +2439,11 @@
             if (!_flowVeri) {
                 return false;
             }
-            if (_CoopFundSumAmt < _sumAmt) {
+            if (_CoopFundSumAmt > _sumAmt) {
                 layer.open({
                     title: '错误提示',
                     type: 0,
-                    content: '报销总金额不能大于市场基金金额总计！'
+                    content: '报销总金额不能小于市场基金金额总计！'
                 });
                 return false;
             }

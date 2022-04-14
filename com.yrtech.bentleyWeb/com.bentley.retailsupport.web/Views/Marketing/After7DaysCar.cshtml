@@ -144,7 +144,7 @@
                         <a href="javascript:;" class="icon-chevron-down" onclick="ShowReport()"></a>
                     </span>
                 </div>
-                <div class="widget-body form form-horizontal" id="activityreport" style="display: block;">
+                <div class="widget-body form form-horizontal" id="activityreport" style="display: block;overflow:hidden;">
                     <div>
                         <form class="form-horizontal ng-pristine ng-valid" id="PromotionCreate2">
                             <div class="row">
@@ -279,7 +279,16 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>新增订单</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="People_NewOrderCount" name="People_NewOrderCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -977,7 +986,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;">
+                            <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;left:265px;">
                                 <div class="col-md-6">
                                     <button id="btnSave" type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
                                     <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
@@ -1172,6 +1181,8 @@
             }, function () {
                 EProcessing();
                 var msg = isZH() ? '保存成功！' : "Save successfully !";
+                $('.form-control').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
                 }, function (datas) {
@@ -1369,6 +1380,8 @@
                     $.commonGet("MarketAction/DTTApproveEmail", { marketActionId: $("#MarketActionId").val(), type: "HR" }, function (data) { });
                 }
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
+                $('.form-control').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
                 }, function (datas) {
@@ -1606,6 +1619,25 @@
                         title: '错误提示',
                         type: 0,
                         content: '请填写其他！'
+                    });
+                    return false;
+                }
+            }
+            if (!veriNumber(MarketActionBefore21.People_NewOrderCount)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写新增订单！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.People_NewOrderCount) {
+                _schedule2 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写新增订单！'
                     });
                     return false;
                 }
@@ -1898,11 +1930,11 @@
             if (!_flowVeri) {
                 return false;
             }
-            if (_CoopFundSumAmt < _sumAmt) {
+            if (_CoopFundSumAmt > _sumAmt) {
                 layer.open({
                     title: '错误提示',
                     type: 0,
-                    content: '报销总金额不能大于市场基金金额总计！'
+                    content: '报销总金额不能小于市场基金金额总计！'
                 });
                 return false;
             }

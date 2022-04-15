@@ -1922,6 +1922,7 @@
         //验证主视觉
         function veriKeyVisual(_data, _type) {
             let _schedule4 = true;
+            _data.KeyVisionPic = $('#img_visual1').getImgSrc();
             if (!_data.KeyVisionPic || _data.KeyVisionPic.indexOf("data:image") != 0) {
                 _schedule4 = false;
                 if (_type == 2) {

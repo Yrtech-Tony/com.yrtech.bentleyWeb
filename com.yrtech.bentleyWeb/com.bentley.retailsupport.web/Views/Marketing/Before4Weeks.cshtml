@@ -227,17 +227,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>邀请计划总数</span><span class="required" style="color:red">*</span>:  </label>
-                                        <div class="col-md-4">
-                                            <input class="form-control" id="People_InvitationTotalCount" name="People_InvitationTotalCount" style="width:100%;" type="text" min="0" maxlength="255">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>车主</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="People_InvitationCarOwnerCount" name="People_InvitationCarOwnerCount" style="width:100%;" type="text" min="0" maxlength="255">
@@ -282,6 +271,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>邀请计划总数</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="People_InvitationTotalCount" name="People_InvitationTotalCount" readonly style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>用途（静态展示/试驾）</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="Vehide_Usage" name="Vehide_Usage" style="width:100%;" type="text" min="0" maxlength="255">
@@ -307,30 +307,6 @@
                                         <label class="control-label col-md-4"><span translate>数量</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="Vehide_Qty" name="Vehide_Qty" style="width:100%;" type="text" min="0" maxlength="255">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>表演-表演计划</span><span class="required" style="color:red">*</span>:  </label>
-                                        <div class="col-md-4">
-                                            <input class="form-control" id="PerformPlan" name="PerformPlan" style="width:100%;" type="text" maxlength="255">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>摄影摄像-摄影师介绍</span><span class="required" style="color:red">*</span>:  </label>
-                                        <div class="col-md-4">
-                                            <input class="form-control" id="PhotographerIntro" name="PhotographerIntro" style="width:100%;" type="text" maxlength="255">
 
                                         </div>
                                     </div>
@@ -1005,7 +981,28 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>表演-表演计划</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" cols="20" id="PerformPlan" name="PerformPlan" rows="5" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>摄影摄像-摄影师介绍</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" cols="20" id="PhotographerIntro" name="PhotographerIntro" rows="5" style="width:100%;" ></textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-11">
@@ -1319,6 +1316,7 @@
 
             InitActivityFlowTable();
             InitActivityFlowTableNew();
+            bindInputChange();
             //BMC主视觉
             if (roleName == "SYSADMIN" || roleName == "BMC") {
                 $('#ActiveShow').show();
@@ -1365,6 +1363,7 @@
                         $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
                         $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
                         $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
+                        subCluesToTheCost();
                         searchDtt();
                     }
                 });
@@ -2402,9 +2401,7 @@
                 }
             });
             $("#TotalBudgetAmt").val(_sumAmt);
-            let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
-            _cluesToTheCost = parseFloat(_cluesToTheCost);
-            $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2):'');
+            subCluesToTheCost();
             $('#ActivityFlowTableNew').bootstrapTable("load", StrActivityFlowNew);
         }
     </script>

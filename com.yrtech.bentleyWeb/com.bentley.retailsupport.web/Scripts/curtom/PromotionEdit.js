@@ -1488,3 +1488,43 @@ function farmatDate(date) {
     let _date = _year + "-" + _month + "-" + _day;
     return _date;
 }
+
+function subCluesToTheCost() {
+    let _sumAmt = $("#TotalBudgetAmt").val();
+    let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
+    if ($("#People_NewLeadsThisYearCount").val()) {
+        _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
+        _cluesToTheCost = parseFloat(_cluesToTheCost);
+    } else {
+        _cluesToTheCost = '';
+    }
+    $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+}
+
+function bindInputChange() {
+    $("#People_InvitationCarOwnerCount").on('input', function () {
+        sumPlan();
+    });
+    $("#People_InvitationDepositorCount").on('input', function () {
+        sumPlan();
+    });
+    $("#People_InvitationPotentialCount").on('input', function () {
+        sumPlan();
+    });
+    $("#People_InvitationOtherCount").on('input', function () {
+        sumPlan();
+    });
+    $("#People_NewLeadsThisYearCount").on('input', function () {
+        subCluesToTheCost();
+    });
+    
+}
+
+function sumPlan() {
+    let _People_InvitationCarOwnerCount = parseInt($("#People_InvitationCarOwnerCount").val());
+    let _People_InvitationDepositorCount = parseInt($("#People_InvitationDepositorCount").val());
+    let _People_InvitationPotentialCount = parseInt($("#People_InvitationPotentialCount").val());
+    let _People_InvitationOtherCount = parseInt($("#People_InvitationOtherCount").val());
+    let _sumCount = (_People_InvitationCarOwnerCount ? _People_InvitationCarOwnerCount : 0) + (_People_InvitationDepositorCount ? _People_InvitationDepositorCount : 0) + (_People_InvitationPotentialCount ? _People_InvitationPotentialCount : 0) + (_People_InvitationOtherCount ? _People_InvitationOtherCount : 0);
+    $("#People_InvitationTotalCount").val(_sumCount);
+}

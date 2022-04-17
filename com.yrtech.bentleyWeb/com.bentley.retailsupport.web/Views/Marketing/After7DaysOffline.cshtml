@@ -2042,7 +2042,7 @@
                 let _sumAmt = 0;
                 StrActivityFlowNew.forEach(function (item) {
                     //计算金额
-                    if (item.CoopFund_DMFChk == "true") {
+                    if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
                         _sumAmt += parseInt(item.CoopFundAmt);
                     }
                 });
@@ -2268,7 +2268,7 @@
             let _sumAmt = 0;
             StrActivityFlowNew.forEach(function (item) {
                 //计算金额
-                if (item.CoopFund_DMFChk == "true") {
+                if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
                     _sumAmt += parseInt(item.CoopFundAmt);
                 }
             });

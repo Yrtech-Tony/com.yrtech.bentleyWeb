@@ -1365,7 +1365,7 @@
                 let _sumAmt = 0;
                 StrActivityFlowNew.forEach(function (item) {
                     //计算金额
-                    if (item.CoopFund_DMFChk == "true") {
+                    if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
                         _sumAmt += parseInt(item.CoopFundAmt);
                     }
                 });
@@ -1613,7 +1613,7 @@
             let _sumAmt = 0;
             StrActivityFlowNew.forEach(function (item) {
                 //计算金额
-                if (item.CoopFund_DMFChk == "true") {
+                if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
                     _sumAmt += parseInt(item.CoopFundAmt);
                 }
             });
@@ -1634,8 +1634,6 @@
                 if (data) {
                     _sumAmt = 0;
                     StrActivityFlowNew.forEach(function (item) {
-                        console.error(item.SeqNO + "==>>" + _item.SeqNO);
-
                         if (item.SeqNO == _item.SeqNO) {
                             item.TotalDays = data.TotalDays;
                             item.AmtPerDay = data.AmtPerDay;

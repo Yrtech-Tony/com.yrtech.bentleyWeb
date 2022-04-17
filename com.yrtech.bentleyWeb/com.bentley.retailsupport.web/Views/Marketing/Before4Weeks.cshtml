@@ -562,7 +562,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>场地选择理由</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
-                                            <textarea class="form-control" cols="20" id="PlatformReason" name="PlatformReason" data-val="true" rows="5" style="width:100%;"></textarea>
+                                            <textarea class="form-control" cols="20" placeholder="增加备注（场地基础信息：地点 / 容量 / 选择理由；合作方信息（若有）：合作方背景 / 合作模式），帮助经销商填写" id="PlatformReason" name="PlatformReason" data-val="true" rows="5" style="width:100%;"></textarea>
                                         </div>
                                     </div>
 
@@ -1581,9 +1581,11 @@
             }, function () {
                 EProcessing();
                 //1.给主视觉设计公司发送邮件 验证广告视频
-                if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0) {
-                    console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
-                    $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                if (!roleName.equals("BMC")) {
+                    if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0) {
+                        console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
+                        $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                    }
                 }
 
                 //2.如果主视觉审核意见有修改时给经销商发邮件
@@ -2357,25 +2359,10 @@
                     return;
                 }
             }
-            let _sumAmt = 0;
-            StrActivityFlowNew.forEach(function (item) {
-                //计算金额
-                if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
-                    _sumAmt += parseInt(item.CoopFundAmt);
-                }
-            });
             if (!_flowVeri) {
                 return false;
             }
-            if (_CoopFundSumAmt > _sumAmt) {
-                layer.open({
-                    title: '错误提示',
-                    type: 0,
-                    content: '市场基金金额总计应该小于报销总金额！'
-                });
-                return false;
-            }
-            _sumAmt = 0;
+            let _sumAmt = 0;
             StrActivityFlowNew.forEach(function (item) {
                 //计算金额
                 if (item.CoopFund_DMFChk) {

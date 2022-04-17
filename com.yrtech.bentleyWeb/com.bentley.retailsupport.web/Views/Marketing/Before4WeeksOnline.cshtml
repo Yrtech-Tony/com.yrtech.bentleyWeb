@@ -1777,42 +1777,14 @@
                     return;
                 }
             }
-            //验证结束时间大于开始时间
-            if (_item["StartDate"] && _item["EndDate"]) {
-                let _startDate = new Date(_item["StartDate"]);
-                let _endDate = new Date(_item["EndDate"]);
-                if (_startDate.getTime() >= _endDate.getTime()) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '投放开始时间不能大于等于投放结束时间！'
-                    });
-                    _flowDateVeri = false;
-                }
-            }
-            let _sumAmt = 0;
-            StrActivityFlowNew.forEach(function (item) {
-                //计算金额
-                if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
-                    _sumAmt += parseInt(item.CoopFundAmt);
-                }
-            });
+            let _sumAmt = 0;         
             if (!_flowDateVeri || !_flowVeri) {
-                return false;
-            }
-            if (_CoopFundSumAmt > _sumAmt) {
-                layer.open({
-                    title: '错误提示',
-                    type: 0,
-                    content: '市场基金金额总计应该小于报销总金额！'
-                });
                 return false;
             }
             _item.MarketActionId = id;
         SProcessing();
             $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _item, function (data) {
             if (data) {
-                _sumAmt = 0;
                 StrActivityFlowNew.forEach(function (item) {
                     if (item.SeqNO == _item.SeqNO) {
                         item.TotalDays = data.TotalDays;

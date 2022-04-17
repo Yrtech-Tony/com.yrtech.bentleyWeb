@@ -260,6 +260,18 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>每条线索成本</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="CluesToTheCost" name="CluesToTheCost" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -795,7 +807,7 @@
                                                         <select id="DTTApproveCode" name="DTTApproveCode" class="selectpicker">
                                                             <option value="1" selected="" translate>Waiting for Approval</option>
                                                             <option value="2" translate>Approved</option>
-                                                            <option value="3" translate>Waiting for Change</option>
+                                                            <option value="3" translate>Waiting for Change DTT</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1446,6 +1458,22 @@
             if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
                 let _flowListVeri = [];
                 let _flowDateVeri = true;
+                let _sumAmt = 0;
+                StrActivityFlowNew.forEach(function (item) {
+                    //计算金额
+                    if (item.CoopFund_DMFChk == "true") {
+                        _sumAmt += parseInt(item.CoopFundAmt);
+                    }
+                });
+                let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+                if (_CoopFundSumAmt > _sumAmt) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '市场基金金额总计不能大于报销总金额！'
+                    });
+                    return false;
+                }
                 StrActivityFlowNew.forEach(function (_item) {
                     let _flowVeri = false;
                     for (let _key in _item) {
@@ -1775,7 +1803,7 @@
                 layer.open({
                     title: '错误提示',
                     type: 0,
-                    content: '报销总金额不能小于市场基金金额总计！'
+                    content: '市场基金金额总计不能大于报销总金额！'
                 });
                 return false;
             }
@@ -1794,11 +1822,12 @@
                         item.CoopFund_DMFChk = data.CoopFund_DMFChk;
                     }
                     //计算金额
-                    if (item.CoopFund_DMFChk) {
-                        _sumAmt += parseInt(item.CoopFundAmt);
-                    }
+                    _sumAmt += parseInt(item.CoopFundAmt);
                 });
                 $("#TotalBudgetAmt").val(_sumAmt);
+                let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
+                _cluesToTheCost = parseFloat(_cluesToTheCost);
+                $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
             }
             $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
             EProcessing();

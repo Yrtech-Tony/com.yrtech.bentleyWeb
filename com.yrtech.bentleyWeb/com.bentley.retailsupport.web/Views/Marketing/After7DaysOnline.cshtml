@@ -764,7 +764,7 @@
                                 <div class="col-md-6">
                                     <button id="btnSave" type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
                                     <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
-                                    <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
+                                    <button type="button" onclick="createPPT(1)" class="btn btn-danger" translate>生成PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
                                 </div>
@@ -1473,7 +1473,7 @@
         }
 
         //生成PPT
-        function createPPT() {
+        function createPPT(_type) {
             SProcessing();
             $.commonGet("MarketAction/CreatePPT", {
                 marketActionId: $("#MarketActionId").val(),
@@ -1481,17 +1481,21 @@
                 userId: $("#G_UserId").val()
             }, function (data) {
                 if (data.Status) {
-                    layer.open({
-                        title: '提示',
-                        type: 0,
-                        content: '生成PPT成功！'
-                    });
+                    if (_type) {
+                        layer.open({
+                            title: '提示',
+                            type: 0,
+                            content: '生成PPT成功！'
+                        });
+                    }
                 } else {
-                    layer.open({
-                        title: '提示',
-                        type: 0,
-                        content: '生成PPT失败！'
-                    });
+                    if (_type) {
+                        layer.open({
+                            title: '提示',
+                            type: 0,
+                            content: '生成PPT失败！'
+                        });
+                    }
                 }
                 EProcessing();
             });

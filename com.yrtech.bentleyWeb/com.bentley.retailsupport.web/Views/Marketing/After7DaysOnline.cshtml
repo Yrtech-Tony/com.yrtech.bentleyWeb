@@ -1363,7 +1363,7 @@
                     }
                 }
                 let _sumAmt = 0;
-                StrActivityFlowNew.forEach(function (item) {
+                StrActivityFlow.forEach(function (item) {
                     //计算金额
                     if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
                         _sumAmt += parseInt(item.CoopFundAmt);
@@ -1624,7 +1624,7 @@
                 layer.open({
                     title: '错误提示',
                     type: 0,
-                    content: '报销总金额不能小于市场基金金额总计！'
+                    content: '市场基金金额总计不能大于报销总金额！'
                 });
                 return false;
             }

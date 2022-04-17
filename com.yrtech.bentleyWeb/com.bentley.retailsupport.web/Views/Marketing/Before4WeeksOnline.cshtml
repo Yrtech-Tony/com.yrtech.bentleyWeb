@@ -931,6 +931,7 @@
                         $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
                         $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
                         $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
+                        subCluesToTheCost();
                         searchDtt();
                     }
 
@@ -1825,9 +1826,7 @@
                     _sumAmt += parseInt(item.CoopFundAmt);
                 });
                 $("#TotalBudgetAmt").val(_sumAmt);
-                let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
-                _cluesToTheCost = parseFloat(_cluesToTheCost);
-                $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+                subCluesToTheCost();
             }
             $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
             EProcessing();

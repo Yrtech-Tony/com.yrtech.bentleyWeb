@@ -10,8 +10,8 @@ function InitActivityFlowTable() {
         sortOrder: 'asc',
         columns: [
         {
-            title: $('#TTime').val(),
-            field: 'ActivityDateTime',
+            title: '活动开始时间',
+                field: 'ActivityDateTimeStart',
             valign: "left",
             align: "left",
             sortable: true,
@@ -21,15 +21,38 @@ function InitActivityFlowTable() {
                 validate: function (v) {
                 },
                 noeditFormatter: function (value, row, index) {
-                    var result = { filed: "ActivityDateTime", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    var result = { filed: "ActivityDateTimeStart", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
                     if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                     }
                     return html;
                 }
             }
-        },
+            },
+
+            {
+                title: '活动结束时间',
+                field: 'ActivityDateTimeEnd',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'datetime',
+                    title: '',
+                    validate: function (v) {
+
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTimeEnd", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeEnd" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTimeEnd" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
         
         {
             title: $('#TContent').val(),
@@ -91,9 +114,47 @@ function InitActivityFlowTable() {
             curRow = row;
         },
         onEditableSave: function (field, row, oldValue, $el) {
-
+            checkTime(row);
         }
     });
+}
+
+function checkTime(_item) {
+    var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+    let _flowVeri = true;
+    for (let _key in _item) {
+        if (_key == "ActivityDateTimeStart" && !_item[_key]) {
+            _flowVeri = false;
+            return;
+        }
+        if (_key == "ActivityDateTimeEnd" && !_item[_key]) {
+            _flowVeri = false;
+            return;
+        }
+    }
+    //验证结束时间大于开始时间
+    if (_item["ActivityDateTimeStart"] && _item["ActivityDateTimeEnd"]) {
+        let _startDate = new Date(_item["ActivityDateTimeStart"]);
+        let _endDate = new Date(_item["ActivityDateTimeEnd"]);
+        if (_startDate.getTime() >= _endDate.getTime()) {
+            layer.open({
+                title: '错误提示',
+                type: 0,
+                content: '活动开始时间不能大于活动结束时间！'
+            });
+            _item["ActivityDateTimeEnd"] = '';
+            _flowDateVeri = false;
+        }
+    }
+    if (!_flowVeri) {
+        return false;
+    }
+    StrActivityFlow.forEach(function (item) {
+        if (item.SeqNO == _item.SeqNO) {
+            item = _item;
+        }
+    });
+    $('#ActivityFlowTable').bootstrapTable("load", StrActivityFlow);
 }
 
 function InitActivityFlowTableProcess() {
@@ -614,7 +675,8 @@ function AddActivityFlowTable() {
         index: index,
         row: {
             SeqNO: maxActivityFlowSeqNO++,
-            ActivityDateTime: '',
+            ActivityDateTimeStart: '',
+            ActivityDateTimeEnd:'',
             Responsible: '',
             Contents: ''
         }

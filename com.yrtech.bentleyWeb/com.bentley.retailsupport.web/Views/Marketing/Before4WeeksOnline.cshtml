@@ -1108,9 +1108,11 @@
             }, function () {
                 EProcessing();
                 //1.给主视觉设计公司发送邮件
-                if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0 || $("#videoOssImg1").attr("data-flag") == 2 || $("#videoOssImg2").attr("data-flag") == 2) {
-                    console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
-                    $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                if (!roleName.equals("BMC")) {
+                    if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0 || $("#videoOssImg1").attr("data-flag") == 2 || $("#videoOssImg2").attr("data-flag") == 2) {
+                        console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
+                        $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                    }
                 }
 
                 //2.如果主视觉审核意见有修改时给经销商发邮件

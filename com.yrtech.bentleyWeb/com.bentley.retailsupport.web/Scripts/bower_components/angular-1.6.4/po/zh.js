@@ -231,6 +231,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Waiting for Approval": "待审批"
             , "Approved": "通过"
             , "Waiting for Change": "修改"
+            , "Waiting for Change DTT": "未通过"
             , "Design Extension": "其他"
             , "Accessories": "物料设计"
             , "Choose Documents": "选择文件"

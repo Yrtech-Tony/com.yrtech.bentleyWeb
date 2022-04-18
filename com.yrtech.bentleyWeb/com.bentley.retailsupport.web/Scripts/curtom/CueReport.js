@@ -60,8 +60,8 @@ function Add() {
             ActionName: $('#ActionName').val(),
             MarketActionId: $('#MarketActionId').val(),
             CustomerName: "",
-            DCPID: '',
-            DCPCheckName:false,
+            BPNO: '',
+            DCPCheck:false,
             OwnerCheck: false,
             DealCheck: false,
             LeadsCheck: false,
@@ -171,17 +171,17 @@ function InitCueLst() {
         },
         {
             title: 'DCPID',
-            field: "DCPID",
+            field: "BPNO",
             valign: "middle",
             align: "center",
             editable: {
                 type: 'text',
                 title: '',
                 noeditFormatter: function (value, row, index) {
-                    var result = { filed: "DCPID", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="DCPID" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
+                    var result = { filed: "BPNO", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="BPNO" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
                     if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="DCPID" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                        html = '<a href="javascript:void(0)" data-name="BPNO" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
                     }
                     return html;
                 }
@@ -189,53 +189,21 @@ function InitCueLst() {
             },
             {
                 title: '活动前是否已有DCP',
-                field: "DCPCheckName",
+                field: "DCPCheck",
                 valign: "middle",
                 align: "center",
                 formatter: function (value, row, index) {
                     var txml = '';
                     if (value)
-                        txml = '<input id="{0}_DCPCheckName" type="checkbox" checked>';
+                        txml = '<input id="{0}_DCPCheck" type="checkbox" checked>';
                     else
-                        txml = '<input id="{0}_DCPCheckName" type="checkbox">';
+                        txml = '<input id="{0}_DCPCheck" type="checkbox">';
                     txml = txml.replace("{0}", index);
 
                     return txml;
                 }
             },
 
-          {
-              title: $('#HasCars').val(),
-              field: "OwnerCheck",
-              valign: "middle",
-              align: "center",
-              formatter: function (value, row, index) {
-                  var txml = '';
-                  if (value)
-                      txml = '<input id="{0}_OwnerCheck" type="checkbox" checked>';
-                  else
-                      txml = '<input id="{0}_OwnerCheck" type="checkbox">';
-                  txml = txml.replace("{0}", index);
-
-                  return txml;
-              }
-          },
-          {
-              field: "TestDriverCheck",
-              title: $('#WillJoin').val(),
-              valign: "middle",
-              align: "center",
-              formatter: function (value, row, index) {
-                  var txml = '';
-                  if (value)
-                      txml = '<input id="{0}_TestDriverCheck" type="checkbox" checked >';
-                  else
-                      txml = '<input id="{0}_TestDriverCheck" type="checkbox">';
-                  txml = txml.replace("{0}", index);
-
-                  return txml;
-              }
-          },
         {
             title: $('#IsLeads').val(),
             field: "LeadsCheck",

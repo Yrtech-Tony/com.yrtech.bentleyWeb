@@ -88,6 +88,9 @@ function InitMarketFundLst() {
                 },
                 noeditFormatter: function (value, row, index) {
                     value = isZH() ? row.DMFItemName : row.DMFItemNameEn;
+                    if (roleName == "BMC-FI") {
+                        return '<div style="min-width:100px">' + value + '</div>';
+                    }
                     var html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
                     if (!value) {
                         html = '<a href="javascript:void(0)" data-name="DMFItemId" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
@@ -110,6 +113,9 @@ function InitMarketFundLst() {
                     if (!v) return isZH() ? '活动名称不能为空' : 'The activity name cannot be empty';
                 },
                 noeditFormatter: function (value, row, index) {
+                    if (roleName == "BMC-FI") {
+                        return '<div style="min-width:100px">' + row.ActionName + '</div>';
+                    }
                     var html = '<a href="javascript:void(0)" data-name="MarketActionId" data-pk="undefined" data-value="" class="editable editable-click">' + row.ActionName + '</a>';
                     if (!row.ActionName) {
                         html = '<a href="javascript:void(0)" data-name="MarketActionId" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
@@ -150,6 +156,9 @@ function InitMarketFundLst() {
                 },
                 noeditFormatter: function (value, row, index) {
                     var result = { filed: "ExpenseAmt", value: value };
+                    if (roleName == "BMC-FI") {
+                        return '<div style="min-width:100px">' + dealNumber(result.value) + '</div>';
+                    }
                     var html = '<a href="javascript:void(0)" data-name="ExpenseAmt" data-pk="undefined" data-value="" class="editable editable-click">' + dealNumber(result.value) + '</a>';
                     if (!result.value) {
                         html = '<a href="javascript:void(0)" data-name="ExpenseAmt" data-pk="undefined" data-value="" class="editable editable-click">0</a>';
@@ -192,6 +201,9 @@ function InitMarketFundLst() {
                         }
                     }
                     var account = $("#G_UserAccount").val();
+                    if (roleName == "BMC-FI") {
+                        return '<div style="min-width:100px">' + real + '</div>';
+                    }
                     if (roleType != 'SHOP') {
                         var html = '<a href="javascript:void(0)" data-name="ApplyStatus" data-pk="undefined" data-value="" onclick="if(this.value ==\'通过\'){this.className=\'btn btn-success btn-sm\'}else if(this.value ==\'修改\'){this.className=\'btn btn-warning  btn-sm\'}else{this.className=\'btn btn-primary  btn-sm\'}">' + real + '</a>';
                         if (real == '通过') {
@@ -219,6 +231,9 @@ function InitMarketFundLst() {
                 },
                 noeditFormatter: function (value, row, index) {
                     var result = { filed: "ApprovalReason", value: value };
+                    if (roleName == "BMC-FI") {
+                        return '<div style="min-width:100px">' + result.value + '</div>';
+                    }
                     if (roleType != 'SHOP') {
                         var html = '<a href="javascript:void(0)" data-name="ApprovalReason" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
                         if (!result.value) {
@@ -262,6 +277,10 @@ function InitMarketFundLst() {
                         }
                     }
                     var account = $("#G_UserAccount").val();
+                    if (roleName == "BMC-FI") {
+                        return '<div style="min-width:100px">' + real + '</div>';
+                    }
+                    result.value
                     if (roleType != 'SHOP') {
                         var html = '<a href="javascript:void(0)" data-name="ReplyStatus" data-pk="undefined" data-value="">' + real + '</a>';
                         if (!real || real == '未提交' || account == "admin") {
@@ -284,6 +303,9 @@ function InitMarketFundLst() {
                 },
                 noeditFormatter: function (value, row, index) {
                     var result = { filed: "ReplyReason", value: value };
+                    if (roleName == "BMC-FI") {
+                        return '<div style="min-width:100px">' + result.value + '</div>';
+                    }
                     if (roleType != 'SHOP') {
                         var html = '<a href="javascript:void(0)" data-name="ReplyReason" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
                         if (!result.value) {

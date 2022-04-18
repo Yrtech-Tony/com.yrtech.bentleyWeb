@@ -121,6 +121,10 @@
         var UserId = $("#G_UserId").val();
         var osspath = "Bentley/"+year + "/ExpenseAccount/";
         var ossClient;
+        var roleName = $('#G_RoleTypeCode').val();
+        if (roleName == "BMC-FI") {
+            $("#selectfiles").css({ "pointer-events": "none" });
+        }
         $(function () {
             //初始化LexusReport OSS 数据源
             initOssClient();
@@ -136,11 +140,13 @@
         })
 
         function fileNameFormatter(value, row, index) {
-            console.log(row)
             return '<a href="/Base/DownloadFile?ossPath=' + row.FileUrl + '&fileName='+row.FileName+ '" download="' + row.FileName +'">' + value + '</a>';
         }
 
         function operateFormatter(value, row, index) {
+            if (roleName == "BMC-FI") {
+                return '';
+            }
             return [
               '<a class="remove" href="javascript:void(0)" title="Remove">',
               '<i class="fa fa-trash"></i> <span translate>' + $("#G_Delete").val() + '</span>',

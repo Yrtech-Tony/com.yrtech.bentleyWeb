@@ -60,7 +60,8 @@ function Add() {
             ActionName: $('#ActionName').val(),
             MarketActionId: $('#MarketActionId').val(),
             CustomerName: "",
-            BPNO: '',
+            DCPID: '',
+            DCPCheckName:false,
             OwnerCheck: false,
             DealCheck: false,
             LeadsCheck: false,
@@ -169,23 +170,40 @@ function InitCueLst() {
             }
         },
         {
-            title: $('#BPNumber').val(),
-            field: "BPNO",
+            title: 'DCPID',
+            field: "DCPID",
             valign: "middle",
             align: "center",
             editable: {
                 type: 'text',
                 title: '',
                 noeditFormatter: function (value, row, index) {
-                    var result = { filed: "BPNO", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="BPNO" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
+                    var result = { filed: "DCPID", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="DCPID" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
                     if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="BPNO" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                        html = '<a href="javascript:void(0)" data-name="DCPID" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
                     }
                     return html;
                 }
             }
-        },
+            },
+            {
+                title: '活动前是否已有DCP',
+                field: "DCPCheckName",
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var txml = '';
+                    if (value)
+                        txml = '<input id="{0}_DCPCheckName" type="checkbox" checked>';
+                    else
+                        txml = '<input id="{0}_DCPCheckName" type="checkbox">';
+                    txml = txml.replace("{0}", index);
+
+                    return txml;
+                }
+            },
+
           {
               title: $('#HasCars').val(),
               field: "OwnerCheck",

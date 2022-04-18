@@ -287,24 +287,39 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group" id="imgListDiv-100">
                                         <label class="control-label col-md-4"><span translate>Primary Vision</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-4">
-                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                            @*<div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-
-                                                    <img id="picImg" onclick="OpenForm(this)" style="width: 190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png">
+                                                    <img id="ossImage-100" class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
                                                 </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail" id="img_visual1" style="width: 200px; height: 150px;"></div>
                                                 <div>
-                                                    <span class="btn btn-primary btn-file">
-                                                        <span class="fileinput-new" translate>Choose Documents</span>
-                                                        <span class="fileinput-exists" translate>Change</span>
-                                                        <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png">
-                                                    </span>
-                                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</a>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
                                                 </div>
                                             </div>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles-100" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Documents </span></a>
+                                                <div id="upload-container-100" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-100"></div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="KeyVisionPic" id="KeyVisionPic" />*@
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+
+                <img id="picImg" onclick="OpenForm(this)" style="width: 190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png">
+            </div>
+            <div class="fileinput-preview fileinput-exists thumbnail" id="img_visual1" style="width: 200px; height: 150px;"></div>
+            <div>
+                <span class="btn btn-primary btn-file">
+                    <span class="fileinput-new" translate>Choose Documents</span>
+                    <span class="fileinput-exists" translate>Change</span>
+                    <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png">
+                </span>
+                <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</a>
+            </div>
+        </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -873,6 +888,7 @@
             initOssClient("-4");
             initOssClient("-6");
             initVideoOssClient("-5");
+            //initBMCOssClient("-100");
             $('img').error(function () {
                 console.log("image error")
                 $(this).attr('src', 'https://yrsurvey.oss-cn-beijing.aliyuncs.com/Bentley/fail2.png');
@@ -1165,6 +1181,22 @@
             });
         }
 
+        function initBMCOssClient(_id) {
+            var osspath = "Bentley/" + year + "/MarketAction/";
+            ossClient = new OSSClient({
+                isVideo: false,
+                uploadId: _id,
+                fileAddCheck: function () {
+                    return true;
+                },
+                fileAddCheckMsg: "",
+                osspath: osspath,
+                uploaded: function (args) {
+                    addBMCImage(_id, args);
+                }
+            });
+        }
+
         function addImage(_id, args) {
             let imgPath = args.osspath;
             let fileName = args.fileName;
@@ -1179,6 +1211,17 @@
                     return;
                 }
             }
+        }
+
+        function addBMCImage(_id, args) {
+            let imgPath = args.osspath;
+            let fileName = args.fileName;
+            $("#KeyVisionPic").val(imgPath);
+            $("#ossImage-100").attr("src", baseOss + imgPath);
+            $("#ossImage-100").attr("data-ossPath", imgPath);
+            $("#ossImage-100").attr("data-flag", 3);
+            $("#ossImage-100").attr("data-fileName", fileName);
+            $("#ossImage-100").parent().parent().find(".fileinput-exists").show();
         }
 
         function addVideo(_id, args) {

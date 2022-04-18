@@ -52,7 +52,7 @@ function init_uploader(options) {
     var time1 = new Date().Format("yyyyMMddhhmmssS");
     var filename = time1 + '_' + '${filename}';
     let _mimeTypes = [{ title: "Image files", extensions: "jpg,gif,png,jpeg,bmp,JPG,GIF,PNG,JPEG,BMP" }];
-    let _maxFileSize = '1mb';
+    let _maxFileSize = '6mb';
     if (options["isVideo"]) {
         _mimeTypes = [{ title: "Video files", extensions: "mp4,avi,mkv,mov,mpg,wmv,rm,rmvb,3gp,MP4,AVI,KMV,MOV,MPG,WMV,RM,RMVB,3GP" }];
         _maxFileSize = '500mb';

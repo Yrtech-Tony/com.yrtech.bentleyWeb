@@ -710,7 +710,7 @@
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
-                                                    <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
+                                                    <video poster="/Content/bootstrap-fileinput/img/novideo.png" class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
                                                 </div>
                                                 <div>
                                                     <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
@@ -727,7 +727,7 @@
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
-                                                    <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
+                                                    <video poster="/Content/bootstrap-fileinput/img/novideo.png" class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
                                                 </div>
                                                 <div>
                                                     <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
@@ -751,7 +751,7 @@
                                                         <select id="DTTApproveCode" name="DTTApproveCode" class="selectpicker">
                                                             <option value="1" selected="" translate>Waiting for Approval</option>
                                                             <option value="2" translate>Approved</option>
-                                                            <option value="3" translate>Waiting for Change DTT</option>
+                                                            <option value="3" translate>Waiting for Change</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1045,6 +1045,7 @@
             let _imgList = $("#imgListDiv" + _id).find(".ossImage");
             for (let i = 0; i < _imgList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
+                    $(_imgList[i]).removeAttr("poster");
                     $(_imgList[i]).attr("src", baseOss + imgPath);
                     $(_imgList[i]).attr("data-ossPath", imgPath);
                     $(_imgList[i]).attr("data-flag", 2);
@@ -1057,6 +1058,7 @@
 
         function delImage(_delMode) {
             $(_delMode).parent().parent().find(".ossImage").attr("src", "/Content/bootstrap-fileinput/img/noimage.png");
+            $(_delMode).parent().parent().find(".ossImage").attr("poster", "/Content/bootstrap-fileinput/img/novideo.png");
             $(_delMode).parent().parent().find(".ossImage").attr("data-flag", 1);
             $(_delMode).hide();
 
@@ -1147,6 +1149,7 @@
             let _imgList = $("#" + imgCodeObj[imageCode]).find(".ossImage");
             for (let i = 0; i < _imageList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
+                    $(_imgList[i]).removeAttr("poster");
                     $(_imgList[i]).attr("src", baseOss + _imageList[i].PicPath);
                     $(_imgList[i]).attr("data-ossPath", _imageList[i].PicPath);
                     $(_imgList[i]).attr("data-flag", 2);
@@ -1485,7 +1488,7 @@
                         layer.open({
                             title: '提示',
                             type: 0,
-                            content: '生成PPT成功！'
+                            content: '生成PPT成功！点击“下载PPT”即可下载！'
                         });
                     }
                 } else {

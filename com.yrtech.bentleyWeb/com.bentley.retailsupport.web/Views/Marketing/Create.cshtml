@@ -82,7 +82,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4"><span translate>Dealer Name</span>:</label>
                                                                 <div class="col-md-8">
-                                                                    <select id="ShopId" name="ShopId" class="selectpicker"></select>
+                                                                    <select id="ShopId" name="ShopId" class="selectpicker" onchange="changeShopId()"></select>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -338,12 +338,15 @@
         }
 
         function checkPrice() {
-            $.commonGet("MarketAction/MarketActionBudgetMaxSearch", {}, function (data) {
+            $.commonGet("MarketAction/MarketActionBudgetMaxSearch", { shopId: $("#ShopId").val()}, function (data) {
                 if (data) {
                     $("#hisMaxPrice").html("历史最大金额:" + data);
                 }
             });
         }
 
+        function changeShopId() {
+            checkPrice();
+        }
     </script>
 }

@@ -71,6 +71,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "The Day of the Event": "活动当日"
             , "Two Days After": "活动后两日"
             , "Seven Days After": "活动后一周"
+            , "Two Weeks After": "活动后两周"
             , "One Month After": "活动后一个月"
             , "After Three Month": "活动后三个月"
             , "Plan Status": "计划状态"

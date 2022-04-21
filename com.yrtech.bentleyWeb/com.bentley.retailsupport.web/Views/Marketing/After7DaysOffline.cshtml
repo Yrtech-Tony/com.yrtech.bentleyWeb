@@ -1265,9 +1265,9 @@
 
                             <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;left:265px;">
                                 <div class="col-md-6">
-                                    <button id="btnSave" type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
+                                    <button id="btnSave" type="button" onclick="PromotionEdit2(1)" class="btn btn-success" translate>Save</button>
                                     <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
-                                    <button type="button" onclick="createPPT(1)" class="btn btn-danger" translate>生成PPT</button>
+                                    <button type="button" onclick="PromotionEdit2(2)" class="btn btn-danger" translate>生成PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>下载PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
                                 </div>
@@ -1426,7 +1426,7 @@
             layer.closeAll('loading');
         }
 
-        function PromotionEdit2() {
+        function PromotionEdit2(_type) {
             $('.form-control').prop("disabled", false);
             $('#DTTApproveCode').prop("disabled", false);
             if (!veriData(1)) {
@@ -1486,14 +1486,18 @@
                 ListJson: JSON.stringify(data)
             }, function () {
                 EProcessing();
-                var msg = isZH() ? '保存成功！' : "Save successfully !";
                 $('.form-control').prop("disabled", true);
                 $('#DTTApproveCode').prop("disabled", true);
-                layer.alert(msg, {
-                    skin: 'layui-layer-molv', closeBtn: 0
-                }, function (datas) {
-                    window.location.href = "/Marketing/Index";
-                });
+                if (type == 2) {
+                    createPPT(1);
+                } else {
+                    var msg = isZH() ? '保存成功！' : "Save successfully !";
+                    layer.alert(msg, {
+                        skin: 'layui-layer-molv', closeBtn: 0
+                    }, function (datas) {
+                        window.location.href = "/Marketing/Index";
+                    });
+                }
             }, EProcessing)
         }
 

@@ -216,9 +216,16 @@ function initTable() {
         title: $("#G_AfterDays7").val(),
         field: '',
         align: 'center',
-        valign: 'middle',
-        colspan:2
-        }], [{
+        valign: 'middle'
+        },
+        {
+            title: $("#G_AfterWeeks2").val(),
+            field: '',
+            align: 'center',
+            valign: 'middle',
+            colspan: 2
+        }],
+        [{
         title: $("#G_PlanStatus").val(),
         field: 'Before4Weeks',
         align: 'center',

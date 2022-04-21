@@ -211,7 +211,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>DCPID客户数量（计划）</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" readonly id="People_DCPIDCount_PLAN" name="People_DCPIDCount_PLAN" style="width:100%;" type="text" min="0" maxlength="255">
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -223,7 +233,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>今年新增线索数量（计划）</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" readonly id="People_NewLeadsThisYearCount_PLAN" name="People_NewLeadsThisYearCount_PLAN" style="width:100%;" type="text" min="0" maxlength="255">
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -245,7 +265,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -264,6 +284,28 @@
                                         <div class="col-md-4">
                                             <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>每条线索成本</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="CluesToTheCost" name="CluesToTheCost" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>每条线索成本（计划）</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" readonly id="CluesToTheCost_PLAN" name="CluesToTheCost_PLAN" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <input class="form-control" readonly id="TotalBudgetAmt" name="TotalBudgetAmt" style="width:100%;" type="hidden" min="0" maxlength="255">
                                         </div>
                                     </div>
                                 </div>
@@ -872,6 +914,7 @@
                                 $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
                             }
                             initImageList(data.MarketActionAfter7PicList_OnLine);
+                            subCluesToTheCostReport();
                             searchDtt();
                         }
 
@@ -931,7 +974,7 @@
                 EProcessing();
                 $('.form-control').prop("disabled", true);
                 $('#DTTApproveCode').prop("disabled", true);
-                if (type == 2) {
+                if (_type == 2) {
                     createPPT(1);
                 } else {
                     var msg = isZH() ? '保存成功！' : "Save successfully !";
@@ -1645,6 +1688,7 @@
                         }
                     });
                     $("#TotalBudgetAmt").val(_sumAmt);
+                    subCluesToTheCostReport();
                 }
                 $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
                 EProcessing();

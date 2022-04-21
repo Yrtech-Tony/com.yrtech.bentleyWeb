@@ -1501,6 +1501,31 @@ function subCluesToTheCost() {
     $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
 }
 
+function subCluesToTheCostReport() {
+    let _sumAmt = $("#TotalBudgetAmt").val();
+    let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThsYearCount").val();
+    if ($("#People_NewLeadsThsYearCount").val()) {
+        _cluesToTheCost = _sumAmt / $("#People_NewLeadsThsYearCount").val();
+        _cluesToTheCost = parseFloat(_cluesToTheCost);
+    } else {
+        _cluesToTheCost = '';
+    }
+    $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+    subCluesToTheCostPLAN();
+}
+
+function subCluesToTheCostPLAN() {
+    let _sumAmt = $("#TotalBudgetAmt_PLAN").val();
+    let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount_PLAN").val();
+    if ($("#People_NewLeadsThisYearCount_PLAN").val()) {
+        _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount_PLAN").val();
+        _cluesToTheCost = parseFloat(_cluesToTheCost);
+    } else {
+        _cluesToTheCost = '';
+    }
+    $("#CluesToTheCost_PLAN").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+}
+
 function bindInputChange() {
     $("#People_InvitationCarOwnerCount").on('input', function () {
         sumPlan();
@@ -1527,4 +1552,17 @@ function sumPlan() {
     let _People_InvitationOtherCount = parseInt($("#People_InvitationOtherCount").val());
     let _sumCount = (_People_InvitationCarOwnerCount ? _People_InvitationCarOwnerCount : 0) + (_People_InvitationDepositorCount ? _People_InvitationDepositorCount : 0) + (_People_InvitationPotentialCount ? _People_InvitationPotentialCount : 0) + (_People_InvitationOtherCount ? _People_InvitationOtherCount : 0);
     $("#People_InvitationTotalCount").val(_sumCount);
+}
+
+function searchFourWeeks(id) {
+    $.commonGet("MarketAction/MarketActionBefore4WeeksSearch", { marketActionId: id }, function (data) {
+        if (data) {
+            let _MarketActionBefore4Weeks = data.MarketActionBefore4Weeks;
+            $("#People_ParticipantsCount_PLAN").val(_MarketActionBefore4Weeks.People_ParticipantsCount);
+            $("#CluesToTheCost_PLAN").val(_MarketActionBefore4Weeks.CluesToTheCost);
+            $("#People_NewLeadsThisYearCount_PLAN").val(_MarketActionBefore4Weeks.People_NewLeadsThisYearCount);
+            $("#People_DCPIDCount_PLAN").val(_MarketActionBefore4Weeks.People_DCPIDCount);
+            $("#TotalBudgetAmt_PLAN").val(_MarketActionBefore4Weeks.TotalBudgetAmt); 
+        }
+    });
 }

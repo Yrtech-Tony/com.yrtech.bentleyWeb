@@ -14,6 +14,7 @@ function OSSClient(options) {
     var uploader = init_uploader({
         isVideo:options["isVideo"]?options["isVideo"]:false,
         uploadId: _id,
+        imgCount: options["imgCount"] ? options["imgCount"]:5,
         fileAddCheck: options.fileAddCheck,
         fileAddCheckMsg: options.fileAddCheckMsg,
         filepath: options.osspath,
@@ -99,8 +100,8 @@ function init_uploader(options) {
                         _imgSize++;
                     }
                 }
-                if (_imgSize > 5) {
-                    alert("最多只能上传五张!");
+                if (_imgSize > options.imgCount) {
+                    alert("超出最大上传数量，最大上传数量为" + options.imgCount);
                     return;
                 }
                 uploader.start();

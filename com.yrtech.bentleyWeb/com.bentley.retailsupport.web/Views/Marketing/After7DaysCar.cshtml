@@ -1120,9 +1120,9 @@
             initOssClient("-2");
             initOssClient("-3");
             initOssClient("-4");
-            initOssClient("-5");
+            initOssClient("-5",20);
             initOssClient("-6");
-            initOssClient("-7");
+            initOssClient("-7",20);
             initOssClient("-8");
             //设置同步调用 必须先绑定下拉列表数据再查询市场活动信息
             $.ajaxSetup({
@@ -1208,6 +1208,7 @@
             $('.form-control').prop("disabled", false);
             $('#DTTApproveCode').prop("disabled", false);
             if (!veriData(1)) {
+                initRole();
                 return;
             }
 
@@ -1273,6 +1274,7 @@
             $('.form-control').prop("disabled", false);
             $('#DTTApproveCode').prop("disabled", false);
             if (!veriData(2)) {
+                initRole();
                 return;
             }
 
@@ -1332,10 +1334,11 @@
             }
         }
 
-        function initOssClient(_id) {
+        function initOssClient(_id,_count) {
             var osspath = "Bentley/" + year + "/MarketAction/";
             ossClient = new OSSClient({
                 uploadId: _id,
+                imgCount: _count,
                 fileAddCheck: function () {
                     return true;
                 },
@@ -1960,6 +1963,9 @@
 
         //权限
         function initRole() {
+            if (roleName == "SYSADMIN") {
+                return;
+            }
             let _dttCode = $('#DTTApproveCode').val();
             console.error(_dttCode);
             if (_dttCode == 2) {

@@ -803,7 +803,7 @@
             initOssClient("-3");
             initOssClient("-4");
             initOssClient("-6");
-            initVideoOssClient("-5");
+            initVideoOssClient("-5",2);
             initBMCOssClient("-100");
             $('img').error(function () {
                 console.log("image error")
@@ -894,6 +894,7 @@
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
             if (!veriData(1)) {
+                initRole();
                 return;
             }
             if (data) {
@@ -979,6 +980,7 @@
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
             if (!veriData(2)) {
+                initRole();
                 return;
             }
             if (data) {
@@ -1086,6 +1088,7 @@
             ossClient = new OSSClient({
                 isVideo:true,
                 uploadId: _id,
+                imgCount: _count,
                 fileAddCheck: function () {
                     return true;
                 },
@@ -1632,6 +1635,9 @@
 
         //权限
         function initRole() {
+            if (roleName == "SYSADMIN") {
+                return;
+            }
             let _dttCode = $('#DTTApproveCode').val();
             console.error(_dttCode);
             let _visualStatus = $("#VisualStatus").val();

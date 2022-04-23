@@ -1167,6 +1167,7 @@
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
             if (!veriData(1)) {
+                initRole();
                 return;
             }
             if (data) {
@@ -1259,6 +1260,7 @@
             $('#VisualStatus').prop("disabled", false);
             $('#DTTApproveCode').prop("disabled", false);
             if (!veriData(2)) {
+                initRole();
                 return;
             }
             //原系统没有验证
@@ -1999,6 +2001,9 @@
         }
 
         function initRole() {
+            if (roleName == "SYSADMIN") {
+                return;
+            }
             let _dttCode = $('#DTTApproveCode').val();
             console.error(_dttCode);
             let _visualStatus = $("#VisualStatus").val();

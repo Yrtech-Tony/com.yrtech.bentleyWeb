@@ -232,16 +232,139 @@ function InitActivityFlowTableProcess() {
     });
 }
 
-function InitActivityFlowTableNew() {
+function InitActivityFlowTableNew(_type) {
+    var _columns = [
+        {
+            title: "费用类型",
+            field: 'CoopFundCode',
+            width: "300px",
+            valign: "middle",
+            align: "center",
+            sortable: false,
+            align: 'left',
+            editable: {
+                type: 'select',
+                title: '',
+                source: hdData,
+                validate: function (v) {
+                    if (!v) return isZH() ? '费用类型不能为空' : 'The Item cannot be empty';
+                },
+                noeditFormatter: function (value, row, index) {
+                    value = isZH() ? row.CoopFundCode : row.CoopFundCode;
+                    for (let i = 0; i < hdData.length; i++) {
+                        if (row.CoopFundCode == hdData[i].value) {
+                            value = hdData[i].text;
+                        }
+                    }
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                    if (!value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+        },
+        {
+            title: "金额",
+            field: 'CoopFundAmt',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundAmt", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
 
-    //活动流程
-    $('#ActivityFlowTableNew').bootstrapTable({
-        pagination: true,
-        striped: true, //是否显示行间隔色
-        sortable: true,
-        sortName: 'CoopFundCode',
-        sortOrder: 'asc',
-        columns: [
+        },
+        {
+            title: "是否报销",
+            field: 'CoopFund_DMFChk',
+            valign: "middle",
+            align: "center",
+            sortable: false,
+            align: 'left',
+            editable: {
+                type: 'select',
+                title: '',
+                source: hdDataCoop,
+                validate: function (v) {
+                    if (!v) return isZH() ? '是否报销不能为空' : 'The Item cannot be empty';
+                },
+                noeditFormatter: function (value, row, index) {
+                    value = isZH() ? row.CoopFund_DMFChk : row.CoopFund_DMFChk;
+                    for (let i = 0; i < hdDataCoop.length; i++) {
+                        if (row.CoopFund_DMFChk + "" == hdDataCoop[i].value) {
+                            value = hdDataCoop[i].text;
+                        }
+                    }
+                    var html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                    if (!value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+        },
+        {
+            title: "费用说明",
+            field: 'CoopFundDesc',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundDesc", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "费用说明填写指引",
+            field: 'CoopFundTypeDesc',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundTypeDesc", value: value };
+                    return '<div style="min-width:100px">' + result.value + '</div>';
+                }
+            }
+
+        },
+        {
+            title: $('#TEdit').val(),
+            field: 'Edit',
+            valign: "middle",
+            align: "center",
+            formatter: function (value, row, index) {
+                var e = "<label onclick='DeleteActivityFlowRowNew(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                return e;
+            }
+        }
+    ];
+    if (_type == 2) {
+        _columns = [
             {
                 title: "费用类型",
                 field: 'CoopFundCode',
@@ -273,7 +396,7 @@ function InitActivityFlowTableNew() {
                 }
             },
             {
-                title: "金额",
+                title: "金额（实际）",
                 field: 'CoopFundAmt',
                 valign: "left",
                 align: "left",
@@ -281,6 +404,14 @@ function InitActivityFlowTableNew() {
                     type: 'text',
                     title: '',
                     validate: function (v) {
+                        v = $.trim(v);
+                        var vil = isZH() ? '金额不能为空，且必须是数字' : 'The actual cost cannot be null, and only numbers accepted';
+                        if (!v) {
+                            return vil;
+                        }
+                        if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                            return vil;
+                        }
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt", value: value };
@@ -289,6 +420,23 @@ function InitActivityFlowTableNew() {
                             html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
                         return html;
+                    }
+                }
+
+            },
+            {
+                title: "金额（预计）",
+                field: 'CoopFundAmt_Budget',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundAmt_Budget", value: value };
+                        return '<div style="min-width:100px">' + result.value  + '</div>';
                     }
                 }
 
@@ -344,6 +492,23 @@ function InitActivityFlowTableNew() {
 
             },
             {
+                title: "费用说明填写指引",
+                field: 'CoopFundTypeDesc',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundTypeDesc", value: value };
+                        return '<div style="min-width:100px">' + result.value + '</div>';
+                    }
+                }
+
+            },
+            {
                 title: $('#TEdit').val(),
                 field: 'Edit',
                 valign: "middle",
@@ -353,7 +518,16 @@ function InitActivityFlowTableNew() {
                     return e;
                 }
             }
-        ],
+        ];
+    }
+    //市场基金
+    $('#ActivityFlowTableNew').bootstrapTable({
+        pagination: true,
+        striped: true, //是否显示行间隔色
+        sortable: true,
+        sortName: 'CoopFundCode',
+        sortOrder: 'asc',
+        columns: _columns,
         onClickCell: function (field, value, row, $element) {
             return false;
 
@@ -367,16 +541,221 @@ function InitActivityFlowTableNew() {
     });
 }
 
-function InitActivityFlowTableOnline() {
+function InitActivityFlowTableOnline(_type) {
+    var _columns = [
+        {
+            title: "费用类型",
+            field: 'CoopFundCode',
+            width: "300px",
+            valign: "middle",
+            align: "center",
+            sortable: false,
+            align: 'left',
+            editable: {
+                type: 'select',
+                title: '',
+                source: hdData,
+                validate: function (v) {
+                    if (!v) return isZH() ? '费用类型不能为空' : 'The Item cannot be empty';
+                },
+                noeditFormatter: function (value, row, index) {
+                    value = isZH() ? row.CoopFundCode : row.CoopFundCode;
+                    for (let i = 0; i < hdData.length; i++) {
+                        if (row.CoopFundCode == hdData[i].value) {
+                            value = hdData[i].text;
+                        }
+                    }
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                    if (!value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+        },
+        {
+            title: "金额",
+            field: 'CoopFundAmt',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                    v = $.trim(v);
+                    var vil = isZH() ? '金额不能为空，且必须是数字' : 'The actual cost cannot be null, and only numbers accepted';
+                    if (!v) {
+                        return vil;
+                    }
+                    if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                        return vil;
+                    }
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundAmt", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
 
-    //活动流程
-    $('#ActivityFlowTableOnline').bootstrapTable({
-        pagination: true,
-        striped: true, //是否显示行间隔色
-        sortable: true,
-        sortName: 'CoopFundCode',
-        sortOrder: 'asc',
-        columns: [
+        },
+        {
+            title: "是否报销",
+            field: 'CoopFund_DMFChk',
+            valign: "middle",
+            align: "center",
+            sortable: false,
+            align: 'left',
+            editable: {
+                type: 'select',
+                title: '',
+                source: hdDataCoop,
+                validate: function (v) {
+                    if (!v) return isZH() ? '是否报销不能为空' : 'The Item cannot be empty';
+                },
+                noeditFormatter: function (value, row, index) {
+                    value = isZH() ? row.CoopFund_DMFChk : row.CoopFund_DMFChk;
+                    for (let i = 0; i < hdDataCoop.length; i++) {
+                        if (row.CoopFund_DMFChk + "" == hdDataCoop[i].value) {
+                            value = hdDataCoop[i].text;
+                        }
+                    }
+                    var html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                    if (!value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+        },
+        {
+            title: "投放开始时间",
+            field: 'StartDate',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'date',
+                title: '',
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "StartDate", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + farmatDate(new Date(result.value)) + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "投放结束时间",
+            field: 'EndDate',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'date',
+                title: '',
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "EndDate", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + farmatDate(new Date(result.value)) + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "总计投放天数",
+            field: 'TotalDays',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "TotalDays", value: value };
+                    return '<div style="min-width:100px">' + result.value + '</div>';
+                }
+            }
+
+        },
+        {
+            title: "每日费用",
+            field: 'AmtPerDay',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "AmtPerDay", value: value };
+                    let _value = result.value;
+                    _value = isNaN(parseFloat(_value)) ? _value : parseFloat(_value).toFixed(2);
+                    return '<div style="min-width:100px">' + _value + '</div>';
+                }
+            }
+
+        },
+        {
+            title: "费用说明",
+            field: 'CoopFundDesc',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundDesc", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "费用说明填写指引",
+            field: 'CoopFundTypeDesc',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundTypeDesc", value: value };
+                    return '<div style="min-width:100px">' + result.value + '</div>';
+                }
+            }
+
+        },
+        {
+            title: $('#TEdit').val(),
+            field: 'Edit',
+            valign: "middle",
+            align: "center",
+            formatter: function (value, row, index) {
+                var e = "<label onclick='DeleteActivityFlowRowOnline(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                return e;
+            }
+        }
+    ];
+    if (_type == 2) {
+        [
             {
                 title: "费用类型",
                 field: 'CoopFundCode',
@@ -408,7 +787,7 @@ function InitActivityFlowTableOnline() {
                 }
             },
             {
-                title: "金额",
+                title: "金额（实际）",
                 field: 'CoopFundAmt',
                 valign: "left",
                 align: "left",
@@ -432,6 +811,23 @@ function InitActivityFlowTableOnline() {
                             html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
                         return html;
+                    }
+                }
+
+            },
+            {
+                title: "金额（预计）",
+                field: 'CoopFundAmt_Budget',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundAmt_Budget", value: value };
+                        return '<div style="min-width:100px">' + result.value + '</div>';
                     }
                 }
 
@@ -540,6 +936,44 @@ function InitActivityFlowTableOnline() {
 
             },
             {
+                title: "费用说明",
+                field: 'CoopFundDesc',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundDesc", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+
+            },
+            {
+                title: "费用说明填写指引",
+                field: 'CoopFundTypeDesc',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundTypeDesc", value: value };
+                        return '<div style="min-width:100px">' + result.value + '</div>';
+                    }
+                }
+
+            },
+            {
                 title: $('#TEdit').val(),
                 field: 'Edit',
                 valign: "middle",
@@ -549,7 +983,16 @@ function InitActivityFlowTableOnline() {
                     return e;
                 }
             }
-        ],
+        ]
+    }
+    //市场基金线上
+    $('#ActivityFlowTableOnline').bootstrapTable({
+        pagination: true,
+        striped: true, //是否显示行间隔色
+        sortable: true,
+        sortName: 'CoopFundCode',
+        sortOrder: 'asc',
+        columns: _columns,
         onClickCell: function (field, value, row, $element) {
             return false;
 
@@ -714,7 +1157,7 @@ function AddActivityFlowTableCar() {
 }
 
 var maxActivityFlowSeqNONew = 0;
-function AddActivityFlowTableNew() {
+function AddActivityFlowTableNew(_type) {
     let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
     if (!_CoopFundSumAmt) {
         layer.open({
@@ -723,24 +1166,38 @@ function AddActivityFlowTableNew() {
             content: '请填写市场基金金额总计！'
         });
         return false;
+    }
+    var _row = {
+        SeqNO: maxActivityFlowSeqNONew++,
+        CoopFundCode: '',
+        CoopFundAmt: '',
+        CoopFund_DMFChk: '',
+        CoopFundDesc: '',
+        CoopFundTypeDesc: '',
+        Remark: ''
+    };
+    if (_type == 2) {
+        _row = {
+            SeqNO: maxActivityFlowSeqNONew++,
+            CoopFundCode: '',
+            CoopFundAmt: '',
+            CoopFundAmt_Budget:'',
+            CoopFund_DMFChk: '',
+            CoopFundDesc: '',
+            CoopFundTypeDesc: '',
+            Remark: ''
+        };
     }
     var $table = $('#ActivityFlowTableNew');
     var index = $table.bootstrapTable('getData').length;//尾添加行
     $table.bootstrapTable('insertRow', {
         index: index,
-        row: {
-            SeqNO: maxActivityFlowSeqNONew++,
-            CoopFundCode: '',
-            CoopFundAmt: '',
-            CoopFund_DMFChk: '',
-            CoopFundDesc: '',
-            Remark: ''
-        }
+        row: _row
     });
 }
 
 var maxActivityFlowSeqNOOnline = 0;
-function AddActivityFlowTableOnline() {
+function AddActivityFlowTableOnline(_type) {
     let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
     if (!_CoopFundSumAmt) {
         layer.open({
@@ -750,21 +1207,40 @@ function AddActivityFlowTableOnline() {
         });
         return false;
     }
-    var $table = $('#ActivityFlowTableOnline');
-    var index = $table.bootstrapTable('getData').length;//尾添加行
-    $table.bootstrapTable('insertRow', {
-        index: index,
-        row: {
+    var _row = {
+        SeqNO: ++maxActivityFlowSeqNOOnline,
+        CoopFundCode: '',
+        CoopFundAmt: '',
+        CoopFund_DMFChk: '',
+        StartDate: '',
+        EndDate: '',
+        TotalDays: '',
+        AmtPerDay: '',
+        CoopFundDesc: '',
+        CoopFundTypeDesc: '',
+        Remark: ''
+    }
+    if (_type == 2) {
+        _row = {
             SeqNO: ++maxActivityFlowSeqNOOnline,
             CoopFundCode: '',
             CoopFundAmt: '',
+            CoopFundAmt_Budget:'',
             CoopFund_DMFChk: '',
             StartDate: '',
             EndDate: '',
             TotalDays: '',
             AmtPerDay: '',
+            CoopFundDesc: '',
+            CoopFundTypeDesc: '',
             Remark: ''
         }
+    }
+    var $table = $('#ActivityFlowTableOnline');
+    var index = $table.bootstrapTable('getData').length;//尾添加行
+    $table.bootstrapTable('insertRow', {
+        index: index,
+        row: _row
     });
 }
 

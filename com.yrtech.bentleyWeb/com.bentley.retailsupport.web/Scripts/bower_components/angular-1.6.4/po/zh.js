@@ -116,6 +116,8 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
 
             , "Save": "保存"
             , "Submit": "提交"
+            , "Create PPT": "生成PPT"
+            , "Download PPT": "下载PPT"
             , "Show More": "显示更多"
             , "Hide More": "隐藏更多"
             , "Name": "名称"

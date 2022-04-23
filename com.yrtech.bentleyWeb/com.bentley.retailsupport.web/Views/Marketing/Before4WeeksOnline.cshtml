@@ -1757,6 +1757,7 @@
             if (!_flowDateVeri || !_flowVeri) {
                 return false;
             }*@
+            let _sumAmt = 0;
             _item.MarketActionId = id;
             SProcessing();
             $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _item, function (data) {

@@ -2034,8 +2034,16 @@ function searchFourWeeks(id) {
     $.commonGet("MarketAction/MarketActionBefore4WeeksSearch", { marketActionId: id }, function (data) {
         if (data) {
             let _MarketActionBefore4Weeks = data.MarketActionBefore4Weeks;
+            let _sumAmt = _MarketActionBefore4Weeks.TotalBudgetAmt;
+            let _cluesToTheCost = _sumAmt / _MarketActionBefore4Weeks.People_NewLeadsThisYearCount;
+            if (_MarketActionBefore4Weeks.People_NewLeadsThisYearCount) {
+                _cluesToTheCost = _sumAmt / _MarketActionBefore4Weeks.People_NewLeadsThisYearCount;
+                _cluesToTheCost = parseFloat(_cluesToTheCost);
+            } else {
+                _cluesToTheCost = '';
+            }
             $("#People_ParticipantsCount_PLAN").val(_MarketActionBefore4Weeks.People_ParticipantsCount);
-            $("#CluesToTheCost_PLAN").val(_MarketActionBefore4Weeks.CluesToTheCost);
+            $("#CluesToTheCost_PLAN").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
             $("#People_NewLeadsThisYearCount_PLAN").val(_MarketActionBefore4Weeks.People_NewLeadsThisYearCount);
             $("#People_DCPIDCount_PLAN").val(_MarketActionBefore4Weeks.People_DCPIDCount);
             $("#TotalBudgetAmt_PLAN").val(_MarketActionBefore4Weeks.TotalBudgetAmt);

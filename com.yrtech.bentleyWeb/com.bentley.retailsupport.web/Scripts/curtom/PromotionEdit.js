@@ -1117,7 +1117,7 @@ function AddActivityFlowTable() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxActivityFlowSeqNO++,
+            SeqNO: ++maxActivityFlowSeqNO,
             ActivityDateTimeStart: '',
             ActivityDateTimeEnd:'',
             Responsible: '',
@@ -1133,7 +1133,7 @@ function AddActivityFlowTableProcess() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxActivityFlowSeqNOProcess++,
+            SeqNO: ++maxActivityFlowSeqNOProcess,
             ActivityDateTime: '',
             Responsible: '',
             Contents: ''
@@ -1148,7 +1148,7 @@ function AddActivityFlowTableCar() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxActivityFlowSeqNOCar++,
+            SeqNO: ++maxActivityFlowSeqNOCar,
             HandOverDate: '',
             Model: '',
             MainProcess: ''
@@ -1168,7 +1168,7 @@ function AddActivityFlowTableNew(_type) {
         return false;
     }
     var _row = {
-        SeqNO: maxActivityFlowSeqNONew++,
+        SeqNO: ++maxActivityFlowSeqNONew,
         CoopFundCode: '',
         CoopFundAmt: '',
         CoopFund_DMFChk: '',
@@ -1178,7 +1178,7 @@ function AddActivityFlowTableNew(_type) {
     };
     if (_type == 2) {
         _row = {
-            SeqNO: maxActivityFlowSeqNONew++,
+            SeqNO: ++maxActivityFlowSeqNONew,
             CoopFundCode: '',
             CoopFundAmt: '',
             CoopFundAmt_Budget:'',
@@ -1453,7 +1453,7 @@ function AddTestDriveTable() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxTestDriveSeqNO++,
+            SeqNO: ++maxTestDriveSeqNO,
             DisplayModelColor: '',
             Provider: ''
         }
@@ -1606,7 +1606,7 @@ function AddActivityBudgetTable() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxActivityBudgetSeqNO++,
+            SeqNO: ++maxActivityBudgetSeqNO,
             ItemName: '',
             Descs: '',
             UnitPrice: 0,
@@ -2038,7 +2038,8 @@ function searchFourWeeks(id) {
             $("#CluesToTheCost_PLAN").val(_MarketActionBefore4Weeks.CluesToTheCost);
             $("#People_NewLeadsThisYearCount_PLAN").val(_MarketActionBefore4Weeks.People_NewLeadsThisYearCount);
             $("#People_DCPIDCount_PLAN").val(_MarketActionBefore4Weeks.People_DCPIDCount);
-            $("#TotalBudgetAmt_PLAN").val(_MarketActionBefore4Weeks.TotalBudgetAmt); 
+            $("#TotalBudgetAmt_PLAN").val(_MarketActionBefore4Weeks.TotalBudgetAmt);
+            $("#CoopFundSumAmt_PLAN").val(_MarketActionBefore4Weeks.People_DCPIDCount);
         }
     });
 }

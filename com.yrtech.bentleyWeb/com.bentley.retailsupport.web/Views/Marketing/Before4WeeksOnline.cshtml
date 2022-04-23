@@ -1763,6 +1763,8 @@
             $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _item, function (data) {
             if (data) {
                 StrActivityFlowNew.forEach(function (item) {
+                    console.error(item);
+                    console.error(_item);
                     if (item.SeqNO == _item.SeqNO) {
                         item.TotalDays = data.TotalDays;
                         item.AmtPerDay = data.AmtPerDay;

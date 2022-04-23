@@ -755,7 +755,7 @@ function InitActivityFlowTableOnline(_type) {
         }
     ];
     if (_type == 2) {
-        [
+        _columns = [
             {
                 title: "费用类型",
                 field: 'CoopFundCode',

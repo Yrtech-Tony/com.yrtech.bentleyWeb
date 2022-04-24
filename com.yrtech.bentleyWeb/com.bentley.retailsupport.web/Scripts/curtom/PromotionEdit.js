@@ -9,26 +9,26 @@ function InitActivityFlowTable() {
         sortName: 'ActivityDateTime',
         sortOrder: 'asc',
         columns: [
-        {
-            title: '活动开始时间',
+            {
+                title: '活动开始时间',
                 field: 'ActivityDateTimeStart',
-            valign: "left",
-            align: "left",
-            sortable: true,
-            editable: {
-                type: 'datetime',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "ActivityDateTimeStart", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'datetime',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTimeStart", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
-            }
             },
 
             {
@@ -53,26 +53,26 @@ function InitActivityFlowTable() {
                     }
                 }
             },
-        
-        {
-            title: $('#TContent').val(),
-            field: 'Contents',
-            valign: "left",
-            align: "left",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Contents", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+
+            {
+                title: $('#TContent').val(),
+                field: 'Contents',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Contents", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
-            }
 
             },
             {
@@ -95,16 +95,16 @@ function InitActivityFlowTable() {
                     }
                 }
             },
-        {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteActivityFlowRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
-                return e;
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityFlowRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
+                }
             }
-        }
         ],
         onClickCell: function (field, value, row, $element) {
             return false;
@@ -168,8 +168,8 @@ function InitActivityFlowTableProcess() {
         sortOrder: 'asc',
         columns: [
             {
-                title: $('#TTime').val(),
-                field: 'ActivityDateTime',
+                title: '活动开始时间',
+                field: 'ActivityDateTimeStart',
                 valign: "left",
                 align: "left",
                 sortable: true,
@@ -179,10 +179,33 @@ function InitActivityFlowTableProcess() {
                     validate: function (v) {
                     },
                     noeditFormatter: function (value, row, index) {
-                        var result = { filed: "ActivityDateTime", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var result = { filed: "ActivityDateTimeStart", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
                         if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+
+            {
+                title: '活动结束时间',
+                field: 'ActivityDateTimeEnd',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'datetime',
+                    title: '',
+                    validate: function (v) {
+
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTimeEnd", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeEnd" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTimeEnd" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
                         return html;
                     }
@@ -227,7 +250,7 @@ function InitActivityFlowTableProcess() {
             curRow = row;
         },
         onEditableSave: function (field, row, oldValue, $el) {
-
+            checkTime(row);
         }
     });
 }
@@ -436,7 +459,7 @@ function InitActivityFlowTableNew(_type) {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt_Budget", value: value };
-                        return '<div style="min-width:100px">' + result.value  + '</div>';
+                        return '<div style="min-width:100px">' + result.value + '</div>';
                     }
                 }
 
@@ -1066,7 +1089,7 @@ function InitActivityFlowTableCar() {
                 }
             },
             {
-                title: "主要流程",
+                title: "活动主要亮点",
                 field: 'MainProcess',
                 valign: "left",
                 align: "left",
@@ -1119,7 +1142,7 @@ function AddActivityFlowTable() {
         row: {
             SeqNO: ++maxActivityFlowSeqNO,
             ActivityDateTimeStart: '',
-            ActivityDateTimeEnd:'',
+            ActivityDateTimeEnd: '',
             Responsible: '',
             Contents: ''
         }
@@ -1134,7 +1157,8 @@ function AddActivityFlowTableProcess() {
         index: index,
         row: {
             SeqNO: ++maxActivityFlowSeqNOProcess,
-            ActivityDateTime: '',
+            ActivityDateTimeStart: '',
+            ActivityDateTimeEnd: '',
             Responsible: '',
             Contents: ''
         }
@@ -1181,7 +1205,7 @@ function AddActivityFlowTableNew(_type) {
             SeqNO: ++maxActivityFlowSeqNONew,
             CoopFundCode: '',
             CoopFundAmt: '',
-            CoopFundAmt_Budget:'',
+            CoopFundAmt_Budget: '',
             CoopFund_DMFChk: '',
             CoopFundDesc: '',
             CoopFundTypeDesc: '',
@@ -1225,7 +1249,7 @@ function AddActivityFlowTableOnline(_type) {
             SeqNO: ++maxActivityFlowSeqNOOnline,
             CoopFundCode: '',
             CoopFundAmt: '',
-            CoopFundAmt_Budget:'',
+            CoopFundAmt_Budget: '',
             CoopFund_DMFChk: '',
             StartDate: '',
             EndDate: '',
@@ -1302,52 +1326,52 @@ function InitDisplayModelsTable() {
         pagination: true,
         striped: true, //是否显示行间隔色
         columns: [
-        {
-            title: $('#TDisplayModel').val(),
-            field: 'DisplayModelColor',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "DisplayModelColor", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: $('#TDisplayModel').val(),
+                field: 'DisplayModelColor',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "DisplayModelColor", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
+                }
+            },
+            {
+                title: $('#TProvider').val(),
+                field: 'Provider',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Provider", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteDisplayModelsRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
                 }
             }
-        },
-        {
-            title: $('#TProvider').val(),
-            field: 'Provider',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Provider", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteDisplayModelsRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
-                return e;
-            }
-        }
         ],
         onClickCell: function (field, value, row, $element) {
             return false;
@@ -1388,51 +1412,51 @@ function InitTestDriverTable() {
     $('#TestDriveTable').bootstrapTable({
         pagination: true,
         columns: [
-        {
-            title: $('#TDisplayModel').val(),
-            field: 'DisplayModelColor',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "DisplayModelColor", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: $('#TDisplayModel').val(),
+                field: 'DisplayModelColor',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "DisplayModelColor", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
-            }
-        },
-        {
-            title: $('#TProvider').val(),
-            field: 'Provider',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Provider", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            },
+            {
+                title: $('#TProvider').val(),
+                field: 'Provider',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Provider", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
-            }
-        }, {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteTestDriveRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
-                return e;
-            }
-        }],
+            }, {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteTestDriveRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
+                }
+            }],
         onClickCell: function (field, value, row, $element) {
             return false;
 
@@ -1472,119 +1496,119 @@ function InitActivityBudgetTable() {
     $('#ActivityBudgetTable').bootstrapTable({
         pagination: true,
         columns: [
-        {
-            title: $('#ExpenseItem').val(),
-            field: 'ItemName',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "ItemName", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="ItemName" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="ItemName" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: $('#ExpenseItem').val(),
+                field: 'ItemName',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ItemName", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ItemName" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ItemName" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
+                }
+            },
+            {
+                title: $('#TDESC').val(),
+                field: 'Descs',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Descs", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+
                 }
             }
-        },
-        {
-            title: $('#TDESC').val(),
-            field: 'Descs',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Descs", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            ,
+            {
+                title: $('#UnitPrice').val(),
+                field: 'UnitPrice',
+                valign: "middle",
+                align: "center",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                        v = $.trim(v);
+                        if (!v) {
+                            return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+                        }
+                        if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                            return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+                        }
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "UnitPrice", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + dealNumber(result.value) + '</a>';
+                        if (!result.value || result.value == undefined) {
+                            html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
 
-            }
-        }
-        ,
-        {
-            title: $('#UnitPrice').val(),
-            field: 'UnitPrice',
-            valign: "middle",
-            align: "center",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                    v = $.trim(v);
-                    if (!v) {
-                        return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+            },
+            {
+                title: $('#TQuantity').val(),
+                field: 'Counts',
+                valign: "middle",
+                align: "center",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                        v = $.trim(v);
+                        if (!v) {
+                            return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
+                        }
+                        if (!/^\+?[1-9]\d*$/.test(v)) {
+                            return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and  only numbers accepted';
+                        }
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Counts", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
+                        }
+                        return html;
                     }
-                    if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
-                        return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
-                    }
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "UnitPrice", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + dealNumber(result.value) + '</a>';
-                    if (!result.value || result.value == undefined) {
-                        html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
-                    }
-                    return html;
                 }
             }
-
-        },
-        {
-            title: $('#TQuantity').val(),
-            field: 'Counts',
-            valign: "middle",
-            align: "center",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                    v = $.trim(v);
-                    if (!v) {
-                        return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
-                    }
-                    if (!/^\+?[1-9]\d*$/.test(v)) {
-                        return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and  only numbers accepted';
-                    }
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Counts", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
-                    }
-                    return html;
+            ,
+            {
+                title: $('#TotalAmount').val(),
+                field: 'Total',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    return dealNumber(value);
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityBudgetRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? "删除" : "Delete") + "</label>";
+                    return e;
                 }
             }
-        }
-        ,
-        {
-            title: $('#TotalAmount').val(),
-            field: 'Total',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                return dealNumber(value);
-            }
-        },
-        {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteActivityBudgetRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? "删除" : "Delete") + "</label>";
-                return e;
-            }
-        }
         ],
         onClickCell: function (field, value, row, $element) {
             return false;
@@ -1660,97 +1684,97 @@ function InitActualActivityProcess() {
         sortName: 'ActivityDateTime',
         sortOrder: 'asc',
         columns: [
-        {
-            title: $('#TTime').val(),
-            field: 'ActivityDateTime',
-            valign: "left",
-            align: "left",
-            sortable: true,
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "ActivityDateTime", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: $('#TTime').val(),
+                field: 'ActivityDateTime',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTime", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
+                }
+            },
+            {
+                title: $('#TProcess').val(),
+                field: 'Item',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Item", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TContent').val(),
+                field: 'Contents',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Contents", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TComments').val(),
+                valign: "left",
+                align: "left",
+                field: 'Remark',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Remark", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteInitActualActivity(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
                 }
             }
-        },
-        {
-            title: $('#TProcess').val(),
-            field: 'Item',
-            valign: "left",
-            align: "left",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Item", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TContent').val(),
-            field: 'Contents',
-            valign: "left",
-            align: "left",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Contents", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TComments').val(),
-            valign: "left",
-            align: "left",
-            field: 'Remark',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Remark", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteInitActualActivity(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
-                return e;
-            }
-        }
         ],
         onClickCell: function (field, value, row, $element) {
             return false;
@@ -1798,114 +1822,114 @@ function InitActualCost() {
         pagination: true,
         striped: true, //是否显示行间隔色
         columns:
-        [
-            {
-                title: $('#ExpenseItem').val(),
-                field: 'Item',
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "Item", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
-                        if (result.value == "" || result.value == null) {
-                            html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+            [
+                {
+                    title: $('#ExpenseItem').val(),
+                    field: 'Item',
+                    editable: {
+                        type: 'text',
+                        title: '',
+                        validate: function (v) {
+                        },
+                        noeditFormatter: function (value, row, index) {
+                            var result = { filed: "Item", value: value };
+                            var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
+                            if (result.value == "" || result.value == null) {
+                                html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                            }
+                            return html;
                         }
-                        return html;
+                    }
+                },
+                {
+                    title: $('#TDESC').val(),
+                    field: 'Descs',
+                    editable: {
+                        type: 'text',
+                        title: '',
+                        validate: function (v) {
+                        },
+                        noeditFormatter: function (value, row, index) {
+                            var result = { filed: "Descs", value: value };
+                            var html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
+                            if (result.value == "" || result.value == null) {
+                                html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                            }
+                            return html;
+                        }
+                    }
+                },
+                {
+                    title: $('#UnitPrice').val(),
+                    field: 'UnitPrice',
+                    valign: "middle",
+                    align: "center",
+                    editable: {
+                        type: 'text',
+                        title: '',
+                        validate: function (v) {
+                            v = $.trim(v);
+                            if (!v) {
+                                return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+                            }
+                            if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                                return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+                            }
+                        },
+                        noeditFormatter: function (value, row, index) {
+                            var result = { filed: "UnitPrice", value: value };
+                            var html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click">' + dealNumber(result.value) + '</a>';
+                            if (result.value == undefined) {
+                                html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click">0</a>';
+                            }
+                            return html;
+                        }
+                    }
+                },
+                {
+                    title: $('#TQuantity').val(),
+                    field: 'Counts',
+                    valign: "middle",
+                    align: "center",
+                    editable: {
+                        type: 'text',
+                        title: '',
+                        validate: function (v) {
+                            v = $.trim(v);
+                            if (!v) {
+                                return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
+                            }
+                            if (!/^\+?[1-9]\d*$/.test(v)) {
+                                return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
+                            }
+                        },
+                        noeditFormatter: function (value, row, index) {
+                            var result = { filed: "Counts", value: value };
+                            var html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                            if (!result.value) {
+                                html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
+                            }
+                            return html;
+                        }
+                    }
+                },
+                {
+                    title: $('#TotalAmount').val(),
+                    field: 'Total',
+                    valign: "middle",
+                    align: "center",
+                    formatter: function (value, row, index) {
+                        return dealNumber(value);
+                    }
+                },
+                {
+                    title: $('#TEdit').val(),
+                    field: '',
+                    formatter: function (value, row, index) {
+                        return "<a href='javascript:;' onclick='DeleteActualCost(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</a>";;
                     }
                 }
-            },
-            {
-                title: $('#TDESC').val(),
-                field: 'Descs',
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "Descs", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
-                        if (result.value == "" || result.value == null) {
-                            html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
-                        }
-                        return html;
-                    }
-                }
-            },
-            {
-                title: $('#UnitPrice').val(),
-                field: 'UnitPrice',
-                valign: "middle",
-                align: "center",
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                        v = $.trim(v);
-                        if (!v) {
-                            return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
-                        }
-                        if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
-                            return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
-                        }
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "UnitPrice", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click">' + dealNumber(result.value) + '</a>';
-                        if (result.value == undefined) {
-                            html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click">0</a>';
-                        }
-                        return html;
-                    }
-                }
-            },
-            {
-                title: $('#TQuantity').val(),
-                field: 'Counts',
-                valign: "middle",
-                align: "center",
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                        v = $.trim(v);
-                        if (!v) {
-                            return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
-                        }
-                        if (!/^\+?[1-9]\d*$/.test(v)) {
-                            return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
-                        }
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "Counts", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                        if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
-                        }
-                        return html;
-                    }
-                }
-            },
-            {
-                title: $('#TotalAmount').val(),
-                field: 'Total',
-                valign: "middle",
-                align: "center",
-                formatter: function (value, row, index) {
-                    return dealNumber(value);
-                }
-            },
-            {
-                title: $('#TEdit').val(),
-                field: '',
-                formatter: function (value, row, index) {
-                    return "<a href='javascript:;' onclick='DeleteActualCost(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</a>";;
-                }
-            }
-        ],
+            ],
         onClickRow: function (row, $element) {
             curRow = row;
         },
@@ -2018,7 +2042,7 @@ function bindInputChange() {
     $("#People_NewLeadsThisYearCount").on('input', function () {
         subCluesToTheCost();
     });
-    
+
 }
 
 function sumPlan() {

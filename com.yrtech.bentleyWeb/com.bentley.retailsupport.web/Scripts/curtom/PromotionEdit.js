@@ -2071,7 +2071,7 @@ function searchFourWeeks(id) {
             $("#People_NewLeadsThisYearCount_PLAN").val(_MarketActionBefore4Weeks.People_NewLeadsThisYearCount);
             $("#People_DCPIDCount_PLAN").val(_MarketActionBefore4Weeks.People_DCPIDCount);
             $("#TotalBudgetAmt_PLAN").val(_MarketActionBefore4Weeks.TotalBudgetAmt);
-            $("#CoopFundSumAmt_PLAN").val(_MarketActionBefore4Weeks.People_DCPIDCount);
+            $("#CoopFundSumAmt_PLAN").val(_MarketActionBefore4Weeks.CoopFundSumAmt);
         }
     });
 }

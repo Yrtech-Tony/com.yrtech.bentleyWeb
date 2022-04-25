@@ -923,7 +923,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "总计投放天数",
+                title: "实际投放天数",
                 field: 'TotalDays',
                 valign: "left",
                 align: "left",
@@ -940,7 +940,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "每日费用",
+                title: "实际每日费用",
                 field: 'AmtPerDay',
                 valign: "left",
                 align: "left",

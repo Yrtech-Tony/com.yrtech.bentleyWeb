@@ -350,7 +350,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-2">
-                                        <label class="control-label col-md-2"><span translate>合同</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>合同</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -486,7 +486,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-4">
-                                        <label class="control-label col-md-2"><span translate>发票</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>发票</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -629,7 +629,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-3">
-                                        <label class="control-label col-md-2"><span translate>实际投放照片-开始日期</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>实际投放照片-开始日期</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -698,7 +698,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-6">
-                                        <label class="control-label col-md-2"><span translate>实际投放照片-结束日期</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>实际投放照片-结束日期</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -767,7 +767,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-5">
-                                        <label class="control-label col-md-2"><span translate>广告视频</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>广告视频</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
@@ -1471,7 +1471,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写图片相关信息！'
+                        content: '请上传相关报价单和邮件截图！'
                     });
                     return false;
                 }
@@ -1519,14 +1519,16 @@
             let _schedule7 = true;
             let _MarketActionPicList = [];
             for (let _key in imgCodeObj) {
-                let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
-                let _veriImg = false;
-                for (let i = 0; i < _imgList.length; i++) {
-                    if ($(_imgList[i]).attr("data-flag") == 2) {
-                        _veriImg = true;
+                if (_key == 'MRN01' || _key == 'MRN04') {
+                    let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
+                    let _veriImg = false;
+                    for (let i = 0; i < _imgList.length; i++) {
+                        if ($(_imgList[i]).attr("data-flag") == 2) {
+                            _veriImg = true;
+                        }
                     }
+                    _MarketActionPicList.push(_veriImg);
                 }
-                _MarketActionPicList.push(_veriImg);
             }
             for (let i = 0; i < _MarketActionPicList.length; i++) {
                 if (!_MarketActionPicList[i]) {

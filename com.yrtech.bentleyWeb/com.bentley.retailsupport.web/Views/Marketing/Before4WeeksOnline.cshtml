@@ -532,7 +532,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-2">
-                                        <label class="control-label col-md-2"><span translate>平台简介-媒体平台截图</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>平台简介-媒体平台截图</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -601,7 +601,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-3">
-                                        <label class="control-label col-md-2"><span translate>品牌曝光形式</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>品牌曝光形式</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -670,7 +670,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-6">
-                                        <label class="control-label col-md-2"><span translate>媒体投放示例</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>媒体投放示例</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -1294,7 +1294,7 @@
             }
         }
 
-        var scheduleObj = { "schedule1": 0, "schedule2": 0, "schedule3": 0, "schedule4": 0, "schedule5": 0, "schedule6": 0, "schedule7": 0 };
+        var scheduleObj = { "schedule1": 0, "schedule2": 0, "schedule3": 0, "schedule4": 0, "schedule5": 0, "schedule6": 0, "schedule7": 0, "schedule8": 0 };
         //验证逻辑
         function veriData(_type) {
             var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
@@ -1523,28 +1523,32 @@
             }
             //图片验证
             let _schedule7 = veriImage(_type);
-            if (!MarketActionBefore21.PlatformReason) {
-                _schedule7 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '媒体平台选择理由！'
-                    });
-                    return false;
-                }
-            }
             if (_schedule7) {
-                scheduleObj.schedule7 = 20;
+                scheduleObj.schedule7 = 10;
             } else {
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写图片和视频相关信息！'
+                        content: '请上传报价单、邮件截图和广告视频！'
                     });
                     return false;
                 }
+            }
+            let _schedule8 = true;
+            if (!MarketActionBefore21.PlatformReason) {
+                _schedule8 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写场地选择理由！'
+                    });
+                    return false;
+                }
+            }
+            if (_schedule8) {
+                scheduleObj.schedule8 = 10;
             }
             return true;
         }
@@ -1589,14 +1593,16 @@
             let _schedule7 = true;
             let _MarketActionPicList = [];
             for (let _key in imgCodeObj) {
-                let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
-                let _veriImg = false;
-                for (let i = 0; i < _imgList.length; i++) {
-                    if ($(_imgList[i]).attr("data-flag") == 2) {
-                        _veriImg = true;
+                if (_key == 'MPN01' || _key == 'MPN02') {
+                    let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
+                    let _veriImg = false;
+                    for (let i = 0; i < _imgList.length; i++) {
+                        if ($(_imgList[i]).attr("data-flag") == 2) {
+                            _veriImg = true;
+                        }
                     }
+                    _MarketActionPicList.push(_veriImg);
                 }
-                _MarketActionPicList.push(_veriImg);
             }
             for (let i = 0; i < _MarketActionPicList.length; i++) {
                 if (!_MarketActionPicList[i]) {

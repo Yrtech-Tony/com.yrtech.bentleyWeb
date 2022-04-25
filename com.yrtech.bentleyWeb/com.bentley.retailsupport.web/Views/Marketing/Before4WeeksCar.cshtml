@@ -573,7 +573,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-2">
-                                        <label class="control-label col-md-2"><span translate>场地简介-场地实景照片</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>场地简介-场地实景照片</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -642,7 +642,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-3">
-                                        <label class="control-label col-md-2"><span translate>场地简介-场地内部照片</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>场地简介-场地内部照片</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -711,7 +711,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-4">
-                                        <label class="control-label col-md-2"><span translate>场地简介-场地使用计划</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>场地简介-场地使用计划</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -780,7 +780,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-5">
-                                        <label class="control-label col-md-2"><span translate>场地布置-搭建及布置-搭建方案</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>场地布置-搭建及布置-搭建方案</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -849,7 +849,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-6">
-                                        <label class="control-label col-md-2"><span translate>场地布置-搭建及布置-搭建效果图</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>场地布置-搭建及布置-搭建效果图</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -930,7 +930,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-8">
-                                        <label class="control-label col-md-2"><span translate>摄影摄像-摄影师作品</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>摄影摄像-摄影师作品</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -1534,7 +1534,7 @@
             }
         }
 
-        var scheduleObj = { "schedule1": 0, "schedule2": 0, "schedule3": 0, "schedule4": 0, "schedule5": 0, "schedule6": 0, "schedule7": 0 };
+        var scheduleObj = { "schedule1": 0, "schedule2": 0, "schedule3": 0, "schedule4": 0, "schedule5": 0, "schedule6": 0, "schedule7": 0, "schedule8": 0 };
         //验证逻辑
         function veriData(_type) {
             var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
@@ -1758,18 +1758,6 @@
                     return false;
                 }
             }
-
-            if (!MarketActionBefore21.PhotographerIntro) {
-                _schedule3 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请填写摄影师介绍！'
-                    });
-                    return false;
-                }
-            }
             if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
                 layer.open({
                     title: '错误提示',
@@ -1889,8 +1877,21 @@
             }
             //图片验证
             let _schedule7 = veriImage(_type);
+            if (_schedule7) {
+                scheduleObj.schedule7 = 20;
+            } else {
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请上传报价单和邮件截图！'
+                    });
+                    return false;
+                }
+            }
+            let _schedule8 = true;
             if (!MarketActionBefore21.PlatformReason) {
-                _schedule7 = false;
+                _schedule8 = false;
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
@@ -1900,17 +1901,19 @@
                     return false;
                 }
             }
-            if (_schedule7) {
-                scheduleObj.schedule7 = 20;
-            } else {
+            if (!MarketActionBefore21.PhotographerIntro) {
+                _schedule8 = false;
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写图片相关信息！'
+                        content: '请填写摄影摄像-摄影师介绍！'
                     });
                     return false;
                 }
+            }
+            if (_schedule8) {
+                scheduleObj.schedule8 = 10;
             }
             return true;
         }
@@ -1957,14 +1960,16 @@
             let _schedule7 = true;
             let _MarketActionPicList = [];
             for (let _key in imgCodeObj) {
-                let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
-                let _veriImg = false;
-                for (let i = 0; i < _imgList.length; i++) {
-                    if ($(_imgList[i]).attr("data-flag") == 2) {
-                        _veriImg = true;
+                if (_key == 'MPH01' || _key == 'MPH02') {
+                    let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
+                    let _veriImg = false;
+                    for (let i = 0; i < _imgList.length; i++) {
+                        if ($(_imgList[i]).attr("data-flag") == 2) {
+                            _veriImg = true;
+                        }
                     }
+                    _MarketActionPicList.push(_veriImg);
                 }
-                _MarketActionPicList.push(_veriImg);
             }
             for (let i = 0; i < _MarketActionPicList.length; i++) {
                 if (!_MarketActionPicList[i]) {

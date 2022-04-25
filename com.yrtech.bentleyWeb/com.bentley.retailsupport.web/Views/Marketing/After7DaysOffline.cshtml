@@ -15,6 +15,8 @@
 <input id="ExpenseItem" type="hidden" value="{{'Tick Item'|translate}}" />
 <input id="TQuantity" type="hidden" value="{{'Quantity'|translate}}" />
 <input id="TotalAmount" type="hidden" value="{{'Total Amount'|translate}}" />
+<input type="hidden" id="shopId" value="" />
+
 <div id="page-wrapper">
     <!--BEGIN CONTENT-->
     <div class="page-content">
@@ -1420,7 +1422,7 @@
             InitActivityFlowTableNew(2);
 
             $('#UserId').val($('#G_UserId').val());
-           
+
             if (roleName == "SYSADMIN" || roleName == "MARKET") {
                 $('#ActiveShow').show();
                 $('#VisualStatus').prop("disabled", false);
@@ -1434,9 +1436,11 @@
                     if (data && data.length > 0) {
                         data[0].StartDate = data[0].StartDate.substr(0, data[0].StartDate.indexOf(' ')).replace(/-/g, '\/');
                         data[0].EndDate = data[0].EndDate.substr(0, data[0].EndDate.indexOf(' ')).replace(/-/g, '\/');
+                        $("#shopId").val(data[0].ShopId);
                         $('#PromotionCreate').setForm(data[0]);
                         $("#MarketActionTargetModelCode").val(data[0].MarketActionTargetModelCode);
                         $("select").selectpicker("refresh");
+                        checkPrice();
                     }
                 });
 
@@ -2059,11 +2063,11 @@
                     return false;
                 }
             }
-            
+
             if (_schedule2) {
                 scheduleObj.schedule2 = 20;
             }
-           
+
             //活动流程
             var StrActivityFlow = $('#ActivityFlowTableProcess').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {

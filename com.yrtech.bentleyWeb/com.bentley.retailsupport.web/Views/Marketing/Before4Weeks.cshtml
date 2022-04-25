@@ -15,6 +15,8 @@
 <input id="ExpenseItem" type="hidden" value="{{'Tick Item'|translate}}" />
 <input id="TQuantity" type="hidden" value="{{'Quantity'|translate}}" />
 <input id="TotalAmount" type="hidden" value="{{'Total Amount'|translate}}" />
+<input type="hidden" id="shopId" value="" />
+
 <div id="page-wrapper">
     <!--BEGIN CONTENT-->
     <div class="page-content">
@@ -998,7 +1000,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>摄影摄像-摄影师介绍</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-8">
-                                            <textarea class="form-control" cols="20" id="PhotographerIntro" name="PhotographerIntro" rows="5" style="width:100%;" ></textarea>
+                                            <textarea class="form-control" cols="20" id="PhotographerIntro" name="PhotographerIntro" rows="5" style="width:100%;"></textarea>
 
                                         </div>
                                     </div>
@@ -1335,9 +1337,11 @@
                     if (data && data.length > 0) {
                         data[0].StartDate = data[0].StartDate.substr(0, data[0].StartDate.indexOf(' ')).replace(/-/g, '\/');
                         data[0].EndDate = data[0].EndDate.substr(0, data[0].EndDate.indexOf(' ')).replace(/-/g, '\/');
+                        $("#shopId").val(data[0].ShopId);
                         $('#PromotionCreate').setForm(data[0]);
                         $("#MarketActionTargetModelCode").val(data[0].MarketActionTargetModelCode);
                         $("select").selectpicker("refresh");
+                        checkPrice();
                     }
                 });
 
@@ -1648,7 +1652,7 @@
             $(_delMode).parent().parent().find(".ossImage").attr("src", "/Content/bootstrap-fileinput/img/noimage.png");
             $(_delMode).parent().parent().find(".ossImage").attr("data-flag", 1);
             $(_delMode).hide();
-            
+
         }
 
         function delBMCImage(_delMode) {
@@ -1855,7 +1859,7 @@
                     return false;
                 }
             }
-        
+
             if (!veriNumber(MarketActionBefore21.People_InvitationCarOwnerCount)) {
                 layer.open({
                     title: '错误提示',
@@ -1978,7 +1982,7 @@
                     });
                     return false;
                 }
-            } 
+            }
             if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
                 layer.open({
                     title: '错误提示',
@@ -1998,7 +2002,7 @@
                     return false;
                 }
             }
-            
+
             if (_schedule3) {
                 scheduleObj.schedule3 = 10;
             }
@@ -2072,7 +2076,7 @@
                 let _sumAmt = 0;
                 StrActivityFlowNew.forEach(function (item) {
                     //计算金额
-                    if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {    
+                    if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
                         _sumAmt += parseInt(item.CoopFundAmt);
                     }
                 });

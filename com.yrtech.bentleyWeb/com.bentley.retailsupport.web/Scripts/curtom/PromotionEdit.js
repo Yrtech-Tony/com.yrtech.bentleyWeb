@@ -2081,7 +2081,7 @@ function changeShopId() {
 }
 
 function checkPrice() {
-    $.commonGet("MarketAction/MarketActionBudgetMaxSearch", { shopId: $("#ShopId").val() }, function (data) {
+    $.commonGet("MarketAction/MarketActionBudgetMaxSearch", { shopId: $("#shopId").val() }, function (data) {
         if (data) {
             $("#Before4WeeksBudgetMax").html("预算历史最大值:" + data.Before4WeeksBudgetMax);
             $("#Before4WeeksDMFSumMax").html("市场基金金额合计历史最大值:" + data.Before4WeeksDMFSumMax);
@@ -2090,5 +2090,3 @@ function checkPrice() {
         }
     });
 }
-
-checkPrice();

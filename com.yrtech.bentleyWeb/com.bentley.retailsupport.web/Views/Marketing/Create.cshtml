@@ -340,7 +340,7 @@
         function checkPrice() {
             $.commonGet("MarketAction/MarketActionBudgetMaxSearch", { shopId: $("#ShopId").val()}, function (data) {
                 if (data) {
-                    $("#hisMaxPrice").html("历史最大金额:" + data);
+                    $("#hisMaxPrice").html("历史最大金额:" + data.MarketActionBudgetMax);
                 }
             });
         }

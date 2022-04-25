@@ -2075,3 +2075,20 @@ function searchFourWeeks(id) {
         }
     });
 }
+
+function changeShopId() {
+    checkPrice();
+}
+
+function checkPrice() {
+    $.commonGet("MarketAction/MarketActionBudgetMaxSearch", { shopId: $("#ShopId").val() }, function (data) {
+        if (data) {
+            $("#Before4WeeksBudgetMax").html("预算历史最大值:" + data.Before4WeeksBudgetMax);
+            $("#Before4WeeksDMFSumMax").html("市场基金金额合计历史最大值:" + data.Before4WeeksDMFSumMax);
+            $("#After7BudgetMax").html("预算历史最大值:" + data.After7BudgetMax);
+            $("#After7DMFSumMax").html("市场基金金额合计历史最大值:" + data.After7DMFSumMax);
+        }
+    });
+}
+
+checkPrice();

@@ -1312,6 +1312,7 @@
 
                 $.commonGet("MarketAction/MarketActionAfter7Search", { marketActionId: id }, function (data) {
                     if (data) {
+                        console.error(data);
                         var marketActionAfter7 = data.MarketActionAfter7;
                         if (data.MarketActionAfter7CoopFund) {
                             data.MarketActionAfter7CoopFund.forEach(function (item) {
@@ -1328,10 +1329,9 @@
                             }
                             initImageList(data.MarketActionAfter7PicList_OnLine);
                             subCluesToTheCostReport();
-                            searchDtt();
-                            searchFourWeeks(id);
                         }
-
+                        searchDtt();
+                        searchFourWeeks(id);
                     }
                 });
             }

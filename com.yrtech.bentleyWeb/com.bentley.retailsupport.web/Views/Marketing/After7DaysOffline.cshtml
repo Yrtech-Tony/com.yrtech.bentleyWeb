@@ -1,7 +1,21 @@
 ﻿@{
     ViewBag.Title = "After2Days";
 }
+<style>
+    #imgListDiv-2 {
+        display: flex;
+        justify-content: space-around;
+    }
 
+    .img-flex {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .img-flex-div {
+        margin-right: 10px;
+    }
+</style>
 <input id="TDisplayModel" type="hidden" value="{{'Display Model（Color）'|translate}}" />
 <input id="TProvider" type="hidden" value="{{'Provider'|translate}}" />
 <input id="TEdit" type="hidden" value="{{'Edit'|translate}}" />
@@ -1045,65 +1059,251 @@
                                     <div class="form-group" id="imgListDiv-2">
                                         <label class="control-label col-md-2"><span translate>合同</span>:</label>
                                         <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                            <div style="margin-top:10px;">
-                                                <a id="selectfiles-2" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
-                                                <div id="upload-container-2" class="container-fluid" style="display:block">
-                                                    <div id="ossfile-2"></div>
-                                                </div>
-                                            </div>
+                                            <label class="control-label"><span translate>合同</span>:</label>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                        <div class="col-md-10">
+                                            <div class="img-flex">
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                                 </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                </div>
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                </div>
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                </div>
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                                 </div>
                                             </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                            <div id="htDiv" style="display:none;">
+                                                <div class="img-flex" style="margin-top:10px;">
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                <div class="img-flex" style="margin-top:10px;">
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="img-flex" style="margin-top:10px;">
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                            <div>
+                                                <div style="margin-top:10px;float:left;">
+                                                    <a id="selectfiles-2" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                    <div id="upload-container-2" class="container-fluid" style="display:block">
+                                                        <div id="ossfile-2"></div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                <div style="float: left; margin-top: 10px; margin-left: 10px; border: 1px solid #5bc0de; ">
+                                                    <button type="button" onclick="htDivMore(this)" data-flag="1" class="btn btn-info" translate="">查看更多</button>
                                                 </div>
+                                                <div style="clear:both;width:0px;height:0px;"></div>
                                             </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1179,67 +1379,252 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-20">
-                                        <label class="control-label col-md-2"><span translate>发票</span>:</label>
                                         <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                            <div style="margin-top:10px;">
-                                                <a id="selectfiles-20" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
-                                                <div id="upload-container-20" class="container-fluid" style="display:block">
-                                                    <div id="ossfile-20"></div>
-                                                </div>
-                                            </div>
+                                            <label class="control-label"><span translate>发票</span>:</label>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                        <div class="col-md-10">
+                                            <div class="img-flex">
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                                 </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                </div>
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                </div>
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                </div>
+                                                <div class="img-flex-div">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                            <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                    <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                                 </div>
                                             </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                            <div id="fpDiv" style="display:none;">
+                                                <div class="img-flex" style="margin-top:10px;">
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                <div class="img-flex" style="margin-top:10px;">
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="img-flex" style="margin-top:10px;">
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
+                                                    <div class="img-flex-div">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                            <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                                <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                            <div>
+                                                <div style="margin-top:10px;float:left;">
+                                                    <a id="selectfiles-20" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                    <div id="upload-container-20" class="container-fluid" style="display:block">
+                                                        <div id="ossfile-20"></div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                <div style="float: left; margin-top: 10px; margin-left: 10px; border: 1px solid #5bc0de; ">
+                                                    <button type="button" onclick="fpDivMore(this)" data-flag="1" class="btn btn-info" translate="">查看更多</button>
                                                 </div>
+                                                <div style="clear:both;width:0px;height:0px;"></div>
                                             </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1486,11 +1871,10 @@
                                 $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
                             }
                             initImageList(data.MarketActionAfter7PicList_OffLine);
-                            searchDtt();
                             subCluesToTheCostReport();
-                            searchFourWeeks(id);
                         }
-
+                        searchDtt();
+                        searchFourWeeks(id);
                     }
                 });
             }
@@ -2390,6 +2774,36 @@
                 $('#ActivityFlowTableNew').bootstrapTable("load", StrActivityFlowNew);
                 EProcessing();
             }, EProcessing)
+        }
+
+        function htDivMore(_obj) {
+            let _flag = $(_obj).attr("data-flag");
+            if (_flag == 1) {
+                //打开更多
+                $("#htDiv").show();
+                $(_obj).html("隐藏更多");
+                $(_obj).attr("data-flag", 2);
+            } else {
+                //关闭更多
+                $("#htDiv").hide();
+                $(_obj).html("查看更多");
+                $(_obj).attr("data-flag", 1);
+            }
+        }
+
+        function fpDivMore(_obj) {
+            let _flag = $(_obj).attr("data-flag");
+            if (_flag == 1) {
+                //打开更多
+                $("#fpDiv").show();
+                $(_obj).html("隐藏更多");
+                $(_obj).attr("data-flag", 2);
+            } else {
+                //关闭更多
+                $("#fpDiv").hide();
+                $(_obj).html("查看更多");
+                $(_obj).attr("data-flag", 1);
+            }
         }
     </script>
 }

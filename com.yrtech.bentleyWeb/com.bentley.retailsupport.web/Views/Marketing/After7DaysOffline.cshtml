@@ -2380,7 +2380,9 @@
                             item.CoopFundAmt_Budget = data.CoopFundAmt_Budget;
                         }
                         //计算金额
-                        _sumAmt += parseInt(item.CoopFundAmt);
+                        if (item.CoopFundAmt) {
+                            _sumAmt += parseInt(item.CoopFundAmt);
+                        }
                     });
                     $("#TotalBudgetAmt").val(_sumAmt);
                     subCluesToTheCost();

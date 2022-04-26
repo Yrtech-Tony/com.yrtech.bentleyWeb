@@ -1491,7 +1491,7 @@
                     if (_item["StartDate"] && _item["EndDate"]) {
                         let _startDate = new Date(_item["StartDate"]);
                         let _endDate = new Date(_item["EndDate"]);
-                        if (_startDate.getTime() >= _endDate.getTime()) {
+                        if (_startDate.getTime() > _endDate.getTime()) {
                             layer.open({
                                 title: '错误提示',
                                 type: 0,
@@ -1803,6 +1803,26 @@
             if (!_flowDateVeri || !_flowVeri) {
                 return false;
             }*@
+            //验证结束时间大于开始时间
+            if (_item["StartDate"] && _item["EndDate"]) {
+                let _startDate = new Date(_item["StartDate"]);
+                let _endDate = new Date(_item["EndDate"]);
+                if (_startDate.getTime() > _endDate.getTime()) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '投放开始时间不能大于等于投放结束时间！'
+                    });
+                    _item.EndDate = '';
+                    StrActivityFlowNew.forEach(function (item) {
+                        if (item.SeqNO == _item.SeqNO) {
+                            item = _item;
+                        }
+                    });
+                    $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
+                    return;
+                }
+            }
             let _sumAmt = 0;
             _item.MarketActionId = id;
             SProcessing();
@@ -1822,7 +1842,9 @@
                         item.CoopFundTypeDesc = data.CoopFundTypeDesc;
                     }
                     //计算金额
-                    _sumAmt += parseInt(item.CoopFundAmt);
+                    if (item.CoopFundAmt) {
+                        _sumAmt += parseInt(item.CoopFundAmt);
+                    }
                 });
                 $("#TotalBudgetAmt").val(_sumAmt);
                 subCluesToTheCost();

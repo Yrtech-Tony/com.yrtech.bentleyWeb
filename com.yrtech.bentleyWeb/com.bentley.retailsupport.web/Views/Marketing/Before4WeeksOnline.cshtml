@@ -524,7 +524,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>媒体平台选择理由</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>媒体平台选择理由</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" placeholder="平台基本信息：简介/选择理由" cols="20" id="PlatformReason" name="PlatformReason" data-val="true" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -1529,7 +1529,7 @@
             //图片验证
             let _schedule7 = veriImage(_type);
             if (_schedule7) {
-                scheduleObj.schedule7 = 10;
+                scheduleObj.schedule7 = 20;
             } else {
                 if (_type == 2) {
                     layer.open({
@@ -1539,21 +1539,6 @@
                     });
                     return false;
                 }
-            }
-            let _schedule8 = true;
-            if (!MarketActionBefore21.PlatformReason) {
-                _schedule8 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请填写场地选择理由！'
-                    });
-                    return false;
-                }
-            }
-            if (_schedule8) {
-                scheduleObj.schedule8 = 10;
             }
             return true;
         }

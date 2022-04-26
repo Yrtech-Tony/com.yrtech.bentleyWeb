@@ -563,7 +563,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>场地选择理由</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>场地选择理由</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" placeholder="场地基础信息：地点 / 容量 / 选择理由；合作方信息（若有）：合作方背景 / 合作模式）" id="PlatformReason" name="PlatformReason" data-val="true" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -987,7 +987,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>表演-表演计划</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>表演-表演计划</span>:  </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="PerformPlan" name="PerformPlan" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -998,7 +998,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>摄影摄像-摄影师介绍</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>摄影摄像-摄影师介绍</span>:  </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="PhotographerIntro" name="PhotographerIntro" rows="5" style="width:100%;"></textarea>
 
@@ -2103,7 +2103,7 @@
             //图片验证
             let _schedule7 = veriImage(_type);
             if (_schedule7) {
-                scheduleObj.schedule7 = 10;
+                scheduleObj.schedule7 = 20;
             } else {
                 if (_type == 2) {
                     layer.open({
@@ -2114,7 +2114,7 @@
                     return false;
                 }
             }
-            let _schedule8 = true;
+            @*let _schedule8 = true;
             if (!MarketActionBefore21.PlatformReason) {
                 _schedule8 = false;
                 if (_type == 2) {
@@ -2150,7 +2150,7 @@
             }
             if (_schedule8) {
                 scheduleObj.schedule8 = 10;
-            }
+            }*@
             return true;
         }
 

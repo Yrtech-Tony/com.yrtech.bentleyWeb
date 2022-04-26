@@ -435,7 +435,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv">
-                                        <label class="control-label col-md-2"><span translate>场地照片_场地实景照片</span>:</label>
+                                        <label class="control-label col-md-2">
+                                            <span translate>场地照片_场地实景照片</span>:
+                                            <br />
+                                            <span style="font-size:12px;font-weight:100;color:red;width:193px;display:inline-block;">（如本月全部交车活动均在展厅中进行，提供展厅实景照片即可；如本月交车活动涉及其他场地，请提供交车场地内外部实景照片（如为客户私人住所可不提供照片））</span>
+                                        </label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -2230,7 +2234,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写图片相关信息！'
+                        content: '请上传图片相关信息！'
                     });
                     return false;
                 }

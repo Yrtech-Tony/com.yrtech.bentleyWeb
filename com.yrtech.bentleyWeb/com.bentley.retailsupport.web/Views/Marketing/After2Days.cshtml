@@ -135,7 +135,26 @@
                         userId: $("#G_UserId").val(),
                         path: args.osspath
                     }, function (data) {
-                        loadCueReport();
+                        console.error(data);
+                        if (data.Status) {
+                            layer.open({
+                                title: '提示',
+                                type: 0,
+                                content: '导入成功!',
+                                end: function () {
+                                    loadCueReport();
+                                }
+                            });
+                        } else {
+                            layer.open({
+                                title: '提示',
+                                type: 0,
+                                content: '导入失败!'+data.Body,
+                                end: function () {
+                                   
+                                }
+                            });
+                        }
                     });
                 }
             });

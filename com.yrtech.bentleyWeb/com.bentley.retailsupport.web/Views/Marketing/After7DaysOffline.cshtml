@@ -276,17 +276,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>实际参加人数</span><span class="required" style="color:red">*</span>:  </label>
-                                        <div class="col-md-4">
-                                            <input class="form-control" id="People_ActualArrivalCount" name="People_ActualArrivalCount" style="width:100%;" type="text" min="0" maxlength="255">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>车主</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="People_ActualCarOwnerCount" name="People_ActualCarOwnerCount" style="width:100%;" type="text" min="0" maxlength="255">
@@ -328,12 +317,25 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>新增订单</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="People_NewOrderCount" name="People_NewOrderCount" style="width:100%;" type="text" min="0" maxlength="255">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>实际参加人数</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" readonly id="People_ActualArrivalCount" name="People_ActualArrivalCount" style="width:100%;" type="text" min="0" maxlength="255">
+
                                         </div>
                                     </div>
                                 </div>
@@ -1780,7 +1782,7 @@
             });
             initOssClient("");
             initOssClient("-1");
-            initOssClient("-2");
+            initOssClient("-2",20);
             initOssClient("-3");
             initOssClient("-4");
             initOssClient("-5");
@@ -1790,7 +1792,7 @@
             initOssClient("-9");
             initOssClient("-10");
             initOssClient("-11");
-            initOssClient("-20");
+            initOssClient("-20",20);
             //设置同步调用 必须先绑定下拉列表数据再查询市场活动信息
             $.ajaxSetup({
                 async: false
@@ -1872,6 +1874,8 @@
                             initImageList(data.MarketActionAfter7PicList_OffLine);
                             subCluesToTheCostReport();
                         }
+                        bindReportInputChange();
+                        sumReport();
                         searchDtt();
                         searchFourWeeks(id);
                     }
@@ -2039,10 +2043,11 @@
             }
         }
 
-        function initOssClient(_id) {
+        function initOssClient(_id, _count) {
             var osspath = "Bentley/" + year + "/MarketAction/";
             ossClient = new OSSClient({
                 uploadId: _id,
+                imgCount: _count,
                 fileAddCheck: function () {
                     return true;
                 },
@@ -2474,6 +2479,14 @@
                         return false;
                     }
                 }
+                if (_type == 2 && StrActivityFlow.length < 3) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请至少填报3个活动流程！'
+                    });
+                    return false;
+                }
                 scheduleObj.schedule5 = 20;
             } else {
                 if (_type == 2) {
@@ -2544,7 +2557,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请上传图片相关信息！'
+                        content: '请上传相关报价单、发票和邮件截图！'
                     });
                     return false;
                 }
@@ -2592,7 +2605,7 @@
             let _schedule7 = true;
             let _MarketActionPicList = [];
             for (let _key in imgCodeObj) {
-                if (_key == 'MRF01' || _key == 'MRF04') {
+                if (_key == 'MRF01' || _key == 'MRF04' || _key == 'MRF02') {
                     let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
                     let _veriImg = false;
                     for (let i = 0; i < _imgList.length; i++) {
@@ -2749,6 +2762,30 @@
                     return;
                 }
             }*@
+
+            let _repetitionType = true;
+            StrActivityFlowNew.forEach(function (item) {
+                if (item.SeqNO != _item.SeqNO && item.CoopFundCode == _item.CoopFundCode) {
+                    _repetitionType = false;
+                }
+            });
+            if (!_repetitionType) {
+                layer.open({
+                    title: '提示',
+                    type: 0,
+                    content: '费用类型不可重复，请重新选择！',
+                    end: function () {
+                        StrActivityFlowNew.forEach(function (item) {
+                            if (item.SeqNO == _item.SeqNO) {
+                                item.CoopFundCode = '';
+                            }
+                        });
+                        $('#ActivityFlowTableNew').bootstrapTable("load", StrActivityFlowNew);
+                    }
+                });
+                return;
+            }
+
             let _sumAmt = 0;
             _item.MarketActionId = id;
             SProcessing();

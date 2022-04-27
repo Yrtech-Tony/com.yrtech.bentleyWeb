@@ -2164,6 +2164,28 @@
                     return;
                 }
             }*@
+            let _repetitionType = true;
+            StrActivityFlowNew.forEach(function (item) {
+                if (item.SeqNO != _item.SeqNO && item.CoopFundCode == _item.CoopFundCode) {
+                    _repetitionType = false;
+                }
+            });
+            if (!_repetitionType) {
+                layer.open({
+                    title: '提示',
+                    type: 0,
+                    content: '费用类型不可重复，请重新选择！',
+                    end: function () {
+                        StrActivityFlowNew.forEach(function (item) {
+                            if (item.SeqNO == _item.SeqNO) {
+                                item.CoopFundCode = '';
+                            }
+                        });
+                        $('#ActivityFlowTableNew').bootstrapTable("load", StrActivityFlowNew);
+                    }
+                });
+                return;
+            }
             let _sumAmt = 0;
             _item.MarketActionId = id;
             SProcessing();

@@ -2042,7 +2042,21 @@ function bindInputChange() {
     $("#People_NewLeadsThisYearCount").on('input', function () {
         subCluesToTheCost();
     });
+}
 
+function bindReportInputChange() {
+    $("#People_ActualCarOwnerCount").on('input', function () {
+        sumReport();
+    });
+    $("#People_ActualDepositorCount").on('input', function () {
+        sumReport();
+    });
+    $("#People_ActualPotentialCount").on('input', function () {
+        sumReport();
+    });
+    $("#People_OthersCount").on('input', function () {
+        sumReport();
+    });
 }
 
 function sumPlan() {
@@ -2052,6 +2066,15 @@ function sumPlan() {
     let _People_InvitationOtherCount = parseInt($("#People_InvitationOtherCount").val());
     let _sumCount = (_People_InvitationCarOwnerCount ? _People_InvitationCarOwnerCount : 0) + (_People_InvitationDepositorCount ? _People_InvitationDepositorCount : 0) + (_People_InvitationPotentialCount ? _People_InvitationPotentialCount : 0) + (_People_InvitationOtherCount ? _People_InvitationOtherCount : 0);
     $("#People_InvitationTotalCount").val(_sumCount);
+}
+
+function sumReport() {
+    let _People_InvitationCarOwnerCount = parseInt($("#People_ActualCarOwnerCount").val());
+    let _People_InvitationDepositorCount = parseInt($("#People_ActualDepositorCount").val());
+    let _People_InvitationPotentialCount = parseInt($("#People_ActualPotentialCount").val());
+    let _People_InvitationOtherCount = parseInt($("#People_OthersCount").val());
+    let _sumCount = (_People_InvitationCarOwnerCount ? _People_InvitationCarOwnerCount : 0) + (_People_InvitationDepositorCount ? _People_InvitationDepositorCount : 0) + (_People_InvitationPotentialCount ? _People_InvitationPotentialCount : 0) + (_People_InvitationOtherCount ? _People_InvitationOtherCount : 0);
+    $("#People_ActualArrivalCount").val(_sumCount);
 }
 
 function searchFourWeeks(id) {

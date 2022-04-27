@@ -1866,7 +1866,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请上传相关报价单和邮件截图！'
+                        content: '请上传相关报价单、发票和邮件截图！'
                     });
                     return false;
                 }
@@ -1914,7 +1914,7 @@
             let _schedule7 = true;
             let _MarketActionPicList = [];
             for (let _key in imgCodeObj) {
-                if (_key == 'MRN01' || _key == 'MRN04') {
+                if (_key == 'MRN01' || _key == 'MRN04' || _key == 'MRN02') {
                     let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
                     let _veriImg = false;
                     for (let i = 0; i < _imgList.length; i++) {
@@ -2080,6 +2080,28 @@
                     return;
                 }
             }*@
+            let _repetitionType = true;
+            StrActivityFlowNew.forEach(function (item) {
+                if (item.SeqNO != _item.SeqNO && item.CoopFundCode == _item.CoopFundCode) {
+                    _repetitionType = false;
+                }
+            });
+            if (!_repetitionType) {
+                layer.open({
+                    title: '提示',
+                    type: 0,
+                    content: '费用类型不可重复，请重新选择！',
+                    end: function () {
+                        StrActivityFlowNew.forEach(function (item) {
+                            if (item.SeqNO == _item.SeqNO) {
+                                item.CoopFundCode = '';
+                            }
+                        });
+                        $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
+                    }
+                });
+                return;
+            }
             //验证结束时间大于开始时间
             if (_item["StartDate"] && _item["EndDate"]) {
                 let _startDate = new Date(_item["StartDate"]);

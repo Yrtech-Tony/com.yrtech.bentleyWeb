@@ -89,7 +89,11 @@ function init_uploader(options) {
             FilesAdded: function (up, files) {
                 if (options.fileAddCheck) {
                     if (!options.fileAddCheck()) {
-                        alert(options.fileAddCheckMsg);
+                        layer.open({
+                            title: '错误提示',
+                            type: 0,
+                            content: options.fileAddCheckMsg
+                        });
                         return;
                     }
                 }
@@ -100,8 +104,13 @@ function init_uploader(options) {
                         _imgSize++;
                     }
                 }
+                console.error(options.imgCount);
                 if (_imgSize > options.imgCount) {
-                    alert("超出最大上传数量，最大上传数量为" + options.imgCount);
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: "超出最大上传数量，最大上传数量为" + options.imgCount
+                    });
                     return;
                 }
                 uploader.start();

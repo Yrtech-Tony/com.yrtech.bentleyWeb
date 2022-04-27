@@ -347,7 +347,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-5">
-                                        <label class="control-label col-md-2"><span translate>广告视频</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>广告视频</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
@@ -1788,6 +1788,28 @@
             if (!_flowDateVeri || !_flowVeri) {
                 return false;
             }*@
+            let _repetitionType = true;
+            StrActivityFlowNew.forEach(function (item) {
+                if (item.SeqNO != _item.SeqNO && item.CoopFundCode == _item.CoopFundCode) {
+                    _repetitionType = false;
+                }
+            });
+            if (!_repetitionType) {
+                layer.open({
+                    title: '提示',
+                    type: 0,
+                    content: '费用类型不可重复，请重新选择！',
+                    end: function () {
+                        StrActivityFlowNew.forEach(function (item) {
+                            if (item.SeqNO == _item.SeqNO) {
+                                item.CoopFundCode = '';
+                            }
+                        });
+                        $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
+                    }
+                });
+                return;
+            }
             //验证结束时间大于开始时间
             if (_item["StartDate"] && _item["EndDate"]) {
                 let _startDate = new Date(_item["StartDate"]);

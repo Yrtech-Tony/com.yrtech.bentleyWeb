@@ -114,13 +114,13 @@ function InitActivityFlowTable() {
             curRow = row;
         },
         onEditableSave: function (field, row, oldValue, $el) {
-            checkTime(row);
+            checkTime(row,'ActivityFlowTable');
         }
     });
 }
 
-function checkTime(_item) {
-    var StrActivityFlow = $('#ActivityFlowTable').bootstrapTable('getData');
+function checkTime(_item,_id) {
+    var StrActivityFlow = $('#'+_id).bootstrapTable('getData');
     let _flowVeri = true;
     for (let _key in _item) {
         if (_key == "ActivityDateTimeStart" && !_item[_key]) {
@@ -154,7 +154,7 @@ function checkTime(_item) {
             item = _item;
         }
     });
-    $('#ActivityFlowTable').bootstrapTable("load", StrActivityFlow);
+    $('#' + _id).bootstrapTable("load", StrActivityFlow);
 }
 
 function InitActivityFlowTableProcess() {
@@ -250,7 +250,7 @@ function InitActivityFlowTableProcess() {
             curRow = row;
         },
         onEditableSave: function (field, row, oldValue, $el) {
-            checkTime(row);
+            checkTime(row,'ActivityFlowTableProcess');
         }
     });
 }

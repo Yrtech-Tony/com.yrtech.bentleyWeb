@@ -9,98 +9,102 @@ function InitActivityFlowTable() {
         sortName: 'ActivityDateTime',
         sortOrder: 'asc',
         columns: [
-        {
-            title: $('#TTime').val(),
-            field: 'ActivityDateTime',
-            valign: "left",
-            align: "left",
-            sortable: true,
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "ActivityDateTime", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: '活动开始时间',
+                field: 'ActivityDateTimeStart',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'datetime',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTimeStart", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
-            }
-        },
-        {
-            title: $('#TProcess').val(),
-            field: 'Item',
-            valign: "left",
-            align: "left",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Item", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TContent').val(),
-            field: 'Contents',
-            valign: "left",
-            align: "left",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Contents", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
+            },
 
-        },
-        {
-            title: $('#TComments').val(),
-            valign: "left",
-            align: "left",
-            field: 'Remark',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Remark", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: '活动结束时间',
+                field: 'ActivityDateTimeEnd',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'datetime',
+                    title: '',
+                    validate: function (v) {
+
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTimeEnd", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeEnd" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTimeEnd" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
+                }
+            },
+
+            {
+                title: $('#TContent').val(),
+                field: 'Contents',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Contents", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+
+            },
+            {
+                title: '负责人',
+                field: 'Responsible',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Item", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Responsible" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Responsible" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityFlowRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
                 }
             }
-        },
-        {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteActivityFlowRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
-                return e;
-            }
-        }
         ],
         onClickCell: function (field, value, row, $element) {
             return false;
@@ -110,21 +114,280 @@ function InitActivityFlowTable() {
             curRow = row;
         },
         onEditableSave: function (field, row, oldValue, $el) {
-
+            checkTime(row,'ActivityFlowTable');
         }
     });
 }
 
-function InitActivityFlowTableNew() {
+function checkTime(_item,_id) {
+    var StrActivityFlow = $('#'+_id).bootstrapTable('getData');
+    let _flowVeri = true;
+    for (let _key in _item) {
+        if (_key == "ActivityDateTimeStart" && !_item[_key]) {
+            _flowVeri = false;
+            return;
+        }
+        if (_key == "ActivityDateTimeEnd" && !_item[_key]) {
+            _flowVeri = false;
+            return;
+        }
+    }
+    //验证结束时间大于开始时间
+    if (_item["ActivityDateTimeStart"] && _item["ActivityDateTimeEnd"]) {
+        let _startDate = new Date(_item["ActivityDateTimeStart"]);
+        let _endDate = new Date(_item["ActivityDateTimeEnd"]);
+        if (_startDate.getTime() >= _endDate.getTime()) {
+            layer.open({
+                title: '错误提示',
+                type: 0,
+                content: '活动开始时间不能大于活动结束时间！'
+            });
+            _item["ActivityDateTimeEnd"] = '';
+            _flowDateVeri = false;
+        }
+    }
+    if (!_flowVeri) {
+        return false;
+    }
+    StrActivityFlow.forEach(function (item) {
+        if (item.SeqNO == _item.SeqNO) {
+            item = _item;
+        }
+    });
+    $('#' + _id).bootstrapTable("load", StrActivityFlow);
+}
+
+function InitActivityFlowTableProcess() {
 
     //活动流程
-    $('#ActivityFlowTableNew').bootstrapTable({
+    $('#ActivityFlowTableProcess').bootstrapTable({
         pagination: true,
         striped: true, //是否显示行间隔色
         sortable: true,
-        sortName: 'CoopFundCode',
+        sortName: 'ActivityDateTime',
         sortOrder: 'asc',
         columns: [
+            {
+                title: '活动开始时间',
+                field: 'ActivityDateTimeStart',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'datetime',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTimeStart", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTimeStart" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+
+            {
+                title: '活动结束时间',
+                field: 'ActivityDateTimeEnd',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'datetime',
+                    title: '',
+                    validate: function (v) {
+
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTimeEnd", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTimeEnd" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTimeEnd" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: '流程',
+                field: 'Process',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Item", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Process" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Process" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityFlowRowProcess(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
+                }
+            }
+        ],
+        onClickCell: function (field, value, row, $element) {
+            return false;
+
+        },
+        onClickRow: function (row, $element) {
+            curRow = row;
+        },
+        onEditableSave: function (field, row, oldValue, $el) {
+            checkTime(row,'ActivityFlowTableProcess');
+        }
+    });
+}
+
+function InitActivityFlowTableNew(_type) {
+    var _columns = [
+        {
+            title: "费用类型",
+            field: 'CoopFundCode',
+            width: "300px",
+            valign: "middle",
+            align: "center",
+            sortable: false,
+            align: 'left',
+            editable: {
+                type: 'select',
+                title: '',
+                source: hdData,
+                validate: function (v) {
+                    if (!v) return isZH() ? '费用类型不能为空' : 'The Item cannot be empty';
+                },
+                noeditFormatter: function (value, row, index) {
+                    value = isZH() ? row.CoopFundCode : row.CoopFundCode;
+                    for (let i = 0; i < hdData.length; i++) {
+                        if (row.CoopFundCode == hdData[i].value) {
+                            value = hdData[i].text;
+                        }
+                    }
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                    if (!value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+        },
+        {
+            title: "金额",
+            field: 'CoopFundAmt',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundAmt", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "是否报销",
+            field: 'CoopFund_DMFChk',
+            valign: "middle",
+            align: "center",
+            sortable: false,
+            align: 'left',
+            editable: {
+                type: 'select',
+                title: '',
+                source: hdDataCoop,
+                validate: function (v) {
+                    if (!v) return isZH() ? '是否报销不能为空' : 'The Item cannot be empty';
+                },
+                noeditFormatter: function (value, row, index) {
+                    value = isZH() ? row.CoopFund_DMFChk : row.CoopFund_DMFChk;
+                    for (let i = 0; i < hdDataCoop.length; i++) {
+                        if (row.CoopFund_DMFChk + "" == hdDataCoop[i].value) {
+                            value = hdDataCoop[i].text;
+                        }
+                    }
+                    var html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                    if (!value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+        },
+        {
+            title: "费用说明",
+            field: 'CoopFundDesc',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundDesc", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "费用说明填写指引",
+            field: 'CoopFundTypeDesc',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundTypeDesc", value: value };
+                    return '<div style="min-width:100px">' + result.value + '</div>';
+                }
+            }
+
+        },
+        {
+            title: $('#TEdit').val(),
+            field: 'Edit',
+            valign: "middle",
+            align: "center",
+            formatter: function (value, row, index) {
+                var e = "<label onclick='DeleteActivityFlowRowNew(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                return e;
+            }
+        }
+    ];
+    if (_type == 2) {
+        _columns = [
             {
                 title: "费用类型",
                 field: 'CoopFundCode',
@@ -156,7 +419,7 @@ function InitActivityFlowTableNew() {
                 }
             },
             {
-                title: "金额",
+                title: "金额（实际）",
                 field: 'CoopFundAmt',
                 valign: "left",
                 align: "left",
@@ -164,6 +427,14 @@ function InitActivityFlowTableNew() {
                     type: 'text',
                     title: '',
                     validate: function (v) {
+                        v = $.trim(v);
+                        var vil = isZH() ? '金额不能为空，且必须是数字' : 'The actual cost cannot be null, and only numbers accepted';
+                        if (!v) {
+                            return vil;
+                        }
+                        if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                            return vil;
+                        }
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt", value: value };
@@ -177,9 +448,25 @@ function InitActivityFlowTableNew() {
 
             },
             {
+                title: "金额（预计）",
+                field: 'CoopFundAmt_Budget',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundAmt_Budget", value: value };
+                        return '<div style="min-width:100px">' + result.value + '</div>';
+                    }
+                }
+
+            },
+            {
                 title: "是否报销",
                 field: 'CoopFund_DMFChk',
-                width: "300px",
                 valign: "middle",
                 align: "center",
                 sortable: false,
@@ -228,6 +515,23 @@ function InitActivityFlowTableNew() {
 
             },
             {
+                title: "费用说明填写指引",
+                field: 'CoopFundTypeDesc',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundTypeDesc", value: value };
+                        return '<div style="min-width:100px">' + result.value + '</div>';
+                    }
+                }
+
+            },
+            {
                 title: $('#TEdit').val(),
                 field: 'Edit',
                 valign: "middle",
@@ -237,7 +541,16 @@ function InitActivityFlowTableNew() {
                     return e;
                 }
             }
-        ],
+        ];
+    }
+    //市场基金
+    $('#ActivityFlowTableNew').bootstrapTable({
+        pagination: true,
+        striped: true, //是否显示行间隔色
+        sortable: true,
+        sortName: 'CoopFundCode',
+        sortOrder: 'asc',
+        columns: _columns,
         onClickCell: function (field, value, row, $element) {
             return false;
 
@@ -246,21 +559,226 @@ function InitActivityFlowTableNew() {
             curRow = row;
         },
         onEditableSave: function (field, row, oldValue, $el) {
-
+            saveCoopFund(row);
         }
     });
 }
 
-function InitActivityFlowTableOnline() {
+function InitActivityFlowTableOnline(_type) {
+    var _columns = [
+        {
+            title: "费用类型",
+            field: 'CoopFundCode',
+            width: "300px",
+            valign: "middle",
+            align: "center",
+            sortable: false,
+            align: 'left',
+            editable: {
+                type: 'select',
+                title: '',
+                source: hdData,
+                validate: function (v) {
+                    if (!v) return isZH() ? '费用类型不能为空' : 'The Item cannot be empty';
+                },
+                noeditFormatter: function (value, row, index) {
+                    value = isZH() ? row.CoopFundCode : row.CoopFundCode;
+                    for (let i = 0; i < hdData.length; i++) {
+                        if (row.CoopFundCode == hdData[i].value) {
+                            value = hdData[i].text;
+                        }
+                    }
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                    if (!value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundCode" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+        },
+        {
+            title: "金额",
+            field: 'CoopFundAmt',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                    v = $.trim(v);
+                    var vil = isZH() ? '金额不能为空，且必须是数字' : 'The actual cost cannot be null, and only numbers accepted';
+                    if (!v) {
+                        return vil;
+                    }
+                    if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                        return vil;
+                    }
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundAmt", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
 
-    //活动流程
-    $('#ActivityFlowTableOnline').bootstrapTable({
-        pagination: true,
-        striped: true, //是否显示行间隔色
-        sortable: true,
-        sortName: 'CoopFundCode',
-        sortOrder: 'asc',
-        columns: [
+        },
+        {
+            title: "是否报销",
+            field: 'CoopFund_DMFChk',
+            valign: "middle",
+            align: "center",
+            sortable: false,
+            align: 'left',
+            editable: {
+                type: 'select',
+                title: '',
+                source: hdDataCoop,
+                validate: function (v) {
+                    if (!v) return isZH() ? '是否报销不能为空' : 'The Item cannot be empty';
+                },
+                noeditFormatter: function (value, row, index) {
+                    value = isZH() ? row.CoopFund_DMFChk : row.CoopFund_DMFChk;
+                    for (let i = 0; i < hdDataCoop.length; i++) {
+                        if (row.CoopFund_DMFChk + "" == hdDataCoop[i].value) {
+                            value = hdDataCoop[i].text;
+                        }
+                    }
+                    var html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                    if (!value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFund_DMFChk" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+        },
+        {
+            title: "投放开始时间",
+            field: 'StartDate',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'date',
+                title: '',
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "StartDate", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + farmatDate(new Date(result.value)) + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "投放结束时间",
+            field: 'EndDate',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'date',
+                title: '',
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "EndDate", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + farmatDate(new Date(result.value)) + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "总计投放天数",
+            field: 'TotalDays',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "TotalDays", value: value };
+                    return '<div style="min-width:100px">' + result.value + '</div>';
+                }
+            }
+
+        },
+        {
+            title: "每日费用",
+            field: 'AmtPerDay',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "AmtPerDay", value: value };
+                    let _value = result.value;
+                    _value = isNaN(parseFloat(_value)) ? _value : parseFloat(_value).toFixed(2);
+                    return '<div style="min-width:100px">' + _value + '</div>';
+                }
+            }
+
+        },
+        {
+            title: "费用说明",
+            field: 'CoopFundDesc',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundDesc", value: value };
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    if (!result.value) {
+                        html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                    }
+                    return html;
+                }
+            }
+
+        },
+        {
+            title: "费用说明填写指引",
+            field: 'CoopFundTypeDesc',
+            valign: "left",
+            align: "left",
+            editable: {
+                type: 'text',
+                title: '',
+                validate: function (v) {
+                },
+                noeditFormatter: function (value, row, index) {
+                    var result = { filed: "CoopFundTypeDesc", value: value };
+                    return '<div style="min-width:100px">' + result.value + '</div>';
+                }
+            }
+
+        },
+        {
+            title: $('#TEdit').val(),
+            field: 'Edit',
+            valign: "middle",
+            align: "center",
+            formatter: function (value, row, index) {
+                var e = "<label onclick='DeleteActivityFlowRowOnline(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                return e;
+            }
+        }
+    ];
+    if (_type == 2) {
+        _columns = [
             {
                 title: "费用类型",
                 field: 'CoopFundCode',
@@ -292,7 +810,7 @@ function InitActivityFlowTableOnline() {
                 }
             },
             {
-                title: "金额",
+                title: "金额（实际）",
                 field: 'CoopFundAmt',
                 valign: "left",
                 align: "left",
@@ -300,6 +818,14 @@ function InitActivityFlowTableOnline() {
                     type: 'text',
                     title: '',
                     validate: function (v) {
+                        v = $.trim(v);
+                        var vil = isZH() ? '金额不能为空，且必须是数字' : 'The actual cost cannot be null, and only numbers accepted';
+                        if (!v) {
+                            return vil;
+                        }
+                        if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                            return vil;
+                        }
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt", value: value };
@@ -313,9 +839,25 @@ function InitActivityFlowTableOnline() {
 
             },
             {
+                title: "金额（预计）",
+                field: 'CoopFundAmt_Budget',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundAmt_Budget", value: value };
+                        return '<div style="min-width:100px">' + result.value + '</div>';
+                    }
+                }
+
+            },
+            {
                 title: "是否报销",
                 field: 'CoopFund_DMFChk',
-                width: "300px",
                 valign: "middle",
                 align: "center",
                 sortable: false,
@@ -350,11 +892,9 @@ function InitActivityFlowTableOnline() {
                 editable: {
                     type: 'date',
                     title: '',
-                    validate: function (v) {
-                    },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "StartDate", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + farmatDate(new Date(result.value)) + '</a>';
                         if (!result.value) {
                             html = '<a href="javascript:void(0)" data-name="StartDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
@@ -371,11 +911,9 @@ function InitActivityFlowTableOnline() {
                 editable: {
                     type: 'date',
                     title: '',
-                    validate: function (v) {
-                    },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "EndDate", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + farmatDate(new Date(result.value)) + '</a>';
                         if (!result.value) {
                             html = '<a href="javascript:void(0)" data-name="EndDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
@@ -385,7 +923,7 @@ function InitActivityFlowTableOnline() {
 
             },
             {
-                title: "总计投放天数",
+                title: "实际投放天数",
                 field: 'TotalDays',
                 valign: "left",
                 align: "left",
@@ -396,17 +934,13 @@ function InitActivityFlowTableOnline() {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "TotalDays", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="TotalDays" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                        if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="TotalDays" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                        }
-                        return html;
+                        return '<div style="min-width:100px">' + result.value + '</div>';
                     }
                 }
 
             },
             {
-                title: "每日费用",
+                title: "实际每日费用",
                 field: 'AmtPerDay',
                 valign: "left",
                 align: "left",
@@ -417,9 +951,158 @@ function InitActivityFlowTableOnline() {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "AmtPerDay", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="AmtPerDay" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        let _value = result.value;
+                        _value = isNaN(parseFloat(_value)) ? _value : parseFloat(_value).toFixed(2);
+                        return '<div style="min-width:100px">' + _value + '</div>';
+                    }
+                }
+
+            },
+            {
+                title: "费用说明",
+                field: 'CoopFundDesc',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundDesc", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
                         if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="AmtPerDay" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                            html = '<a href="javascript:void(0)" data-name="CoopFundDesc" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+
+            },
+            {
+                title: "费用说明填写指引",
+                field: 'CoopFundTypeDesc',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "CoopFundTypeDesc", value: value };
+                        return '<div style="min-width:100px">' + result.value + '</div>';
+                    }
+                }
+
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityFlowRowOnline(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
+                }
+            }
+        ]
+    }
+    //市场基金线上
+    $('#ActivityFlowTableOnline').bootstrapTable({
+        pagination: true,
+        striped: true, //是否显示行间隔色
+        sortable: true,
+        sortName: 'CoopFundCode',
+        sortOrder: 'asc',
+        columns: _columns,
+        onClickCell: function (field, value, row, $element) {
+            return false;
+
+        },
+        onClickRow: function (row, $element) {
+            curRow = row;
+        },
+        onEditableSave: function (field, row, oldValue, $el) {
+            saveCoopFund(row);
+        }
+    });
+}
+
+//交车仪式
+function InitActivityFlowTableCar() {
+    $('#ActivityFlowTableCar').bootstrapTable({
+        pagination: true,
+        striped: true, //是否显示行间隔色
+        sortable: true,
+        sortName: 'CoopFundCode',
+        sortOrder: 'asc',
+        columns: [
+            {
+                title: '日期',
+                field: 'HandOverDate',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'date',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "HandOverDate", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="HandOverDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="HandOverDate" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: "车型",
+                field: 'Model',
+                valign: "middle",
+                align: "center",
+                sortable: false,
+                align: 'left',
+                editable: {
+                    type: 'select',
+                    title: '',
+                    source: carType,
+                    validate: function (v) {
+                        if (!v) return isZH() ? '车型不能为空' : 'The Item cannot be empty';
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        value = isZH() ? row.Model : row.Model;
+                        for (let i = 0; i < carType.length; i++) {
+                            if (row.Model == carType[i].value) {
+                                value = carType[i].text;
+                            }
+                        }
+                        var html = '<a href="javascript:void(0)" data-name="Model" data-pk="undefined" data-value="" class="editable editable-click">' + value + '</a>';
+                        if (!value) {
+                            html = '<a href="javascript:void(0)" data-name="Model" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: "活动主要亮点",
+                field: 'MainProcess',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "MainProcess", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="MainProcess" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="MainProcess" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
                         return html;
                     }
@@ -432,7 +1115,7 @@ function InitActivityFlowTableOnline() {
                 valign: "middle",
                 align: "center",
                 formatter: function (value, row, index) {
-                    var e = "<label onclick='DeleteActivityFlowRowOnline(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    var e = "<label onclick='DeleteActivityFlowRowCar(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
                     return e;
                 }
             }
@@ -457,54 +1140,152 @@ function AddActivityFlowTable() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxActivityFlowSeqNO++,
-            ActivityDateTime: '',
-            Item: '',
-            Contents: '',
-            Remark: ''
+            SeqNO: ++maxActivityFlowSeqNO,
+            ActivityDateTimeStart: '',
+            ActivityDateTimeEnd: '',
+            Responsible: '',
+            Contents: ''
+        }
+    });
+}
+
+var maxActivityFlowSeqNOProcess = 0;
+function AddActivityFlowTableProcess() {
+    var $table = $('#ActivityFlowTableProcess');
+    var index = $table.bootstrapTable('getData').length;//尾添加行
+    $table.bootstrapTable('insertRow', {
+        index: index,
+        row: {
+            SeqNO: ++maxActivityFlowSeqNOProcess,
+            ActivityDateTimeStart: '',
+            ActivityDateTimeEnd: '',
+            Responsible: '',
+            Contents: ''
+        }
+    });
+}
+
+var maxActivityFlowSeqNOCar = 0;
+function AddActivityFlowTableCar() {
+    var $table = $('#ActivityFlowTableCar');
+    var index = $table.bootstrapTable('getData').length;//尾添加行
+    $table.bootstrapTable('insertRow', {
+        index: index,
+        row: {
+            SeqNO: ++maxActivityFlowSeqNOCar,
+            HandOverDate: '',
+            Model: '',
+            MainProcess: ''
         }
     });
 }
 
 var maxActivityFlowSeqNONew = 0;
-function AddActivityFlowTableNew() {
+function AddActivityFlowTableNew(_type) {
+    let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+    if (!_CoopFundSumAmt) {
+        layer.open({
+            title: '错误提示',
+            type: 0,
+            content: '请填写市场基金金额总计！'
+        });
+        return false;
+    }
+    var _row = {
+        SeqNO: ++maxActivityFlowSeqNONew,
+        CoopFundCode: '',
+        CoopFundAmt: '',
+        CoopFund_DMFChk: '',
+        CoopFundDesc: '',
+        CoopFundTypeDesc: '',
+        Remark: ''
+    };
+    if (_type == 2) {
+        _row = {
+            SeqNO: ++maxActivityFlowSeqNONew,
+            CoopFundCode: '',
+            CoopFundAmt: '',
+            CoopFundAmt_Budget: '',
+            CoopFund_DMFChk: '',
+            CoopFundDesc: '',
+            CoopFundTypeDesc: '',
+            Remark: ''
+        };
+    }
     var $table = $('#ActivityFlowTableNew');
     var index = $table.bootstrapTable('getData').length;//尾添加行
     $table.bootstrapTable('insertRow', {
         index: index,
-        row: {
-            SeqNO: maxActivityFlowSeqNONew++,
-            CoopFundCode: '',
-            CoopFundAmt: '',
-            CoopFund_DMFChk: '',
-            CoopFundDesc: '',
-            Remark: ''
-        }
+        row: _row
     });
 }
 
 var maxActivityFlowSeqNOOnline = 0;
-function AddActivityFlowTableOnline() {
-    var $table = $('#ActivityFlowTableOnline');
-    var index = $table.bootstrapTable('getData').length;//尾添加行
-    $table.bootstrapTable('insertRow', {
-        index: index,
-        row: {
-            SeqNO: maxActivityFlowSeqNOOnline++,
+function AddActivityFlowTableOnline(_type) {
+    let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+    if (!_CoopFundSumAmt) {
+        layer.open({
+            title: '错误提示',
+            type: 0,
+            content: '请填写市场基金金额总计！'
+        });
+        return false;
+    }
+    var _row = {
+        SeqNO: ++maxActivityFlowSeqNOOnline,
+        CoopFundCode: '',
+        CoopFundAmt: '',
+        CoopFund_DMFChk: '',
+        StartDate: '',
+        EndDate: '',
+        TotalDays: '',
+        AmtPerDay: '',
+        CoopFundDesc: '',
+        CoopFundTypeDesc: '',
+        Remark: ''
+    }
+    if (_type == 2) {
+        _row = {
+            SeqNO: ++maxActivityFlowSeqNOOnline,
             CoopFundCode: '',
             CoopFundAmt: '',
+            CoopFundAmt_Budget: '',
             CoopFund_DMFChk: '',
             StartDate: '',
             EndDate: '',
             TotalDays: '',
             AmtPerDay: '',
+            CoopFundDesc: '',
+            CoopFundTypeDesc: '',
             Remark: ''
         }
+    }
+    var $table = $('#ActivityFlowTableOnline');
+    var index = $table.bootstrapTable('getData').length;//尾添加行
+    $table.bootstrapTable('insertRow', {
+        index: index,
+        row: _row
     });
 }
 
 function DeleteActivityFlowRow(id) {
     var $table = $('#ActivityFlowTable');
+    $table.bootstrapTable('remove', {
+        field: 'SeqNO',
+        values: [id]
+    });
+}
+
+function DeleteActivityFlowRowProcess(id) {
+    var $table = $('#ActivityFlowTableProcess');
+    $table.bootstrapTable('remove', {
+        field: 'SeqNO',
+        values: [id]
+    });
+}
+
+function DeleteActivityFlowRowCar(id) {
+    var $table = $('#ActivityFlowTableCar');
     $table.bootstrapTable('remove', {
         field: 'SeqNO',
         values: [id]
@@ -545,52 +1326,52 @@ function InitDisplayModelsTable() {
         pagination: true,
         striped: true, //是否显示行间隔色
         columns: [
-        {
-            title: $('#TDisplayModel').val(),
-            field: 'DisplayModelColor',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "DisplayModelColor", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: $('#TDisplayModel').val(),
+                field: 'DisplayModelColor',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "DisplayModelColor", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
+                }
+            },
+            {
+                title: $('#TProvider').val(),
+                field: 'Provider',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Provider", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteDisplayModelsRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
                 }
             }
-        },
-        {
-            title: $('#TProvider').val(),
-            field: 'Provider',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Provider", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteDisplayModelsRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
-                return e;
-            }
-        }
         ],
         onClickCell: function (field, value, row, $element) {
             return false;
@@ -631,51 +1412,51 @@ function InitTestDriverTable() {
     $('#TestDriveTable').bootstrapTable({
         pagination: true,
         columns: [
-        {
-            title: $('#TDisplayModel').val(),
-            field: 'DisplayModelColor',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "DisplayModelColor", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: $('#TDisplayModel').val(),
+                field: 'DisplayModelColor',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "DisplayModelColor", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="DisplayModelColor" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
-            }
-        },
-        {
-            title: $('#TProvider').val(),
-            field: 'Provider',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Provider", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            },
+            {
+                title: $('#TProvider').val(),
+                field: 'Provider',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Provider", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Provider" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
-            }
-        }, {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteTestDriveRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
-                return e;
-            }
-        }],
+            }, {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteTestDriveRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
+                }
+            }],
         onClickCell: function (field, value, row, $element) {
             return false;
 
@@ -696,7 +1477,7 @@ function AddTestDriveTable() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxTestDriveSeqNO++,
+            SeqNO: ++maxTestDriveSeqNO,
             DisplayModelColor: '',
             Provider: ''
         }
@@ -715,119 +1496,119 @@ function InitActivityBudgetTable() {
     $('#ActivityBudgetTable').bootstrapTable({
         pagination: true,
         columns: [
-        {
-            title: $('#ExpenseItem').val(),
-            field: 'ItemName',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "ItemName", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="ItemName" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="ItemName" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: $('#ExpenseItem').val(),
+                field: 'ItemName',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ItemName", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ItemName" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ItemName" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
+                }
+            },
+            {
+                title: $('#TDESC').val(),
+                field: 'Descs',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Descs", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+
                 }
             }
-        },
-        {
-            title: $('#TDESC').val(),
-            field: 'Descs',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Descs", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            ,
+            {
+                title: $('#UnitPrice').val(),
+                field: 'UnitPrice',
+                valign: "middle",
+                align: "center",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                        v = $.trim(v);
+                        if (!v) {
+                            return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+                        }
+                        if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                            return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+                        }
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "UnitPrice", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + dealNumber(result.value) + '</a>';
+                        if (!result.value || result.value == undefined) {
+                            html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
+                        }
+                        return html;
                     }
-                    return html;
                 }
 
-            }
-        }
-        ,
-        {
-            title: $('#UnitPrice').val(),
-            field: 'UnitPrice',
-            valign: "middle",
-            align: "center",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                    v = $.trim(v);
-                    if (!v) {
-                        return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+            },
+            {
+                title: $('#TQuantity').val(),
+                field: 'Counts',
+                valign: "middle",
+                align: "center",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                        v = $.trim(v);
+                        if (!v) {
+                            return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
+                        }
+                        if (!/^\+?[1-9]\d*$/.test(v)) {
+                            return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and  only numbers accepted';
+                        }
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Counts", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
+                        }
+                        return html;
                     }
-                    if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
-                        return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
-                    }
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "UnitPrice", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + dealNumber(result.value) + '</a>';
-                    if (!result.value || result.value == undefined) {
-                        html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
-                    }
-                    return html;
                 }
             }
-
-        },
-        {
-            title: $('#TQuantity').val(),
-            field: 'Counts',
-            valign: "middle",
-            align: "center",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                    v = $.trim(v);
-                    if (!v) {
-                        return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
-                    }
-                    if (!/^\+?[1-9]\d*$/.test(v)) {
-                        return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and  only numbers accepted';
-                    }
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Counts", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
-                    }
-                    return html;
+            ,
+            {
+                title: $('#TotalAmount').val(),
+                field: 'Total',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    return dealNumber(value);
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteActivityBudgetRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? "删除" : "Delete") + "</label>";
+                    return e;
                 }
             }
-        }
-        ,
-        {
-            title: $('#TotalAmount').val(),
-            field: 'Total',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                return dealNumber(value);
-            }
-        },
-        {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteActivityBudgetRow(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? "删除" : "Delete") + "</label>";
-                return e;
-            }
-        }
         ],
         onClickCell: function (field, value, row, $element) {
             return false;
@@ -849,7 +1630,7 @@ function AddActivityBudgetTable() {
     $table.bootstrapTable('insertRow', {
         index: index,
         row: {
-            SeqNO: maxActivityBudgetSeqNO++,
+            SeqNO: ++maxActivityBudgetSeqNO,
             ItemName: '',
             Descs: '',
             UnitPrice: 0,
@@ -903,97 +1684,97 @@ function InitActualActivityProcess() {
         sortName: 'ActivityDateTime',
         sortOrder: 'asc',
         columns: [
-        {
-            title: $('#TTime').val(),
-            field: 'ActivityDateTime',
-            valign: "left",
-            align: "left",
-            sortable: true,
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "ActivityDateTime", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+            {
+                title: $('#TTime').val(),
+                field: 'ActivityDateTime',
+                valign: "left",
+                align: "left",
+                sortable: true,
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "ActivityDateTime", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="ActivityDateTime" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
                     }
-                    return html;
+                }
+            },
+            {
+                title: $('#TProcess').val(),
+                field: 'Item',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Item", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TContent').val(),
+                field: 'Contents',
+                valign: "left",
+                align: "left",
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Contents", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TComments').val(),
+                valign: "left",
+                align: "left",
+                field: 'Remark',
+                editable: {
+                    type: 'text',
+                    title: '',
+                    validate: function (v) {
+                    },
+                    noeditFormatter: function (value, row, index) {
+                        var result = { filed: "Remark", value: value };
+                        var html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        if (!result.value) {
+                            html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
+                        }
+                        return html;
+                    }
+                }
+            },
+            {
+                title: $('#TEdit').val(),
+                field: 'Edit',
+                valign: "middle",
+                align: "center",
+                formatter: function (value, row, index) {
+                    var e = "<label onclick='DeleteInitActualActivity(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
+                    return e;
                 }
             }
-        },
-        {
-            title: $('#TProcess').val(),
-            field: 'Item',
-            valign: "left",
-            align: "left",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Item", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TContent').val(),
-            field: 'Contents',
-            valign: "left",
-            align: "left",
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Contents", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Contents" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TComments').val(),
-            valign: "left",
-            align: "left",
-            field: 'Remark',
-            editable: {
-                type: 'text',
-                title: '',
-                validate: function (v) {
-                },
-                noeditFormatter: function (value, row, index) {
-                    var result = { filed: "Remark", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                    if (!result.value) {
-                        html = '<a href="javascript:void(0)" data-name="Remark" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
-                    }
-                    return html;
-                }
-            }
-        },
-        {
-            title: $('#TEdit').val(),
-            field: 'Edit',
-            valign: "middle",
-            align: "center",
-            formatter: function (value, row, index) {
-                var e = "<label onclick='DeleteInitActualActivity(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</label>";
-                return e;
-            }
-        }
         ],
         onClickCell: function (field, value, row, $element) {
             return false;
@@ -1041,114 +1822,114 @@ function InitActualCost() {
         pagination: true,
         striped: true, //是否显示行间隔色
         columns:
-        [
-            {
-                title: $('#ExpenseItem').val(),
-                field: 'Item',
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "Item", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
-                        if (result.value == "" || result.value == null) {
-                            html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+            [
+                {
+                    title: $('#ExpenseItem').val(),
+                    field: 'Item',
+                    editable: {
+                        type: 'text',
+                        title: '',
+                        validate: function (v) {
+                        },
+                        noeditFormatter: function (value, row, index) {
+                            var result = { filed: "Item", value: value };
+                            var html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
+                            if (result.value == "" || result.value == null) {
+                                html = '<a href="javascript:void(0)" data-name="Item" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                            }
+                            return html;
                         }
-                        return html;
+                    }
+                },
+                {
+                    title: $('#TDESC').val(),
+                    field: 'Descs',
+                    editable: {
+                        type: 'text',
+                        title: '',
+                        validate: function (v) {
+                        },
+                        noeditFormatter: function (value, row, index) {
+                            var result = { filed: "Descs", value: value };
+                            var html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
+                            if (result.value == "" || result.value == null) {
+                                html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
+                            }
+                            return html;
+                        }
+                    }
+                },
+                {
+                    title: $('#UnitPrice').val(),
+                    field: 'UnitPrice',
+                    valign: "middle",
+                    align: "center",
+                    editable: {
+                        type: 'text',
+                        title: '',
+                        validate: function (v) {
+                            v = $.trim(v);
+                            if (!v) {
+                                return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+                            }
+                            if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
+                                return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
+                            }
+                        },
+                        noeditFormatter: function (value, row, index) {
+                            var result = { filed: "UnitPrice", value: value };
+                            var html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click">' + dealNumber(result.value) + '</a>';
+                            if (result.value == undefined) {
+                                html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click">0</a>';
+                            }
+                            return html;
+                        }
+                    }
+                },
+                {
+                    title: $('#TQuantity').val(),
+                    field: 'Counts',
+                    valign: "middle",
+                    align: "center",
+                    editable: {
+                        type: 'text',
+                        title: '',
+                        validate: function (v) {
+                            v = $.trim(v);
+                            if (!v) {
+                                return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
+                            }
+                            if (!/^\+?[1-9]\d*$/.test(v)) {
+                                return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
+                            }
+                        },
+                        noeditFormatter: function (value, row, index) {
+                            var result = { filed: "Counts", value: value };
+                            var html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                            if (!result.value) {
+                                html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
+                            }
+                            return html;
+                        }
+                    }
+                },
+                {
+                    title: $('#TotalAmount').val(),
+                    field: 'Total',
+                    valign: "middle",
+                    align: "center",
+                    formatter: function (value, row, index) {
+                        return dealNumber(value);
+                    }
+                },
+                {
+                    title: $('#TEdit').val(),
+                    field: '',
+                    formatter: function (value, row, index) {
+                        return "<a href='javascript:;' onclick='DeleteActualCost(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</a>";;
                     }
                 }
-            },
-            {
-                title: $('#TDESC').val(),
-                field: 'Descs',
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "Descs", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click">' + result.value + '</a>';
-                        if (result.value == "" || result.value == null) {
-                            html = '<a href="javascript:void(0)" data-name="Descs" data-pk="undefined" data-value="" class="editable editable-click">NULL</a>';
-                        }
-                        return html;
-                    }
-                }
-            },
-            {
-                title: $('#UnitPrice').val(),
-                field: 'UnitPrice',
-                valign: "middle",
-                align: "center",
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                        v = $.trim(v);
-                        if (!v) {
-                            return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
-                        }
-                        if (!/^(-?\d+)(\.\d+)?$/.test(v)) {
-                            return isZH() ? '单价不能为空，且必须是数字' : 'The unit price cannot be null and only numbers accepted';
-                        }
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "UnitPrice", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click">' + dealNumber(result.value) + '</a>';
-                        if (result.value == undefined) {
-                            html = '<a href="javascript:void(0)" data-name="UnitPrice" data-pk="undefined" data-value="" class="editable editable-click">0</a>';
-                        }
-                        return html;
-                    }
-                }
-            },
-            {
-                title: $('#TQuantity').val(),
-                field: 'Counts',
-                valign: "middle",
-                align: "center",
-                editable: {
-                    type: 'text',
-                    title: '',
-                    validate: function (v) {
-                        v = $.trim(v);
-                        if (!v) {
-                            return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
-                        }
-                        if (!/^\+?[1-9]\d*$/.test(v)) {
-                            return isZH() ? '数量不能为空，且必须是整数' : 'Quantities cannot be empty and only numbers accepted';
-                        }
-                    },
-                    noeditFormatter: function (value, row, index) {
-                        var result = { filed: "Counts", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
-                        if (!result.value) {
-                            html = '<a href="javascript:void(0)" data-name="Counts" data-pk="undefined" data-value="" class="editable editable-click editable-empty">0</a>';
-                        }
-                        return html;
-                    }
-                }
-            },
-            {
-                title: $('#TotalAmount').val(),
-                field: 'Total',
-                valign: "middle",
-                align: "center",
-                formatter: function (value, row, index) {
-                    return dealNumber(value);
-                }
-            },
-            {
-                title: $('#TEdit').val(),
-                field: '',
-                formatter: function (value, row, index) {
-                    return "<a href='javascript:;' onclick='DeleteActualCost(" + row.SeqNO + ")'><i class='icon-pencil icon-white'></i>" + (isZH() ? '删除' : 'Delete') + "</a>";;
-                }
-            }
-        ],
+            ],
         onClickRow: function (row, $element) {
             curRow = row;
         },
@@ -1199,3 +1980,136 @@ var dealNumber = function (money) {
         return "";
     }
 };
+
+function farmatDate(date) {
+    let _year = date.getFullYear();  // 获取完整的年份(4位,1970)
+    let _month = date.getMonth() + 1;  // 获取月份(0-11,0代表1月,用的时候记得加上1)
+    let _day = date.getDate();  // 获取日(1-31)
+    let _date = _year + "-" + _month + "-" + _day;
+    return _date;
+}
+
+function subCluesToTheCost() {
+    let _sumAmt = $("#TotalBudgetAmt").val();
+    let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
+    if ($("#People_NewLeadsThisYearCount").val()) {
+        _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
+        _cluesToTheCost = parseFloat(_cluesToTheCost);
+    } else {
+        _cluesToTheCost = '';
+    }
+    $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+}
+
+function subCluesToTheCostReport() {
+    let _sumAmt = $("#TotalBudgetAmt").val();
+    let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThsYearCount").val();
+    if ($("#People_NewLeadsThsYearCount").val()) {
+        _cluesToTheCost = _sumAmt / $("#People_NewLeadsThsYearCount").val();
+        _cluesToTheCost = parseFloat(_cluesToTheCost);
+    } else {
+        _cluesToTheCost = '';
+    }
+    $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+    subCluesToTheCostPLAN();
+}
+
+function subCluesToTheCostPLAN() {
+    let _sumAmt = $("#TotalBudgetAmt_PLAN").val();
+    let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount_PLAN").val();
+    if ($("#People_NewLeadsThisYearCount_PLAN").val()) {
+        _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount_PLAN").val();
+        _cluesToTheCost = parseFloat(_cluesToTheCost);
+    } else {
+        _cluesToTheCost = '';
+    }
+    $("#CluesToTheCost_PLAN").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+}
+
+function bindInputChange() {
+    $("#People_InvitationCarOwnerCount").on('input', function () {
+        sumPlan();
+    });
+    $("#People_InvitationDepositorCount").on('input', function () {
+        sumPlan();
+    });
+    $("#People_InvitationPotentialCount").on('input', function () {
+        sumPlan();
+    });
+    $("#People_InvitationOtherCount").on('input', function () {
+        sumPlan();
+    });
+    $("#People_NewLeadsThisYearCount").on('input', function () {
+        subCluesToTheCost();
+    });
+}
+
+function bindReportInputChange() {
+    $("#People_ActualCarOwnerCount").on('input', function () {
+        sumReport();
+    });
+    $("#People_ActualDepositorCount").on('input', function () {
+        sumReport();
+    });
+    $("#People_ActualPotentialCount").on('input', function () {
+        sumReport();
+    });
+    $("#People_OthersCount").on('input', function () {
+        sumReport();
+    });
+}
+
+function sumPlan() {
+    let _People_InvitationCarOwnerCount = parseInt($("#People_InvitationCarOwnerCount").val());
+    let _People_InvitationDepositorCount = parseInt($("#People_InvitationDepositorCount").val());
+    let _People_InvitationPotentialCount = parseInt($("#People_InvitationPotentialCount").val());
+    let _People_InvitationOtherCount = parseInt($("#People_InvitationOtherCount").val());
+    let _sumCount = (_People_InvitationCarOwnerCount ? _People_InvitationCarOwnerCount : 0) + (_People_InvitationDepositorCount ? _People_InvitationDepositorCount : 0) + (_People_InvitationPotentialCount ? _People_InvitationPotentialCount : 0) + (_People_InvitationOtherCount ? _People_InvitationOtherCount : 0);
+    $("#People_InvitationTotalCount").val(_sumCount);
+}
+
+function sumReport() {
+    let _People_InvitationCarOwnerCount = parseInt($("#People_ActualCarOwnerCount").val());
+    let _People_InvitationDepositorCount = parseInt($("#People_ActualDepositorCount").val());
+    let _People_InvitationPotentialCount = parseInt($("#People_ActualPotentialCount").val());
+    let _People_InvitationOtherCount = parseInt($("#People_OthersCount").val());
+    let _sumCount = (_People_InvitationCarOwnerCount ? _People_InvitationCarOwnerCount : 0) + (_People_InvitationDepositorCount ? _People_InvitationDepositorCount : 0) + (_People_InvitationPotentialCount ? _People_InvitationPotentialCount : 0) + (_People_InvitationOtherCount ? _People_InvitationOtherCount : 0);
+    $("#People_ActualArrivalCount").val(_sumCount);
+}
+
+function searchFourWeeks(id) {
+    $.commonGet("MarketAction/MarketActionBefore4WeeksSearch", { marketActionId: id }, function (data) {
+        if (data) {
+            let _MarketActionBefore4Weeks = data.MarketActionBefore4Weeks;
+            let _sumAmt = _MarketActionBefore4Weeks.TotalBudgetAmt;
+            let _cluesToTheCost = _sumAmt / _MarketActionBefore4Weeks.People_NewLeadsThisYearCount;
+            if (_MarketActionBefore4Weeks.People_NewLeadsThisYearCount) {
+                _cluesToTheCost = _sumAmt / _MarketActionBefore4Weeks.People_NewLeadsThisYearCount;
+                _cluesToTheCost = parseFloat(_cluesToTheCost);
+            } else {
+                _cluesToTheCost = '';
+            }
+            $("#People_ParticipantsCount_PLAN").val(_MarketActionBefore4Weeks.People_ParticipantsCount);
+            $("#CluesToTheCost_PLAN").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+            $("#People_NewLeadsThisYearCount_PLAN").val(_MarketActionBefore4Weeks.People_NewLeadsThisYearCount);
+            $("#People_DCPIDCount_PLAN").val(_MarketActionBefore4Weeks.People_DCPIDCount);
+            $("#TotalBudgetAmt_PLAN").val(_MarketActionBefore4Weeks.TotalBudgetAmt);
+            $("#CoopFundSumAmt_PLAN").val(_MarketActionBefore4Weeks.CoopFundSumAmt);
+        }
+    });
+}
+
+function changeShopId() {
+    checkPrice();
+}
+
+function checkPrice() {
+    $.commonGet("MarketAction/MarketActionBudgetMaxSearch", { shopId: $("#shopId").val() }, function (data) {
+        if (data) {
+            $("#Before4WeeksBudgetMax").html("预算历史最大值:" + data.Before4WeeksBudgetMax);
+            $("#Before4WeeksDMFSumMax").html("市场基金金额合计历史最大值:" + data.Before4WeeksDMFSumMax);
+            $("#After7BudgetMax").html("预算历史最大值:" + data.After7BudgetMax);
+            $("#After7DMFSumMax").html("市场基金金额合计历史最大值:" + data.After7DMFSumMax);
+        }
+    });
+}

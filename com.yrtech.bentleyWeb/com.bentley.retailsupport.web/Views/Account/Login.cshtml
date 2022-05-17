@@ -67,6 +67,7 @@
                 password: password
             }, function (data) {
                 if (data && data.Status) {
+                    sessionStorage.setItem("areaList", JSON.stringify(JSON.parse(data.Body)[0].AreaList));
                     $.post("../Account/AfterLogin", { loginUser: data.Body }, function () {
                         var returnUrl = $("#valueReturnUrl").val();
                         if (!returnUrl || returnUrl == '/') {

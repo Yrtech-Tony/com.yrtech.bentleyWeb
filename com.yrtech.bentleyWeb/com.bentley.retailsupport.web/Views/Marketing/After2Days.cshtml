@@ -85,7 +85,7 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/CueReport.js?20200227"></script>
+    <script src="~/Scripts/curtom/CueReport.js?202204182254"></script>
     <script src="~/Scripts/xlsx.core.min.js"></script>
 
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
@@ -135,7 +135,26 @@
                         userId: $("#G_UserId").val(),
                         path: args.osspath
                     }, function (data) {
-                        loadCueReport();
+                        console.error(data);
+                        if (data.Status) {
+                            layer.open({
+                                title: '提示',
+                                type: 0,
+                                content: '导入成功!',
+                                end: function () {
+                                    loadCueReport();
+                                }
+                            });
+                        } else {
+                            layer.open({
+                                title: '提示',
+                                type: 0,
+                                content: '导入失败!'+data.Body,
+                                end: function () {
+                                   
+                                }
+                            });
+                        }
                     });
                 }
             });

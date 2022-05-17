@@ -85,6 +85,7 @@
                                                         <select class="input-small m-wrap no-margin" id="pdealer" name="pdealer" style="background-color: white;" onchange="NameQuery()">
                                                             <option value="" translate>Dealer Name</option>
                                                         </select>
+                                                        <input class="form-control input-small m-wrap no-margin" style="display:unset;" placeholder="{{'MM/YYYY'|translate}}" id="yearMonth" name="yearMonth" onchange="NameQuery()" onkeypress="EnterPress(event)" />
                                                     </div>
                                                 </span>
                                             </div>
@@ -112,7 +113,7 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js?20200202"></script>
-    <script src="~/Scripts/curtom/IncomeCost.js"></script>
+    <script src="~/Scripts/curtom/IncomeCost.js?v=20220516155136"></script>
     <script src="~/Scripts/xlsx.core.min.js"></script>
     <script src="~/Scripts/crypto-js.js"></script>
     <script src="~/Scripts/curtom/DESUtil.js"></script>
@@ -187,7 +188,8 @@
         function loadMonthSale() {
             $.commonGet("DMF/MonthSaleSearch", {
                 monthSaleId: '',
-                shopId: $("#pdealer").val()
+                shopId: $("#pdealer").val(),
+                yearMonth:$("#yearMonth").val()
             }, function (data) {
                 if (data) {
                     $table.bootstrapTable("load", data);
@@ -274,6 +276,13 @@
         }
         function EProcessing() {
             layer.closeAll('loading');
+        }
+
+        function EnterPress(e) { //传入 event
+            var e = e || window.event;
+            if (e.keyCode == 13) { //13代表回车符
+                NameQuery();
+            }
         }
     </script>
 }

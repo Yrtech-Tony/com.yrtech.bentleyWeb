@@ -63,7 +63,9 @@
                 <div class="col-lg-12">
                     <div id="main-content">
                         <div class="container-fluid">
-                            <p><a class="btn btn-primary" id="btnNew" href="/Home/ActionTypeCreate"><i class="icon-plus icon-white"></i><span translate>Add</span></a></p>
+                            <p>
+                                <a class="btn btn-primary" id="btnNew" href="/Home/ActionTypeCreate"><i class="icon-plus icon-white"></i><span translate>Add</span></a>
+                            </p>
 
                             <div class="row-fluid">
                                 <div class="span12">
@@ -77,7 +79,15 @@
                                             </span>
                                         </div>
                                         <div class="widget-body" style="display: block;">
-                                            <div class="dataTables_wrapper form-inline" role="grid" id="myPro">
+                                            <select name="showStatus" id="showStatus" class="input-small selectpicker" onchange="searchQuery()">
+                                                <option value="" translate>添加状态</option>
+                                                <option value="true">是</option>
+                                                <option value="false">否</option>
+                                            </select>
+                                            <select name="eventMode" id="eventMode" class="input-small selectpicker" onchange="searchQuery()">
+                                                
+                                            </select>
+                                            <div class="dataTables_wrapper form-inline" role="grid" id="myPro" style="margin-top:5px;">
 
                                                 <table class="table table-bordered table-hover" id="ActionTypeTable"></table>
                                             </div>
@@ -100,7 +110,7 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/ManageActionType.js"></script>
+    <script src="~/Scripts/curtom/ManageActionType.js?v=20220516110455"></script>
 
     <script type="text/javascript">
         $("#nav_promotiontype").addClass("active");
@@ -122,13 +132,32 @@
                 eventTypeId: '',
                 eventTypeName: '',
                 eventTypeNameEn: '',
-                showStatus:''
+                eventMode: $("#eventMode").val() || '',
+                showStatus: $("#showStatus").val() || ''
             }, function (data) {
                 $('#ActionTypeTable').bootstrapTable("load", data);
                 $("#ActionTypeTable").bootstrapTable("selectPage", parseInt(window.localStorage.pageNumberMA) || 1);
             })
         }
         loadActionType();
+        function getHiddenCodeSearch() {
+            $.commonGet("/Master/HiddenCodeSearch", { hiddenCodeGroup: 'EventMode', hiddenCode: '' }, function (data) {
+                console.error(data);
+                if (data) {
+                    let _html = '<option value="">活动版块</option>';
+                    data.forEach(function (item) {
+                        _html += '<option value="' + item.HiddenCodeId + '">' + item.HiddenCodeName +'</option>';
+                    })
+                    $("#eventMode").html(_html);
+                }
+            });
+        }
+        getHiddenCodeSearch();
 
+        function searchQuery() {
+            window.localStorage.maeventMode = $("#eventMode").val();
+            window.localStorage.mashowStatus = $("#showStatus").val();
+            loadActionType();
+        }
     </script>
 }

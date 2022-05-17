@@ -19,7 +19,7 @@ $.commonGet = function (url, params, callback, err) {
                 }
             } else {
                 if (callback) {
-                    callback();
+                    callback(data);
                 }
             }
         } else {
@@ -94,6 +94,11 @@ function loadTargetModels() {
                 $("#MarketActionTargetModelCode").append($("<option>").val(item.HiddenCodeId).text(isZH() ? item.HiddenCodeName : item.HiddenCodeNameEn))
             });
             $("#MarketActionTargetModelCode").selectpicker("refresh");
+        }
+        if ("undefined" != typeof carType) {
+            data.forEach(function (item) {
+                carType.push({ "text": item.HiddenCodeName, "value": item.HiddenCodeId });
+            });
         }
     })
 }

@@ -64,6 +64,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "The Day of the Event": "The Day of the Activity"
             , "Two Days After": "Two Days After"
             , "Seven Days After": "Seven Days After"
+            , "Two Weeks After": "Two Weeks After"
             , "One Month After": "One Month After"
 
             , "Plan Status": "Plan Status"
@@ -108,6 +109,8 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Actual Cost(RMB)": "Actual Cost (RMB)"
             , "Save": "Save"
             , "Submit": "Submit"
+            , "Create PPT": "Create PPT"
+            , "Download PPT": "Download PPT"
             , "Show More": "Show More"
             , "Hide More": "Hide More"
             , "Name": "Name"

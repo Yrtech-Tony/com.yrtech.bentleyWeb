@@ -78,7 +78,17 @@
                                             </span>
                                         </div>
                                         <div class="widget-body" style="display: block;">
-                                            <div id="sample_1_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                                            <select name="roleTypeCode" id="roleTypeCode" class="input-small selectpicker" onchange="searchQuery()">
+                                                <option value="">角色</option>
+                                                <option value="SYSADMIN">管理员</option>
+                                                <option value="AREA">区域经理</option>
+                                                <option value="BMC">市场活动</option>
+                                                <option value="SHOP">经销商</option>
+                                                <option value="BMC-FI">BMC财务</option>
+                                            </select>
+                                            <select name="areaId" id="areaId" class="input-small selectpicker" onchange="searchQuery()">
+                                            </select>
+                                            <div id="sample_1_wrapper" class="dataTables_wrapper form-inline" style="margin-top:5px;" role="grid">
                                                 <table class="table table-bordered table-hover" id="userTable"></table>
                                             </div>
                                         </div>
@@ -100,8 +110,9 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/ManageUser.js"></script>
+    <script src="~/Scripts/curtom/ManageUser.js?v=20220516154045"></script>
     <script>
+        var _areaList = JSON.parse(sessionStorage.getItem('areaList'));
         $("#nav_user").addClass("active");
 
         $(function () {
@@ -123,7 +134,9 @@
                 accountName: '',
                 shopCode: '',
                 shopName: '',
-                email: ''
+                email: '',
+                areaId: $("#areaId").val() || '',
+                roleTypeCode: $("#roleTypeCode").val() || ''
             }, function (data) {
                 $('#userTable').bootstrapTable("load", data);
                 $("#userTable").bootstrapTable("selectPage", parseInt(window.localStorage.pageNumberUser) || 1);
@@ -133,11 +146,30 @@
         
         function downloadFile() {
             $.commonGet("Master/UserInfoExport", {
+                areaId: $("#areaId").val() || '',
+                roleTypeCode: $("#roleTypeCode").val() || ''
             }, function (data) {
                 if (data) {
                     window.location.href = host + "download/DownloadFile?filepath=" + data.FilePath;
                 }
             })
+        }
+
+        function getAreas() {
+            console.error(_areaList);
+            let _html = '<option value="">区域</option>';
+            _areaList.forEach(function (item) {
+                _html += '<option value="' + item.AreaId + '">' + item.AreaName + '</option>';
+            })
+            $("#areaId").html(_html);
+        }
+
+        getAreas();
+
+        function searchQuery() {
+            window.localStorage.muareaId = $("#areaId").val();
+            window.localStorage.muroleTypeCode = $("#roleTypeCode").val();
+            loadUser();
         }
     </script>
 }

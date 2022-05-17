@@ -27,12 +27,14 @@ function initTable() {
             field: 'Email'
         }, {
             title: $("#T_Role").val(),
+            sortable: true,
             field: "RoleTypeName"
         }, {
             title: $("#Dealer").val(),
             field: "ShopName"
         }, {
             title: $("#T_AreaName").val(),
+            sortable: true,
             field: "AreaName"
         }, {
             title: $("#G_Edit").val(),

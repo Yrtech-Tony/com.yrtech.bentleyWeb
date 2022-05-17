@@ -113,9 +113,18 @@
                 userId: userId,
                 roleTypeCode: roleType
             }, function (data) {
+                console.error(data);
                 if (data) {
                     var firstHearder = [];
                     var secondHearder = [];
+                    firstHearder.push({
+                        title: '区域',
+                        field: isZH() ? 'AreaName' : 'AreaNameEn',
+                        align: 'center',
+                        valign: 'middle',
+                        rowspan: 2,
+                        sortable: true
+                    });
                     firstHearder.push({
                         title: $("#G_Dealer").val(),
                         field: isZH() ? 'ShopName' : 'ShopNameEn',
@@ -159,6 +168,8 @@
                     })
                     data.ShopList.forEach(function (shop) {
                         var item = {
+                            AreaName: shop.AreaName,
+                            AreaNameEn: shop.AreaNameEn,
                             ShopId: shop.ShopId,
                             ShopName: shop.ShopName,
                             ShopNameEn:shop.ShopNameEn
@@ -188,7 +199,7 @@
                         $("#myPromotion").bootstrapTable("refreshOptions", {
                             columns: columns,
                             data: datas,
-                            pageSize: 20,
+                            pageSize: 40,
                             pagination: true,
                             pageNumber:parseInt(window.localStorage.pageNumberDocument) || 1
                         });
@@ -205,7 +216,7 @@
                             sortName: isZH() ? 'ShopName' : 'ShopNameEn',
                             sortOrder: 'asc',
                             pageNumber: parseInt(window.localStorage.pageNumberDocument) || 1,
-                            pageSize: 20,
+                            pageSize: 40,
                             pagination: true,
                             onPageChange: function (number, size) {
                                 window.localStorage.pageNumberDocument = number;

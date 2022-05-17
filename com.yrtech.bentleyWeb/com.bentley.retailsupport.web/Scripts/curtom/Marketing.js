@@ -40,6 +40,7 @@ function NameQuery() {
     window.localStorage.pstate = $("#pstate").val();
     window.localStorage.pdealer = $("#pdealer").val();
     window.localStorage.ptype = $("#ptype").val();
+    window.localStorage.pareaId = $("#areaId").val();
     loadMarketings(true);
 }
 
@@ -61,6 +62,9 @@ function statusFormatter(value, row, index, field) {
         }
     }
     var href = '/Marketing/' + field + "?id=" + row.MarketActionId;
+    if ((field == "Before4Weeks" || field == "Before4WeeksCar" || field == "After7Days" || field == "After7DaysCar" || field == "Before4WeeksOnline" || field == "After7DaysOnline" || field == "After7DaysOffline") && row.EventModeId == 3) {
+        return '';
+    }
     if ((field == "Before4Weeks" || field == "Before4WeeksCar" || field == "After7Days" || field == "After7DaysCar" || field == "Before4WeeksOnline" || field == "After7DaysOnline" || field == "After7DaysOffline") && parseInt(value) >= 0) {
         var _value = parseInt(value);
         var _div = '<div class="progress progress-info" style="background:#ddd;margin-bottom:0px;cursor:pointer;position:relative;" onclick="EmptyValueHref(' + '\'' + href + '\'' + ');"><div class="progress-bar" role="progressbar" style = "width: ' + _value + '%;height:100%;background:#4bb1cf;" ></div ><span class="label" style="position:absolute;z-index:2;top:3px;right:0px;">' + _value + '%</span></div >';
@@ -111,6 +115,7 @@ function loadMarketings(refresh) {
         eventTypeId: $('#ptype').val() || ' ',
         userId: $("#G_UserId").val(),
         roleTypeCode: $("#G_RoleTypeCode").val(),
+        areaId: $('#areaId').val() || ' ',
         expenseAccountChk: ''
     }, function (data) {
         if (data) {
@@ -216,9 +221,16 @@ function initTable() {
         title: $("#G_AfterDays7").val(),
         field: '',
         align: 'center',
-        valign: 'middle',
-        colspan:2
-        }], [{
+        valign: 'middle'
+        },
+        {
+            title: $("#G_AfterWeeks2").val(),
+            field: '',
+            align: 'center',
+            valign: 'middle',
+            colspan: 2
+        }],
+        [{
         title: $("#G_PlanStatus").val(),
         field: 'Before4Weeks',
         align: 'center',

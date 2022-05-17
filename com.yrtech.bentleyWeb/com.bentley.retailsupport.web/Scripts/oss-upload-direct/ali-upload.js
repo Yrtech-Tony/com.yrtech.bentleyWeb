@@ -12,7 +12,9 @@ function OSSClient(options) {
         }
     }
     var uploader = init_uploader({
+        isVideo:options["isVideo"]?options["isVideo"]:false,
         uploadId: _id,
+        imgCount: options["imgCount"] ? options["imgCount"]:5,
         fileAddCheck: options.fileAddCheck,
         fileAddCheckMsg: options.fileAddCheckMsg,
         filepath: options.osspath,
@@ -50,9 +52,19 @@ function init_uploader(options) {
     var signature = Crypto.util.bytesToBase64(bytes);
     var time1 = new Date().Format("yyyyMMddhhmmssS");
     var filename = time1 + '_' + '${filename}';
+    let _mimeTypes = [{ title: "Image files", extensions: "jpg,gif,png,jpeg,bmp,JPG,GIF,PNG,JPEG,BMP" }];
+    let _maxFileSize = '6mb';
+    if (options["isVideo"]) {
+        _mimeTypes = [{ title: "Video files", extensions: "mp4,avi,mkv,mov,mpg,wmv,rm,rmvb,3gp,MP4,AVI,KMV,MOV,MPG,WMV,RM,RMVB,3GP" }];
+        _maxFileSize = '500mb';
+    }
     var uploader = new plupload.Uploader({
         runtimes: 'html5,flash,silverlight,html4',
         browse_button: 'selectfiles' + _id,
+        filters: {
+            mime_types: _mimeTypes,
+            max_file_size: _maxFileSize
+        },
         //runtimes : 'flash',
         container: document.getElementById("upload-container" + _id),
         flash_swf_url: 'lib/plupload-2.1.2/js/Moxie.swf',
@@ -77,7 +89,11 @@ function init_uploader(options) {
             FilesAdded: function (up, files) {
                 if (options.fileAddCheck) {
                     if (!options.fileAddCheck()) {
-                        alert(options.fileAddCheckMsg);
+                        layer.open({
+                            title: '错误提示',
+                            type: 0,
+                            content: options.fileAddCheckMsg
+                        });
                         return;
                     }
                 }
@@ -88,8 +104,13 @@ function init_uploader(options) {
                         _imgSize++;
                     }
                 }
-                if (_imgSize > 5) {
-                    alert("最多只能上传五张!");
+                console.error(options.imgCount);
+                if (_imgSize > options.imgCount) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: "超出最大上传数量，最大上传数量为" + options.imgCount
+                    });
                     return;
                 }
                 uploader.start();
@@ -124,9 +145,18 @@ function init_uploader(options) {
                 }
             },
             Error: function (up, err) {
-                document.getElementById('console').appendChild(document.createTextNode("\nError xml:" + err.response));
-                if (options.complete) {
-                    options.complete();
+                if (options["isVideo"]) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '视频最大只能上传500MB！'
+                    });
+                } else {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '图片最大只能上传6MB！'
+                    });
                 }
             }
         }

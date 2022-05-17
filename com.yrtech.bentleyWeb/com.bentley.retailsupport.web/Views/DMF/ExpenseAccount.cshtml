@@ -85,7 +85,7 @@
                                             </span>
                                         </div>
                                         <div class="widget-body" style="display: block;">
-                                            <div class="row-fluid">
+                                            <div class="row-fluid" id="bmcfiRole">
                                                 <span class="span12">
                                                     <div id="formsousuo" style="margin-bottom:5px">
                                                         <a class="btn btn-default" href="javascript:;" onclick="Add()"><i class="glyphicon glyphicon-plus"></i><span translate>Add</span></a>
@@ -127,7 +127,10 @@
     <script src="~/Scripts/curtom/DESUtil.js"></script>
     <script type="text/javascript">
         $("#nav_reimbursement").addClass("active");
-
+        var roleName = $('#G_RoleTypeCode').val();
+        if (roleName == "BMC-FI") {
+            $("#bmcfiRole").css({ "pointer-events": "none" });
+        }
         var $table = $('#myReimbursement');
         var ary = [{ value: "未提交", text: "未提交" }, { value: "待审批", text: "待审批" }, { value: "通过", text: "通过" }, { value: "修改", text: "修改" }, { value: "拒绝", text: "拒绝" }];
         if (!isZH()) {
@@ -259,7 +262,6 @@
                 userId: $('#G_UserId').val(),
                 roleTypeCode: $('#G_RoleTypeCode').val()
             }, function (data) {
-                console.error(data);
                 if (data) {
                     $('#myReimbursement').bootstrapTable("load", data);
                     $("#myReimbursement").bootstrapTable("selectPage", parseInt(window.localStorage.pageNumberReimb) || 1);

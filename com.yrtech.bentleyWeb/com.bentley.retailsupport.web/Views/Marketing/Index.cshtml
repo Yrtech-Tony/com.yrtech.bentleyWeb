@@ -95,6 +95,8 @@
                                             <select name="pstate" id="pstate" class="input-small m-wrap no-margin" onchange="NameQuery()">
                                                 <option value="" translate>ActiveStatus</option>
                                             </select>
+                                            <select name="areaId" id="areaId" class="input-small m-wrap no-margin" onchange="areaChange()">
+                                            </select>
                                             <select id="pdealer" name="pdealer" class="input-small m-wrap no-margin" onchange="NameQuery()">
                                                 <option value="" translate>Dealer Name</option>
                                             </select>
@@ -120,8 +122,9 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/Marketing.js?20220331194721"></script>
+    <script src="~/Scripts/curtom/Marketing.js?20220331194722"></script>
     <script type="text/javascript">
+        var _areaList = JSON.parse(sessionStorage.getItem('areaList'));
         $("#nav_promotion").addClass("active");
         $(function () {
             loadShops().forEach(function (item) {
@@ -170,6 +173,38 @@
                     window.location.href = host + "download/DownloadFile?filepath=" + data.FilePath;
                 }
             })
+        }
+
+        function getAreas() {
+            console.error(_areaList);
+            let _html = '<option value="">区域</option>';
+            _areaList.forEach(function (item) {
+                _html += '<option value="' + item.AreaId + '">' + item.AreaName + '</option>';
+            })
+            $("#areaId").html(_html);
+        }
+
+        getAreas();
+
+        function areaChange() {
+            let _areaId = $("#areaId").val();
+            $("#pdealer").html("");
+            $("#pdealer").append($("<option>").val("").text("经销商名称"));
+            $("#pdealer").val("");
+            if (_areaId) {
+                loadShops().forEach(function (item) {
+                    if (item.AreaId == _areaId) {
+                        var shopName = localStorage.language == 'en' ? item.ShopNameEn : item.ShopName;
+                        $("#pdealer").append($("<option>").val(item.ShopId).text(shopName));
+                    }
+                });
+            } else {
+                loadShops().forEach(function (item) {
+                    var shopName = localStorage.language == 'en' ? item.ShopNameEn : item.ShopName;
+                    $("#pdealer").append($("<option>").val(item.ShopId).text(shopName));
+                });
+            }
+            NameQuery();    
         }
     </script>
 }

@@ -11,6 +11,7 @@ function initTable() {
         height: getClientHeight() - 150,
         columns: [{
             title: $("#T_Name").val(),
+            sortable: true,
             field: 'EventTypeName'
         }, {
             title: $("#T_EnName").val(),
@@ -27,7 +28,7 @@ function initTable() {
                 return e;
             }
         }, {
-            title: $("#T_AreaName").val(),
+            title: $("#T_AreaName").val(), 
             field: 'AreaName'
         }, {
             title: $("#T_MaximumAmount").val(),

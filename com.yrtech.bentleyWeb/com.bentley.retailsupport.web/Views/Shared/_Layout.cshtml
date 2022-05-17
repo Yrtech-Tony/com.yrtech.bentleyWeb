@@ -135,8 +135,9 @@
     <input id="G_AccountName" type="hidden" value="@LoginUser.AccountName" />
     <input id="G_AccountNameEn" type="hidden" value="@LoginUser.AccountNameEn" />
     <input id="G_Email" type="hidden" value="@LoginUser.Email" />
-    <input id="G_Shops" type="hidden" value="@Json.Encode(LoginUser.ShopList)" />
-
+    <input id="G_Shops" type="hidden" value="@Json.Encode(LoginUser.ShopList)" 
+    <input id="G_AreaList" type="hidden" value="@Json.Encode(LoginUser.AreaList)" />
+    
     <input id="G_ResetPassword" type="hidden" value="{{'ResetPassword'|translate}}" />
     <input id="G_Update" type="hidden" value="{{'Update'|translate}}" />
     <input id="G_Delete" type="hidden" value="{{'Delete'|translate}}" />
@@ -166,6 +167,7 @@
     <input id="G_Today" type="hidden" value="{{'The Day of the Event'|translate}}" />
     <input id="G_AfterDays2" type="hidden" value="{{'Two Days After'|translate}}" />
     <input id="G_AfterDays7" type="hidden" value="{{'Seven Days After' |translate}}" />
+    <input id="G_AfterWeeks2" type="hidden" value="{{'Two Weeks After' |translate}}" />
     <input id="G_AfterMonth1" type="hidden" value="{{'One Month After'|translate}}" />
     <input id="G_AfterMonth3" type="hidden" value="{{'After Three Month' |translate}}" />
     <input id="PlanPPT" type="hidden" value="{{'Plan PPT'|translate}}" />
@@ -600,8 +602,23 @@
             try {
                 var shops = $('#G_Shops').val();
                 shops = JSON.parse(shops);
-
+                if (!shops) {
+                    return [];
+                }
                 return shops;
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        function loadAreas() {
+            try {
+                var areas = $('#G_AreaList').val();
+                areas = JSON.parse(areas);
+                if (!areas) {
+                    return [];
+                }
+                return areas;
             } catch (e) {
                 console.log(e);
             }
@@ -632,6 +649,7 @@
                 var bytes = new Uint8Array(reader.result);
                 var length = bytes.byteLength;
                 for (var i = 0; i < length; i++) {
+                    HiddenCodeSearch
                     binary += String.fromCharCode(bytes[i]);
                 }
                 pt.content = binary;

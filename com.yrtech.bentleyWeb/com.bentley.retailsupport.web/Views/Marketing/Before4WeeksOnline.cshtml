@@ -15,6 +15,8 @@
 <input id="ExpenseItem" type="hidden" value="{{'Tick Item'|translate}}" />
 <input id="TQuantity" type="hidden" value="{{'Quantity'|translate}}" />
 <input id="TotalAmount" type="hidden" value="{{'Total Amount'|translate}}" />
+<input type="hidden" id="shopId" value="" />
+
 <div id="page-wrapper">
     <!--BEGIN CONTENT-->
     <div class="page-content">
@@ -59,9 +61,19 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4"><span translate>Event ID</span><span class="required" style="color:red">*</span>:</label>
+                                    <label class="control-label col-md-4"><span translate>DCP系统活动ID</span><span class="required" style="color:red">*</span>:</label>
                                     <div class="col-md-8">
                                         <input class="form-control" id="ActionCode" name="ActionCode" maxlength="255" style="width:100%;" type="text" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4"><span translate>活动编码</span><span class="required" style="color:red">*</span>:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="MarketActionId" name="MarketActionId" maxlength="255" style="width:100%;" type="text" disabled />
                                     </div>
                                 </div>
                             </div>
@@ -135,14 +147,14 @@
                     </span>
                 </div>
 
-                <div class="widget-body form form-horizontal" id="activityplan" style="display: block;">
+                <div class="widget-body form form-horizontal" id="activityplan" style="display: block;overflow:hidden;">
                     <div>
                         <form class="form-horizontal" id="PromotionCreate2">
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Background</span></label>
+                                        <label class="control-label col-md-4"><span translate>Event Background</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityBackground" name="ActivityBackground" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -152,7 +164,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Objective</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Event Objective</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityObjective" name="ActivityObjective" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -162,7 +174,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Description</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Event Description</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityDesc" name="ActivityDesc" data-val="true" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -184,7 +196,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>媒体平台</span></label>
+                                        <label class="control-label col-md-4"><span translate>媒体平台</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_Media" name="Platform_Media" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -195,7 +207,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>曝光形式</span></label>
+                                        <label class="control-label col-md-4"><span translate>曝光形式<span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_ExposureForm" name="Platform_ExposureForm" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -226,13 +238,24 @@
                                     </div>
                                 </div>
                             </div>
-                           
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>其他</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="People_InvitationOtherCount" name="People_InvitationOtherCount" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" style="width:100%;" type="text" min="0" maxlength="255">
+                                            <small id="Before4WeeksDMFSumMax" style="color: #a94442;margin-top:5px;"></small>
                                         </div>
                                     </div>
                                 </div>
@@ -241,21 +264,33 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>预算金额总计</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>预算金额总计</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
-
+                                            <small id="Before4WeeksBudgetMax" style="color: #a94442;margin-top:5px;"></small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>每条线索成本</span><span class="required" style="color:red">*</span>:  </label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" id="CluesToTheCost" name="CluesToTheCost" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label col-md-2"><span translate>市场基金申报信息</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
-                                            <a href="javascript:AddActivityFlowTableOnline();"><i class="icon-plus icon-white" translate>Add</i></a>
+                                            <a href="javascript:AddActivityFlowTableOnline(1);"><i class="icon-plus icon-white" translate>Add</i></a>
                                             <table id="ActivityFlowTableOnline" class="table table-striped table-bordered table-hover"></table>
                                         </div>
                                         <div class="clearfix"></div>
@@ -265,24 +300,24 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Primary Vision</span>:</label>
+                                    <div class="form-group" id="imgListDiv-100">
+                                        <label class="control-label col-md-4"><span translate>Primary Vision</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-4">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-
-                                                    <img id="picImg" onclick="OpenForm(this)" style="width: 190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png">
+                                                    <img id="ossImage-100" class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
                                                 </div>
-                                                <div class="fileinput-preview fileinput-exists thumbnail" id="img_visual1" style="width: 200px; height: 150px;"></div>
                                                 <div>
-                                                    <span class="btn btn-primary btn-file">
-                                                        <span class="fileinput-new" translate>Choose Documents</span>
-                                                        <span class="fileinput-exists" translate>Change</span>
-                                                        <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png">
-                                                    </span>
-                                                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</a>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delBMCImage(this)" data-dismiss="fileinput" translate>Remove</div>
                                                 </div>
                                             </div>
+                                            <div>
+                                                <a id="selectfiles-100" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Documents </span></a>
+                                                <div id="upload-container-100" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-100"></div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="KeyVisionPic" id="KeyVisionPic" />
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -308,10 +343,47 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv-5">
+                                        <label class="control-label col-md-2"><span translate>广告视频</span>:</label>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                    <video poster="/Content/bootstrap-fileinput/img/novideo.png" id="videoOssImg1" class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists videoUpload" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;" class="videoUpload">
+                                                <a id="selectfiles-5" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-5" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-5"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                    <video poster="/Content/bootstrap-fileinput/img/novideo.png" id="videoOssImg2" class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv">
-                                        <label class="control-label col-md-2"><span translate>报价单</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>报价单</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2 img-div">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -380,7 +452,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-1">
-                                        <label class="control-label col-md-2"><span translate>邮件截图</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>邮件截图</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -449,7 +521,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4"><span translate>媒体平台选择理由</span>:</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" placeholder="平台基本信息：简介/选择理由" cols="20" id="PlatformReason" name="PlatformReason" data-val="true" rows="5" style="width:100%;"></textarea>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-2">
@@ -590,75 +672,6 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group" id="imgListDiv-4">
-                                        <label class="control-label col-md-2"><span translate>物料设计</span>:</label>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                            <div style="margin-top:10px;">
-                                                <a id="selectfiles-4" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
-                                                <div id="upload-container-4" class="container-fluid" style="display:block">
-                                                    <div id="ossfile-4"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
-                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
-                                                </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-6">
                                         <label class="control-label col-md-2"><span translate>媒体投放示例</span>:</label>
                                         <div class="col-md-2">
@@ -727,42 +740,6 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group" id="imgListDiv-5">
-                                        <label class="control-label col-md-2"><span translate>广告视频</span>:</label>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
-                                                    <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
-                                                </div>
-                                                <div>
-                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                            <div style="margin-top:10px;">
-                                                <a id="selectfiles-5" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
-                                                <div id="upload-container-5" class="container-fluid" style="display:block">
-                                                    <div id="ossfile-5"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
-                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; background: #000;">
-                                                    <video class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="" />
-                                                </div>
-                                                <div>
-                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
-                                                </div>
-                                            </div>
-                                            <textarea class="form-control" cols="20" name="OtherDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>DTT审批意见</span><span class="required" style="color:red">*</span>:</label>
@@ -770,8 +747,8 @@
                                             <div class="form-group">
                                                 <div class="col-md-8">
                                                     <textarea class="form-control" cols="20" id="DTTApproveDesc" name="DTTApproveDesc" placeholder="审批意见" rows="9"></textarea>
-                                                    <div style="margin-top:5px;">
-                                                        <select id="DTTType" name="DTTType" class="selectpicker">
+                                                    <div style="margin-top:5px;height:100px;">
+                                                        <select id="DTTApproveCode" name="DTTApproveCode" class="selectpicker">
                                                             <option value="1" selected="" translate>Waiting for Approval</option>
                                                             <option value="2" translate>Approved</option>
                                                             <option value="3" translate>Waiting for Change</option>
@@ -784,11 +761,12 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;">
+                            <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;left:265px;">
                                 <div class="col-md-6">
-                                    <button type="button" onclick="PromotionEdit2()" class="btn btn-success" translate>Save</button>
-                                    <button type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
-                                    <button type="button" onclick="createPPT()" class="btn btn-danger" translate>生成PPT</button>
+                                    <button id="btnSave" type="button" onclick="PromotionEdit2(1)" class="btn btn-success" translate>Save</button>
+                                    <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <button type="button" onclick="PromotionEdit2(2)" class="btn btn-danger" translate>Create PPT</button>
+                                    <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>Download PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
                                 </div>
                             </div>
@@ -811,8 +789,8 @@
     <input id="FileId" type="hidden" value="@ViewBag.FileId" />
 </div>
 @section scripts{
-    <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093041"></script>
+    <script src="~/Scripts/api/common.js?v=2017093041"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093041118"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -821,7 +799,7 @@
     <script src="~/Scripts/oss-upload-direct/ali-upload.js?20170930"></script>
     <script>
         var UserId = $("#G_UserId").val();
-        let imgCodeObj = { "MPN01": "imgListDiv", "MPN02": "imgListDiv-1", "MPN03": "imgListDiv-2", "MPN04": "imgListDiv-3", "MPN05": "imgListDiv-4", "MPN06": "imgListDiv-6", "MPN07": "imgListDiv-7", "MPN10": "imgListDiv-5"};
+        let imgCodeObj = { "MPN01": "imgListDiv", "MPN02": "imgListDiv-1", "MPN03": "imgListDiv-2", "MPN04": "imgListDiv-3", "MPN06": "imgListDiv-6", "MPN10": "imgListDiv-5"};
         $("#nav_promotion").addClass("active");
 
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
@@ -838,7 +816,8 @@
             initOssClient("-3");
             initOssClient("-4");
             initOssClient("-6");
-            initVideoOssClient("-5");
+            initVideoOssClient("-5",2);
+            initBMCOssClient("-100");
             $('img').error(function () {
                 console.log("image error")
                 $(this).attr('src', 'https://yrsurvey.oss-cn-beijing.aliyuncs.com/Bentley/fail2.png');
@@ -861,26 +840,17 @@
             });
 
             InitActivityFlowTable();
-            InitActivityFlowTableOnline();
-
-            if (roleName == "SYSADMIN" || roleName == "BMC") {
-                $('#ActiveShow').show();
-                $('#VisualStatus').prop("disabled", false);
-                $('#VisualDescription').prop("disabled", false);
-            }
-            else {
-                $('#VisualStatus').prop("disabled", true);
-                $('#VisualDescription').prop("disabled", true);
-            }
-
+            InitActivityFlowTableOnline(1);
             if (id) {
                 $.commonGet("MarketAction/MarketActionSearchById", { marketActionId: id }, function (data) {
                     if (data && data.length > 0) {
                         data[0].StartDate = data[0].StartDate.substr(0, data[0].StartDate.indexOf(' ')).replace(/-/g, '\/');
                         data[0].EndDate = data[0].EndDate.substr(0, data[0].EndDate.indexOf(' ')).replace(/-/g, '\/');
+                        $("#shopId").val(data[0].ShopId);
                         $('#PromotionCreate').setForm(data[0]);
                         $("#MarketActionTargetModelCode").val(data[0].MarketActionTargetModelCode);
                         $("select").selectpicker("refresh");
+                        checkPrice();
                     }
                 });
 
@@ -908,6 +878,11 @@
                         $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
                         $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
                         $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
+                        if (data.MarketActionBefore4Weeks.KeyVisionPic) {
+                            addBMCImage(data.MarketActionBefore4Weeks.KeyVisionPic,2);
+                        }
+                        subCluesToTheCost();
+                        searchDtt();
                     }
 
                 });
@@ -925,10 +900,16 @@
             layer.closeAll('loading');
         }
 
-        function PromotionEdit2() {
+        function PromotionEdit2(_type) {
+            $('.form-control').prop("disabled", false);
+            //车型
+            $('#MarketActionTargetModelCode').prop("disabled", false);
+            $('#VisualStatus').prop("disabled", false);
+            $('#DTTApproveCode').prop("disabled", false);
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
             if (!veriData(1)) {
+                initRole();
                 return;
             }
             if (data) {
@@ -944,10 +925,6 @@
             MarketActionBefore21.MarketActionId = id;
             MarketActionBefore21.InUserId = $("#G_UserId").val();
             MarketActionBefore21.ModifyUserId = $("#G_UserId").val();
-
-            //主视觉
-            MarketActionBefore21.KeyVisionPic = $('#img_visual1').getImgSrc();
-
             var VisualDescriptionOld = $("#VisualDescriptionOld").val();
             var VisualStatusOld = $("#VisualStatusOld").val() || "1"; //如果是新创建时，值为""
             if (!(roleName == "SYSADMIN" || roleName == "BMC")) {
@@ -990,20 +967,35 @@
                 UserId: $("#G_UserId").val(),
                 ListJson: JSON.stringify(data)
             }, function () {
+                $('.form-control').prop("disabled", true);
+                //车型
+                $('#MarketActionTargetModelCode').prop("disabled", true);
+                $('#VisualStatus').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
                 EProcessing();
-                var msg = isZH() ? '保存成功！' : "Save successfully !";
-                layer.alert(msg, {
-                    skin: 'layui-layer-molv', closeBtn: 0
-                }, function (datas) {
-                    window.location.href = "/Marketing/Index";
-                });
+                if (_type == 2) {
+                    createPPT(1);
+                } else {
+                    var msg = isZH() ? '保存成功！' : "Save successfully !";
+                    layer.alert(msg, {
+                        skin: 'layui-layer-molv', closeBtn: 0
+                    }, function (datas) {
+                        window.location.href = "/Marketing/Index";
+                    });
+                }
             },EProcessing)
         }
 
         function PromotionSubmit() {
+            $('.form-control').prop("disabled", false);
+            //车型
+            $('#MarketActionTargetModelCode').prop("disabled", false);
+            $('#VisualStatus').prop("disabled", false);
+            $('#DTTApproveCode').prop("disabled", false);
             //原系统没有验证
             var data = $('#PromotionCreate2').data('bootstrapValidator');
-            if (!veriData(1)) {
+            if (!veriData(2)) {
+                initRole();
                 return;
             }
             if (data) {
@@ -1018,9 +1010,6 @@
             MarketActionBefore21.MarketActionId = id;
             MarketActionBefore21.InUserId = $("#G_UserId").val();
             MarketActionBefore21.ModifyUserId = $("#G_UserId").val();
-
-            //主视觉
-            MarketActionBefore21.KeyVisionPic = $('#img_visual1').getImgSrc();
 
             var VisualDescriptionOld = $("#VisualDescriptionOld").val();
             var VisualDescription = $("#VisualDescription").val();
@@ -1068,9 +1057,11 @@
             }, function () {
                 EProcessing();
                 //1.给主视觉设计公司发送邮件
-                if (MarketActionBefore21.KeyVisionPic && MarketActionBefore21.KeyVisionPic.indexOf("data:image") == 0) {
-                    console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
-                    $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                if (roleName != "BMC") {
+                    if ($("#ossImage-100").attr("data-flag") == 3) {
+                        console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
+                        $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                    }
                 }
 
                 //2.如果主视觉审核意见有修改时给经销商发邮件
@@ -1107,10 +1098,12 @@
             });
         }
 
-        function initVideoOssClient(_id) {
+        function initVideoOssClient(_id,_count) {
             var osspath = "Bentley/" + year + "/MarketAction/";
             ossClient = new OSSClient({
+                isVideo:true,
                 uploadId: _id,
+                imgCount: _count,
                 fileAddCheck: function () {
                     return true;
                 },
@@ -1118,6 +1111,22 @@
                 osspath: osspath,
                 uploaded: function (args) {
                     addVideo(_id, args);
+                }
+            });
+        }
+
+        function initBMCOssClient(_id) {
+            var osspath = "Bentley/" + year + "/MarketAction/";
+            ossClient = new OSSClient({
+                isVideo: false,
+                uploadId: _id,
+                fileAddCheck: function () {
+                    return true;
+                },
+                fileAddCheckMsg: "",
+                osspath: osspath,
+                uploaded: function (args) {
+                    addBMCImage(args.osspath,3);
                 }
             });
         }
@@ -1138,12 +1147,21 @@
             }
         }
 
+        function addBMCImage(imgPath,flag) {
+            $("#KeyVisionPic").val(imgPath);
+            $("#ossImage-100").attr("src", baseOss + imgPath);
+            $("#ossImage-100").attr("data-ossPath", imgPath);
+            $("#ossImage-100").attr("data-flag", flag);
+            $("#ossImage-100").parent().parent().find(".fileinput-exists").show();
+        }
+
         function addVideo(_id, args) {
             let imgPath = args.osspath;
             let fileName = args.fileName;
             let _imgList = $("#imgListDiv" + _id).find(".ossImage");
             for (let i = 0; i < _imgList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
+                    $(_imgList[i]).removeAttr("poster");
                     $(_imgList[i]).attr("src", baseOss + imgPath);
                     $(_imgList[i]).attr("data-ossPath", imgPath);
                     $(_imgList[i]).attr("data-flag", 2);
@@ -1156,9 +1174,16 @@
 
         function delImage(_delMode) {
             $(_delMode).parent().parent().find(".ossImage").attr("src", "/Content/bootstrap-fileinput/img/noimage.png");
+            $(_delMode).parent().parent().find(".ossImage").attr("poster", "/Content/bootstrap-fileinput/img/novideo.png");
             $(_delMode).parent().parent().find(".ossImage").attr("data-flag", 1);
             $(_delMode).hide();
+        }
 
+        function delBMCImage(_delMode) {
+            $("#KeyVisionPic").val("");
+            $(_delMode).parent().parent().find(".ossImage").attr("src", "/Content/bootstrap-fileinput/img/noimage.png");
+            $(_delMode).parent().parent().find(".ossImage").attr("data-flag", 1);
+            $(_delMode).hide();
         }
 
         function submitImage(_key) {
@@ -1184,7 +1209,8 @@
                 coopFundName: '',
                 coopFundNameEn: '',
                 CoopFundType:'',
-                showChk: 'true'
+                showChk: 'true',
+                modeType: 'MPN'
             }, function (data) {
                 if (data) {
                     data.forEach(function (item) {
@@ -1194,15 +1220,49 @@
             });
         }
 
+        function searchDtt() {
+            $.commonGet("MarketAction/DTTApproveSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                dttType: 1,
+                dttApproveId:'',
+                dttApproveCode:''
+            }, function (data) {
+                if (data && data.length > 0) {
+                    $("#DTTApproveCode").val(data[0].DTTApproveCode);
+                    $("#DTTApproveDesc").val(data[0].DTTApproveDesc);
+                }
+                $("#DTTApproveCode").selectpicker("refresh");
+                initRole();
+            });
+        }
+
         function submitAjax() {
+            SProcessing();
             $.commonPost("MarketAction/DTTApproveSave", {
                 MarketActionId: $("#MarketActionId").val(),
                 DTTType: 1,
-                DTTApproveCode: $("#DTTType").val(),
-                DTTApproveDesc: $("#DTTApproveDesc").val()
+                DTTApproveCode: $("#DTTApproveCode").val(),
+                DTTApproveDesc: $("#DTTApproveDesc").val(),
+                modifyUserId: $("#G_UserId").val(),
+                InUserId: $("#G_UserId").val()
             }, function () {
                 EProcessing();
-                $.commonGet("MarketAction/DMFApplyEmail", { MarketActionId: $("#MarketActionId").val(), type: "MP", DTTType: 1, DTTApproveCode: $("#DTTType").val(), DTTApproveDesc: $("#DTTApproveDesc").val() }, function (data) { });
+                if (roleName == "SHOP") {
+                    //给DTT发邮件
+                    if ($("#DTTApproveCode").val() != 2) {
+                        $.commonGet("MarketAction/DMFApplyEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
+                    }
+                } else if (roleName == "BMC") {
+                    //主视觉审批给谁发
+                } else {
+                    //给经销商发邮件
+                    $.commonGet("MarketAction/DTTApproveEmail", { marketActionId: $("#MarketActionId").val(), type: "MP" }, function (data) { });
+                }
+                $('.form-control').prop("disabled", true);
+                //车型
+                $('#MarketActionTargetModelCode').prop("disabled", true);
+                $('#VisualStatus').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
                 var msg = isZH() ? '提交成功！' : "Save successfully !";
                 layer.alert(msg, {
                     skin: 'layui-layer-molv', closeBtn: 0
@@ -1228,6 +1288,7 @@
             let _imgList = $("#"+imgCodeObj[imageCode]).find(".ossImage");
             for (let i = 0; i < _imageList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
+                    $(_imgList[i]).removeAttr("poster");
                     $(_imgList[i]).attr("src", baseOss + _imageList[i].PicPath);
                     $(_imgList[i]).attr("data-ossPath", _imageList[i].PicPath);
                     $(_imgList[i]).attr("data-flag", 2);
@@ -1238,7 +1299,7 @@
             }
         }
 
-        var scheduleObj = { "schedule1": 0, "schedule2": 0, "schedule3": 0, "schedule4": 0, "schedule5": 0, "schedule6": 0, "schedule7": 0 };
+        var scheduleObj = { "schedule1": 0, "schedule2": 0, "schedule3": 0, "schedule4": 0, "schedule5": 0, "schedule6": 0, "schedule7": 0, "schedule8": 0 };
         //验证逻辑
         function veriData(_type) {
             var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
@@ -1280,50 +1341,113 @@
             if (_schedule1) {
                 scheduleObj.schedule1 = 20;
             }
-            //人员信息
+            //平台信息
             let _schedule2 = true;
-            console.error(MarketActionBefore21.People_NewLeadsThisYearCount);
-            if (!veriNumber(MarketActionBefore21.People_NewLeadsThisYearCount)) {
-                layer.open({
-                    title: '错误提示',
-                    type: 0,
-                    content: '请正确填写预期线索！'
-                });
-                return false;
-            }
-            if (!MarketActionBefore21.People_NewLeadsThisYearCount) {
-                console.error(MarketActionBefore21);
+            if (!MarketActionBefore21.Platform_Media) {
                 _schedule2 = false;
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写预期线索！'
+                        content: '请填写媒体平台信息！'
                     });
                     return false;
                 }
             }
-            if (!veriNumber(MarketActionBefore21.TotalBudgetAmt)) {
-                layer.open({
-                    title: '错误提示',
-                    type: 0,
-                    content: '请正确填写活动预算！'
-                });
-                return false;
-            }
-            if (!MarketActionBefore21.TotalBudgetAmt) {
+            if (!MarketActionBefore21.Platform_ExposureForm) {
                 _schedule2 = false;
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写活动预算！'
+                        content: '请填写曝光形式信息！'
                     });
                     return false;
                 }
             }
             if (_schedule2) {
-                _schedule2 = 20;
+                scheduleObj.schedule2 = 10;
+            }
+            //人员信息
+            let _schedule3 = true;
+            if (!veriNumber(MarketActionBefore21.People_DCPIDCount)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写DCPID客户数量！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.People_DCPIDCount) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写DCPID客户数量！'
+                    });
+                    return false;
+                }
+            }
+            if (!veriNumber(MarketActionBefore21.People_InvitationOtherCount)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写其他！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.People_InvitationOtherCount) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写其他！'
+                    });
+                    return false;
+                }
+            }
+            if (!veriNumber(MarketActionBefore21.People_NewLeadsThisYearCount)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写今年新增线索数量！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.People_NewLeadsThisYearCount) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写今年新增线索数量！'
+                    });
+                    return false;
+                }
+            }
+            if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
+                layer.open({
+                    title: '错误提示',
+                    type: 0,
+                    content: '请正确填写市场基金金额总计！'
+                });
+                return false;
+            }
+            if (!MarketActionBefore21.CoopFundSumAmt) {
+                _schedule3 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写市场基金金额总计！'
+                    });
+                    return false;
+                }
+            }
+            if (_schedule3) {
+                scheduleObj.schedule3 = 10;
             }
             //主视觉
             let _schedule4 = veriKeyVisual(MarketActionBefore21, _type);
@@ -1333,17 +1457,85 @@
                 if (_type == 2) {
                     return false;
                 }
-            }      
-            //图片验证
-            let _schedule7 = veriImage(_type);
-            if (_schedule7) {
-                scheduleObj.schedule4 = 40;
+            }
+            //市场基金申报信息
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
+                let _flowListVeri = [];
+                let _flowDateVeri = true;
+                let _sumAmt = 0;
+                StrActivityFlowNew.forEach(function (item) {
+                    //计算金额
+                    if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
+                        _sumAmt += parseInt(item.CoopFundAmt);
+                    }
+                });
+                let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+                if (_CoopFundSumAmt > _sumAmt) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '市场基金金额总计应该小于报销总金额！'
+                    });
+                    return false;
+                }
+                StrActivityFlowNew.forEach(function (_item) {
+                    let _flowVeri = false;
+                    for (let _key in _item) {
+                        if (_key != "SeqNO" && _item[_key]) {
+                            _flowVeri = true;
+                        }
+                    }
+                    _flowListVeri.push(_flowVeri);
+                    //验证结束时间大于开始时间
+                    if (_item["StartDate"] && _item["EndDate"]) {
+                        let _startDate = new Date(_item["StartDate"]);
+                        let _endDate = new Date(_item["EndDate"]);
+                        if (_startDate.getTime() > _endDate.getTime()) {
+                            layer.open({
+                                title: '错误提示',
+                                type: 0,
+                                content: '投放开始时间不能大于等于投放结束时间！'
+                            });
+                            _flowDateVeri = false;
+                        }
+                    }
+                });
+
+                if (!_flowDateVeri) {
+                    return false;
+                }
+                for (let i = 0; i < _flowListVeri.length; i++) {
+                    if (!_flowListVeri[i]) {
+                        layer.open({
+                            title: '错误提示',
+                            type: 0,
+                            content: '市场基金申报信息填写不完整！'
+                        });
+                        return false;
+                    }
+                }
+                scheduleObj.schedule5 = 20;
             } else {
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请填写图片相关信息！'
+                        content: '请填写市场基金申报信息！'
+                    });
+                    return false;
+                }
+            }
+            //图片验证
+            let _schedule7 = veriImage(_type);
+            if (_schedule7) {
+                scheduleObj.schedule7 = 20;
+            } else {
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请上传报价单、邮件截图和广告视频！'
                     });
                     return false;
                 }
@@ -1363,23 +1555,23 @@
         //验证主视觉
         function veriKeyVisual(_data, _type) {
             let _schedule4 = true;
-            if (_data.KeyVisionDesc) {
+            if ($("#ossImage-100").attr("data-flag") == 1) {
+                _schedule4 = false;
+                if (_type == 2) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请填写上传主视觉图片！'
+                    });
+                }
+            }
+            if (!_data.KeyVisionDesc) {
                 _schedule4 = false;
                 if (_type == 2) {
                     layer.open({
                         title: '错误提示',
                         type: 0,
                         content: '请填写主视觉描述！'
-                    });
-                }
-            }
-            if (_data.KeyVisionApprovalDesc) {
-                _schedule4 = false;
-                if (_type == 2) {
-                    layer.open({
-                        title: '错误提示',
-                        type: 0,
-                        content: '请填写主视觉修改说明！'
                     });
                 }
             }
@@ -1391,14 +1583,16 @@
             let _schedule7 = true;
             let _MarketActionPicList = [];
             for (let _key in imgCodeObj) {
-                let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
-                let _veriImg = false;
-                for (let i = 0; i < _imgList.length; i++) {
-                    if ($(_imgList[i]).attr("data-flag") == 2) {
-                        _veriImg = true;
+                if (_key == 'MPN01' || _key == 'MPN02') {
+                    let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
+                    let _veriImg = false;
+                    for (let i = 0; i < _imgList.length; i++) {
+                        if ($(_imgList[i]).attr("data-flag") == 2) {
+                            _veriImg = true;
+                        }
                     }
+                    _MarketActionPicList.push(_veriImg);
                 }
-                _MarketActionPicList.push(_veriImg);
             }
             for (let i = 0; i < _MarketActionPicList.length; i++) {
                 if (!_MarketActionPicList[i]) {
@@ -1410,6 +1604,7 @@
 
         //进度逻辑
         function planProgessSub() {
+            console.error(scheduleObj);
             let _sum = 0;
             for (let _key in scheduleObj) {
                 _sum += parseInt(scheduleObj[_key]);
@@ -1418,14 +1613,253 @@
         }
 
         //生成PPT
-        function createPPT() {
+        function createPPT(_type) {
+            SProcessing();
             $.commonGet("MarketAction/CreatePPT", {
                 marketActionId: $("#MarketActionId").val(),
                 type: "MPN",
                 userId: $("#G_UserId").val()
             }, function (data) {
-
+                if (data.Status) {
+                    if (_type) {
+                        layer.open({
+                            title: '提示',
+                            type: 0,
+                            content: '生成PPT成功！点击“下载PPT”即可下载！',
+                            end: function () {
+                                location.reload();
+                            }
+                        });
+                    }
+                } else {
+                    if (_type) {
+                        layer.open({
+                            title: '提示',
+                            type: 0,
+                            content: '生成PPT失败！',
+                            end: function () {
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+                EProcessing();
             });
+        }
+        //下载PPT
+        function downloadPPT() {
+            SProcessing();
+            $.commonGet("MarketAction/MarketActionPicSearch", {
+                marketActionId: $("#MarketActionId").val(),
+                picType: "MPN11"
+            }, function (data) {
+                EProcessing();
+                window.location.href = baseOss + data[0].PicPath;
+            });
+        }
+
+        //权限
+        function initRole() {
+            if (roleName == "SYSADMIN") {
+                return;
+            }
+            let _dttCode = $('#DTTApproveCode').val();
+            console.error(_dttCode);
+            let _visualStatus = $("#VisualStatus").val();
+            console.error(_visualStatus);
+            if (_dttCode == 2 && _visualStatus == 2) {
+                $("#btnSave").addClass("btn-set-the-ash");
+                $("#btnSubmit").addClass("btn-set-the-ash");
+            }
+            //DTT权限
+            if (roleName == "AREA") {
+                $('#DTTApproveDesc').prop("disabled", false);
+                $('#DTTApproveCode').prop("disabled", false);
+                $('#VisualStatus').prop("disabled", true);
+                $('#VisualDescription').prop("disabled", true);
+            }
+            //主视觉权限
+            if (roleName == "BMC") {
+                $('#ActiveShow').show();
+                $('#VisualStatus').prop("disabled", false);
+                $('#VisualDescription').prop("disabled", false);
+                $('#DTTApproveDesc').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
+            }
+            //经销商权限
+            if (roleName == "SHOP") {
+                //DTT权限
+                $('#VisualStatus').prop("disabled", true);
+                $('#VisualDescription').prop("disabled", true);
+                //主视觉权限
+                $('#DTTApproveDesc').prop("disabled", true);
+                $('#DTTApproveCode').prop("disabled", true);
+                //DTT审批通过-主视觉没有通过
+                if (_dttCode == 2 && _visualStatus != 2) {
+                    //除主视觉和广告视屏外都不可修改
+                    //全部input框
+                    $('.form-control').prop("disabled", true);
+                    //车型
+                    $('#MarketActionTargetModelCode').prop("disabled", true);
+                    //表格点击事件
+                    $(".table-unedit").css({ "pointer-events": "none" });
+                    //图片上传
+                    for (let key in imgCodeObj) {
+                        let _imgList = $("#" + imgCodeObj[key]).find(".ossImage");
+                        for (let i = 0; i < _imgList.length; i++) {
+                            $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                            $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                        }
+                    }
+                    $("#imgListDiv-5").find(".form-control").prop("disabled", false);
+                    $(".videoUpload").show();
+                    $("#KeyVisionDesc").prop("disabled", false);
+                }
+                //DTT审批通过-主视觉审批通过
+                if (_dttCode == 2 && _visualStatus == 2) {
+                    //都不可修改
+                    //全部input框
+                    $('.form-control').prop("disabled", true);
+                    //车型
+                    $('#MarketActionTargetModelCode').prop("disabled", true);
+                    //表格点击事件
+                    $(".table-unedit").css({ "pointer-events": "none" });
+                    //主视觉图片
+                    $("#imgListDiv-100").css({ "pointer-events": "none" });
+                    //图片上传
+                    for (let key in imgCodeObj) {
+                        let _imgList = $("#" + imgCodeObj[key]).find(".ossImage");
+                        for (let i = 0; i < _imgList.length; i++) {
+                            $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                            $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                        }
+                    }
+                }
+                //DTT审批未通过-主视觉审批未通过
+                if (_dttCode != 2 && _visualStatus != 2) {
+                    //都可修改
+                }
+                //DTT审批未通过-主视觉审批通过
+                if (_dttCode != 2 && _visualStatus == 2) {
+                    //除主视觉和广告外都可以修改
+                    $("#imgListDiv-100").css({ "pointer-events": "none" });
+                    $("#imgListDiv-5").find(".form-control").prop("disabled", true);
+                    $(".videoUpload").hide();
+                    let _imgList = $("#imgListDiv-5").find(".ossImage");
+                    for (let i = 0; i < _imgList.length; i++) {
+                        $(_imgList[i]).parent().parent().find(".fileinput-exists").hide();
+                        $(_imgList[i]).parent().parent().parent().children('div:last-child').hide();
+                    }
+                    $("#KeyVisionDesc").prop("disabled", true);
+                }
+
+            }
+        }
+
+        function saveCoopFund(_item) {
+            //市场基金申报信息
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            let _flowDateVeri = true;
+            let _flowVeri = true;
+            let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+          @*  for (let _key in _item) {
+                if (_key == "CoopFundCode" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "CoopFundAmt" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "CoopFund_DMFChk" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "StartDate" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+                if (_key == "EndDate" && !_item[_key]) {
+                    _flowVeri = false;
+                    return;
+                }
+            }
+            let _sumAmt = 0;
+            if (!_flowDateVeri || !_flowVeri) {
+                return false;
+            }*@
+            let _repetitionType = true;
+            StrActivityFlowNew.forEach(function (item) {
+                if (item.SeqNO != _item.SeqNO && item.CoopFundCode == _item.CoopFundCode) {
+                    _repetitionType = false;
+                }
+            });
+            if (!_repetitionType) {
+                layer.open({
+                    title: '提示',
+                    type: 0,
+                    content: '费用类型不可重复，请重新选择！',
+                    end: function () {
+                        StrActivityFlowNew.forEach(function (item) {
+                            if (item.SeqNO == _item.SeqNO) {
+                                item.CoopFundCode = '';
+                            }
+                        });
+                        $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
+                    }
+                });
+                return;
+            }
+            //验证结束时间大于开始时间
+            if (_item["StartDate"] && _item["EndDate"]) {
+                let _startDate = new Date(_item["StartDate"]);
+                let _endDate = new Date(_item["EndDate"]);
+                if (_startDate.getTime() > _endDate.getTime()) {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '投放开始时间不能大于等于投放结束时间！'
+                    });
+                    _item.EndDate = '';
+                    StrActivityFlowNew.forEach(function (item) {
+                        if (item.SeqNO == _item.SeqNO) {
+                            item = _item;
+                        }
+                    });
+                    $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
+                    return;
+                }
+            }
+            let _sumAmt = 0;
+            _item.MarketActionId = id;
+            SProcessing();
+            $.commonPost("MarketAction/MarketActionBefore4WeeksCoopFundSave", _item, function (data) {
+            if (data) {
+                StrActivityFlowNew.forEach(function (item) {
+                    console.error(item);
+                    console.error(_item);
+                    if (item.SeqNO == _item.SeqNO) {
+                        item.TotalDays = data.TotalDays;
+                        item.AmtPerDay = data.AmtPerDay;
+                        item.StartDate = data.StartDate;
+                        item.EndDate = data.EndDate
+                        item.CoopFundAmt = data.CoopFundAmt;
+                        item.CoopFund_DMFChk = data.CoopFund_DMFChk;
+                        item.CoopFundDesc = data.CoopFundDesc;
+                        item.CoopFundTypeDesc = data.CoopFundTypeDesc;
+                    }
+                    //计算金额
+                    if (item.CoopFundAmt) {
+                        _sumAmt += parseInt(item.CoopFundAmt);
+                    }
+                });
+                $("#TotalBudgetAmt").val(_sumAmt);
+                subCluesToTheCost();
+            }
+            $('#ActivityFlowTableOnline').bootstrapTable("load", StrActivityFlowNew);
+            EProcessing();
+        }, EProcessing)
+
         }
     </script>
 }

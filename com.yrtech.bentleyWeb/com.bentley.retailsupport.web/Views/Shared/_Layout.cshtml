@@ -119,6 +119,43 @@
                 color: #fff;
                 border: 1px solid;
             }
+        .plan-title {
+            margin: 3px 0px 3px 15px;
+            color: red;
+        }
+        .currencyinput {
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+            .currencyinput span{
+                margin-right:3px;
+            }
+            .currencyinput input {
+                border: 0 !important;
+                padding: 0px !important;
+                margin: 0px !important;
+                height: 30px !important;
+            }
+        .currencyinput-d {
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            background-color:#eee;
+        }
+
+            .currencyinput-d span {
+                margin-right: 3px;
+            }
+
+            .currencyinput-d input {
+                border: 0 !important;
+                padding: 0px !important;
+                margin: 0px !important;
+                height: 30px !important;
+            }
     </style>
 </head>
 <body>
@@ -656,6 +693,40 @@
                 pt.onload(pt); //页面内data取pt.content文件内容
             }
             reader.readAsArrayBuffer(fileData);
+        }
+
+       function formatMoney(money, places, symbol, thousand, decimal) {
+            places = !isNaN(places = Math.abs(places)) ? places : 2;
+            symbol = symbol !== undefined ? symbol : "$";
+            thousand = thousand || ",";
+            decimal = decimal || ".";
+           var number = money,
+                negative = number < 0 ? "-" : "",
+                i = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
+                j = (j = i.length) > 3 ? j % 3 : 0;
+            return negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "");
+        };
+
+        function convertMoney(_this) {
+            let _money = $(_this).val();
+            _money = formatMoney(_money,2);
+            $(_this).val(_money);
+        }
+
+        function replaceMoney(_this) {
+            let _money = $(_this).val();
+            let _priceVal = parseFloat(_money.replace(/[^0-9-.]/g, ''));
+            $(_this).val(_priceVal);
+        }
+
+        function convertMoneyD(_money) {
+            _money = formatMoney(_money, 2);
+            return _money;
+        }
+
+        function replaceMoneyD(_money) {
+            let _priceVal = parseFloat(_money.replace(/[^0-9-.]/g, ''));
+            return _priceVal;
         }
     </script>
 

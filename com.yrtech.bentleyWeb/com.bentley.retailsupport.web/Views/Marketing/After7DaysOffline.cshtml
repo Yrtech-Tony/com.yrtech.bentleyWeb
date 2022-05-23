@@ -45,6 +45,9 @@
                         <a href="javascript:;" class="icon-chevron-down" onclick="ShowDiv()"></a>
                     </span>
                 </div>
+                <div class="plan-title">
+                    如需调整活动基本信息，请返回活动列表，点击活动名称进行更改
+                </div>
                 <div class="widget-body" style="display: block;">
                     <form class="form-horizontal bv-form ng-pristine ng-valid" id="PromotionCreate" novalidate="novalidate">
                         <input id="MarketActionId" name="MarketActionId" type="hidden" value="" />
@@ -1754,7 +1757,7 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=202203291758"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=202203291759"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -2210,6 +2213,12 @@
         //验证逻辑
         function veriData(_type) {
             var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
+            MarketActionBefore21.CoopFundSumAmt = replaceMoneyD(MarketActionBefore21.CoopFundSumAmt);
+            MarketActionBefore21.CoopFundSumAmt_PLAN = replaceMoneyD(MarketActionBefore21.CoopFundSumAmt_PLAN);
+            MarketActionBefore21.TotalBudgetAmt = replaceMoneyD(MarketActionBefore21.TotalBudgetAmt);
+            MarketActionBefore21.TotalBudgetAmt_PLAN = replaceMoneyD(MarketActionBefore21.TotalBudgetAmt_PLAN);
+            MarketActionBefore21.CluesToTheCost = replaceMoneyD(MarketActionBefore21.CluesToTheCost);
+            MarketActionBefore21.CluesToTheCost_PLAN = replaceMoneyD(MarketActionBefore21.CluesToTheCost_PLAN); 
             //活动报告信息验证
             let _schedule1 = true;
             if (!MarketActionBefore21.HightLights) {

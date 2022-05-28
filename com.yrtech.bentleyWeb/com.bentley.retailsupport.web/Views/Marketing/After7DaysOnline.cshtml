@@ -297,7 +297,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>市场基金金额总计（计划）</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-4">
-                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="CoopFundSumAmt_PLAN" name="CoopFundSumAmt_PLAN" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255"></div> 
+                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="CoopFundSumAmt_PLAN" name="CoopFundSumAmt_PLAN" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div> 
                                         </div>
                                     </div>
                                 </div>
@@ -307,7 +307,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>预算金额总计</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-4">
-                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255"></div>
+                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div>
                                             <small id="After7DMFSumMax" style="color: #a94442;margin-top:5px;"></small>
                                         </div>
                                     </div>
@@ -318,7 +318,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>预算金额总计（计划）</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-4">
-                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="TotalBudgetAmt_PLAN" name="TotalBudgetAmt_PLAN" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255"></div>
+                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="TotalBudgetAmt_PLAN" name="TotalBudgetAmt_PLAN" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -328,7 +328,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>每条线索成本</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="CluesToTheCost" name="CluesToTheCost" readonly="readonly" style="width:100%;" type="text" min="0" maxlength="255"></div>
+                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="CluesToTheCost" name="CluesToTheCost" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -338,7 +338,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-4"><span translate>每条线索成本（计划）</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
-                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" readonly id="CluesToTheCost_PLAN" name="CluesToTheCost_PLAN" style="width:100%;" type="text" min="0" maxlength="255"></div>                                            
+                                            <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" disabled id="CluesToTheCost_PLAN" name="CluesToTheCost_PLAN" style="width:100%;" type="text" min="0" maxlength="255"></div>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -1242,7 +1242,7 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220401114411"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220401114412"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1843,7 +1843,7 @@
                         _sumAmt += parseInt(item.CoopFundAmt);
                     }
                 });
-                let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+                let _CoopFundSumAmt = replaceMoneyD($("#CoopFundSumAmt").val());
                 if (_CoopFundSumAmt > _sumAmt) {
                     layer.open({
                         title: '错误提示',

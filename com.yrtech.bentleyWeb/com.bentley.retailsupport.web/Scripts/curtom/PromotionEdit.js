@@ -299,7 +299,7 @@ function InitActivityFlowTableNew(_type) {
                 },
                 noeditFormatter: function (value, row, index) {
                     var result = { filed: "CoopFundAmt", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">￥' + convertMoneyD(result.value) + '</a>';
                     if (!result.value) {
                         html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                     }
@@ -438,7 +438,7 @@ function InitActivityFlowTableNew(_type) {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">￥' + convertMoneyD(result.value) + '</a>';
                         if (!result.value) {
                             html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
@@ -459,7 +459,7 @@ function InitActivityFlowTableNew(_type) {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt_Budget", value: value };
-                        return '<div style="min-width:100px">' + result.value + '</div>';
+                        return '<div style="min-width:100px">￥' + convertMoneyD(result.value) + '</div>';
                     }
                 }
 
@@ -616,7 +616,7 @@ function InitActivityFlowTableOnline(_type) {
                 },
                 noeditFormatter: function (value, row, index) {
                     var result = { filed: "CoopFundAmt", value: value };
-                    var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                    var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">￥' + convertMoneyD(result.value) + '</a>';
                     if (!result.value) {
                         html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                     }
@@ -723,7 +723,7 @@ function InitActivityFlowTableOnline(_type) {
                     var result = { filed: "AmtPerDay", value: value };
                     let _value = result.value;
                     _value = isNaN(parseFloat(_value)) ? _value : parseFloat(_value).toFixed(2);
-                    return '<div style="min-width:100px">' + _value + '</div>';
+                    return '<div style="min-width:100px">￥' + convertMoneyD(_value) + '</div>';
                 }
             }
 
@@ -829,7 +829,7 @@ function InitActivityFlowTableOnline(_type) {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt", value: value };
-                        var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">' + result.value + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">￥' + convertMoneyD(result.value) + '</a>';
                         if (!result.value) {
                             html = '<a href="javascript:void(0)" data-name="CoopFundAmt" data-pk="undefined" data-value="" class="editable editable-click editable-empty">NULL</a>';
                         }
@@ -850,7 +850,7 @@ function InitActivityFlowTableOnline(_type) {
                     },
                     noeditFormatter: function (value, row, index) {
                         var result = { filed: "CoopFundAmt_Budget", value: value };
-                        return '<div style="min-width:100px">' + result.value + '</div>';
+                        return '<div style="min-width:100px">￥' + convertMoneyD(result.value) + '</div>';
                     }
                 }
 
@@ -953,7 +953,7 @@ function InitActivityFlowTableOnline(_type) {
                         var result = { filed: "AmtPerDay", value: value };
                         let _value = result.value;
                         _value = isNaN(parseFloat(_value)) ? _value : parseFloat(_value).toFixed(2);
-                        return '<div style="min-width:100px">' + _value + '</div>';
+                        return '<div style="min-width:100px">￥' + convertMoneyD(_value) + '</div>';
                     }
                 }
 
@@ -1991,6 +1991,7 @@ function farmatDate(date) {
 
 function subCluesToTheCost() {
     let _sumAmt = $("#TotalBudgetAmt").val();
+    _sumAmt = replaceMoneyD(_sumAmt);
     let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
     if ($("#People_NewLeadsThisYearCount").val()) {
         _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount").val();
@@ -1998,11 +1999,12 @@ function subCluesToTheCost() {
     } else {
         _cluesToTheCost = '';
     }
-    $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+    $("#CluesToTheCost").val(_cluesToTheCost ? convertMoneyD(_cluesToTheCost) : '');
 }
 
 function subCluesToTheCostReport() {
     let _sumAmt = $("#TotalBudgetAmt").val();
+    _sumAmt = replaceMoneyD(_sumAmt);
     let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThsYearCount").val();
     if ($("#People_NewLeadsThsYearCount").val()) {
         _cluesToTheCost = _sumAmt / $("#People_NewLeadsThsYearCount").val();
@@ -2010,12 +2012,13 @@ function subCluesToTheCostReport() {
     } else {
         _cluesToTheCost = '';
     }
-    $("#CluesToTheCost").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+    $("#CluesToTheCost").val(_cluesToTheCost ? convertMoneyD(_cluesToTheCost) : '');
     subCluesToTheCostPLAN();
 }
 
 function subCluesToTheCostPLAN() {
     let _sumAmt = $("#TotalBudgetAmt_PLAN").val();
+    _sumAmt = replaceMoneyD(_sumAmt);
     let _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount_PLAN").val();
     if ($("#People_NewLeadsThisYearCount_PLAN").val()) {
         _cluesToTheCost = _sumAmt / $("#People_NewLeadsThisYearCount_PLAN").val();
@@ -2023,7 +2026,7 @@ function subCluesToTheCostPLAN() {
     } else {
         _cluesToTheCost = '';
     }
-    $("#CluesToTheCost_PLAN").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+    $("#CluesToTheCost_PLAN").val(_cluesToTheCost ? convertMoneyD(_cluesToTheCost) : '');
 }
 
 function bindInputChange() {
@@ -2090,11 +2093,11 @@ function searchFourWeeks(id) {
                 _cluesToTheCost = '';
             }
             $("#People_ParticipantsCount_PLAN").val(_MarketActionBefore4Weeks.People_ParticipantsCount);
-            $("#CluesToTheCost_PLAN").val(_cluesToTheCost ? _cluesToTheCost.toFixed(2) : '');
+            $("#CluesToTheCost_PLAN").val(_cluesToTheCost ? convertMoneyD(_cluesToTheCost) : '');
             $("#People_NewLeadsThisYearCount_PLAN").val(_MarketActionBefore4Weeks.People_NewLeadsThisYearCount);
             $("#People_DCPIDCount_PLAN").val(_MarketActionBefore4Weeks.People_DCPIDCount);
-            $("#TotalBudgetAmt_PLAN").val(_MarketActionBefore4Weeks.TotalBudgetAmt);
-            $("#CoopFundSumAmt_PLAN").val(_MarketActionBefore4Weeks.CoopFundSumAmt);
+            $("#TotalBudgetAmt_PLAN").val(convertMoneyD(_MarketActionBefore4Weeks.TotalBudgetAmt));
+            $("#CoopFundSumAmt_PLAN").val(convertMoneyD(_MarketActionBefore4Weeks.CoopFundSumAmt));
         }
     });
 }
@@ -2112,4 +2115,38 @@ function checkPrice() {
             $("#After7DMFSumMax").html("市场基金金额合计历史最大值:" + data.After7DMFSumMax);
         }
     });
+}
+
+function initMoney() {
+    if ($("#ActivityBudget")) {
+        $("#ActivityBudget").val(convertMoneyD($("#ActivityBudget").val()));
+    }
+    if ($("#CoopFundSumAmt")) {
+        $("#CoopFundSumAmt").val(convertMoneyD($("#CoopFundSumAmt").val()));
+    }
+    if ($("#TotalBudgetAmt")) {
+        $("#TotalBudgetAmt").val(convertMoneyD($("#TotalBudgetAmt").val()));
+    }
+}
+
+function replaceData(_data) {
+    if (_data["CoopFundSumAmt"]) {
+        _data["CoopFundSumAmt"] = replaceMoneyD(_data["CoopFundSumAmt"]);
+    }
+    if (_data["CoopFundSumAmt_PLAN"]) {
+        _data["CoopFundSumAmt_PLAN"] = replaceMoneyD(_data["CoopFundSumAmt_PLAN"]);
+    }
+    if (_data["TotalBudgetAmt"]) {
+        _data["TotalBudgetAmt"] = replaceMoneyD(_data["TotalBudgetAmt"]);
+    }
+    if (_data["TotalBudgetAmt_PLAN"]) {
+        _data["TotalBudgetAmt_PLAN"] = replaceMoneyD(_data["TotalBudgetAmt_PLAN"]);
+    }
+    if (_data["CluesToTheCost"]) {
+        _data["CluesToTheCost"] = replaceMoneyD(_data["CluesToTheCost"]);
+    }
+    if (_data["CluesToTheCost_PLAN"]) {
+        _data["CluesToTheCost_PLAN"] = replaceMoneyD(_data["CluesToTheCost_PLAN"]);
+    }
+    return _data;
 }

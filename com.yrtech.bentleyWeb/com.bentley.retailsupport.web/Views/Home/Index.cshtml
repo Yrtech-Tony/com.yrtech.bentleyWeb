@@ -5,13 +5,63 @@
     .charts-list {
         width: 100%;
         display: flex;
-        justify-content: space-around;
-        border-bottom: 1px dashed #999;
+        justify-content: space-between;
         padding:10px 0px;
     }
-    .line-div {
-        width: 1px;
-        border-left: 1px dashed #999;
+    .index-title {
+        font-size: 24px;
+        font-family: Microsoft YaHei;
+        font-weight: bold;
+        color: #333333;
+        text-align:center;
+    }
+    .index-content {
+        box-shadow: 2px 0px 18px 0px rgba(200, 200, 200, 0.35);
+        border-radius: 10px;
+        margin-top:15px;
+    }
+    .index-info {
+        padding: 20px;
+        border-bottom: 1px solid #E3E6E8;
+    }
+    .info-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .plan-info {
+        width: 144px;
+        height: 36px;
+        background: #C8C8C8;
+        color:#fff;
+        padding:5px;
+        cursor:pointer;
+        font-size:14px;
+    }
+
+    .plan-active {
+        background: #69BD53;
+        color: #fff;
+        border-radius: 2px;
+    }
+    .statis-info{
+        display:flex;
+        justify-content:space-between;
+        padding:15px 0px;
+    }
+    .statis-img{
+        width:90px;
+        height:90px;
+    }
+    .statis-img img{
+        display:block;
+        width: 90px;
+        height: 90px;
+    }
+    .statis-text{
+        display:flex;
+        justify-content:center;
+        align-items:center;
     }
 </style>
 <div id="page-wrapper">
@@ -39,14 +89,321 @@
                             </div>
                             <div id="page" class="dashboard">
                                 <div class="charts-list">
-                                    <div class="span6" id="chartsOne" style="height: 500px;"></div>
-                                    <div class="line-div"></div>
-                                    <div class="span6" id="chartsTwo" style="height: 500px;"></div>
+                                    <div style="width:33.3%;margin-right:15px;">
+                                        <div class="index-title">市场活动-线上</div>
+                                        <div class="index-content">
+                                            <div class="index-info">
+                                                <div class="info-title">
+                                                    <div>
+                                                        <span style="font-size: 22px; color: #3A3737; font-weight:bold;">线上活动总数</span>
+                                                        <span id="MarketActionCountOnline" style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
+                                                        <span style="font-size: 16px; color: #67BC51;">个</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="plan-info plan-active">活动计划</span><span class="plan-info">活动报告</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding:30px 15px;display:flex;justify-content:space-between;">
+                                                <div style="width:200px;">
+                                                    <canvas id="myCanvasOnline" width="150" data-value="85" style="width:150px;">
+                                                        您的浏览器不支持 HTML5 canvas 标签。
+                                                    </canvas>
+                                                    <div style="color: #505050; font-size:18px;margin-top:15px;" id="onLine-1">已提交：60个</div>
+                                                </div>
+                                                <div style="width:100%;margin-left:30px;">
+                                                    <div>
+                                                        <div style="font-size: 18px; font-family: PingFang SC; font-weight: 500; color: #505050;" id="onLine-2">未提交—四周内: 35个</div>
+                                                        <div style="display:flex;justify-content:flex-start;align-items:center;margin-top:10px;">
+                                                            <div class="progress progress-info" style="background: #E5E5E5; margin-bottom: 0px; cursor: pointer; width: 90%; height: 15px; border-radius: 5px !important;"><div id="onLine-3" class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #9AC1E6; border-radius: 5px; "></div></div>
+                                                            <div style="color: #373737;font-size:16px;margin-left:10px;" id="onLine-4">60%</div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-top:30px;">
+                                                        <div style="font-size: 18px; font-family: PingFang SC; font-weight: 500; color: #505050;" id="onLine-5">未提交—二周内: 35个</div>
+                                                        <div style="display:flex;justify-content:flex-start;align-items:center;margin-top:10px;">
+                                                            <div class="progress progress-info" style="background: #E5E5E5; margin-bottom: 0px; cursor: pointer; width: 90%; height: 15px; border-radius: 5px !important; "><div id="onLine-6" class="progress-bar" role="progressbar" style="width: 30%; height: 100%; background: #F3EB62; border-radius: 5px; "></div></div>
+                                                            <div style="color: #373737;font-size:16px;margin-left:10px;" id="onLine-7">30%</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="width:33.3%;margin-right:15px;">
+                                        <div class="index-title">市场活动-线下</div>
+                                        <div class="index-content">
+                                            <div class="index-info">
+                                                <div class="info-title">
+                                                    <div>
+                                                        <span style="font-size: 22px; color: #3A3737; font-weight:bold;">线下活动总数</span>
+                                                        <span id="MarketActionCountOffline" style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
+                                                        <span style="font-size: 16px; color: #67BC51;">个</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="plan-info plan-active">活动计划</span><span class="plan-info">活动报告</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding:30px 15px;display:flex;justify-content:space-between;">
+                                                <div style="width:200px;">
+                                                    <canvas id="myCanvasOffline" width="150" data-value="85" style="width:150px;">
+                                                        您的浏览器不支持 HTML5 canvas 标签。
+                                                    </canvas>
+                                                    <div style="color: #505050; font-size:18px;margin-top:15px;" id="offLine-1">已提交：60个</div>
+                                                </div>
+                                                <div style="width:100%;margin-left:30px;">
+                                                    <div>
+                                                        <div style="font-size: 18px; font-family: PingFang SC; font-weight: 500; color: #505050;" id="offLine-2">未提交—四周内: 35个</div>
+                                                        <div style="display:flex;justify-content:flex-start;align-items:center;margin-top:10px;">
+                                                            <div class="progress progress-info" style="background: #E5E5E5; margin-bottom: 0px; cursor: pointer; width: 90%; height: 15px; border-radius: 5px !important;"><div id="offLine-3" class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #9AC1E6; border-radius: 5px; "></div></div>
+                                                            <div style="color: #373737;font-size:16px;margin-left:10px;" id="offLine-4">60%</div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-top:30px;">
+                                                        <div style="font-size: 18px; font-family: PingFang SC; font-weight: 500; color: #505050;" id="offLine-5">未提交—二周内: 35个</div>
+                                                        <div style="display:flex;justify-content:flex-start;align-items:center;margin-top:10px;">
+                                                            <div class="progress progress-info" style="background: #E5E5E5; margin-bottom: 0px; cursor: pointer; width: 90%; height: 15px; border-radius: 5px !important; "><div id="offLine-6" class="progress-bar" role="progressbar" style="width: 30%; height: 100%; background: #F3EB62; border-radius: 5px; "></div></div>
+                                                            <div style="color: #373737;font-size:16px;margin-left:10px;" id="offLine-7">30%</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="width:33.3%;margin-right:15px;">
+                                        <div class="index-title">交车仪式</div>
+                                        <div class="index-content">
+                                            <div class="index-info">
+                                                <div class="info-title">
+                                                    <div>
+                                                        <span style="font-size: 22px; color: #3A3737; font-weight:bold;">交车仪式总数</span>
+                                                        <span id="MarketActionCountCarline" style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
+                                                        <span style="font-size: 16px; color: #67BC51;">个</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="plan-info plan-active">活动计划</span><span class="plan-info">活动报告</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="padding:30px 15px;display:flex;justify-content:space-between;">
+                                                <div style="width:200px;">
+                                                    <canvas id="myCanvasCarline" width="150" data-value="85" style="width:150px;">
+                                                        您的浏览器不支持 HTML5 canvas 标签。
+                                                    </canvas>
+                                                    <div style="color: #505050; font-size:18px;margin-top:15px;" id="carLine-1">已提交：60个</div>
+                                                </div>
+                                                <div style="width:100%;margin-left:30px;">
+                                                    <div>
+                                                        <div style="font-size: 18px; font-family: PingFang SC; font-weight: 500; color: #505050;" id="carLine-2">未提交—四周内: 35个</div>
+                                                        <div style="display:flex;justify-content:flex-start;align-items:center;margin-top:10px;">
+                                                            <div class="progress progress-info" style="background: #E5E5E5; margin-bottom: 0px; cursor: pointer; width: 90%; height: 15px; border-radius: 5px !important;"><div id="carLine-3" class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #9AC1E6; border-radius: 5px; "></div></div>
+                                                            <div style="color: #373737;font-size:16px;margin-left:10px;" id="carLine-4">60%</div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-top:30px;">
+                                                        <div style="font-size: 18px; font-family: PingFang SC; font-weight: 500; color: #505050;" id="carLine-5">未提交—二周内: 35个</div>
+                                                        <div style="display:flex;justify-content:flex-start;align-items:center;margin-top:10px;">
+                                                            <div class="progress progress-info" style="background: #E5E5E5; margin-bottom: 0px; cursor: pointer; width: 90%; height: 15px; border-radius: 5px !important; "><div id="carLine-6" class="progress-bar" role="progressbar" style="width: 30%; height: 100%; background: #F3EB62; border-radius: 5px; "></div></div>
+                                                            <div style="color: #373737;font-size:16px;margin-left:10px;" id="carLine-7">30%</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="charts-list" style="border:0px;">
-                                    <div class="span6" id="chartsThree" style="height: 500px;"></div>
-                                    <div class="line-div"></div>
-                                    <div class="span6" id="chartsFour" style="height: 500px;"></div>
+                                <div class="charts-list">
+                                    <div style="width:50%;margin-right:15px;">
+                                        <div class="index-title">费用报销</div>
+                                        <div style="width:100%;display:flex;justify-content:space-between;">
+                                            <div style="width: 50%; margin-right: 15px;">
+                                                <div class="index-content">
+                                                    <div class="index-info" style="border:0px;">
+                                                        <div class="info-title">
+                                                            <div>
+                                                                <span style="font-size: 22px; color: #3A3737; font-weight:bold;">市场活动</span>
+                                                            </div>
+                                                            <div>
+                                                                <span id="bxPlan-1" style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
+                                                                <span style="font-size: 16px; color: #67BC51;">个</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="statis-info" style="padding: 15px 30px;">
+                                                            <div>
+                                                                <div class="statis-img">
+                                                                    <img src="~/Content/images/statis/icon-statis-1.png" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="statis-text">
+                                                                    <span style="font-size: 16px; color: #505050;">邮件：</span>
+                                                                    <span id="bxPlan-2" style="font-size: 22px; font-weight: bold; color: #67BC51;">60</span>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="statis-img">
+                                                                    <img src="~/Content/images/statis/icon-statis-2.png" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="statis-text">
+                                                                    <span style="font-size: 16px; color: #505050;">发票：</span>
+                                                                    <span id="bxPlan-3" style="font-size: 22px; font-weight: bold; color: #52A4FE;">38</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="statis-info" style="padding: 15px 30px;">
+                                                            <div>
+                                                                <div class="statis-img">
+                                                                    <img src="~/Content/images/statis/icon-statis-3.png" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="statis-text">
+                                                                    <span style="font-size: 16px; color: #505050;">合同：</span>
+                                                                    <span id="bxPlan-4" style="font-size: 22px; font-weight: bold; color: #A0947C;">6</span>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="statis-img">
+                                                                    <img src="~/Content/images/statis/icon-statis-4.png" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="statis-text">
+                                                                    <span style="font-size: 16px; color: #505050;">报价单：</span>
+                                                                    <span id="bxPlan-5" style="font-size: 22px; font-weight: bold; color: #666666;">22</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="width:50%;">
+                                                <div class="index-content">
+                                                    <div class="index-info" style="border:0px;">
+                                                        <div class="info-title">
+                                                            <div>
+                                                                <span style="font-size: 22px; color: #3A3737; font-weight:bold;">交车仪式</span>
+                                                            </div>
+                                                            <div>
+                                                                <span style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
+                                                                <span id="bxCar-1" style="font-size: 16px; color: #67BC51;">个</spanid="bxPlan-5">
+                                                            </div>
+                                                        </div>
+                                                        <div class="statis-info" style="padding: 15px 30px;">
+                                                            <div>
+                                                                <div class="statis-img">
+                                                                    <img src="~/Content/images/statis/icon-statis-1.png" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="statis-text">
+                                                                    <span style="font-size: 16px; color: #505050;">邮件：</span>
+                                                                    <span id="bxCar-2" style="font-size: 22px; font-weight: bold; color: #67BC51;">60</span>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="statis-img">
+                                                                    <img src="~/Content/images/statis/icon-statis-2.png" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="statis-text">
+                                                                    <span style="font-size: 16px; color: #505050;">发票：</span>
+                                                                    <span id="bxCar-3" style="font-size: 22px; font-weight: bold; color: #52A4FE;">38</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="statis-info" style="padding: 15px 30px;">
+                                                            <div>
+                                                                <div class="statis-img">
+                                                                    <img src="~/Content/images/statis/icon-statis-3.png" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="statis-text">
+                                                                    <span style="font-size: 16px; color: #505050;">合同：</span>
+                                                                    <span id="bxCar-4" style="font-size: 22px; font-weight: bold; color: #A0947C;">6</span>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="statis-img">
+                                                                    <img src="~/Content/images/statis/icon-statis-4.png" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="statis-text">
+                                                                    <span style="font-size: 16px; color: #505050;">报价单：</span>
+                                                                    <span id="bxCar-5" style="font-size: 22px; font-weight: bold; color: #666666;">22</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="height: 500px; width: 50%;">
+                                        <div class="index-title">报告（本月）</div>
+                                        <div class="index-content">
+                                            <div class="index-info" style="border:0px;">
+                                                <div class="info-title">
+                                                    <div>
+                                                        <span style="font-size: 22px; color: #3A3737; font-weight:bold;">市场活动</span>
+                                                    </div>
+                                                    <div>
+                                                        <span id="reportPlan-1" style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
+                                                        <span style="font-size: 16px; color: #67BC51;">个</span>
+                                                    </div>
+                                                </div>
+                                                <div class="statis-info" style="margin-top:15px;">
+                                                    <div style="width: 33.3%; margin-right: 20px;">
+                                                        <div class="progress progress-info" style="background: #D1FBED; cursor: pointer; position: relative; width: 100%; height: 6px; border-radius: 2px;"><div class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #67BC51; border-radius: 2px; "></div></div>
+                                                        <div class="statis-text" style="text-align:center;">
+                                                            <span style="font-size: 16px; color: #505050;">市场花费：</span>
+                                                            <span id="reportPlan-2" style="font-size: 22px; font-weight: bold; color: #67BC51;">60</span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width:33.3%;margin-right:20px;">
+                                                        <div class="progress progress-info" style="background: #E8F0FE; cursor: pointer; position: relative; width: 100%; height: 6px; border-radius: 2px;"><div class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #9AC1E6; border-radius: 2px; "></div></div>
+                                                        <div class="statis-text" style="text-align:center;">
+                                                            <span style="font-size: 16px; color: #505050;">市场基金：</span>
+                                                            <span id="reportPlan-3" style="font-size: 22px; font-weight: bold; color: #52A4FE;">38</span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width:33.3%;">
+                                                        <div class="progress progress-info" style="background: #FEF4E1; cursor: pointer; position: relative; width: 100%; height: 6px; border-radius: 2px;"><div class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #F5F555; border-radius: 2px; "></div></div>
+                                                        <div class="statis-text" style="text-align:center;">
+                                                            <span style="font-size: 16px; color: #505050;">线索报告：</span>
+                                                            <span id="reportPlan-4" style="font-size: 22px; font-weight: bold; color: #CFA763;">6</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="index-content" style="margin-top:21px;">
+                                            <div class="index-info" style="border:0px;">
+                                                <div class="info-title">
+                                                    <div>
+                                                        <span style="font-size: 22px; color: #3A3737; font-weight:bold;">交车仪式</span>
+                                                    </div>
+                                                    <div>
+                                                        <span id="reportCar-1" style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
+                                                        <span style="font-size: 16px; color: #67BC51;">个</span>
+                                                    </div>
+                                                </div>
+                                                <div class="statis-info" style="margin-top:15px;">
+                                                    <div style="width: 33.3%; margin-right: 20px;">
+                                                        <div class="progress progress-info" style="background: #D1FBED; cursor: pointer; position: relative; width: 100%; height: 6px; border-radius: 2px;"><div class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #67BC51; border-radius: 2px; "></div></div>
+                                                        <div class="statis-text" style="text-align:center;">
+                                                            <span style="font-size: 16px; color: #505050;">市场花费：</span>
+                                                            <span id="reportCar-2" style="font-size: 22px; font-weight: bold; color: #67BC51;">60</span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width:33.3%;margin-right:20px;">
+                                                        <div class="progress progress-info" style="background: #E8F0FE; cursor: pointer; position: relative; width: 100%; height: 6px; border-radius: 2px;"><div class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #9AC1E6; border-radius: 2px; "></div></div>
+                                                        <div class="statis-text" style="text-align:center;">
+                                                            <span style="font-size: 16px; color: #505050;">市场基金：</span>
+                                                            <span id="reportCar-3" style="font-size: 22px; font-weight: bold; color: #52A4FE;">38</span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width:33.3%;">
+                                                        <div class="progress progress-info" style="background: #FEF4E1; cursor: pointer; position: relative; width: 100%; height: 6px; border-radius: 2px;"><div class="progress-bar" role="progressbar" style="width: 60%; height: 100%; background: #F5F555; border-radius: 2px; "></div></div>
+                                                        <div class="statis-text" style="text-align:center;">
+                                                            <span style="font-size: 16px; color: #505050;">线索报告：</span>
+                                                            <span id="reportCar-4" style="font-size: 22px; font-weight: bold; color: #CFA763;">6</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- END OVERVIEW STATISTIC BARS-->
                             </div>
@@ -63,15 +420,88 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/api/echarts.js"></script>
+    <script src="~/Scripts/curtom/cpbBuilder.js"></script>
     <script>
+        // usage
+        // 实例化 cpbBuilder.js 插件
+        var progressBar = new cpbBuilder({
+            // true 以百分比显示 || false 以原始值显示
+            showPercent: true,
+            // 显示值前缀
+            prefix: '',
+            // 显示值后缀，如果以原始值显示可以为数字添加单位符号后缀
+            suffix: '',
+            // 数字格式化选项，默认保留小数点后2位
+            fiexd: 2,
+            // 计算百分比是的分母
+            total: 100,
+            // 动画选项，使用每帧增加的百分比调整动画速度，默认 2.5 即每帧增加 2.5%，设置为 0 或 false 关闭动画
+            animation: 2.5,
+            // 旋转，只旋转进度条，文本不旋转
+            rotate: 0,
+            // 反向，顺时针还是逆时针
+            reverse: false,
+            // 样式，不可通过 canvas 元素 [data-*] 属性设置
+            style: {
+                // 线宽
+                circleWidth: 15,
+                // 进度条颜色
+                circleColor: "#69BD53",
+                // 进度条背景颜色，设置为 false 时不显示
+                circleBackground: '#eee',
+                // 值文本颜色
+                valueColor: "#393835",
+                // 标签文本颜色
+                lableColor: "#393835",
+                // 字体，不能设置文字大小
+                font: "'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif",
+                // 进度条渐变设置，设置渐变以后会使 circleColor 选项失效
+                gradient: {
+                    // 渐变方向，默认左右；1 - 上下；2 - 左上右下；3 - 左下右上
+                    direction: 2,
+                    // 渐变颜色，设置位置 0 至 1 的不同颜色节点
+                    color: {
+                        "0": "#69BD53",
+                        "1": "#69BD53"
+                    }
+                }
+            }
+        });
         $("#nav_dash").addClass("active");
-
+        function initCanvas() {
+            var canvas = document.getElementsByTagName("canvas")
+            for (item in canvas) {
+                if (typeof canvas[item] === "object") {
+                    // 调用 draw() 方法绘制，每个进度条都将使用相同的配置
+                    progressBar.draw(canvas[item]);
+                }
+            }
+        }
+        initCanvas();
+        let planOnlineData = {};
+        function initPlanOnline(data) {
+            planOnlineData["MarketActionCount"] = data.MarketActionCount;
+            let plan = { "Plan_CommitCount": data.Plan_CommitCount, "Plan_CommitCountRate": data.Plan_CommitCount * 100, "Plan_4WeekNotCommit": data.Plan_4WeekNotCommit, "Plan_4WeekNotCommitRate": data.Plan_4WeekNotCommitRate, "Plan_2WeekNotCommit": data.Plan_2WeekNotCommit, "Plan_2WeekNotCommitRate": data.Plan_2WeekNotCommitRate};
+            let report = { "Report_CommitCount": data.Report_CommitCount, "Report_CommitCountRate": data.Report_CommitCount * 100, "Report_2WeekNotCommit": data.Report_2WeekNotCommit, "Report_2WeekNotCommitRate": data.Report_2WeekNotCommitRate, "Report_1WeekNotCommit": data.Report_1WeekNotCommit, "Report_1WeekNotCommitRate": data.Report_1WeekNotCommitRate };
+        }
+        function initBxPlan(data) {
+            $("#bxPlan-1").html(data.ExpenseAccount0 ? data.ExpenseAccount0 : 0);
+        }
         $(function () {
-            //市场活动
+            //市场活动-线上
             $.commonGet("MarketAction/MarketActionStatusCountSearch", {
                 year: '',
-                eventTypeId: '',
+                eventModeId: 1,
+                userId: $("#G_UserId").val(),
+                roleTypeCode: $("#G_RoleTypeCode").val()
+            }, function (data) {
+                initPlanOnline(data[0]);
+            })
+            
+            //市场活动-线下
+            $.commonGet("MarketAction/MarketActionStatusCountSearch", {
+                year: '',
+                eventModeId: 2,
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
@@ -81,7 +511,7 @@
             //交车仪式
             $.commonGet("MarketAction/MarketActionStatusCountSearch", {
                 year: '',
-                eventTypeId: 99,
+                eventModeId: 4,
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
@@ -95,12 +525,30 @@
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
+                initBxPlan(data[0]);
+            })
+            //费用报销交车仪式
+            $.commonGet("MarketAction/ExpenseAccountStatusCountSearch", {
+                year: '',
+                eventTypeId: 99,
+                userId: $("#G_UserId").val(),
+                roleTypeCode: $("#G_RoleTypeCode").val()
+            }, function (data) {
                 initChartsThree(data);
             })
             //报告市场活动
             $.commonGet("MarketAction/MarketActionReportCountSearch", {
                 year: '',
                 eventTypeId: '',
+                userId: $("#G_UserId").val(),
+                roleTypeCode: $("#G_RoleTypeCode").val()
+            }, function (data) {
+                initChartsFour(data);
+            })
+            //报告交车仪式
+            $.commonGet("MarketAction/MarketActionReportCountSearch", {
+                year: '',
+                eventTypeId: 99,
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {

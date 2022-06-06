@@ -147,6 +147,10 @@
     </Compile>
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\images\statis\icon-statis-1.png" />
+    <Content Include="Content\images\statis\icon-statis-2.png" />
+    <Content Include="Content\images\statis\icon-statis-3.png" />
+    <Content Include="Content\images\statis\icon-statis-4.png" />
     <Content Include="Scripts\curtom\DESUtil.js" />
   </ItemGroup>
   <ItemGroup>

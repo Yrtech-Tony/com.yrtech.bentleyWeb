@@ -280,8 +280,8 @@
                                                                 <span style="font-size: 22px; color: #3A3737; font-weight:bold;">交车仪式</span>
                                                             </div>
                                                             <div>
-                                                                <span style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
-                                                                <span id="bxCar-1" style="font-size: 16px; color: #67BC51;">个</spanid="bxPlan-5">
+                                                                <span id="bxCar-1" style="font-size: 26px; color: #67BC51; font-weight:bold;">118</span>
+                                                                <span style="font-size: 16px; color: #67BC51;">个</span>
                                                             </div>
                                                         </div>
                                                         <div class="statis-info" style="padding: 15px 30px;">
@@ -486,6 +486,29 @@
         }
         function initBxPlan(data) {
             $("#bxPlan-1").html(data.ExpenseAccount0 ? data.ExpenseAccount0 : 0);
+            $("#bxPlan-2").html(data.ExpenseAccount9 ? data.ExpenseAccount9 : 0);
+            $("#bxPlan-3").html(data.ExpenseAccount4 ? data.ExpenseAccount4 : 0);
+            $("#bxPlan-4").html(data.ExpenseAccount3 ? data.ExpenseAccount3 : 0);
+            $("#bxPlan-5").html(data.ExpenseAccount5 ? data.ExpenseAccount5 : 0);
+        }
+        function initBxCar(data) {
+            $("#bxCar-1").html(data.ExpenseAccount0 ? data.ExpenseAccount0 : 0);
+            $("#bxCar-2").html(data.ExpenseAccount9 ? data.ExpenseAccount9 : 0);
+            $("#bxCar-3").html(data.ExpenseAccount4 ? data.ExpenseAccount4 : 0);
+            $("#bxCar-4").html(data.ExpenseAccount3 ? data.ExpenseAccount3 : 0);
+            $("#bxCar-5").html(data.ExpenseAccount5 ? data.ExpenseAccount5 : 0);
+        }
+        function initReportPlan(data) {
+            $("#reportPlan-1").html(data.MarketActionCount ? data.MarketActionCount : 0);
+            $("#reportPlan-2").html(data.ReportBugetUnCommit ? data.ReportBugetUnCommit : 0);
+            $("#reportPlan-3").html(data.ReportCoopFundUnCommit ? data.ReportCoopFundUnCommit : 0);
+            $("#reportPlan-4").html(data.LeadsUnCommit ? data.LeadsUnCommit : 0);
+        }
+        function initReportCar(data) {
+            $("#reportCar-1").html(data.MarketActionCount ? data.MarketActionCount : 0);
+            $("#reportCar-2").html(data.ReportBugetUnCommit ? data.ReportBugetUnCommit : 0);
+            $("#reportCar-3").html(data.ReportCoopFundUnCommit ? data.ReportCoopFundUnCommit : 0);
+            $("#reportCar-4").html(data.LeadsUnCommit ? data.LeadsUnCommit : 0);
         }
         $(function () {
             //市场活动-线上
@@ -505,7 +528,7 @@
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
-                initChartsOne(data);
+                //initChartsOne(data);
             })
 
             //交车仪式
@@ -515,7 +538,7 @@
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
-                initChartsTwo(data);
+                //initChartsTwo(data);
             })
 
             //费用报销市场活动
@@ -534,7 +557,7 @@
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
-                initChartsThree(data);
+                initBxCar(data[0]);
             })
             //报告市场活动
             $.commonGet("MarketAction/MarketActionReportCountSearch", {
@@ -543,7 +566,7 @@
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
-                initChartsFour(data);
+                initReportPlan(data[0]);
             })
             //报告交车仪式
             $.commonGet("MarketAction/MarketActionReportCountSearch", {
@@ -552,7 +575,7 @@
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
-                initChartsFour(data);
+                initReportCar(data[0]);
             })
         })
 

@@ -6,37 +6,42 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        padding:10px 0px;
+        padding: 10px 0px;
     }
+
     .index-title {
         font-size: 24px;
         font-family: Microsoft YaHei;
         font-weight: bold;
         color: #333333;
-        text-align:center;
+        text-align: center;
     }
+
     .index-content {
         box-shadow: 2px 0px 18px 0px rgba(200, 200, 200, 0.35);
         border-radius: 10px;
-        margin-top:15px;
+        margin-top: 15px;
     }
+
     .index-info {
         padding: 20px;
         border-bottom: 1px solid #E3E6E8;
     }
+
     .info-title {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+
     .plan-info {
         width: 144px;
         height: 36px;
         background: #C8C8C8;
-        color:#fff;
-        padding:5px;
-        cursor:pointer;
-        font-size:14px;
+        color: #fff;
+        padding: 5px;
+        cursor: pointer;
+        font-size: 14px;
     }
 
     .plan-active {
@@ -44,24 +49,28 @@
         color: #fff;
         border-radius: 2px;
     }
-    .statis-info{
-        display:flex;
-        justify-content:space-between;
-        padding:15px 0px;
+
+    .statis-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0px;
     }
-    .statis-img{
-        width:90px;
-        height:90px;
-    }
-    .statis-img img{
-        display:block;
+
+    .statis-img {
         width: 90px;
         height: 90px;
     }
-    .statis-text{
-        display:flex;
-        justify-content:center;
-        align-items:center;
+
+        .statis-img img {
+            display: block;
+            width: 90px;
+            height: 90px;
+        }
+
+    .statis-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
 <div id="page-wrapper">
@@ -100,7 +109,7 @@
                                                         <span style="font-size: 16px; color: #67BC51;">个</span>
                                                     </div>
                                                     <div>
-                                                        <span class="plan-info plan-active">活动计划</span><span class="plan-info">活动报告</span>
+                                                        <span class="plan-info plan-active" onclick="onLineClick(this,1);">活动计划</span><span class="plan-info" onclick="onLineClick(this,2);">活动报告</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,7 +150,7 @@
                                                         <span style="font-size: 16px; color: #67BC51;">个</span>
                                                     </div>
                                                     <div>
-                                                        <span class="plan-info plan-active">活动计划</span><span class="plan-info">活动报告</span>
+                                                        <span class="plan-info plan-active" onclick="offLineClick(this,1);">活动计划</span><span class="plan-info" onclick="offLineClick(this,2);">活动报告</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -182,7 +191,7 @@
                                                         <span style="font-size: 16px; color: #67BC51;">个</span>
                                                     </div>
                                                     <div>
-                                                        <span class="plan-info plan-active">活动计划</span><span class="plan-info">活动报告</span>
+                                                        <span class="plan-info plan-active" onclick="carLineClick(this,1);">活动计划</span><span class="plan-info" onclick="carLineClick(this,1);">活动报告</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -468,21 +477,94 @@
             }
         });
         $("#nav_dash").addClass("active");
-        function initCanvas() {
-            var canvas = document.getElementsByTagName("canvas")
-            for (item in canvas) {
-                if (typeof canvas[item] === "object") {
-                    // 调用 draw() 方法绘制，每个进度条都将使用相同的配置
-                    progressBar.draw(canvas[item]);
-                }
-            }
+        function initCanvas(id) {
+            var canvas = document.getElementById(id);
+            progressBar.draw(canvas);
         }
-        initCanvas();
+        @*initCanvas();*@
         let planOnlineData = {};
+        let planOfflineData = {};
+        let planCarlineData = {};
         function initPlanOnline(data) {
             planOnlineData["MarketActionCount"] = data.MarketActionCount;
-            let plan = { "Plan_CommitCount": data.Plan_CommitCount, "Plan_CommitCountRate": data.Plan_CommitCount * 100, "Plan_4WeekNotCommit": data.Plan_4WeekNotCommit, "Plan_4WeekNotCommitRate": data.Plan_4WeekNotCommitRate, "Plan_2WeekNotCommit": data.Plan_2WeekNotCommit, "Plan_2WeekNotCommitRate": data.Plan_2WeekNotCommitRate};
-            let report = { "Report_CommitCount": data.Report_CommitCount, "Report_CommitCountRate": data.Report_CommitCount * 100, "Report_2WeekNotCommit": data.Report_2WeekNotCommit, "Report_2WeekNotCommitRate": data.Report_2WeekNotCommitRate, "Report_1WeekNotCommit": data.Report_1WeekNotCommit, "Report_1WeekNotCommitRate": data.Report_1WeekNotCommitRate };
+            let plan = { "Plan_CommitCount": data.Plan_CommitCount, "Plan_CommitCountRate": parseFloat(data.Plan_CommitCountRate * 100).toFixed(2), "Plan_4WeekNotCommit": data.Plan_4WeekNotCommit, "Plan_4WeekNotCommitRate": parseFloat(data.Plan_4WeekNotCommitRate * 100).toFixed(2), "Plan_2WeekNotCommit": data.Plan_2WeekNotCommit, "Plan_2WeekNotCommitRate": parseFloat(data.Plan_2WeekNotCommitRate * 100).toFixed(2) };
+            let report = { "Plan_CommitCount": data.Report_CommitCount, "Plan_CommitCountRate": parseFloat(data.Report_CommitCount * 100).toFixed(2), "Plan_4WeekNotCommit": data.Report_2WeekNotCommit, "Plan_4WeekNotCommitRate": parseFloat(data.Report_2WeekNotCommitRate * 100).toFixed(2), "Plan_2WeekNotCommit": data.Report_1WeekNotCommit, "Plan_2WeekNotCommitRate": parseFloat(data.Report_1WeekNotCommitRate * 100).toFixed(2) };
+            planOnlineData["plan"] = plan
+            planOnlineData["report"] = report;
+            initOnline(1);
+        }
+        function initOnline(type) {
+            let data = type == 1 ? planOnlineData.plan : planOnlineData.report;
+            console.error(data);
+            $("#myCanvasOnline").attr("data-value", data.Plan_CommitCountRate);
+            $("#MarketActionCountOnline").html(planOnlineData.MarketActionCount);
+            $("#onLine-1").html("已提交：" + data.Plan_CommitCount + "个");
+            $("#onLine-2").html("未提交-四周内：" + data.Plan_4WeekNotCommit + "个");
+            $("#onLine-3").css({ "width": data.Plan_4WeekNotCommitRate + "%"})
+            $("#onLine-4").html(data.Plan_4WeekNotCommitRate + "%");
+            $("#onLine-5").html("未提交-二周内：" + data.Plan_2WeekNotCommit + "个");
+            $("#onLine-6").css({ "width": data.Plan_2WeekNotCommitRate + "%" })
+            $("#onLine-7").html(data.Plan_2WeekNotCommitRate + "%");
+            initCanvas("myCanvasOnline");
+        }
+        function onLineClick(obj,type) {
+            $(obj).parent().find(".plan-info").removeClass("plan-active");
+            $(obj).addClass("plan-active");
+            initOnline(type);
+        }
+
+        function initPlanOffline(data) {
+            planOfflineData["MarketActionCount"] = data.MarketActionCount;
+            let plan = { "Plan_CommitCount": data.Plan_CommitCount, "Plan_CommitCountRate": parseFloat(data.Plan_CommitCountRate * 100).toFixed(2), "Plan_4WeekNotCommit": data.Plan_4WeekNotCommit, "Plan_4WeekNotCommitRate": parseFloat(data.Plan_4WeekNotCommitRate * 100).toFixed(2), "Plan_2WeekNotCommit": data.Plan_2WeekNotCommit, "Plan_2WeekNotCommitRate": parseFloat(data.Plan_2WeekNotCommitRate * 100).toFixed(2) };
+            let report = { "Plan_CommitCount": data.Report_CommitCount, "Plan_CommitCountRate": parseFloat(data.Report_CommitCount * 100).toFixed(2), "Plan_4WeekNotCommit": data.Report_2WeekNotCommit, "Plan_4WeekNotCommitRate": parseFloat(data.Report_2WeekNotCommitRate * 100).toFixed(2), "Plan_2WeekNotCommit": data.Report_1WeekNotCommit, "Plan_2WeekNotCommitRate": parseFloat(data.Report_1WeekNotCommitRate * 100).toFixed(2) };
+            planOfflineData["plan"] = plan
+            planOfflineData["report"] = report;
+            initOffline(1);
+        }
+        function initOffline(type) {
+            let data = type == 1 ? planOfflineData.plan : planOfflineData.report;
+            $("#myCanvasOffline").attr("data-value", data.Plan_CommitCountRate);
+            $("#MarketActionCountOffline").html(planOfflineData.MarketActionCount);
+            $("#offLine-1").html("已提交：" + data.Plan_CommitCount + "个");
+            $("#offLine-2").html("未提交-四周内：" + data.Plan_4WeekNotCommit + "个");
+            $("#offLine-3").css({ "width": data.Plan_4WeekNotCommitRate + "%" })
+            $("#offLine-4").html(data.Plan_4WeekNotCommitRate + "%");
+            $("#offLine-5").html("未提交-二周内：" + data.Plan_2WeekNotCommit + "个");
+            $("#offLine-6").css({ "width": data.Plan_2WeekNotCommitRate + "%" })
+            $("#offLine-7").html(data.Plan_2WeekNotCommitRate + "%");
+            initCanvas("myCanvasOffline");
+        }
+        function offLineClick(obj, type) {
+            $(obj).parent().find(".plan-info").removeClass("plan-active");
+            $(obj).addClass("plan-active");
+            initOffline(type);
+        }
+
+        function initPlanCarline(data) {
+            planCarlineData["MarketActionCount"] = data.MarketActionCount;
+            let plan = { "Plan_CommitCount": data.Plan_CommitCount, "Plan_CommitCountRate": parseFloat(data.Plan_CommitCountRate * 100).toFixed(2), "Plan_4WeekNotCommit": data.Plan_4WeekNotCommit, "Plan_4WeekNotCommitRate": parseFloat(data.Plan_4WeekNotCommitRate * 100).toFixed(2), "Plan_2WeekNotCommit": data.Plan_2WeekNotCommit, "Plan_2WeekNotCommitRate": parseFloat(data.Plan_2WeekNotCommitRate * 100).toFixed(2) };
+            let report = { "Plan_CommitCount": data.Report_CommitCount, "Plan_CommitCountRate": parseFloat(data.Report_CommitCount * 100).toFixed(2), "Plan_4WeekNotCommit": data.Report_2WeekNotCommit, "Plan_4WeekNotCommitRate": parseFloat(data.Report_2WeekNotCommitRate * 100).toFixed(2), "Plan_2WeekNotCommit": data.Report_1WeekNotCommit, "Plan_2WeekNotCommitRate": parseFloat(data.Report_1WeekNotCommitRate * 100).toFixed(2) };
+            planCarlineData["plan"] = plan
+            planCarlineData["report"] = report;
+            initCarline(1);
+        }
+        function initCarline(type) {
+            let data = type == 1 ? planCarlineData.plan : planCarlineData.report;
+            $("#myCanvasCarline").attr("data-value", data.Plan_CommitCountRate);
+            $("#MarketActionCountCarline").html(planCarlineData.MarketActionCount);
+            $("#carLine-1").html("已提交：" + data.Plan_CommitCount + "个");
+            $("#carLine-2").html("未提交-四周内：" + data.Plan_4WeekNotCommit + "个");
+            $("#carLine-3").css({ "width": data.Plan_4WeekNotCommitRate + "%" })
+            $("#carLine-4").html(data.Plan_4WeekNotCommitRate + "%");
+            $("#carLine-5").html("未提交-二周内：" + data.Plan_2WeekNotCommit + "个");
+            $("#carLine-6").css({ "width": data.Plan_2WeekNotCommitRate + "%" })
+            $("#carLine-7").html(data.Plan_2WeekNotCommitRate + "%");
+            initCanvas("myCanvasCarline");
+        }
+        function carLineClick(obj, type) {
+            $(obj).parent().find(".plan-info").removeClass("plan-active");
+            $(obj).addClass("plan-active");
+            initCarline(type);
         }
         function initBxPlan(data) {
             $("#bxPlan-1").html(data.ExpenseAccount0 ? data.ExpenseAccount0 : 0);
@@ -520,7 +602,7 @@
             }, function (data) {
                 initPlanOnline(data[0]);
             })
-            
+
             //市场活动-线下
             $.commonGet("MarketAction/MarketActionStatusCountSearch", {
                 year: '',
@@ -528,7 +610,7 @@
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
-                //initChartsOne(data);
+                initPlanOffline(data[0]);
             })
 
             //交车仪式
@@ -538,7 +620,7 @@
                 userId: $("#G_UserId").val(),
                 roleTypeCode: $("#G_RoleTypeCode").val()
             }, function (data) {
-                //initChartsTwo(data);
+                initPlanCarline(data[0]);
             })
 
             //费用报销市场活动

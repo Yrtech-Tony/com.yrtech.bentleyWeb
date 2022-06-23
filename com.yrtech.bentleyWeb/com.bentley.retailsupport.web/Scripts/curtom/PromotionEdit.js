@@ -2060,6 +2060,9 @@ function bindReportInputChange() {
     $("#People_OthersCount").on('input', function () {
         sumReport();
     });
+    $("#People_NewLeadsThsYearCount").on('input', function () {
+        subCluesToTheCostReport();
+    });
 }
 
 function sumPlan() {

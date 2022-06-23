@@ -313,7 +313,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <a id="selectfiles-100" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Documents </span></a>
+                                                <a id="selectfiles-100" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Documents </span></a>
                                                 <div id="upload-container-100" class="container-fluid" style="display:block">
                                                     <div id="ossfile-100"></div>
                                                 </div>
@@ -360,7 +360,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;" class="videoUpload">
-                                                <a id="selectfiles-5" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles-5" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-5" class="container-fluid" style="display:block">
                                                     <div id="ossfile-5"></div>
                                                 </div>
@@ -396,7 +396,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="POSDesignDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container" class="container-fluid" style="display:block">
                                                     <div id="ossfile"></div>
                                                 </div>
@@ -449,7 +449,7 @@
                                     </div>
                                 </div>
                             </div>
-
+       
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -476,7 +476,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles-2" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles-2" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-2" class="container-fluid" style="display:block">
                                                     <div id="ossfile-2"></div>
                                                 </div>
@@ -545,7 +545,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles-3" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles-3" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-3" class="container-fluid" style="display:block">
                                                     <div id="ossfile-3"></div>
                                                 </div>
@@ -614,7 +614,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles-6" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles-6" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-6" class="container-fluid" style="display:block">
                                                     <div id="ossfile-6"></div>
                                                 </div>
@@ -740,6 +740,7 @@
         var roleName = $('#G_RoleTypeCode').val();
         $(function () {
             initOssClient("");
+            initOssClient("-1");
             initOssClient("-2");
             initOssClient("-3");
             initOssClient("-4");
@@ -1468,7 +1469,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请上传报价单、邮件截图和广告视频！'
+                        content: '请上传报价单和广告视频！'
                     });
                     return false;
                 }
@@ -1516,7 +1517,7 @@
             let _schedule7 = true;
             let _MarketActionPicList = [];
             for (let _key in imgCodeObj) {
-                if (_key == 'MPN01' || _key == 'MPN02') {
+                if (_key == 'MPN01') {
                     let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
                     let _veriImg = false;
                     for (let i = 0; i < _imgList.length; i++) {
@@ -1593,6 +1594,9 @@
 
         //权限
         function initRole() {
+            $("#ActivityBudget").prop("disabled", true);
+            $('#TotalBudgetAmt').prop("disabled", true);
+            $('#CluesToTheCost').prop("disabled", true);
             if (roleName == "SYSADMIN") {
                 return;
             }

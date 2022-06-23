@@ -725,8 +725,12 @@
         }
 
         function replaceMoneyD(_money) {
-            let _priceVal = parseFloat(_money.replace(/[^0-9-.]/g, ''));
-            return _priceVal;
+            if (_money) {
+                let _priceVal = parseFloat(_money.replace(/[^0-9-.]/g, ''));
+                return _priceVal;
+            } else {
+                return '';
+            }
         }
     </script>
 

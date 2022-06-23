@@ -205,7 +205,7 @@ function InitMarketFundLst() {
                         return '<div style="min-width:100px">' + real + '</div>';
                     }
                     if (roleType != 'SHOP') {
-                        var html = '<a href="javascript:void(0)" data-name="ApplyStatus" data-pk="undefined" data-value="" onclick="if(this.value ==\'通过\'){this.className=\'btn btn-success btn-sm\'}else if(this.value ==\'修改\'){this.className=\'btn btn-warning  btn-sm\'}else{this.className=\'btn btn-primary  btn-sm\'}">' + real + '</a>';
+                        var html = '<a href="javascript:void(0)" data-name="ApplyStatus" data-pk="undefined" data-value="" onclick="if(this.value ==\'通过\'){this.className=\'btn btn-success btn-sm\'}else if(this.value ==\'修改\'){this.className=\'btn btn-warning  btn-sm\'}else{this.className=\'btn btn-default  btn-sm\'}">' + real + '</a>';
                         if (real == '通过') {
                             html = real;
                         }

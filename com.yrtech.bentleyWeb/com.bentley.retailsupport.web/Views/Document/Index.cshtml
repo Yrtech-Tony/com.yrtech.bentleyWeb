@@ -156,10 +156,10 @@
                                     var params = "ShopId=" + row.ShopId + "&FileId=" + child.FileId;
                                     if (value) {
                                         var txt = $("#Pending").val();
-                                        return '<a href="/Document/DocList?' + params + '" class="btn btn-primary btn-sm" style="background-color:gray !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color:white;">'+txt+'</span></a>';
+                                        return '<a href="/Document/DocList?' + params + '" class="btn btn-default btn-sm" style="background-color:gray !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color:white;">'+txt+'</span></a>';
                                     } else {
                                         var txt = $("#Draft").val();
-                                        return '<a href="/Document/DocList?' + params + '" class="btn btn-primary btn-sm" style=""><i class="icon-plus" style="padding-right:5px;"></i><span style="color:white;">' + txt + '</span></a>';
+                                        return '<a href="/Document/DocList?' + params + '" class="btn btn-default btn-sm" style=""><i class="icon-plus" style="padding-right:5px;"></i><span style="color:white;">' + txt + '</span></a>';
                                     }
                                 }
                             })

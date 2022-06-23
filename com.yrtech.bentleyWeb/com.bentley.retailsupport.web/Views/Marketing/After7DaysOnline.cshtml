@@ -600,7 +600,7 @@
                                             </div>
                                             <div>
                                                 <div style="margin-top:10px;float:left;">
-                                                    <a id="selectfiles-2" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                    <a id="selectfiles-2" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                     <div id="upload-container-2" class="container-fluid" style="display:block">
                                                         <div id="ossfile-2"></div>
                                                     </div>
@@ -629,7 +629,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="POSDesignDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container" class="container-fluid" style="display:block">
                                                     <div id="ossfile"></div>
                                                 </div>
@@ -921,7 +921,7 @@
                                             </div>
                                             <div>
                                                 <div style="margin-top:10px;float:left;">
-                                                    <a id="selectfiles-4" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                    <a id="selectfiles-4" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                     <div id="upload-container-4" class="container-fluid" style="display:block">
                                                         <div id="ossfile-4"></div>
                                                     </div>
@@ -935,6 +935,80 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="imgListDiv-1">
+                                        <label class="control-label col-md-2"><span translate>邮件截图</span><span class="required" style="color:red">*</span>:</label>
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div class="btn btn-warning fileinput-exists" onclick="delImage(this)" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                            <div style="margin-top:10px;">
+                                                <a id="selectfiles-1" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <div id="upload-container-1" class="container-fluid" style="display:block">
+                                                    <div id="ossfile-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
+                                                <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
+                                                    <img class="ossImage" data-flag="1" onclick="OpenForm(this)" style="width:190px;height:140px;" src="/Content/bootstrap-fileinput/img/noimage.png" alt="">
+                                                </div>
+                                                <div>
+                                                    <div onclick="delImage(this)" class="btn btn-warning fileinput-exists" data-dismiss="fileinput" translate>Remove</div>
+                                                </div>
+                                            </div>
+                                            <textarea class="form-control" cols="20" name="PlaceIntroDesc02" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -955,7 +1029,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles-3" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles-3" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-3" class="container-fluid" style="display:block">
                                                     <div id="ossfile-3"></div>
                                                 </div>
@@ -1028,7 +1102,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;">
-                                                <a id="selectfiles-6" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles-6" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-6" class="container-fluid" style="display:block">
                                                     <div id="ossfile-6"></div>
                                                 </div>
@@ -1097,7 +1171,7 @@
                                             </div>
                                             <textarea class="form-control" cols="20" name="OtherDesc01" placeholder="{{'Description2'|translate}}" rows="1"></textarea>
                                             <div style="margin-top:10px;" id="videoUpload">
-                                                <a id="selectfiles-5" class='btn btn-primary'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
+                                                <a id="selectfiles-5" class='btn btn-default'><i class="icon-plus"></i><span translate>Choose Mul Documents </span></a>
                                                 <div id="upload-container-5" class="container-fluid" style="display:block">
                                                     <div id="ossfile-5"></div>
                                                 </div>
@@ -1178,7 +1252,7 @@
 
     <script>
         $("#nav_promotion").addClass("active");
-        let imgCodeObj = { "MRN01": "imgListDiv", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MRN06": "imgListDiv-6", "MRN10":"imgListDiv-5" };
+        let imgCodeObj = { "MRN01": "imgListDiv", "MRN04": "imgListDiv-1", "MRN02": "imgListDiv-2", "MRN05": "imgListDiv-3", "MRN03": "imgListDiv-4", "MRN06": "imgListDiv-6", "MRN10":"imgListDiv-5" };
         var baseOss = "https://yrsurvey.oss-cn-beijing.aliyuncs.com/";
         var id = '@ViewBag.Id';
         var hdData = [];
@@ -1194,6 +1268,7 @@
                 $("#ShopId").append($("<option>").val(item.ShopId).text(shopName));
             });
             initOssClient("");
+            initOssClient("-1");
             initOssClient("-2",20);
             initOssClient("-3");
             initOssClient("-4",20);
@@ -1922,6 +1997,12 @@
 
         //权限
         function initRole() {
+            $("#ActivityBudget").prop("disabled", true);
+            $('#CoopFundSumAmt_PLAN').prop("disabled", true);
+            $('#TotalBudgetAmt').prop("disabled", true);
+            $('#TotalBudgetAmt_PLAN').prop("disabled", true);
+            $('#CluesToTheCost').prop("disabled", true);
+            $('#CluesToTheCost_PLAN').prop("disabled", true);
             if (roleName == "SYSADMIN") {
                 return;
             }

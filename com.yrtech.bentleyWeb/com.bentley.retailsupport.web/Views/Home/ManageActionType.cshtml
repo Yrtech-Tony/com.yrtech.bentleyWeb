@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="widget-body" style="display: block;">
                                             <select name="showStatus" id="showStatus" class="input-small selectpicker" onchange="searchQuery()">
-                                                <option value="" translate>添加状态</option>
+                                                <option value="" translate>Add Status</option>
                                                 <option value="true">是</option>
                                                 <option value="false">否</option>
                                             </select>
@@ -144,7 +144,7 @@
             $.commonGet("/Master/HiddenCodeSearch", { hiddenCodeGroup: 'EventMode', hiddenCode: '' }, function (data) {
                 console.error(data);
                 if (data) {
-                    let _html = '<option value="">活动版块</option>';
+                    let _html = '<option value="" translate>Event Mode Name</option>';
                     data.forEach(function (item) {
                         _html += '<option value="' + item.HiddenCodeId + '">' + item.HiddenCodeName +'</option>';
                     })

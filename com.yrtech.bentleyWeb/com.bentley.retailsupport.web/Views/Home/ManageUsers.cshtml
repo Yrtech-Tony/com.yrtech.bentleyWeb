@@ -79,7 +79,7 @@
                                         </div>
                                         <div class="widget-body" style="display: block;">
                                             <select name="roleTypeCode" id="roleTypeCode" class="input-small selectpicker" onchange="searchQuery()">
-                                                <option value="">角色</option>
+                                                <option value="" translate>Role</option>
                                                 <option value="SYSADMIN">管理员</option>
                                                 <option value="AREA">区域经理</option>
                                                 <option value="BMC">市场活动</option>
@@ -156,8 +156,7 @@
         }
 
         function getAreas() {
-            console.error(_areaList);
-            let _html = '<option value="">区域</option>';
+            let _html = '<option value="" translate>AreaName</option>';
             _areaList.forEach(function (item) {
                 _html += '<option value="' + item.AreaId + '">' + item.AreaName + '</option>';
             })

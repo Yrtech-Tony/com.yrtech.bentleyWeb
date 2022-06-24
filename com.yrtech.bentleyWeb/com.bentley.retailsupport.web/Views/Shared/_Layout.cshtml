@@ -172,9 +172,9 @@
     <input id="G_AccountName" type="hidden" value="@LoginUser.AccountName" />
     <input id="G_AccountNameEn" type="hidden" value="@LoginUser.AccountNameEn" />
     <input id="G_Email" type="hidden" value="@LoginUser.Email" />
-    <input id="G_Shops" type="hidden" value="@Json.Encode(LoginUser.ShopList)" 
+    <input id="G_Shops" type="hidden" value="@Json.Encode(LoginUser.ShopList)"
     <input id="G_AreaList" type="hidden" value="@Json.Encode(LoginUser.AreaList)" />
-    
+
     <input id="G_ResetPassword" type="hidden" value="{{'ResetPassword'|translate}}" />
     <input id="G_Update" type="hidden" value="{{'Update'|translate}}" />
     <input id="G_Delete" type="hidden" value="{{'Delete'|translate}}" />
@@ -230,6 +230,8 @@
     <input id="In_Plan" type="hidden" value="{{'In Plan'|translate}}" />
 
     <input id="G_Edit" type="hidden" value="{{'Edit'|translate}}" />
+    <input id="Audit_Approved" type="hidden" value="{{'Audit Approved'|translate}}" />
+    <input id="Audit_Modify" type="hidden" value="{{'Audit Modify'|translate}}" />
     <!--END THEME SETTING-->
 
     <form action="/Account/LogOff" class="navbar-right" id="logoutForm" method="post"></form>
@@ -695,12 +697,12 @@
             reader.readAsArrayBuffer(fileData);
         }
 
-       function formatMoney(money, places, symbol, thousand, decimal) {
+        function formatMoney(money, places, symbol, thousand, decimal) {
             places = !isNaN(places = Math.abs(places)) ? places : 2;
             symbol = symbol !== undefined ? symbol : "$";
             thousand = thousand || ",";
             decimal = decimal || ".";
-           var number = money,
+            var number = money,
                 negative = number < 0 ? "-" : "",
                 i = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
                 j = (j = i.length) > 3 ? j % 3 : 0;
@@ -709,7 +711,7 @@
 
         function convertMoney(_this) {
             let _money = $(_this).val();
-            _money = formatMoney(_money,2);
+            _money = formatMoney(_money, 2);
             $(_this).val(_money);
         }
 

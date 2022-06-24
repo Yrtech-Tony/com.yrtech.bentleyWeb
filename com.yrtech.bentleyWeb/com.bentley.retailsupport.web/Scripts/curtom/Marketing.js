@@ -80,10 +80,10 @@ function statusFormatter(value, row, index, field) {
         var txt = $("#Draft").val();
         return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style="background-color:#9ac1e6 !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;" >' + txt + '</span></a>';
     } else if (value == "Approved") {
-        var txt = "审核通过";
+        var txt = $("#Audit_Approved").val();
         return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style="background-color:#44474e !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;" >' + txt + '</span></a>';
     } else if (value == "WaitForChange") {
-        var txt = "修改中";
+        var txt = $("#Audit_Modify").val();
         return '<a href="' + href + '" onclick="EmptyValue();" class="btn btn-primary btn-sm" style="background-color:#fff89a !important;border-color:lightgrey !important;"><i class="icon-plus" style="padding-right:5px;"></i><span style="color: white;" >' + txt + '</span></a>';
     }
 }

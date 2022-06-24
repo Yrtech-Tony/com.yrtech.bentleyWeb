@@ -277,6 +277,9 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , 'PType': 'Promotion Type'  //������������
             , 'Activity Budget': 'Activity Budget'
             , 'Expect Leads': 'Expect Leads'
+            , "Add Status": "Add Status"
+            , "Audit Approved": "Approved"
+            , "Audit Modify": "WaitForChange"
         });
     /* jshint +W100 */
 }]);

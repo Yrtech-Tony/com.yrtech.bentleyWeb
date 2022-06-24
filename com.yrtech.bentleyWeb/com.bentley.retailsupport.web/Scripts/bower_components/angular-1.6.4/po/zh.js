@@ -338,6 +338,9 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
 
              , 'Activity Budget': '活动预算'
             , 'Expect Leads': '预计线索'
+            , "Add Status": "添加状态"
+            , "Audit Approved": "审核通过"
+            , "Audit Modify": "修改中"
         });
     /* jshint +W100 Tick-box Items*/
 }]);

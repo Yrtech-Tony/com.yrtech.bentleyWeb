@@ -1,4 +1,4 @@
-angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
+0 angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
     /* jshint -W100 */
     gettextCatalog.setStrings('en',
         {
@@ -280,6 +280,29 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Add Status": "Add Status"
             , "Audit Approved": "Approved"
             , "Audit Modify": "WaitForChange"
+
+            //分界线
+            , "ActionCode": "ActionCode"
+            , "MarketActionId": "MarketActionId"
+            , "People ParticipantsCount": "People ParticipantsCount"
+            , "People DCPIDCount": "People DCPIDCount"
+            , "People NewLeadsThisYearCount": "People NewLeadsThisYearCount"
+            , "People InvitationCarOwnerCount": "People InvitationCarOwnerCount"
+            , "People InvitationDepositorCount": "People InvitationDepositorCount"
+            , "People InvitationPotentialCount": "People InvitationPotentialCount"
+            , "People InvitationOtherCount": "People InvitationOtherCount"
+            , "People InvitationTotalCount": "People InvitationTotalCount"
+            , "Vehide Usage": "Vehide Usage"
+            , "Vehide Model": "Vehide_Model"
+            , "Vehide Qty": "Vehide_Qty"
+            , "CoopFundSumAmt": "CoopFundSumAmt"
+            , "TotalBudgetAmt": "TotalBudgetAmt"
+            , "CluesToTheCost": "CluesToTheCost"
+            , "TotalBudgetAmt": "TotalBudgetAmt"
+            , "TotalBudgetAmt": "TotalBudgetAmt"
+            , "TotalBudgetAmt": "TotalBudgetAmt"
+            , "Platform Media": "Platform Media"
+            , "Platform ExposureForm": "Platform ExposureForm"
         });
     /* jshint +W100 */
 }]);

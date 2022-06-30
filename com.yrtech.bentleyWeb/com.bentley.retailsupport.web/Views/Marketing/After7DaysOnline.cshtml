@@ -75,7 +75,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4"><span translate>DCP系统活动ID</span><span class="required" style="color:red">*</span>:</label>
+                                    <label class="control-label col-md-4"><span translate>ActionCode</span><span class="required" style="color:red">*</span>:</label>
                                     <div class="col-md-8">
                                         <input class="form-control" id="ActionCode" name="ActionCode" maxlength="255" style="width:100%;" type="text" disabled />
                                     </div>
@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4"><span translate>活动编码</span><span class="required" style="color:red">*</span>:</label>
+                                    <label class="control-label col-md-4"><span translate>MarketActionId</span><span class="required" style="color:red">*</span>:</label>
                                     <div class="col-md-8">
                                         <input class="form-control" id="MarketActionId" name="MarketActionId" maxlength="255" style="width:100%;" type="text" disabled />
                                     </div>
@@ -208,7 +208,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>媒体平台</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Platform Media</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_Media" name="Platform_Media" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -219,7 +219,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>曝光形式</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Platform ExposuerForm</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_ExposuerForm" name="Platform_ExposuerForm" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -229,7 +229,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>DCPID客户数量（计划）</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>People DCPIDCount PLAN</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" readonly id="People_DCPIDCount_PLAN" name="People_DCPIDCount_PLAN" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -240,7 +240,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>DCPID客户数量</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>People DCPIDCount</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="People_DCPIDCount" name="People_DCPIDCount" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -251,7 +251,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>今年新增线索数量（计划）</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>People NewLeadsThisYearCount PLAN</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" readonly id="People_NewLeadsThisYearCount_PLAN" name="People_NewLeadsThisYearCount_PLAN" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -262,7 +262,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>今年新增线索数量</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>People NewLeadsThisYearCount</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="People_NewLeadsThsYearCount" name="People_NewLeadsThsYearCount" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -273,7 +273,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>新增订单</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>People NewOrderCount</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="People_NewOrderCount" name="People_NewOrderCount" style="width:100%;" type="text" min="0" maxlength="255">
                                         </div>
@@ -284,7 +284,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>市场基金金额总计</span><span class="required" style="color:red">*</span>: </label>
+                                        <label class="control-label col-md-4"><span translate>CoopFundSumAmt</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-4">
                                             <div class="currencyinput form-control"><span>￥</span><input class="form-control" id="CoopFundSumAmt" name="CoopFundSumAmt" type="text" min="0" maxlength="255" onfocus="replaceMoney(this)" onblur="convertMoney(this)"></div>
                                             <small id="After7BudgetMax" style="color: #a94442;margin-top:5px;"></small>
@@ -295,7 +295,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>市场基金金额总计（计划）</span><span class="required" style="color:red">*</span>: </label>
+                                        <label class="control-label col-md-4"><span translate>CoopFundSumAmt PLAN</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-4">
                                             <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="CoopFundSumAmt_PLAN" name="CoopFundSumAmt_PLAN" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div> 
                                         </div>
@@ -305,7 +305,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>预算金额总计</span><span class="required" style="color:red">*</span>: </label>
+                                        <label class="control-label col-md-4"><span translate>TotalBudgetAmt</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-4">
                                             <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div>
                                             <small id="After7DMFSumMax" style="color: #a94442;margin-top:5px;"></small>
@@ -316,7 +316,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>预算金额总计（计划）</span><span class="required" style="color:red">*</span>: </label>
+                                        <label class="control-label col-md-4"><span translate>TotalBudgetAmt PLAN</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-4">
                                             <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="TotalBudgetAmt_PLAN" name="TotalBudgetAmt_PLAN" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div>
                                         </div>
@@ -326,7 +326,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>每条线索成本</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>CluesToTheCost</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="CluesToTheCost" name="CluesToTheCost" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div>
                                         </div>
@@ -336,7 +336,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>每条线索成本（计划）</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>CluesToTheCost PLAN</span><span class="required" style="color:red">*</span>:  </label>
                                         <div class="col-md-4">
                                             <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" disabled id="CluesToTheCost_PLAN" name="CluesToTheCost_PLAN" style="width:100%;" type="text" min="0" maxlength="255"></div>                                            
                                         </div>

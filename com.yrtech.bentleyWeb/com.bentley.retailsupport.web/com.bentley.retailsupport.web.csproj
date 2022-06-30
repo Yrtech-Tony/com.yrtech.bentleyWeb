@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>com.bentley.retailsupport.web</RootNamespace>
     <AssemblyName>com.bentley.retailsupport.web</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -147,10 +147,7 @@
     </Compile>
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Content\images\statis\icon-statis-1.png" />
-    <Content Include="Content\images\statis\icon-statis-2.png" />
-    <Content Include="Content\images\statis\icon-statis-3.png" />
-    <Content Include="Content\images\statis\icon-statis-4.png" />
+    <Content Include="Scripts\api\echarts.js" />
     <Content Include="Scripts\curtom\DESUtil.js" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +295,8 @@
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery.jqprint-0.3.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\oss-upload-direct\ali-upload-video.js" />
+    <Content Include="Scripts\oss-upload-direct\ali-upload.js" />
     <Content Include="Scripts\oss-upload-direct\lib\base64.js" />
     <Content Include="Scripts\oss-upload-direct\lib\crypto1\aes\aes-min.js" />
     <Content Include="Scripts\oss-upload-direct\lib\crypto1\aes\aes.js" />
@@ -463,6 +462,8 @@
     <Content Include="Views\Marketing\Before4WeeksOnline.cshtml" />
     <Content Include="Views\Marketing\After7DaysOnline.cshtml" />
     <Content Include="Views\Marketing\Before4WeeksCar.cshtml" />
+    <Content Include="Views\Marketing\After7DaysCar.cshtml" />
+    <Content Include="Views\Marketing\After7DaysOffline.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

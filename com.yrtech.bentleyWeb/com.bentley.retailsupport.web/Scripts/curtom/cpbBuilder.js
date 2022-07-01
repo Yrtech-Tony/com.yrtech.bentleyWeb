@@ -1,4 +1,4 @@
-﻿// cpbBuilder.js
+// cpbBuilder.js
 // 环形进度条生成插件
 ;
 (function (global, undefined) {
@@ -170,13 +170,13 @@
         var valStr;
         let showPercent = getData('showPercent', context)
         if (showPercent) {
-            valStr = getData('prefix', context) + value + '%'
+            valStr = getData('prefix', context) + String(Number(value).toFixed(getData('fixed', context))) + '%'
         } else {
-            valStr = getData('prefix', context) + value + getData('suffix', context);
+            valStr = getData('prefix', context) + String(Number(value).toFixed(getData('fixed', context))) + getData('suffix', context);
         }
         context.save();
         context.font = radius / 2.25 + "px " + apiInstance.options.style.font;
-        context.textAlign = "center"; li.active a
+        context.textAlign = "center";
         context.textBaseline = "middle";
         context.fillStyle = apiInstance.options.style.valueColor;
         context.fillText(valStr, center, center, radius * 1.75);

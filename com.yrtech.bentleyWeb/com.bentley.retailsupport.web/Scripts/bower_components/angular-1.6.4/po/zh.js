@@ -370,6 +370,8 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Platform ExposureForm": "曝光形式"
             , "People NewOrderCount": "新增订单"
             , "People ActualArrivalCount": "实际参加人数"
+            , "PlatformReason": "场地选择理由"
+            , "PhotographerIntro": "摄影摄像-摄影师介绍"
         });
     /* jshint +W100 Tick-box Items*/
 }]);

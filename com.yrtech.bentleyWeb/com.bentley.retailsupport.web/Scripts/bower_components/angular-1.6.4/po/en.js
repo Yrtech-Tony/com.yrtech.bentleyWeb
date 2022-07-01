@@ -1,4 +1,4 @@
-0 angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
+angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
     /* jshint -W100 */
     gettextCatalog.setStrings('en',
         {
@@ -293,8 +293,8 @@
             , "People InvitationOtherCount": "People InvitationOtherCount"
             , "People InvitationTotalCount": "People InvitationTotalCount"
             , "Vehide Usage": "Vehide Usage"
-            , "Vehide Model": "Vehide_Model"
-            , "Vehide Qty": "Vehide_Qty"
+            , "Vehide Model": "Vehide Model"
+            , "Vehide Qty": "Vehide Qty"
             , "CoopFundSumAmt": "CoopFundSumAmt"
             , "TotalBudgetAmt": "TotalBudgetAmt"
             , "CluesToTheCost": "CluesToTheCost"

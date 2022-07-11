@@ -209,7 +209,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Platform ExposureForm<span class="required" style="color:red">*</span>: </label>
+                                        <label class="control-label col-md-4"><span translate>Platform ExposureForm</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_ExposureForm" name="Platform_ExposureForm" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -289,7 +289,7 @@
                             <div class="row table-unedit">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label col-md-2"><span translate>市场基金申报信息</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>Coop Fund Detail</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-8">
                                             <a href="javascript:AddActivityFlowTableOnline(1);"><i class="icon-plus icon-white" translate>Add</i></a>
                                             <table id="ActivityFlowTableOnline" class="table table-striped table-bordered table-hover"></table>
@@ -348,7 +348,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-5">
-                                        <label class="control-label col-md-2"><span translate>广告视频</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>Advertising video</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
@@ -384,7 +384,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv">
-                                        <label class="control-label col-md-2"><span translate>报价单</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>Quotation</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-2 img-div">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -453,7 +453,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>媒体平台选择理由</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>introduction / why selection p</span>:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" placeholder="平台基本信息：简介/选择理由" cols="20" id="PlatformReason" name="PlatformReason" data-val="true" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -464,7 +464,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-2">
-                                        <label class="control-label col-md-2"><span translate>平台简介-媒体平台截图</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>Platform Screen Shot</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -533,7 +533,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-3">
-                                        <label class="control-label col-md-2"><span translate>品牌曝光形式</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>Brand exposure form (reference / demo)</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -602,7 +602,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-6">
-                                        <label class="control-label col-md-2"><span translate>媒体投放示例</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>Schematic Diagram of Media Delivery</span>:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -671,7 +671,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>DTT审批意见</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>DTT Approval</span><span class="required" style="color:red">*</span>:</label>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="col-md-8">
@@ -1588,7 +1588,15 @@
                 picType: "MPN11"
             }, function (data) {
                 EProcessing();
-                window.location.href = baseOss + data[0].PicPath;
+                if (data[0] && data[0].PicPath) {
+                    window.location.href = baseOss + data[0].PicPath;
+                } else {
+                    layer.open({
+                        title: '错误提示',
+                        type: 0,
+                        content: '请先生成PPT！'
+                    });
+                }
             });
         }
 

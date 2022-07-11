@@ -44,7 +44,8 @@ function NameQuery() {
     loadMarketings(true);
 }
 
-var types = isZH() ? ['数字营销', '广告及宣传', '线上平台线索获取','中央市场活动'] : ['Digital Marketing', 'Advertisement', 'Online Sales Leads Generation','Central Event'];
+//var types = isZH() ? ['数字营销', '广告及宣传', '线上平台线索获取', '中央市场活动'] : ['Digital Marketing', 'Advertisement', 'Online Sales Leads Generation', 'Central Event'];
+var types = isZH() ? ['中央市场活动'] : [ 'Central Event'];
 function statusFormatter(value, row, index, field) {
     if (row.MarketActionStatusNameEn == "Canceled") {
         return '';

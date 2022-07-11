@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>com.bentley.retailsupport.web</RootNamespace>
     <AssemblyName>com.bentley.retailsupport.web</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -148,6 +148,7 @@
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Scripts\api\echarts.js" />
+    <Content Include="Scripts\curtom\cpbBuilder.js" />
     <Content Include="Scripts\curtom\DESUtil.js" />
   </ItemGroup>
   <ItemGroup>

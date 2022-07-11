@@ -137,7 +137,7 @@ function InitCueLst() {
             valign: "middle",
             align: "center",
             field: "",
-            colspan: 7,
+            colspan: 6,
             rowspan: 1
         },
         {

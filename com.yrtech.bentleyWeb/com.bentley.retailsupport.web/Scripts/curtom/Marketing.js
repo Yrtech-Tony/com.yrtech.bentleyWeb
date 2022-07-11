@@ -44,13 +44,14 @@ function NameQuery() {
     loadMarketings(true);
 }
 
-var types = isZH() ? ['数字营销', '广告及宣传', '线上平台线索获取'] : ['Digital Marketing', 'Advertisement', 'Online Sales Leads Generation'];
+var types = isZH() ? ['数字营销', '广告及宣传', '线上平台线索获取','中央市场活动'] : ['Digital Marketing', 'Advertisement', 'Online Sales Leads Generation','Central Event'];
 function statusFormatter(value, row, index, field) {
     if (row.MarketActionStatusNameEn == "Canceled") {
         return '';
     }
 
-    if (field == "Before3Days" || field == "TheDays") {
+    if (field == "Before4Weeks" ||field == "Before4WeeksCar"||field == 
+        "Before4WeeksOnline" || field == "After7Days" || field == "After7DaysCar" || field == "After7DaysOnline" || field=="After7DaysOffline") {
         if (isZH()) {
             if (types.indexOf(row.EventTypeName) >= 0) {
                 return '';

@@ -333,6 +333,25 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Photography-Introduction": "Photography-Introduction"
             , "introduction / why selection p": "introduction / why selection"
             , "DTT Approval": "DTT Approval"
+
+            , "Activity Date Time Start": "Activity Date Time Start"
+            , "Activity Date Time End": "Activity Date Time End"
+            , "Responsible": "Responsible"
+            , "Process Table": "Process Table"
+            , "Coop Fund Code": "Coop Fund Code"
+            , "Coop Fund Amt": "Coop Fund Amt"
+            , "Coop Fund DMF Chk": "Coop Fund DMF Chk"
+            , "Coop Fund Desc": "Coop Fund Desc"
+            , "Coop Fund Type Desc": "Coop Fund Type Desc"
+            , "Coop Fund Amt Actual": "Coop Fund Amt Actual"
+            , "Coop Fund Amt Budget": "Coop Fund Amt Budget"
+            , "StartDate": "StartDate"
+            , "EndDate": "EndDate"
+            , "TotalDays": "TotalDays"
+            , "AmtPerDay": "AmtPerDay"
+            , "HandOverDate": "HandOverDate"
+            , "Model": "Model"
+            , "MainProcess": "MainProcess"
         });
     /* jshint +W100 */
 }]);

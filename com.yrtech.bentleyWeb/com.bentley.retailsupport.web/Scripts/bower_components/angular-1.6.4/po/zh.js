@@ -402,6 +402,25 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Photography-Introduction": "摄影摄像-摄影师介绍"
             , "introduction / why selection p": "媒体平台选择理由"
             , "DTT Approval": "DTT审批意见"
+
+            , "Activity Date Time Start": "活动开始时间"
+            , "Activity Date Time End": "活动结束时间"
+            , "Responsible": "负责人"
+            , "Process Table": "流程"
+            , "Coop Fund Code": "费用类型"
+            , "Coop Fund Amt": "金额"
+            , "Coop Fund DMF Chk": "是否报销"
+            , "Coop Fund Desc": "费用说明"
+            , "Coop Fund Type Desc": "费用说明填写指引"
+            , "Coop Fund Amt Actual": "金额（实际）"
+            , "Coop Fund Amt Budget": "金额（预计）"
+            , "StartDate": "投放开始时间"
+            , "EndDate": "投放结束时间"
+            , "TotalDays": "总计投放天数"
+            , "AmtPerDay": "每日费用"
+            , "HandOverDate": "日期"
+            , "Model": "车型"
+            , "MainProcess": "活动主要亮点"
         });
     /* jshint +W100 Tick-box Items*/
 }]);

@@ -10,7 +10,7 @@ function InitActivityFlowTable() {
         sortOrder: 'asc',
         columns: [
             {
-                title: '活动开始时间',
+                title: $('#B_ActivityDateTimeStart').val(),
                 field: 'ActivityDateTimeStart',
                 valign: "left",
                 align: "left",
@@ -32,7 +32,7 @@ function InitActivityFlowTable() {
             },
 
             {
-                title: '活动结束时间',
+                title: $('#B_ActivityDateTimeEnd').val(),
                 field: 'ActivityDateTimeEnd',
                 valign: "left",
                 align: "left",
@@ -76,7 +76,7 @@ function InitActivityFlowTable() {
 
             },
             {
-                title: '负责人',
+                title: $('#B_Responsible').val(),
                 field: 'Responsible',
                 valign: "left",
                 align: "left",
@@ -168,7 +168,7 @@ function InitActivityFlowTableProcess() {
         sortOrder: 'asc',
         columns: [
             {
-                title: '活动开始时间',
+                title: $('#B_ActivityDateTimeStart').val(),
                 field: 'ActivityDateTimeStart',
                 valign: "left",
                 align: "left",
@@ -190,7 +190,7 @@ function InitActivityFlowTableProcess() {
             },
 
             {
-                title: '活动结束时间',
+                title: $('#B_ActivityDateTimeEnd').val(),
                 field: 'ActivityDateTimeEnd',
                 valign: "left",
                 align: "left",
@@ -212,7 +212,7 @@ function InitActivityFlowTableProcess() {
                 }
             },
             {
-                title: '流程',
+                title: $('#B_Process').val(),
                 field: 'Process',
                 valign: "left",
                 align: "left",
@@ -258,7 +258,7 @@ function InitActivityFlowTableProcess() {
 function InitActivityFlowTableNew(_type) {
     var _columns = [
         {
-            title: "费用类型",
+            title: $('#B_CoopFundCode').val(),
             field: 'CoopFundCode',
             width: "300px",
             valign: "middle",
@@ -288,7 +288,7 @@ function InitActivityFlowTableNew(_type) {
             }
         },
         {
-            title: "金额",
+            title: $('#B_CoopFundAmt').val(),
             field: 'CoopFundAmt',
             valign: "left",
             align: "left",
@@ -309,7 +309,7 @@ function InitActivityFlowTableNew(_type) {
 
         },
         {
-            title: "是否报销",
+            title: $('#B_CoopFundDMFChk').val(),
             field: 'CoopFund_DMFChk',
             valign: "middle",
             align: "center",
@@ -338,7 +338,7 @@ function InitActivityFlowTableNew(_type) {
             }
         },
         {
-            title: "费用说明",
+            title: $('#B_CoopFundDesc').val(),
             field: 'CoopFundDesc',
             valign: "left",
             align: "left",
@@ -359,7 +359,7 @@ function InitActivityFlowTableNew(_type) {
 
         },
         {
-            title: "费用说明填写指引",
+            title: $('#B_CoopFundTypeDesc').val(),
             field: 'CoopFundTypeDesc',
             valign: "left",
             align: "left",
@@ -389,7 +389,7 @@ function InitActivityFlowTableNew(_type) {
     if (_type == 2) {
         _columns = [
             {
-                title: "费用类型",
+                title: $('#B_CoopFundCode').val(),
                 field: 'CoopFundCode',
                 width: "300px",
                 valign: "middle",
@@ -419,7 +419,7 @@ function InitActivityFlowTableNew(_type) {
                 }
             },
             {
-                title: "金额（实际）",
+                title: $('#B_CoopFundAmt').val(),
                 field: 'CoopFundAmt',
                 valign: "left",
                 align: "left",
@@ -448,7 +448,7 @@ function InitActivityFlowTableNew(_type) {
 
             },
             {
-                title: "金额（预计）",
+                title: $('#B_CoopFundAmtBudget').val(),
                 field: 'CoopFundAmt_Budget',
                 valign: "left",
                 align: "left",
@@ -465,7 +465,7 @@ function InitActivityFlowTableNew(_type) {
 
             },
             {
-                title: "是否报销",
+                title: $('#B_CoopFundDMFChk').val(),
                 field: 'CoopFund_DMFChk',
                 valign: "middle",
                 align: "center",
@@ -494,7 +494,7 @@ function InitActivityFlowTableNew(_type) {
                 }
             },
             {
-                title: "费用说明",
+                title: $('#B_CoopFundDesc').val(),
                 field: 'CoopFundDesc',
                 valign: "left",
                 align: "left",
@@ -515,7 +515,7 @@ function InitActivityFlowTableNew(_type) {
 
             },
             {
-                title: "费用说明填写指引",
+                title: $('#B_CoopFundTypeDesc').val(),
                 field: 'CoopFundTypeDesc',
                 valign: "left",
                 align: "left",
@@ -567,7 +567,7 @@ function InitActivityFlowTableNew(_type) {
 function InitActivityFlowTableOnline(_type) {
     var _columns = [
         {
-            title: "费用类型",
+            title: $('#B_CoopFundCode').val(),
             field: 'CoopFundCode',
             width: "300px",
             valign: "middle",
@@ -597,7 +597,7 @@ function InitActivityFlowTableOnline(_type) {
             }
         },
         {
-            title: "金额",
+            title: $('#B_CoopFundAmt').val(),
             field: 'CoopFundAmt',
             valign: "left",
             align: "left",
@@ -626,7 +626,7 @@ function InitActivityFlowTableOnline(_type) {
 
         },
         {
-            title: "是否报销",
+            title: $('#B_CoopFundDMFChk').val(),
             field: 'CoopFund_DMFChk',
             valign: "middle",
             align: "center",
@@ -655,7 +655,7 @@ function InitActivityFlowTableOnline(_type) {
             }
         },
         {
-            title: "投放开始时间",
+            title: $('#B_StartDate').val(),
             field: 'StartDate',
             valign: "left",
             align: "left",
@@ -674,7 +674,7 @@ function InitActivityFlowTableOnline(_type) {
 
         },
         {
-            title: "投放结束时间",
+            title: $('#B_EndDate').val(),
             field: 'EndDate',
             valign: "left",
             align: "left",
@@ -693,7 +693,7 @@ function InitActivityFlowTableOnline(_type) {
 
         },
         {
-            title: "总计投放天数",
+            title: $('#B_TotalDays').val(),
             field: 'TotalDays',
             valign: "left",
             align: "left",
@@ -710,7 +710,7 @@ function InitActivityFlowTableOnline(_type) {
 
         },
         {
-            title: "每日费用",
+            title: $('#B_AmtPerDay').val(),
             field: 'AmtPerDay',
             valign: "left",
             align: "left",
@@ -729,7 +729,7 @@ function InitActivityFlowTableOnline(_type) {
 
         },
         {
-            title: "费用说明",
+            title: $('#B_CoopFundDesc').val(),
             field: 'CoopFundDesc',
             valign: "left",
             align: "left",
@@ -750,7 +750,7 @@ function InitActivityFlowTableOnline(_type) {
 
         },
         {
-            title: "费用说明填写指引",
+            title: $('#B_CoopFundTypeDesc').val(),
             field: 'CoopFundTypeDesc',
             valign: "left",
             align: "left",
@@ -780,7 +780,7 @@ function InitActivityFlowTableOnline(_type) {
     if (_type == 2) {
         _columns = [
             {
-                title: "费用类型",
+                title: $('#B_CoopFundCode').val(),
                 field: 'CoopFundCode',
                 width: "300px",
                 valign: "middle",
@@ -810,7 +810,7 @@ function InitActivityFlowTableOnline(_type) {
                 }
             },
             {
-                title: "金额（实际）",
+                title: $('#B_CoopFundAmt').val(),
                 field: 'CoopFundAmt',
                 valign: "left",
                 align: "left",
@@ -839,7 +839,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "金额（预计）",
+                title: $('#B_CoopFundAmtBudget').val(),
                 field: 'CoopFundAmt_Budget',
                 valign: "left",
                 align: "left",
@@ -856,7 +856,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "是否报销",
+                title: $('#B_CoopFundDMFChk').val(),
                 field: 'CoopFund_DMFChk',
                 valign: "middle",
                 align: "center",
@@ -885,7 +885,7 @@ function InitActivityFlowTableOnline(_type) {
                 }
             },
             {
-                title: "投放开始时间",
+                title: $('#B_StartDate').val(),
                 field: 'StartDate',
                 valign: "left",
                 align: "left",
@@ -904,7 +904,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "投放结束时间",
+                title: $('#B_EndDate').val(),
                 field: 'EndDate',
                 valign: "left",
                 align: "left",
@@ -923,7 +923,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "实际投放天数",
+                title: $('#B_TotalDays').val(),
                 field: 'TotalDays',
                 valign: "left",
                 align: "left",
@@ -940,7 +940,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "实际每日费用",
+                title: $('#B_AmtPerDay').val(),
                 field: 'AmtPerDay',
                 valign: "left",
                 align: "left",
@@ -959,7 +959,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "费用说明",
+                title: $('#B_CoopFundDesc').val(),
                 field: 'CoopFundDesc',
                 valign: "left",
                 align: "left",
@@ -980,7 +980,7 @@ function InitActivityFlowTableOnline(_type) {
 
             },
             {
-                title: "费用说明填写指引",
+                title: $('#B_CoopFundTypeDesc').val(),
                 field: 'CoopFundTypeDesc',
                 valign: "left",
                 align: "left",
@@ -1039,7 +1039,7 @@ function InitActivityFlowTableCar() {
         sortOrder: 'asc',
         columns: [
             {
-                title: '日期',
+                title: $('#B_HandOverDate').val(),
                 field: 'HandOverDate',
                 valign: "left",
                 align: "left",
@@ -1060,7 +1060,7 @@ function InitActivityFlowTableCar() {
                 }
             },
             {
-                title: "车型",
+                title: $('#B_Model').val(),
                 field: 'Model',
                 valign: "middle",
                 align: "center",
@@ -1089,7 +1089,7 @@ function InitActivityFlowTableCar() {
                 }
             },
             {
-                title: "活动主要亮点",
+                title: $('#B_MainProcess').val(),
                 field: 'MainProcess',
                 valign: "left",
                 align: "left",

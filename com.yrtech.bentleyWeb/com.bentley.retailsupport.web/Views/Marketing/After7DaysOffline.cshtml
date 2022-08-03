@@ -2040,7 +2040,7 @@
 
         function OpenForm(obj) {
             var url = obj.src;
-            url = url.replace('_min.', '.').replace("?x-oss-process=image/resize,h_100", "");
+            url = url.replace('_min.', '.').replace("?x-oss-process=image/resize,m_fixed,h_150,w_200", "");
             if (!new RegExp('Content/bootstrap-fileinput/img/noimage').test(url)) {
                 window.open(url);
             }
@@ -2083,7 +2083,7 @@
             let _imgList = $("#imgListDiv" + _id).find(".ossImage");
             for (let i = 0; i < _imgList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
-                    $(_imgList[i]).attr("src", baseOss + imgPath);
+                    $(_imgList[i]).attr("src", baseOss + imgPath + "?x-oss-process=image/resize,m_fixed,h_150,w_200");
                     $(_imgList[i]).attr("data-ossPath", imgPath);
                     $(_imgList[i]).attr("data-flag", 2);
                     $(_imgList[i]).attr("data-fileName", fileName);
@@ -2099,7 +2099,7 @@
             let _imgList = $("#imgListDiv" + _id).find(".ossImage");
             for (let i = 0; i < _imgList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
-                    $(_imgList[i]).attr("src", baseOss + imgPath);
+                    $(_imgList[i]).attr("src", baseOss + imgPath + "?x-oss-process=image/resize,m_fixed,h_150,w_200");
                     $(_imgList[i]).attr("data-ossPath", imgPath);
                     $(_imgList[i]).attr("data-flag", 2);
                     $(_imgList[i]).attr("data-fileName", fileName);
@@ -2199,7 +2199,7 @@
             let _imgList = $("#" + imgCodeObj[imageCode]).find(".ossImage");
             for (let i = 0; i < _imageList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
-                    $(_imgList[i]).attr("src", baseOss + _imageList[i].PicPath);
+                    $(_imgList[i]).attr("src", baseOss + _imageList[i].PicPath + "?x-oss-process=image/resize,m_fixed,h_150,w_200");
                     $(_imgList[i]).attr("data-ossPath", _imageList[i].PicPath);
                     $(_imgList[i]).attr("data-flag", 2);
                     $(_imgList[i]).attr("data-fileName", _imageList[i].PicName);

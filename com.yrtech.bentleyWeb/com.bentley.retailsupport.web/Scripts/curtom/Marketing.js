@@ -44,8 +44,7 @@ function NameQuery() {
     loadMarketings(true);
 }
 
-//var types = isZH() ? ['数字营销', '广告及宣传', '线上平台线索获取', '中央市场活动'] : ['Digital Marketing', 'Advertisement', 'Online Sales Leads Generation', 'Central Event'];
-var types = isZH() ? ['中央市场活动'] : [ 'Central Event'];
+var types = isZH() ? ['数字营销', '广告及宣传', '线上平台线索获取','中央市场活动'] : ['Digital Marketing', 'Advertisement', 'Online Sales Leads Generation','Central Event'];
 function statusFormatter(value, row, index, field) {
     if (row.MarketActionStatusNameEn == "Canceled") {
         return '';
@@ -238,10 +237,10 @@ function initTable() {
         align: 'center',
         valign: 'middle',
             formatter: function (value, row, index) {
+                if (row.EventModeId == 4 && row.EventTypeId == 99) {
+                    return statusFormatter(value, row, index, 'Before4WeeksCar');
+                }
                 if (row.EventModeId == 2) {
-                    if (row.EventTypeId == 99) {
-                        return statusFormatter(value, row, index, 'Before4WeeksCar');
-                    }
                     return statusFormatter(value, row, index, 'Before4Weeks');
                 } else {
                     return statusFormatter(value, row, index, 'Before4WeeksOnline');
@@ -261,10 +260,10 @@ function initTable() {
         align: 'center',
         valign: 'middle',
             formatter: function (value, row, index) {
+                if (row.EventModeId == 4 && row.EventTypeId == 99) {
+                    return statusFormatter(value, row, index, 'After7DaysCar');
+                }
                 if (row.EventModeId == 2) {
-                    if (row.EventTypeId == 99) {
-                        return statusFormatter(value, row, index, 'After7DaysCar');
-                    }
                     return statusFormatter(value, row, index, 'After7DaysOffline');
                 } else {
                     return statusFormatter(value, row, index, 'After7DaysOnline');

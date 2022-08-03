@@ -785,7 +785,15 @@
 
                 $.commonGet("MarketAction/MarketActionBefore4WeeksSearch", { marketActionId: id }, function (data) {
                     if (data) {
-                        $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
+                        if (data.MarketActionBefore4Weeks) {
+                            $('#PromotionCreate2').setForm(data.MarketActionBefore4Weeks);
+                            $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
+                            $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
+                            $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
+                            if (data.MarketActionBefore4Weeks.KeyVisionPic) {
+                                addBMCImage(data.MarketActionBefore4Weeks.KeyVisionPic, 2);
+                            }
+                        }
                         $('#ActivityFlowTable').bootstrapTable("load", data.ActivityProcess);
                         $('#ActivityFlowTableOnline').bootstrapTable("load", data.MarketActionBefore4WeeksCoopFund);
                         if (data.ActivityProcess) {
@@ -804,12 +812,6 @@
                         }
                         initImageList(data.MarketActionBefore4WeeksPicList_OnLine);
                         $("#VisualStatus").selectpicker("refresh");
-                        $('#img_visual1').fileinputInit(data.MarketActionBefore4Weeks.KeyVisionPic);
-                        $("#VisualStatusOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalCode);
-                        $("#VisualDescriptionOld").val(data.MarketActionBefore4Weeks.KeyVisionApprovalDesc);
-                        if (data.MarketActionBefore4Weeks.KeyVisionPic) {
-                            addBMCImage(data.MarketActionBefore4Weeks.KeyVisionPic,2);
-                        }
                         subCluesToTheCost();
                         searchDtt();
                         initMoney();
@@ -1008,7 +1010,7 @@
 
         function OpenForm(obj) {
             var url = obj.src;
-            url = url.replace('_min.', '.').replace("?x-oss-process=image/resize,h_100","");
+            url = url.replace('_min.', '.').replace("?x-oss-process=image/resize,m_fixed,h_150,w_200","");
             if (!new RegExp('Content/bootstrap-fileinput/img/noimage').test(url)) {
                 window.open(url);
             }
@@ -1068,7 +1070,7 @@
             let _imgList = $("#imgListDiv" + _id).find(".ossImage");
             for (let i = 0; i < _imgList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
-                    $(_imgList[i]).attr("src", baseOss + imgPath);
+                    $(_imgList[i]).attr("src", baseOss + imgPath + "?x-oss-process=image/resize,m_fixed,h_150,w_200");
                     $(_imgList[i]).attr("data-ossPath", imgPath);
                     $(_imgList[i]).attr("data-flag", 2);
                     $(_imgList[i]).attr("data-fileName", fileName);
@@ -1080,7 +1082,7 @@
 
         function addBMCImage(imgPath,flag) {
             $("#KeyVisionPic").val(imgPath);
-            $("#ossImage-100").attr("src", baseOss + imgPath);
+            $("#ossImage-100").attr("src", baseOss + imgPath + "?x-oss-process=image/resize,m_fixed,h_150,w_200");
             $("#ossImage-100").attr("data-ossPath", imgPath);
             $("#ossImage-100").attr("data-flag", flag);
             $("#ossImage-100").parent().parent().find(".fileinput-exists").show();
@@ -1093,7 +1095,7 @@
             for (let i = 0; i < _imgList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
                     $(_imgList[i]).removeAttr("poster");
-                    $(_imgList[i]).attr("src", baseOss + imgPath);
+                    $(_imgList[i]).attr("src", baseOss + imgPath + "?x-oss-process=image/resize,m_fixed,h_150,w_200");
                     $(_imgList[i]).attr("data-ossPath", imgPath);
                     $(_imgList[i]).attr("data-flag", 2);
                     $(_imgList[i]).attr("data-fileName", fileName);
@@ -1220,7 +1222,7 @@
             for (let i = 0; i < _imageList.length; i++) {
                 if ($(_imgList[i]).attr("data-flag") == 1) {
                     $(_imgList[i]).removeAttr("poster");
-                    $(_imgList[i]).attr("src", baseOss + _imageList[i].PicPath);
+                    $(_imgList[i]).attr("src", baseOss + _imageList[i].PicPath + "?x-oss-process=image/resize,m_fixed,h_150,w_200");
                     $(_imgList[i]).attr("data-ossPath", _imageList[i].PicPath);
                     $(_imgList[i]).attr("data-flag", 2);
                     $(_imgList[i]).attr("data-fileName", _imageList[i].PicName);

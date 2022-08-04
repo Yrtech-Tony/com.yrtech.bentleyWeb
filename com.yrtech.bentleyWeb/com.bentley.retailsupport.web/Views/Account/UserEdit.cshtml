@@ -218,7 +218,10 @@
                     accountName: '',
                     shopCode: '',
                     shopName: '',
-                    email: ''
+                    email: '',
+                    areaId: '',
+                    roleTypeCode:''
+
                 }, function (data) {
                     if (data && data.length > 0) {
                         $('#userCreate').setForm(data[0]);

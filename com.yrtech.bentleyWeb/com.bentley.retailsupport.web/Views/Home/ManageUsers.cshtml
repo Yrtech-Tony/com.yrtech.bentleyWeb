@@ -44,13 +44,14 @@
     <input id="T_EnName" type="hidden" value="{{'EnName'|translate}}" />
     <input id="T_Phone" type="hidden" value="{{'Phone'|translate}}" />
     <input id="T_Email" type="hidden" value="{{'Email'|translate}}" />
+    <input id="T_DTTEmail" type="hidden" value="{{'DTTEmail'|translate}}" />
     <input id="T_Role" type="hidden" value="{{'Role'|translate}}" />
     <input id="T_AreaName" type="hidden" value="{{'AreaName'|translate}}" />
 </div>
 
 <div id="page-wrapper">
     <!--BEGIN CONTENT-->
-    <div class="page-content">
+    <div class="page-content" style="min-width:100%;">
         <div id="tab-general">
             <div class="row mbl">
                 <div class="col-lg-12">
@@ -135,6 +136,7 @@
                 shopCode: '',
                 shopName: '',
                 email: '',
+                dttEmail: '',
                 areaId: $("#areaId").val() || '',
                 roleTypeCode: $("#roleTypeCode").val() || ''
             }, function (data) {

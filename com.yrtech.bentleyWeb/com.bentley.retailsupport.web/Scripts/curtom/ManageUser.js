@@ -23,9 +23,14 @@ function initTable() {
             title: $("#T_Phone").val(),
             field: 'TelNO'
         }, {
+            title: $("#T_DTTEmail").val(),
+            field: 'DTTEmail'
+        },
+        {
             title: $("#T_Email").val(),
             field: 'Email'
-        }, {
+        },
+        {
             title: $("#T_Role").val(),
             sortable: true,
             field: "RoleTypeName"

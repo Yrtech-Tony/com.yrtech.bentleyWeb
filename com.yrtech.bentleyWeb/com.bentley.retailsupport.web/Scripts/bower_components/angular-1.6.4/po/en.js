@@ -144,6 +144,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Account": "Account"
             , "Phone": "Phone"
             , "Email": "Email"
+            , "DTTEmail": "User Email"
             , "Role": "Role"
 
             , "Pending Plans": "Action Plan Drafts"
@@ -298,9 +299,10 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "CoopFundSumAmt": "CoopFundSumAmt"
             , "TotalBudgetAmt": "TotalBudgetAmt"
             , "CluesToTheCost": "CluesToTheCost"
-            , "TotalBudgetAmt": "TotalBudgetAmt"
-            , "TotalBudgetAmt": "TotalBudgetAmt"
-            , "TotalBudgetAmt": "TotalBudgetAmt"
+            , "TotalBudgetAmtS": "Actual Cost"
+            , "CoopFundSumAmt PLAN": "CoopFundSumAmt PLAN"
+            , "TotalBudgetAmt PLAN": "TotalBudgetAmt PLAN"
+            , "CluesToTheCost PLAN": "CluesToTheCost PLAN"
             , "Platform Media": "Platform Media"
             , "Platform ExposureForm": "Platform ExposureForm"
 

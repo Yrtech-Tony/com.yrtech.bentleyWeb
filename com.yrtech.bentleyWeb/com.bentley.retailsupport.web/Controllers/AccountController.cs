@@ -64,6 +64,7 @@ namespace com.bentley.retailsupport.web.Controllers
             //token = "BDdjcXwSGmOQpMpHusDub2GtWKmxItTt";
             HttpClient client = new HttpClient();
             Uri uri = new Uri("http://" + WebConfigurationManager.AppSettings["APIHost"]);
+            CommonHelper.log("APIHost"+WebConfigurationManager.AppSettings["APIHost"].ToString());
             client.BaseAddress = uri;
             //添加请求的头文件
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -76,7 +77,8 @@ namespace com.bentley.retailsupport.web.Controllers
             {
                 throw new Exception("该用户数据在系统不存在或邮箱信息不正确，请联系管理员！");
             }
-            string getUserApi = string.Format("bentley/api/Master/UserInfoSearch?userId=&accountId=&accountName=&shopCode=&shopName&email={0}", email);
+            CommonHelper.log("email" + email);
+            string getUserApi = string.Format("bentley/api/Master/UserInfoSearch?userId=&accountId=&accountName=&shopCode=&shopName&email={0}&areaId=&roleTypeCode=", email);
             HttpResponseMessage message = client.GetAsync(getUserApi).Result;
             string json = message.Content.ReadAsStringAsync().Result;
             //CommonHelper.log("1");

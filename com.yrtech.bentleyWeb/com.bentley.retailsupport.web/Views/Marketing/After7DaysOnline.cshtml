@@ -305,7 +305,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>TotalBudgetAmt</span><span class="required" style="color:red">*</span>: </label>
+                                        <label class="control-label col-md-4"><span translate>TotalBudgetAmtS</span><span class="required" style="color:red">*</span>: </label>
                                         <div class="col-md-4">
                                             <div class="currencyinput-d form-control"><span>￥</span><input class="form-control" id="TotalBudgetAmt" name="TotalBudgetAmt" disabled="disabled" style="width:100%;" type="text" min="0" maxlength="255"></div>
                                             <small id="After7DMFSumMax" style="color: #a94442;margin-top:5px;"></small>
@@ -1780,7 +1780,7 @@
                 });
                 return false;
             }
-            if (!MarketActionBefore21.CoopFundSumAmt) {
+            if (MarketActionBefore21.CoopFundSumAmt == null) {
                 _schedule3 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1791,12 +1791,31 @@
                     return false;
                 }
             }
-            
+            var StrActivityFlow = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            let _isCheck = false;
+            StrActivityFlow.forEach(function (item) {
+                //计算金额
+                if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
+                    _isCheck = true;
+                }
+            });
+            if (_isCheck) {
+                if (MarketActionBefore21.CoopFundSumAmt <= 0) {
+                    _schedule3 = false;
+                    if (_type == 2) {
+                        layer.open({
+                            title: '错误提示',
+                            type: 0,
+                            content: '存在报销项，市场基金金额总计要大于0！'
+                        });
+                        return false;
+                    }
+                }
+            }
             if (_schedule3) {
                 scheduleObj.schedule3 = 10;
             }
             //活动实际费用清单
-            var StrActivityFlow = $('#ActivityFlowTableOnline').bootstrapTable('getData');
             if (StrActivityFlow && StrActivityFlow.length > 0) {
                 let _flowListVeri = [];
                 let _flowDateVeri = true;

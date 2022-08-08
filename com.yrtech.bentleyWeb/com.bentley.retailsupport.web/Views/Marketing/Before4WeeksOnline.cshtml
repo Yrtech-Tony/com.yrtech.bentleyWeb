@@ -1371,7 +1371,7 @@
                 });
                 return false;
             }
-            if (!MarketActionBefore21.CoopFundSumAmt) {
+            if (MarketActionBefore21.CoopFundSumAmt == null) {
                 _schedule3 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1380,6 +1380,27 @@
                         content: '请填写市场基金金额总计！'
                     });
                     return false;
+                }
+            }
+            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
+            let _isCheck = false;
+            StrActivityFlowNew.forEach(function (item) {
+                //计算金额
+                if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
+                    _isCheck = true;
+                }
+            });
+            if (_isCheck) {
+                if (MarketActionBefore21.CoopFundSumAmt <= 0) {
+                    _schedule3 = false;
+                    if (_type == 2) {
+                        layer.open({
+                            title: '错误提示',
+                            type: 0,
+                            content: '存在报销项，市场基金金额总计要大于0！'
+                        });
+                        return false;
+                    }
                 }
             }
             if (_schedule3) {
@@ -1395,7 +1416,6 @@
                 }
             }
             //市场基金申报信息
-            var StrActivityFlowNew = $('#ActivityFlowTableOnline').bootstrapTable('getData');
             if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
                 let _flowListVeri = [];
                 let _flowDateVeri = true;

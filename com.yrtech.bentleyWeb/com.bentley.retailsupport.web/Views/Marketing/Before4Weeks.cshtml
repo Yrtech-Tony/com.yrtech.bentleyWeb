@@ -1169,6 +1169,7 @@
                                 <div class="col-md-6">
                                     <button id="btnSave" type="button" onclick="PromotionEdit2(1)" class="btn btn-success" translate>Save</button>
                                     <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <button id="btnSubmitBMC" type="button" onclick="BMCSendEmail()" class="btn btn-warning" translate>ZSubmit</button> 
                                     <button type="button" onclick="PromotionEdit2(2)" class="btn btn-danger" translate>Create PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>Download PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
@@ -1517,6 +1518,85 @@
                 createPPT();
                 submitAjax();
             }, EProcessing)
+        }
+        let bmcSendEmail = 0;
+        function BMCSendEmail() {
+            var MarketActionBefore21 = $('#PromotionCreate2').serializeObject();
+            MarketActionBefore21.MarketActionId = id;
+            MarketActionBefore21.InUserId = $("#G_UserId").val();
+            MarketActionBefore21.ModifyUserId = $("#G_UserId").val();
+            if (!(roleName == "SYSADMIN" || roleName == "BMC")) {
+                MarketActionBefore21.KeyVisionApprovalCode = VisualStatusOld;
+                MarketActionBefore21.KeyVisionApprovalDesc = VisualDescriptionOld;
+            }
+            var data = {
+                MarketActionId: MarketActionBefore21.MarketActionId,
+                TarketModelCode: $("#MarketActionTargetModelCode").val(),
+                MarketActionBefore4Weeks: MarketActionBefore21
+            };
+            if (bmcSendEmail == 0) {
+                bmcSendEmail = 1;
+                var VisualDescriptionOld = $("#VisualDescriptionOld").val();
+                var VisualDescription = $("#VisualDescription").val();
+                var VisualStatus = $("#VisualStatus").val();
+                var VisualStatusOld = $("#VisualStatusOld").val() || "1"; //如果是新创建时，值为""
+                //1.给主视觉设计公司发送邮件 验证广告视频
+                if (roleName == "BMC") {
+                    if ($("#ossImage-100").attr("data-flag") == 3) {
+                        $.commonPost("MarketAction/MarketActionBefore4WeeksSave", {
+                            UserId: $("#G_UserId").val(),
+                            ListJson: JSON.stringify(data)
+                        }, function () {
+                            EProcessing();
+                            console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
+                            $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) {
+                                var msg = isZH() ? '提交成功！' : "Save successfully !";
+                                layer.alert(msg, {
+                                    skin: 'layui-layer-molv', closeBtn: 0
+                                }, function (datas) {
+                                    window.location.href = "/Marketing/Index";
+                                });
+                            });
+                        }, EProcessing)
+                    } else {
+                        layer.open({
+                            title: '提示',
+                            type: 0,
+                            content: '请更新主视觉图片！'
+                        });
+                    }
+                    bmcSendEmail = 0;
+                    return;
+                }
+
+                //2.如果主视觉审核意见有修改时给经销商发邮件
+                if (((VisualDescriptionOld != VisualDescription) || (VisualStatus != VisualStatusOld))) //有邮件地址并且内容被修改了
+                {
+                    $.commonPost("MarketAction/MarketActionBefore4WeeksSave", {
+                        UserId: $("#G_UserId").val(),
+                        ListJson: JSON.stringify(data)
+                    }, function () {
+                        EProcessing();
+                        console.log("send KeyVisionSendEmailToShop 经销商 marketActionId=" + id)
+                        $.commonGet("MarketAction/KeyVisionSendEmailToShop", { marketActionId: id }, function (data) {
+                            var msg = isZH() ? '提交成功！' : "Save successfully !";
+                            layer.alert(msg, {
+                                skin: 'layui-layer-molv', closeBtn: 0
+                            }, function (datas) {
+                                window.location.href = "/Marketing/Index";
+                            });
+                        });
+                    }, EProcessing)
+                } else {
+                    layer.open({
+                        title: '提示',
+                        type: 0,
+                        content: '请填写主视觉相关信息！'
+                    });
+                }
+                bmcSendEmail = 0;
+                return;
+            }   
         }
 
         function OpenForm(obj) {
@@ -2256,6 +2336,13 @@
             if (_dttCode == 2 && _visualStatus == 2) {
                 $("#btnSave").addClass("btn-set-the-ash");
                 $("#btnSubmit").addClass("btn-set-the-ash");
+            }  
+            if (_dttCode == 2) {
+                $("#btnSubmit").addClass("btn-set-the-ash");
+            }
+            //提交主视觉设计按钮不可用逻辑
+            if (_visualStatus == 2) {
+                $("#btnSubmitBMC").addClass("btn-set-the-ash");
             }
             //DTT权限
             if (roleName == "AREA") {

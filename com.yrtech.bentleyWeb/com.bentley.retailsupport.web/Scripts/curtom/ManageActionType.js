@@ -8,7 +8,7 @@ function initTable() {
         pageNumber: 1,
         pageSize: 10,
         pageList: [5, 10, 20, 50],
-        height: getClientHeight() - 150,
+        height: getClientHeight() - 250,
         columns: [{
             title: $("#T_Name").val(),
             sortable: true,

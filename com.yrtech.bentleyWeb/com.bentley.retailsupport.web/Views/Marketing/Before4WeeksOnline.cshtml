@@ -900,12 +900,26 @@
                 UserId: $("#G_UserId").val(),
                 ListJson: JSON.stringify(data)
             }, function () {
+                EProcessing();
                 $('.form-control').prop("disabled", true);
                 //车型
                 $('#MarketActionTargetModelCode').prop("disabled", true);
                 $('#VisualStatus').prop("disabled", true);
                 $('#DTTApproveCode').prop("disabled", true);
-                EProcessing();
+                //1.给主视觉设计公司发送邮件
+                if (roleName != "BMC") {
+                    if ($("#ossImage-100").attr("data-flag") == 3) {
+                        console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
+                        $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                    }
+                }
+
+                //2.如果主视觉审核意见有修改时给经销商发邮件
+                if (((VisualDescriptionOld != VisualDescription) || (VisualStatus != VisualStatusOld))) //有邮件地址并且内容被修改了
+                {
+                    console.log("send KeyVisionSendEmailToShop 经销商 marketActionId=" + id)
+                    $.commonGet("MarketAction/KeyVisionSendEmailToShop", { marketActionId: id }, function (data) { });
+                }
                 if (_type == 2) {
                     createPPT(1);
                 } else {

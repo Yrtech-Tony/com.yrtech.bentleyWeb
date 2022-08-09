@@ -43,6 +43,16 @@ $('#userCreate').bootstrapValidator({
                     }
                 }
             },
+            DTTEmail: {
+                validators: {
+                    //notEmpty: {
+                    //    message: isZH() ?'邮箱不能为空':'The Email is required and cannot be empty',
+                    //},
+                    emailAddress: {
+                        message: isZH() ? '输入不是有效的用户电子邮件地址' : 'The input is not a valid user email address',
+                    }
+                }
+            },
             Email: {
                 validators: {
                     //notEmpty: {

@@ -9,7 +9,7 @@ function initTable() {
         pageNumber: 1,
         pageSize: 10,
         pageList: [5, 10, 20, 50],
-        height: getClientHeight() - 150,
+        height: getClientHeight() - 250,
         columns: [{
             title: $("#T_Account").val(),
             field: 'AccountId'
@@ -24,11 +24,11 @@ function initTable() {
             field: 'TelNO'
         }, {
             title: $("#T_DTTEmail").val(),
-            field: 'DTTEmail'
+            field: 'DTTEmail', 
         },
         {
             title: $("#T_Email").val(),
-            field: 'Email'
+            field: 'Email',   
         },
         {
             title: $("#T_Role").val(),

@@ -1541,7 +1541,7 @@
                 var VisualStatus = $("#VisualStatus").val();
                 var VisualStatusOld = $("#VisualStatusOld").val() || "1"; //如果是新创建时，值为""
                 //1.给主视觉设计公司发送邮件 验证广告视频
-                if (roleName == "BMC") {
+                if (roleName != "BMC") {
                     if ($("#ossImage-100").attr("data-flag") == 3) {
                         $.commonPost("MarketAction/MarketActionBefore4WeeksSave", {
                             UserId: $("#G_UserId").val(),

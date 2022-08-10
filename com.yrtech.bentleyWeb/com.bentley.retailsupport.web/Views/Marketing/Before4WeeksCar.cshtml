@@ -958,6 +958,7 @@
                                 <div class="col-md-6">
                                     <button id="btnSave" type="button" onclick="PromotionEdit2(1)" class="btn btn-success" translate>Save</button>
                                     <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <button id="btnSubmitBMC" type="button" onclick="BMCSendEmail()" class="btn btn-warning" translate>ZSubmit</button>
                                     <button type="button" onclick="PromotionEdit2(2)" class="btn btn-danger" translate>Create PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>Download PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
@@ -983,7 +984,7 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js?v=202204051545"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=2017093012"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220810143350"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1747,7 +1748,7 @@
             }
 
             //主视觉
-            let _schedule4 = veriKeyVisual(MarketActionBefore21, _type);
+            let _schedule4 = veriKeyVisual(MarketActionBefore21, 1);
             if (_schedule4) {
                 scheduleObj.schedule4 = 10;
             } else {
@@ -2021,6 +2022,13 @@
                 $("#btnSave").addClass("btn-set-the-ash");
                 $("#btnSubmit").addClass("btn-set-the-ash");
             }
+            if (_dttCode == 2) {
+                $("#btnSubmit").addClass("btn-set-the-ash");
+            }
+            //提交主视觉设计按钮不可用逻辑
+            if (_visualStatus == 2) {
+                $("#btnSubmitBMC").addClass("btn-set-the-ash");
+            }
             //DTT权限
             if (roleName == "AREA") {
                 $('#DTTApproveDesc').prop("disabled", false);
@@ -2035,6 +2043,7 @@
                 $('#VisualDescription').prop("disabled", false);
                 $('#DTTApproveDesc').prop("disabled", true);
                 $('#DTTApproveCode').prop("disabled", true);
+                $("#btnSubmit").addClass("btn-set-the-ash");
             }
             //经销商权限
             if (roleName == "SHOP") {

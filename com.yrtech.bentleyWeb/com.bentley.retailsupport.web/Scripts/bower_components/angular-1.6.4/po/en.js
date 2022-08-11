@@ -355,6 +355,8 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Model": "Model"
             , "MainProcess": "MainProcess"
             , "Platform ExposuerForm": "Platform ExposuerForm"
+            , "ZSubmit": "BMC Submit"
+            , "JSubmit": "Commit Audit"
         });
     /* jshint +W100 */
 }]);

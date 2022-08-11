@@ -152,7 +152,11 @@
                 <div class="widget-body form form-horizontal" id="activityplan" style="display: block;overflow:hidden;">
                     <div>
                         <form class="form-horizontal" id="PromotionCreate2">
-
+                            <input type="hidden" name="KeyVisionSendToBMCChk" id="KeyVisionSendToBMCChk" />
+                            <input type="hidden" name="KeyVisionSendToBMCDateTime" id="KeyVisionSendToBMCDateTime" />
+                            <input type="hidden" name="KeyVisionSendToShopChk" id="KeyVisionSendToShopChk" />
+                            <input type="hidden" name="KeyVisionSendToShopDateTime" id="KeyVisionSendToShopDateTime" />
+                            <input type="hidden" name="KeyVisionPicOld" id="KeyVisionPicOld" />
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -400,7 +404,8 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <textarea class="form-control" cols="20" id="KeyVisionDesc" name="KeyVisionDesc" placeholder="{{'Description2'|translate}}" rows="11"></textarea>
+                                                <textarea class="form-control" cols="20" id="KeyVisionDesc" name="KeyVisionDesc" placeholder="{{'Description2'|translate}}" rows="9"></textarea>
+                                                <button id="btnSubmitBMC" style="margin-top:5px;" type="button" onclick="BMCSendEmail()" class="btn btn-warning" translate>ZSubmit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -410,13 +415,16 @@
                                         <div class="col-md-8">
                                             <input type="hidden" id="VisualDescriptionOld" />
                                             <textarea class="form-control" cols="20" id="VisualDescription" name="KeyVisionApprovalDesc" placeholder="{{'Modification Instructions'|translate}}" rows="9"></textarea>
-                                            <div style="margin-top:5px;">
-                                                <input type="hidden" id="VisualStatusOld" />
-                                                <select id="VisualStatus" name="KeyVisionApprovalCode" class="selectpicker">
-                                                    <option value="1" selected="" translate>Waiting for Approval</option>
-                                                    <option value="2" translate>Approved</option>
-                                                    <option value="3" translate>Waiting for Change</option>
-                                                </select>
+                                            <div style="margin-top:5px;display:flex;align-items:center;">
+                                                <div>
+                                                    <input type="hidden" id="VisualStatusOld" />
+                                                    <select id="VisualStatus" name="KeyVisionApprovalCode" class="selectpicker">
+                                                        <option value="1" selected="" translate>Waiting for Approval</option>
+                                                        <option value="2" translate>Approved</option>
+                                                        <option value="3" translate>Waiting for Change</option>
+                                                    </select>
+                                                </div>
+                                                <button id="btnSubmitJXS" style="margin-left:10px;" type="button" onclick="BMCSendEmail()" class="btn btn-warning" translate>JSubmit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -958,7 +966,6 @@
                                 <div class="col-md-6">
                                     <button id="btnSave" type="button" onclick="PromotionEdit2(1)" class="btn btn-success" translate>Save</button>
                                     <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
-                                    <button id="btnSubmitBMC" type="button" onclick="BMCSendEmail()" class="btn btn-warning" translate>ZSubmit</button>
                                     <button type="button" onclick="PromotionEdit2(2)" class="btn btn-danger" translate>Create PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>Download PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
@@ -984,7 +991,7 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js?v=202204051545"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220810143350"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220811143352"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1109,7 +1116,7 @@
             layer.closeAll('loading');
         }
 
-        function PromotionEdit2(_type) {
+        function PromotionEdit2(_type, callback) {
             $('.form-control').prop("disabled", false);
             //车型
             $('#MarketActionTargetModelCode').prop("disabled", false);
@@ -1187,6 +1194,10 @@
                 ListJson: JSON.stringify(data)
             }, function () {
                 EProcessing();
+                if (_type == 3) {
+                    callback();
+                    return;
+                }
                 $('.form-control').prop("disabled", true);
                 //车型
                 $('#MarketActionTargetModelCode').prop("disabled", true);
@@ -1284,19 +1295,19 @@
                 ListJson: JSON.stringify(data)
             }, function () {
                 EProcessing();
-                //1.给主视觉设计公司发送邮件
+                //1.给主视觉设计公司发送邮件 验证广告视频
                 if (roleName != "BMC") {
-                    if ($("#ossImage-100").attr("data-flag") == 3) {
+                    if ($("#ossImage-100").attr("data-flag") != 1) {
                         console.log("send KeyVisionSendEmailToBMC 主视觉设计公司 marketActionId=" + id)
-                        $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id }, function (data) { });
+                        $.commonGet("MarketAction/KeyVisionSendEmailToBMC", { marketActionId: id, keyVisionPic: $("#ossImage-100").attr("data-osspath") }, function (data) { });
                     }
                 }
 
                 //2.如果主视觉审核意见有修改时给经销商发邮件
-                if (((VisualDescriptionOld != VisualDescription) || (VisualStatus != VisualStatusOld))) //有邮件地址并且内容被修改了
+                if (roleName == "BMC" && VisualDescription && VisualStatus) //有邮件地址并且内容被修改了
                 {
                     console.log("send KeyVisionSendEmailToShop 经销商 marketActionId=" + id)
-                    $.commonGet("MarketAction/KeyVisionSendEmailToShop", { marketActionId: id }, function (data) { });
+                    $.commonGet("MarketAction/KeyVisionSendEmailToShop", { marketActionId: id, keyVisionApprovalCode: $("#VisualStatus").val(), keyVisionApprovalDesc: $("#VisualDescription").val() }, function (data) { });
                 }
                 createPPT();
                 submitAjax();
@@ -1748,7 +1759,7 @@
             }
 
             //主视觉
-            let _schedule4 = veriKeyVisual(MarketActionBefore21, 1);
+            let _schedule4 = veriKeyVisual(MarketActionBefore21, _type);
             if (_schedule4) {
                 scheduleObj.schedule4 = 10;
             } else {
@@ -1906,7 +1917,7 @@
                     });
                 }
             }
-            if (!_data.KeyVisionDesc) {
+           @* if (!_data.KeyVisionDesc) {
                 _schedule4 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1915,7 +1926,7 @@
                         content: '请填写主视觉描述！'
                     });
                 }
-            }
+            }*@
             return _schedule4;
         }
 
@@ -2019,15 +2030,16 @@
             let _visualStatus = $("#VisualStatus").val();
             console.error(_visualStatus);
             if (_dttCode == 2 && _visualStatus == 2) {
-                $("#btnSave").addClass("btn-set-the-ash");
-                $("#btnSubmit").addClass("btn-set-the-ash");
+                $("#btnSave").hide();
+                $("#btnSubmit").hide();
             }
             if (_dttCode == 2) {
-                $("#btnSubmit").addClass("btn-set-the-ash");
+                $("#btnSubmit").hide();
             }
             //提交主视觉设计按钮不可用逻辑
             if (_visualStatus == 2) {
-                $("#btnSubmitBMC").addClass("btn-set-the-ash");
+                $("#btnSubmitBMC").hide();
+                $("#btnSubmitJXS").hide();
             }
             //DTT权限
             if (roleName == "AREA") {
@@ -2043,7 +2055,11 @@
                 $('#VisualDescription').prop("disabled", false);
                 $('#DTTApproveDesc').prop("disabled", true);
                 $('#DTTApproveCode').prop("disabled", true);
-                $("#btnSubmit").addClass("btn-set-the-ash");
+                $("#btnSubmitBMC").hide();
+                $("#btnSave").hide();
+                $("#btnSubmit").hide();
+            } else {
+                $("#btnSubmitJXS").hide();
             }
             //经销商权限
             if (roleName == "SHOP") {

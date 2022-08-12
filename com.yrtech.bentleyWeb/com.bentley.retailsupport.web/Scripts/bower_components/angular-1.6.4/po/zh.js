@@ -117,7 +117,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Save": "保存"
             , "Submit": "提交"
             , "ZSubmit": "提交主视觉设计"
-            , "JSubmit": "提交"
+            , "JSubmit": "提交审核意见"
             , "Create PPT": "生成PPT"
             , "Download PPT": "下载PPT"
             , "Show More": "显示更多"

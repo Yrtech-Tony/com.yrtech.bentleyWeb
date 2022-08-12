@@ -326,8 +326,8 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <textarea class="form-control" cols="20" id="KeyVisionDesc" name="KeyVisionDesc" placeholder="{{'Description2'|translate}}" rows="9"></textarea>
-                                                <button id="btnSubmitBMC" style="margin-top:5px;" type="button" onclick="BMCSendEmail()" class="btn btn-warning" translate>ZSubmit</button>
+                                                <textarea class="form-control" style="height:150px;" cols="20" id="KeyVisionDesc" name="KeyVisionDesc" placeholder="{{'Description2'|translate}}" rows="9"></textarea>
+                                                <button id="btnSubmitBMC" style="margin-top:13px;" type="button" onclick="BMCSendEmail()" class="btn btn-warning" translate>ZSubmit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -336,8 +336,8 @@
                                     <div class="form-group">
                                         <div class="col-md-8">
                                             <input type="hidden" id="VisualDescriptionOld" />
-                                            <textarea class="form-control" cols="20" id="VisualDescription" name="KeyVisionApprovalDesc" placeholder="{{'Modification Instructions'|translate}}" rows="9"></textarea>
-                                            <div style="margin-top:5px;display:flex;align-items:center;">
+                                            <textarea class="form-control" style="height:150px;" cols="20" id="VisualDescription" name="KeyVisionApprovalDesc" placeholder="{{'Modification Instructions'|translate}}" rows="9"></textarea>
+                                            <div style="margin-top:13px;display:flex;align-items:center;">
                                                 <div>
                                                     <input type="hidden" id="VisualStatusOld" />
                                                     <select id="VisualStatus" name="KeyVisionApprovalCode" class="selectpicker">
@@ -727,7 +727,7 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js?v=2017093041"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220811143352"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=202208111433513"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1419,13 +1419,13 @@
                 scheduleObj.schedule3 = 10;
             }
             //主视觉
-            let _schedule4 = veriKeyVisual(MarketActionBefore21, _type);
+            let _schedule4 = veriKeyVisual(MarketActionBefore21, 1);
             if (_schedule4) {
                 scheduleObj.schedule4 = 20;
             } else {
-                if (_type == 2) {
+                @*if (_type == 2) {
                     return false;
-                }
+                }*@
             }
             //市场基金申报信息
             if (StrActivityFlowNew && StrActivityFlowNew.length > 0) {
@@ -1503,7 +1503,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请上传报价单！'
+                        content: '请上传报价单和广告视频！'
                     });
                     return false;
                 }

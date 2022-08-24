@@ -2213,3 +2213,14 @@ function KeyVisionSendEmailToShop() {
         });
     });
 }
+
+//验证数字格式正则（包含小数）
+function veriDecimals(_data) {
+    if (_data && _data != 0) {
+        _data = _data + "";
+        _data = _data.trim();
+        var reg = /^\d+(?=\.{0,1}\d+$|$)/;
+        return reg.test(_data);
+    }
+    return true;
+}

@@ -165,7 +165,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Highlights</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Highlights</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="HightLights" name="HightLights" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -175,7 +175,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Place to Improve</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Place to Improve</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ImproveArea" name="ImproveArea" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -185,7 +185,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Customer Feedback</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Customer Feedback</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="CustomerFeedback" name="CustomerFeedback" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -197,7 +197,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Marketing/Sales Team Suggestions (Summary)</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Marketing/Sales Team Suggestions (Summary)</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="MarketSaleTeamAdvice" name="MarketSaleTeamAdvice" rows="1" style="width:100%;"></textarea>
                                         </div>
@@ -208,7 +208,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Platform Media</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Platform Media</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_Media" name="Platform_Media" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -219,7 +219,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Platform ExposuerForm</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Platform ExposuerForm</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="Platform_ExposuerForm" name="Platform_ExposuerForm" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -686,7 +686,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-4">
                                         <div class="col-md-2">
-                                            <label class="control-label"><span translate>Invoice</span>:</label>
+                                            <label class="control-label"><span translate>Invoice</span><span class="required" style="color:red">*</span>:</label>
                                         </div>
                                         <div class="col-md-10">
                                             <div class="img-flex">
@@ -938,7 +938,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group" id="imgListDiv-1">
-                                        <label class="control-label col-md-2"><span translate>Email Screenshot</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-2"><span translate>Email Screenshot</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-2">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -1242,7 +1242,7 @@
 
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220401114412"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220823153859"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1637,7 +1637,7 @@
             MarketActionBefore21.CluesToTheCost_PLAN = replaceMoneyD(MarketActionBefore21.CluesToTheCost_PLAN); 
             //活动报告信息验证
             let _schedule1 = true;
-            if (!MarketActionBefore21.HightLights) {
+            @*if (!MarketActionBefore21.HightLights) {
                 _schedule1 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1680,14 +1680,14 @@
                     });
                     return false;
                 }
-            }
+            }*@
             if (_schedule1) {
-                scheduleObj.schedule1 = 20;
+                scheduleObj.schedule1 = 0;
             }
 
             //平台信息
             let _schedule2 = true;
-            if (!MarketActionBefore21.Platform_Media) {
+            @*if (!MarketActionBefore21.Platform_Media) {
                 _schedule2 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1708,9 +1708,9 @@
                     });
                     return false;
                 }
-            }
+            }*@
             if (_schedule2) {
-                scheduleObj.schedule2 = 10;
+                scheduleObj.schedule2 = 0;
             }
 
             //人员信息
@@ -1772,7 +1772,7 @@
                     return false;
                 }
             }
-            if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
+            if (!veriDecimals(MarketActionBefore21.CoopFundSumAmt)) {
                 layer.open({
                     title: '错误提示',
                     type: 0,
@@ -1813,7 +1813,7 @@
                 }
             }
             if (_schedule3) {
-                scheduleObj.schedule3 = 10;
+                scheduleObj.schedule3 = 40;
             }
             //活动实际费用清单
             if (StrActivityFlow && StrActivityFlow.length > 0) {
@@ -1891,7 +1891,7 @@
                     layer.open({
                         title: '错误提示',
                         type: 0,
-                        content: '请上传相关报价单、合同和邮件截图！'
+                        content: '请上传相关报价单、合同和发票！'
                     });
                     return false;
                 }
@@ -1939,8 +1939,10 @@
             let _schedule7 = true;
             let _MarketActionPicList = [];
             for (let _key in imgCodeObj) {
-                if (_key == 'MRN01' || _key == 'MRN04' || _key == 'MRN02') {
+                if (_key == 'MRN01' || _key == 'MRN03' || _key == 'MRN02') {
                     let _imgList = $("#" + imgCodeObj[_key]).find(".ossImage");
+                    console.error(_key);
+                    console.error(_imgList);
                     let _veriImg = false;
                     for (let i = 0; i < _imgList.length; i++) {
                         if ($(_imgList[i]).attr("data-flag") == 2) {
@@ -2033,11 +2035,11 @@
             if (roleName == "SYSADMIN") {
                 return;
             }
-            let _dttCode = $('#DTTApproveCode').val();
+            let _dttCode = _DTTApproveCode;
             console.error(_dttCode);
             if (_dttCode == 2) {
-                $("#btnSave").addClass("btn-set-the-ash");
-                $("#btnSubmit").addClass("btn-set-the-ash");
+                $("#btnSave").hide();
+                $("#btnSubmit").hide();
             }
             //DTT权限
             if (roleName == "AREA") {
@@ -2075,6 +2077,7 @@
             }
         }
 
+        var _DTTApproveCode = 1;
         function searchDtt() {
             $.commonGet("MarketAction/DTTApproveSearch", {
                 marketActionId: $("#MarketActionId").val(),
@@ -2083,6 +2086,7 @@
                 dttApproveCode: ''
             }, function (data) {
                 if (data && data.length > 0) {
+                    _DTTApproveCode = data[0].DTTApproveCode;
                     $("#DTTApproveCode").val(data[0].DTTApproveCode);
                     $("#DTTApproveDesc").val(data[0].DTTApproveDesc);
                 }

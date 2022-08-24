@@ -161,7 +161,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Background</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Event Background</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityBackground" name="ActivityBackground" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -171,7 +171,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Objective</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Event Objective</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityObjective" name="ActivityObjective" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -181,7 +181,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Event Description</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Event Description</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-8">
                                             <textarea class="form-control" cols="20" id="ActivityDesc" name="ActivityDesc" data-val="true" rows="5" style="width:100%;"></textarea>
                                         </div>
@@ -192,7 +192,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Main Models</span><span class="required" style="color:red">*</span>: </label>
+                                        <label class="control-label col-md-4"><span translate>Main Models</span>@*<span class="required" style="color:red">*</span>*@: </label>
                                         <div class="col-md-4">
                                             <select id="MarketActionTargetModelCode" class="selectpicker"></select>
                                         </div>
@@ -291,7 +291,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Vehide Usage</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>Vehide Usage</span>@*<span class="required" style="color:red">*</span>*@:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="Vehide_Usage" name="Vehide_Usage" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -302,7 +302,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label col-md-4"><span translate>Vehide Model</span><span class="required" style="color:red">*</span>:  </label>
+                                        <label class="control-label col-md-4"><span translate>Vehide Model</span>@*<span class="required" style="color:red">*</span>*@:  </label>
                                         <div class="col-md-4">
                                             <input class="form-control" id="Vehide_Model" name="Vehide_Model" style="width:100%;" type="text" min="0" maxlength="255">
 
@@ -384,7 +384,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group" id="imgListDiv-100">
-                                        <label class="control-label col-md-4"><span translate>Primary Vision</span><span class="required" style="color:red">*</span>:</label>
+                                        <label class="control-label col-md-4"><span translate>Primary Vision</span>@*<span class="required" style="color:red">*</span>*@:</label>
                                         <div class="col-md-4">
                                             <div class="fileinput fileinput-new" data-provides="fileinput" id="exampleInputUpload">
                                                 <div class="fileinput-new thumbnail" style="width: 200px;height:150px;">
@@ -1203,7 +1203,7 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=202208111433513"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220823153859"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -1714,7 +1714,7 @@
             MarketActionBefore21.CluesToTheCost = replaceMoneyD(MarketActionBefore21.CluesToTheCost);
             //活动基本信息验证
             let _schedule1 = true;
-            if (!MarketActionBefore21.ActivityBackground) {
+            @*if (!MarketActionBefore21.ActivityBackground) {
                 _schedule1 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1746,9 +1746,9 @@
                     });
                     return false;
                 }
-            }
+            }*@
             if (_schedule1) {
-                scheduleObj.schedule1 = 10;
+                scheduleObj.schedule1 = 0;
             }
             //人员信息
             let _schedule2 = true;
@@ -1887,11 +1887,11 @@
                 }
             }
             if (_schedule2) {
-                scheduleObj.schedule2 = 20;
+                scheduleObj.schedule2 = 30;
             }
             //车辆信息
             let _schedule3 = true;
-            if (!MarketActionBefore21.Vehide_Usage) {
+            @*if (!MarketActionBefore21.Vehide_Usage) {
                 _schedule3 = false;
                 if (_type == 2) {
                     layer.open({
@@ -1912,7 +1912,7 @@
                     });
                     return false;
                 }
-            }
+            }*@
 
             if (!veriNumber(MarketActionBefore21.Vehide_Qty)) {
                 layer.open({
@@ -1933,7 +1933,7 @@
                     return false;
                 }
             }
-            if (!veriNumber(MarketActionBefore21.CoopFundSumAmt)) {
+            if (!veriDecimals(MarketActionBefore21.CoopFundSumAmt)) {
                 layer.open({
                     title: '错误提示',
                     type: 0,
@@ -2057,7 +2057,7 @@
                         _sumAmt += parseInt(item.CoopFundAmt);
                     }
                 });
-                let _CoopFundSumAmt = $("#CoopFundSumAmt").val();
+                let _CoopFundSumAmt = replaceMoneyD($("#CoopFundSumAmt").val());
                 if (_CoopFundSumAmt > _sumAmt) {
                     layer.open({
                         title: '错误提示',
@@ -2262,15 +2262,16 @@
             if (roleName == "SYSADMIN") {
                 return;
             }
-            let _dttCode = $('#DTTApproveCode').val();
+            let _dttCode = _DTTApproveCode;
             console.error(_dttCode);
-            let _visualStatus = $("#VisualStatus").val();
+            let _visualStatus = $("#VisualStatusOld").val();
             console.error(_visualStatus);
             if (_dttCode == 2 && _visualStatus == 2) {
                 $("#btnSave").hide();
                 $("#btnSubmit").hide();
             }  
             if (_dttCode == 2) {
+                $("#btnSave").hide();
                 $("#btnSubmit").hide();
             }
             //提交主视觉设计按钮不可用逻辑
@@ -2358,6 +2359,7 @@
 
             }
         }
+        var _DTTApproveCode = 1;
         function searchDtt() {
             $.commonGet("MarketAction/DTTApproveSearch", {
                 marketActionId: $("#MarketActionId").val(),
@@ -2366,6 +2368,7 @@
                 dttApproveCode: ''
             }, function (data) {
                 if (data && data.length > 0) {
+                    _DTTApproveCode = data[0].DTTApproveCode;
                     $("#DTTApproveCode").val(data[0].DTTApproveCode);
                     $("#DTTApproveDesc").val(data[0].DTTApproveDesc);
                 }

@@ -1203,7 +1203,7 @@
 </div>
 @section scripts{
     <script src="~/Scripts/api/common.js"></script>
-    <script src="~/Scripts/curtom/PromotionEdit.js?v=20220823153859"></script>
+    <script src="~/Scripts/curtom/PromotionEdit.js?v=202208231538591"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/sha1/sha1.js"></script>
@@ -2054,7 +2054,7 @@
                 StrActivityFlowNew.forEach(function (item) {
                     //计算金额
                     if (item.CoopFund_DMFChk == "true" || item.CoopFund_DMFChk == true) {
-                        _sumAmt += parseInt(item.CoopFundAmt);
+                        _sumAmt = calculationAdd(_sumAmt, item.CoopFundAmt);
                     }
                 });
                 let _CoopFundSumAmt = replaceMoneyD($("#CoopFundSumAmt").val());
@@ -2435,7 +2435,7 @@
                         }
                         //计算金额
                         if (item.CoopFundAmt) {
-                            _sumAmt += parseInt(item.CoopFundAmt);
+                            _sumAmt = calculationAdd(_sumAmt, item.CoopFundAmt);
                         }
                     });
                     $("#TotalBudgetAmt").val(_sumAmt);

@@ -114,9 +114,9 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
             , "Budget(RMB)": "活动预算（元）"
             , "Actual Cost(RMB)": "实际费用（元）"
 
-            , "Save": "保存"
-            , "Submit": "提交"
-            , "ZSubmit": "提交主视觉设计"
+            , "Save": "保存草稿"
+            , "Submit": "提交审核"
+            , "ZSubmit": "提交设计审核"
             , "JSubmit": "提交审核意见"
             , "Create PPT": "生成PPT"
             , "Download PPT": "下载PPT"

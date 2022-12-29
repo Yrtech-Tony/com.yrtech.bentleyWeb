@@ -405,7 +405,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <textarea class="form-control" style="height:150px;" cols="20" id="KeyVisionDesc" name="KeyVisionDesc" placeholder="{{'Description2'|translate}}" rows="9"></textarea>
-                                                <button id="btnSubmitBMC" style="margin-top:13px;" type="button" onclick="BMCSendEmail()" class="btn btn-warning" translate>ZSubmit</button>
+                                                <button id="btnSubmitBMC" style="margin-top:13px;" type="button" onclick="BMCSendEmail()" class="btn btn-success" translate>ZSubmit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1176,8 +1176,8 @@
 
                             <div class="row" style="position: fixed; bottom: 0px; width: 100%; padding: 10px; background: #fff; z-index: 2;left:265px;">
                                 <div class="col-md-6">
-                                    <button id="btnSave" type="button" onclick="PromotionEdit2(1)" class="btn btn-success" translate>Save</button>
-                                    <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-warning" translate>Submit</button>
+                                    <button id="btnSave" type="button" onclick="PromotionEdit2(1)" class="btn btn-warning" translate>Save</button>
+                                    <button id="btnSubmit" type="button" onclick="PromotionSubmit()" class="btn btn-success" translate>Submit</button>
                                     <button type="button" onclick="PromotionEdit2(2)" class="btn btn-danger" translate>Create PPT</button>
                                     <button type="button" onclick="downloadPPT()" class="btn btn-info" translate>Download PPT</button>
                                     <a class="btn btn-dark" href="/Marketing/Index" translate>Back</a>
@@ -1202,7 +1202,7 @@
     <input id="FileId" type="hidden" value="@ViewBag.FileId" />
 </div>
 @section scripts{
-    <script src="~/Scripts/api/common.js"></script>
+    <script src="~/Scripts/api/common.js?v=20221221"></script>
     <script src="~/Scripts/curtom/PromotionEdit.js?v=202208231538591"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/crypto/crypto.js"></script>
     <script src="~/Scripts/oss-upload-direct/lib/crypto1/hmac/hmac.js"></script>

@@ -4,8 +4,8 @@ API 公用方法
 需要引用jquery
 */
 var year = 2022;
-var host = "http://39.106.71.65:8031/"
-//var host = "http://localhost:57328/"
+//var host = "http://39.106.71.65:8031/"
+var host = "http://localhost:57328/"
 var baseApi = host+"bentley/api/";
 
 
